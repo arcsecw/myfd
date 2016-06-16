@@ -1,0 +1,380 @@
+@import url("../../node_modules/amazeui/less/variables");
+
+@adm-header-height: 51px;
+@border-color: #dedede;
+@sidebar-width: 240px;
+
+html,
+body,
+#app-root {
+  height: 100%;
+  overflow: hidden;
+}
+
+.adm-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding-top: @adm-header-height;
+}
+
+.am-topbar {
+  position: absolute;
+  top: 0;
+  z-index: 10000;
+  width: 100%;
+}
+
+// Sidebar
+.adm-sidebar {
+  position: absolute;
+  top: @adm-header-height;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  width: @sidebar-width;
+  // height: 100%;
+  overflow-y: auto;
+  background: #f2f2f2;
+  border-right: 1px solid #ccc;
+
+  .am-list a {
+    padding-left: 15px;
+    color: #444;
+
+    &.active {
+      background: #f8f8f8;
+      color: #333;
+    }
+
+    [class*="am-icon-"] {
+      color: #777;
+    }
+  }
+
+  // sidebar transition
+  @media @small-only {
+    transform: translateX(-100%);
+    transition: 0.3s transform;
+
+    &.active {
+      transform: translateX(0%);
+    }
+  }
+}
+
+.adm-sidebar-sub {
+  display: none;
+  padding-left: 1em;
+  margin: 0;
+  background: #f2f2f2;
+
+  .sub-active & {
+    display: block;
+  }
+}
+
+.adm-main {
+  height: 100%;
+
+  @media @medium-up {
+    margin-left: @sidebar-width;
+  }
+}
+
+.adm-sidebar-toggle {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  z-index: 10000;
+  cursor: pointer;
+}
+
+.adm-page {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 10px 15px;
+  position: absolute;
+  @media @medium-up {
+    padding: 15px 25px;
+  }
+}
+
+// Home
+.adm-intro-list {
+  border: 1px solid #e9ecf1;
+  margin-top: 0;
+
+  li {
+    & + li {
+      border-left: 1px solid @border-color;
+    }
+  }
+
+  @media @small-only {
+    li {
+      margin-bottom: 15px;
+
+      &:nth-child(2n) + li {
+        border-left: none;
+      }
+    }
+  }
+}
+
+.adm-home-panels {
+  @media @medium-up {
+    [class*="am-u-"] {
+      &:first-child {
+        padding-right: 5px;
+      }
+
+      &:last-child {
+        padding-left: 5px;
+      }
+    }
+
+  }
+}
+
+.adm-up-list {
+  margin-bottom: 0;
+  color: #666;
+
+  h3 {
+    margin-bottom: 8px;
+  }
+
+  [class*="am-icon-"] {
+    margin-right: 5px;
+  }
+
+  p {
+    margin: 0 0 5px 0;
+    font-size: 1.4rem;
+  }
+
+  li {
+    padding: 10px 0;
+
+    &:first-child {
+      border-top: none;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .am-progress {
+    margin-bottom: 0;
+  }
+}
+
+// Home: tasks
+.adm-home-tasks {
+  margin-bottom: 0;
+}
+
+.adm-home-tasks li {
+  padding: 5px 0;
+  border-color: #eee;
+
+  &:first-child {
+    border-top: none;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.adm-task-meta {
+  font-size: 1.2rem;
+  color: #999;
+}
+
+.adm-task-bd {
+  font-size: 1.4rem;
+  margin: 5px 0;
+}
+
+
+// Messages
+
+.adm-page-msg {
+  padding: 0;
+  overflow-y: hidden;
+
+  > .am-g {
+    &,
+    & > [class*="am-u-"] {
+      height: 100%;
+    }
+  }
+}
+
+.adm-msgs {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.adm-msg-col {
+  border-right: 1px solid #ddd;
+
+  @media @small-only {
+    .has-id & {
+      display: none;
+    }
+  }
+}
+
+@media @small-only {
+  .adm-msg-detail {
+    display: none;
+
+    .has-id & {
+      display: block;
+    }
+  }
+}
+
+.adm-msg-list {
+  padding-bottom: 51px;
+  height: 100%;
+  overflow-y: auto;
+  margin: 0;
+
+  > li {
+    &:first-child {
+      border-top: none;
+    }
+  }
+
+  > li > a {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #444;
+  }
+
+  .adm-msg-list-main {
+    flex: 1;
+    margin-right: 5px;
+
+    em {
+      color: #888;
+      font-style: normal;
+    }
+
+    .am-badge {
+      margin-right: 5px;
+      font-weight: normal;
+    }
+  }
+}
+
+.adm-msg-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 32px;
+  color: #888;
+}
+
+.adm-msg-icon {
+  color: #ccc;
+}
+
+.adm-msg-default {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #999;
+
+  [class*="am-icon-"] {
+    font-size: 48px;
+  }
+}
+
+.adm-msg-bar {
+  height: 51px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background: #f8f8f8;
+  border-bottom: 1px solid #ddd;
+  line-height: 50px;
+}
+
+.adm-msg-body {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.adm-msg-content {
+  padding: 15px 10px;
+
+  img {
+    max-width: 160px;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  em {
+    margin-right: 5px;
+    font-style: normal;
+    color: #666;
+  }
+}
+
+.msg-avatar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.w-bg-green{
+  background-color:limegreen;
+  
+}
+.am-selected-btn{
+ margin-left: 5px; 
+}
+.padding-left-rem{
+  padding-left: 1.5rem;
+  padding-right: 0px;
+}
+.padding-right-rem{
+  padding-left: 0px;
+  padding-right:1.5rem;
+  bottom:0;
+}
+.height10{
+  height: 10px;
+}
+.height30{
+  height: 28px;
+}
+.am-g{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+h1{
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+.list-green li {
+  background-color: limegreen;
+  text-align : center;
+}
