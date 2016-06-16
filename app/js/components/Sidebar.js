@@ -9,35 +9,7 @@ import {
 } from 'amazeui-react';
 
 const navs = [
-  {
-    id: 'home',
-    title: '首页',
-    icon: 'home'
-  },
-  {
-    id: 'group',
-    title: '菜单组 1',
-    icon: 'folder',
-    subNav: 4,
-  },
-  {
-    id: 'group',
-    title: '菜单组 2',
-    icon: 'folder',
-    subNav: 5,
-  },
-  {
-    id: 'group',
-    title: '菜单组 3',
-    icon: 'folder',
-    subNav: 15,
-  },
-  {
-    id: 'group',
-    title: '菜单组 4',
-    icon: 'folder',
-    subNav: 3,
-  },
+  
   {
     id: 'doctor_list',
     title: '医生列表',

@@ -294,17 +294,17 @@ var ManageRoot = React.createClass({
 
 
                                 <div id="u60" className="ax_text_field">
-                                    <input id="u60_input" type="text" value=""/>
+                                    <input id="u60_input" type="text"  />
                                 </div>
 
 
                                 <div id="u61" className="ax_text_field">
-                                    <input id="u61_input" type="text" value=""/>
+                                    <input id="u61_input" type="text"  />
                                 </div>
 
 
                                 <div id="u62" className="ax_text_field">
-                                    <input id="u62_input" type="text" value=""/>
+                                    <input id="u62_input" type="text"  />
                                 </div>
 
 
@@ -336,17 +336,17 @@ var ManageRoot = React.createClass({
 
 
                                 <div id="u69" className="ax_text_field">
-                                    <input id="u69_input" type="text" value=""/>
+                                    <input id="u69_input" type="text"  />
                                 </div>
 
 
                                 <div id="u70" className="ax_text_field">
-                                    <input id="u70_input" type="text" value=""/>
+                                    <input id="u70_input" type="text"  />
                                 </div>
 
 
                                 <div id="u71" className="ax_text_field">
-                                    <input id="u71_input" type="text" value=""/>
+                                    <input id="u71_input" type="text"  />
                                 </div>
 
 
@@ -788,17 +788,17 @@ var ManageRoot = React.createClass({
 
 
                                 <div id="u166" className="ax_text_field">
-                                    <input id="u166_input" type="text" value=""/>
+                                    <input id="u166_input" type="text"  />
                                 </div>
 
 
                                 <div id="u167" className="ax_text_field">
-                                    <input id="u167_input" type="text" value=""/>
+                                    <input id="u167_input" type="text"  />
                                 </div>
 
 
                                 <div id="u168" className="ax_text_field">
-                                    <input id="u168_input" type="text" value=""/>
+                                    <input id="u168_input" type="text"  />
                                 </div>
 
 
@@ -854,7 +854,7 @@ var ManageRoot = React.createClass({
 
 
                                 <div id="u179" className="ax_text_field">
-                                    <input id="u179_input" type="text" value=""/>
+                                    <input id="u179_input" type="text"  />
                                 </div>
 
 

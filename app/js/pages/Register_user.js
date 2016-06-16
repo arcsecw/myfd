@@ -11,8 +11,28 @@ import {
   Button,
   Panel,
 } from 'amazeui-react';
+import auth from '../components/auth'
+import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
+
 var path1 = "i/companyLogo.png";
-var Register_user=React.createClass({
+var Register_user=withRouter(
+
+React.createClass({
+    handleSubmit:function(e){
+    auth.myact({to:'regist.do',
+               parms:[
+               {key:'regist_username',value:this.refs.regist_username.value}, 
+               {key:'regist_password',value:this.refs.regist_password.value}, 
+               {key:'regist_confirmPwd',value:this.refs.regist_confirmPwd.value}, 
+               {key:'regist_mobile',value:this.refs.regist_mobile.value}, 
+               {key:'role',value:'1'}, 
+               ]
+                },(res)=>{
+                        if(res.regist_error){alert(res.regist_error)}else{
+                            alert ('success')
+                        }
+                })
+  },
     render(){
         return(
          <PageContainer>
@@ -36,7 +56,7 @@ var Register_user=React.createClass({
                         <img id="u2_img" className="img " src="i/images/register_person/u2.png"/>
 
                         <div id="u3" className="text">
-                            <p><span>我要寻医</span></p>
+                            <p><Link to = '/register_user'><span>我要寻医</span></Link></p>
                         </div>
                     </div>
 
@@ -45,7 +65,7 @@ var Register_user=React.createClass({
                         <img id="u4_img" className="img " src="i/images/register_doctor/u74.png"/>
 
                         <div id="u5" className="text">
-                            <p><span>我是医生</span></p>
+                            <p><Link to = '/register_doctor'><span>我是医生</span></Link></p>
                         </div>
                     </div>
 
@@ -54,7 +74,7 @@ var Register_user=React.createClass({
                         <img id="u6_img" className="img " src="i/images/register_doctor/u74.png"/>
 
                         <div id="u7" className="text">
-                            <p><span>我是机构</span></p>
+                            <p><Link to = '/register_hospital'><span>我是机构</span></Link></p>
                         </div>
                     </div>
 
@@ -69,17 +89,17 @@ var Register_user=React.createClass({
 
 
                     <div id="u10" className="ax_text_field">
-                        <input id="u10_input" type="text" value=""/>
+                        <input id="u10_input" ref="regist_username" type="text"  />
                     </div>
 
 
                     <div id="u11" className="ax_text_field">
-                        <input id="u11_input" type="text" value=""/>
+                        <input id="u11_input" ref="regist_password" type="text"  />
                     </div>
 
 
                     <div id="u12" className="ax_text_field">
-                        <input id="u12_input" type="text" value=""/>
+                        <input id="u12_input" ref="regist_confirmPwd" type="text"  />
                     </div>
 
 
@@ -115,23 +135,23 @@ var Register_user=React.createClass({
                         <img id="u19_img" className="img " src="i/images/register_doctor/u68.png"/>
 
                         <div id="u20" className="text">
-                            <p><span>立即注册</span></p>
+                            <p><span onClick={this.handleSubmit} >立即注册</span></p>
                         </div>
                     </div>
 
 
                     <div id="u21" className="ax_text_field">
-                        <input id="u21_input" type="text" value=""/>
+                        <input id="u21_input" ref="regist_mobile"  type="text"  />
                     </div>
 
 
                     <div id="u22" className="ax_text_field">
-                        <input id="u22_input" type="text" value=""/>
+                        <input id="u22_input"  type="text"  />
                     </div>
 
 
                     <div id="u23" className="ax_text_field">
-                        <input id="u23_input" type="text" value=""/>
+                        <input id="u23_input" ref=""type="text"  />
                     </div>
 
 
@@ -205,5 +225,6 @@ var Register_user=React.createClass({
             </PageContainer>
         );
     }
-});
+})
+);
 export default Register_user;

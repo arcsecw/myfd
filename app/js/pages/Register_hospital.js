@@ -2,7 +2,35 @@ import React from 'react';
 import PageContainer from '../components/PageContainer';
 import Header1 from '../components/FontComponents/Header';
 import Qbzz from '../components/FontComponents/Qbzz';
+import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
+import auth from '../components/auth'
+
 var Register_hospital = React.createClass({
+  handleSubmit:function(e){
+    auth.myact({to:'regist.do',
+               parms:[
+               {key:'regist_username',value:this.refs.regist_username.value}, 
+               {key:'regist_confirmPwd',value:this.refs.regist_confirmPwd.value}, 
+               {key:'regist_password',value:this.refs.regist_password.value}, 
+               {key:'regist_mobile',value:this.refs.regist_mobile.value}, 
+               {key:'agencyName',value:this.refs.agencyName.value}, 
+               {key:'province',value:this.refs.province.value}, 
+               {key:'district',value:this.refs.district.value}, 
+               {key:'address',value:this.refs.address.value}, 
+               {key:'class',value:this.refs.class.value}, 
+               {key:'bed',value:this.refs.bed.value}, 
+               {key:'insurance',value:this.refs.insurance.value}, 
+               {key:'contactName',value:this.refs.contactName.value}, 
+               {key:'phone',value:this.refs.phone.value}, 
+               
+               {key:'role',value:'4'}, 
+               ]
+                },(res)=>{
+                        if(res.regist_error){alert(res.regist_error)}else{
+                            alert ('success')
+                        }
+                })
+  },
     render() {
         return (
             <PageContainer>
@@ -56,17 +84,17 @@ var Register_hospital = React.createClass({
 
 
       <div id="u9" className="ax_text_field">
-        <input id="u9_input" type="text" value=""/>
+        <input id="u9_input" ref = "regist_username"type="text"  />
       </div>
 
  
       <div id="u10" className="ax_text_field">
-        <input id="u10_input" type="text" value=""/>
+        <input id="u10_input" ref = "regist_password" type="text"  />
       </div>
 
    
       <div id="u11" className="ax_text_field">
-        <input id="u11_input" type="text" value=""/>
+        <input id="u11_input" ref = "regist_confirmPwd" type="text"  />
       </div>
 
       <div id="u12" className="ax_paragraph">
@@ -102,7 +130,7 @@ var Register_hospital = React.createClass({
 
      
       <div id="u19" className="ax_text_field">
-        <input id="u19_input" type="text" value=""/>
+        <input id="u19_input" ref = "agencyName"type="text"  />
       </div>
 
  
@@ -116,7 +144,7 @@ var Register_hospital = React.createClass({
 
 
       <div id="u22" className="ax_droplist">
-        <select id="u22_input">
+        <select id="u22_input" ref ="province">
           <option selected value="北京">北京</option>
           <option value="上海">上海</option>
         </select>
@@ -124,7 +152,7 @@ var Register_hospital = React.createClass({
 
  
       <div id="u23" className="ax_droplist">
-        <select id="u23_input">
+        <select id="u23_input" ref = "district">
           <option value="东城区">东城区</option>
           <option value="西城区">西城区</option>
           <option value="海淀区">海淀区</option>
@@ -147,12 +175,12 @@ var Register_hospital = React.createClass({
 
 
       <div id="u26" className="ax_text_field">
-        <input id="u26_input" type="text" value=""/>
+        <input id="u26_input" ref = "address"type="text"  />
       </div>
 
      
       <div id="u27" className="ax_droplist">
-        <select id="u27_input">
+        <select id="u27_input" ref ="class">
           <option selected value="三甲">三甲</option>
           <option value="三乙">三乙</option>
           <option value="民营">民营</option>
@@ -161,11 +189,11 @@ var Register_hospital = React.createClass({
 
 
       <div id="u28" className="ax_droplist">
-        <select id="u28_input">
-          <option selected value="10以下">10以下</option>
-          <option value="10-50">10-50</option>
-          <option value="50-100">50-100</option>
-          <option value="100以上">100以上</option>
+        <select id="u28_input" ref ="bed">
+          <option selected value="0">10以下</option>
+          <option value="1">10-50</option>
+          <option value="2">50-100</option>
+          <option value="3">100以上</option>
         </select>
       </div>
 
@@ -198,9 +226,9 @@ var Register_hospital = React.createClass({
 
    
       <div id="u35" className="ax_droplist">
-        <select id="u35_input">
-          <option selected value="是">是</option>
-          <option value="否">否</option>
+        <select id="u35_input" ref = "insurance">
+          <option selected value="1">是</option>
+          <option value="0">否</option>
         </select>
       </div>
 
@@ -254,21 +282,21 @@ var Register_hospital = React.createClass({
 
      
       <div id="u45" className="ax_text_field">
-        <input id="u45_input" type="text" value=""/>
+        <input id="u45_input" ref ="contactName"type="text"  />
       </div>
 
    
       <div id="u46" className="ax_text_field">
-        <input id="u46_input" type="text" value=""/>
+        <input id="u46_input" ref ="regist_mobile"type="text"  />
       </div>
 
       
       <div id="u47" className="ax_text_field">
-        <input id="u47_input" type="text" value=""/>
+        <input id="u47_input" type="text"  />
       </div>
 
       <div id="u48" className="ax_text_field">
-        <input id="u48_input" type="text" value=""/>
+        <input id="u48_input" type="text"  />
       </div>
 
      
@@ -337,7 +365,7 @@ var Register_hospital = React.createClass({
         <img id="u62_img" className="img " src="i/images/register_doctor/u68.png"/>
  
         <div id="u63" className="text">
-          <p><span>立即注册</span></p>
+          <p><span onClick={this.handleSubmit} >立即注册</span></p>
         </div>
       </div>
 
@@ -352,7 +380,7 @@ var Register_hospital = React.createClass({
 
  
       <div id="u66" className="ax_text_field">
-        <input id="u66_input" type="text" value=""/>
+        <input id="u66_input" ref = "phone"type="text"  />
       </div>
 
    
@@ -378,7 +406,7 @@ var Register_hospital = React.createClass({
         <img id="u71_img" className="img " src="i/images/register_doctor/u74.png"/>
        
         <div id="u72" className="text">
-          <p><span>我要寻医</span></p>
+          <p><Link to = '/register_user'><span>我要寻医</span></Link></p>
         </div>
       </div>
 
@@ -387,7 +415,8 @@ var Register_hospital = React.createClass({
         <img id="u73_img" className="img " src="i/images/register_doctor/u74.png"/>
       
         <div id="u74" className="text">
-          <p><span>我是医生</span></p>
+           <p><Link to = '/register_doctor'><span>我是医生</span></Link></p>
+          
         </div>
       </div>
 
@@ -396,7 +425,8 @@ var Register_hospital = React.createClass({
         <img id="u75_img" className="img " src="i/images/register_doctor/u76.png"/>
         
         <div id="u76" className="text">
-          <p><span>我是机构</span></p>
+         <p><Link to = '/register_hospital'><span>我是机构</span></Link></p>
+ 
         </div>
       </div>
 

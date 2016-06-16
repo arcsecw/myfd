@@ -35,7 +35,7 @@ var Index_home = React.createClass({
           </div>
 
           <div id="u5" className="ax_text_field">
-            <input id="u5_input" type="text" value=""/>
+            <input id="u5_input" type="text"  />
           </div>
 
           <div id="u6" className="ax_html_button" data-label="搜索">

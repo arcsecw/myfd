@@ -265,7 +265,7 @@ var Query_result = React.createClass({
 
                     
                     <div id="u54" className="ax_text_field">
-                        <input id="u54_input" type="text" value=""/>
+                        <input id="u54_input" type="text"  />
                     </div>
 
                     

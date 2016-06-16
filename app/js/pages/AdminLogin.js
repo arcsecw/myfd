@@ -38,12 +38,12 @@ var AdminLogin = React.createClass({
         </div>
         <Form className="commentForm" onSubmit={this.handleSubmit}>
           <div id="u2" className="ax_text_field" data-label="AdminUserName">
-            <Input id="u2_input" type="text" value="" ref="username"/>
+            <Input id="u2_input" type="text"   ref="username"/>
           </div>
 
 
           <div id="u3" className="ax_text_field">
-            <Input id="u3_input" type="text" value="" ref="password"/>
+            <Input id="u3_input" type="text"   ref="password"/>
           </div>
           <div id="u4" className="ax_h1">
             <img id="u4_img" class="img " src="i/resources/images/transparent.gif"/>

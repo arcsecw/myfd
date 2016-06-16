@@ -36,8 +36,9 @@ const Header = React.createClass({
             className="am-topbar-right"
             topbar
           >
+            {auth.loggedIn()?(
             <Dropdown
-              title={[<Icon icon="group" key="hey" />, auth.getToken()]}
+              title={[<Icon icon="group" key="hey" />, auth.getUsername()]}
               navItem
             >
               <Dropdown.Item
@@ -53,7 +54,8 @@ const Header = React.createClass({
               <Dropdown.Item>
                 <Icon icon="cog" /> {' 系统设置'}
               </Dropdown.Item>
-            </Dropdown>
+            </Dropdown>):''}
+            {auth.loggedIn()?(
             <NavItem
               linkComponent={Link}
               linkProps={{
@@ -73,13 +75,21 @@ const Header = React.createClass({
                 7
               </Badge>
             </NavItem>
+            ):''}
             <NavItem
               className="am-dropdown"
               href="#"
             >
-            <Link to = '/logout'>
+            {auth.loggedIn()?(
+              <Link to = '/logout'>
               <Icon icon="sign-out" /> {' 退出登录'}
               </Link>
+            ) :(
+              <Link to = '/login'>
+              <Icon icon="sign-in" /> {' 登录'}
+              </Link>)
+            }
+            
             </NavItem>
           </Nav>
         </CollapsibleNav>

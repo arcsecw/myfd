@@ -69,17 +69,17 @@ var Register=React.createClass({
 
 
                     <div id="u10" class="ax_text_field">
-                        <input id="u10_input" type="text" value=""/>
+                        <input id="u10_input" type="text"  />
                     </div>
 
 
                     <div id="u11" class="ax_text_field">
-                        <input id="u11_input" type="text" value=""/>
+                        <input id="u11_input" type="text"  />
                     </div>
 
 
                     <div id="u12" class="ax_text_field">
-                        <input id="u12_input" type="text" value=""/>
+                        <input id="u12_input" type="text"  />
                     </div>
 
 
@@ -121,17 +121,17 @@ var Register=React.createClass({
 
 
                     <div id="u21" class="ax_text_field">
-                        <input id="u21_input" type="text" value=""/>
+                        <input id="u21_input" type="text"  />
                     </div>
 
 
                     <div id="u22" class="ax_text_field">
-                        <input id="u22_input" type="text" value=""/>
+                        <input id="u22_input" type="text"  />
                     </div>
 
 
                     <div id="u23" class="ax_text_field">
-                        <input id="u23_input" type="text" value=""/>
+                        <input id="u23_input" type="text"  />
                     </div>
 
 

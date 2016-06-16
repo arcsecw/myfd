@@ -12,6 +12,8 @@ import {
   Icon,
   Button,
   Panel,
+  Modal,
+  ModalTrigger,
 } from 'amazeui-react';
 import auth from '../components/auth'
 import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
@@ -48,7 +50,8 @@ const Login = withRouter(
     }else{
       auth.login(email, pass, (loggedIn) => {
         if (!loggedIn){
-         console.log(email+pass)
+          
+          console.log(email+pass)
           return this.setState({ error: true })
       }
 
@@ -148,9 +151,7 @@ const Login = withRouter(
           <img id="u16_img" class="img " src="i/resources/images/transparent.gif"/>
 
           <div id="u17" class="text">
-            {this.state.error && (
-            <p>Bad login information</p>
-          )} <p><span>找回密码</span></p>
+            <p><span>找回密码</span></p>
           </div>
         </div>
 
@@ -199,6 +200,7 @@ const Login = withRouter(
           </div>
           
         </div>
+        
           </form>        
       </div>
       </PageContainer>

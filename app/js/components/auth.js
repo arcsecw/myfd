@@ -21,9 +21,13 @@ module.exports = {
   getToken() {
     return localStorage.token
   },
+  getUsername() {
+    return localStorage.username
+  },
 
   logout(cb) {
     delete localStorage.token
+    delete localStorage.username
     if (cb) cb()
     this.onChange(false)
   },
@@ -32,7 +36,29 @@ module.exports = {
     return !!localStorage.token
   },
 
-  onChange() {}
+  onChange() {},
+  myact(val,cb) {
+    console.log(val)
+    var to = val['to']
+    var parms = val['parms']
+    var  url = 'http://211.82.97.30:8080/myfd/'+to+'?'
+    parms.map(parm=>{
+    url +=parm.key+'='+parm.value+'&'
+  })
+  fetch(url)
+      .then(checkStatus)
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        cb(data)
+        
+      })
+      .catch(error => {
+        console.log('Request failed: ', error)
+      });
+  
+}
 }
 function checkStatus(response) {
       if (response.status >= 200 && response.status < 300) {
@@ -44,6 +70,7 @@ function checkStatus(response) {
       }
     }
 function pretendRequest(email, pass, cb) {
+  localStorage.username = email
   fetch('http://211.82.97.30:8080/myfd/login.do?username'+'='+email+'&'+'password'+'='+pass+'&'+'role'+'=1')
       .then(checkStatus)
       .then(res => {
@@ -54,7 +81,7 @@ function pretendRequest(email, pass, cb) {
         if(data['result']=='true'){
           cb({
         authenticated: true,
-        token: Math.random().toString(36).substring(7)
+        token: Math.random().toString(36).substring(7),
       })
         }else {
         cb({ authenticated: false })          
@@ -72,5 +99,6 @@ function pretendRequest(email, pass, cb) {
     } else {
       cb({ authenticated: false })
     }
-  
-}
+  }
+
+

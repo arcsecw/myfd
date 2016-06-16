@@ -163,7 +163,7 @@ const routes = (
       <Route path = "adminlogin" component = {AdminLogin}/>      
       <Route path = "logout" component = {Logout}/>      
       <Route path=":page" component={Page} onEnter={requireAuth}  />
-      <IndexRoute component={Home} />
+      <IndexRoute component={Index_home} />
     </Route>
   </Router>
 );

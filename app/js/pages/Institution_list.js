@@ -166,7 +166,7 @@ var Institution_list = React.createClass({
 
 
                     <div id="u33" className="ax_text_field">
-                        <input id="u33_input" type="text" value=""/>
+                        <input id="u33_input" type="text"  />
                     </div>
 
 
