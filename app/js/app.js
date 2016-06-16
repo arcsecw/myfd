@@ -23,7 +23,6 @@ import {
 } from './components';
 import auth from './components/auth'
 import {
-  About,
   Home,
   Messages,
   Profile,
@@ -31,23 +30,37 @@ import {
   Index_home,
   Login,
   AdminLogin,
-  Register,
-  Reservation,
+  Register_user,
+  Register_doctor,
   CheckReservation,
+  Register_hospital,
+  ManageRoot,
+  User_reservation,
+  Doctor_list,
+  Institution_list,
+  Query_result,
+  System_manage,
+  
 } from './pages';
 
 const pages = {
   home: Home,
-  about: About,
   profile: Profile,
   messages: Messages,
   order:Order,
   index_home:Index_home,
   login:Login,
   adminLogin:AdminLogin,
-  register:Register,
-  reservation:Reservation,
+  register_user:Register_user,
+  register_doctor:Register_doctor,
   checkReservation:CheckReservation,
+  register_hospital:Register_hospital,
+  manageRoot:ManageRoot,
+  user_reservation:User_reservation,
+  doctor_list:Doctor_list,
+  institution_list:Institution_list,
+  query_result:Query_result,
+  system_manage:System_manage,
   
 };
 

@@ -1,0 +1,102 @@
+import React from 'react';
+import {
+  Link,
+} from 'react-router';
+import {
+  Topbar,
+  CollapsibleNav,
+  Nav,
+  NavItem,
+  Icon,
+  Badge,
+  Dropdown,
+} from 'amazeui-react';
+<<<<<<< HEAD
+import auth from './auth'
+=======
+>>>>>>> da4a68f060f7c9d5dd06de552d76ce35feef64d0
+
+const Header = React.createClass({
+  handleClick() {
+    if (matchMedia && matchMedia('(max-width: 640px)').matches) {
+      this.refs.topbar.handleToggle();
+    }
+  },
+
+  render() {
+    return (
+      <Topbar
+        brand="名医飞刀,一线名医在线预约平台"
+        toggleNavKey="nav"
+        inverse
+        fluid
+        ref="topbar"
+      >
+        <CollapsibleNav
+          eventKey="nav"
+        >
+          <Nav
+            className="am-topbar-right"
+            topbar
+          >
+            <Dropdown
+<<<<<<< HEAD
+              title={[<Icon icon="group" key="hey" />, auth.getToken()]}
+=======
+              title={[<Icon icon="group" key="hey" />, ' Hey, Jude']}
+>>>>>>> da4a68f060f7c9d5dd06de552d76ce35feef64d0
+              navItem
+            >
+              <Dropdown.Item
+                closeOnClick
+                linkComponent={Link}
+                linkProps={{
+                  to: {pathname: '/profile', query: {breadcrumb: '个人资料'}},
+                  onClick: this.handleClick
+                }}
+              >
+                <Icon icon="user" /> {' 个人资料'}
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <Icon icon="cog" /> {' 系统设置'}
+              </Dropdown.Item>
+            </Dropdown>
+            <NavItem
+              linkComponent={Link}
+              linkProps={{
+                to: {
+                  pathname: '/messages',
+                  query: {breadcrumb: '通知'}
+                },
+                onClick: this.handleClick
+              }}
+            >
+              <Icon icon="envelope-o" />
+              {' 通知 '}
+              <Badge
+                amStyle="warning"
+                round
+              >
+                7
+              </Badge>
+            </NavItem>
+            <NavItem
+              className="am-dropdown"
+              href="#"
+            >
+<<<<<<< HEAD
+            <Link to = '/logout'>
+              <Icon icon="sign-out" /> {' 退出登录'}
+              </Link>
+=======
+              <Icon icon="sign-out" /> {' 退出登录'}
+>>>>>>> da4a68f060f7c9d5dd06de552d76ce35feef64d0
+            </NavItem>
+          </Nav>
+        </CollapsibleNav>
+      </Topbar>
+    );
+  }
+});
+
+export default Header;

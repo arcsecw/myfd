@@ -39,9 +39,14 @@ const navs = [
     subNav: 3,
   },
   {
-    id: 'about',
-    title: '系统信息',
+    id: 'doctor_list',
+    title: '医生列表',
     icon: 'info'
+  },
+   {
+    id:'institution_list',
+    title:'机构列表',
+    icon:'phone',
   },
   {
     id: 'order',
@@ -65,23 +70,46 @@ const navs = [
     
   },
   {
-    id:'register',
-    title:'注册',
+    id:'register_user',
+    title:'用户注册',
     icon:'info'
   },
   {
-    id:'reservation',
-    title:'预约',
+    id:'register_doctor',
+    title:'医生注册',
     icon:'phone'
+  },
+   {
+    id:'register_hospital',
+    title:'机构注册',
+    icon:'phone',
   },
   {
     id:'checkReservation',
     title:'用户核对预约',
     icon:'phone',
-  }
-  
+  }, 
+  {
+    id:'user_reservation',
+    title:'用户预约',
+    icon:'phone',
+  },
+  {
+    id:'query_result',
+    title:'查询结果',
+    icon:'phone',
+  },
+  {
+    id:'system_manage',
+    title:'飞刀平台订单管理',
+    icon:'phone',
+  },
+  {
+    id:'manageRoot',
+    title:'飞刀平台系统管理',
+    icon:'info',
+  }, 
 ];
-
 const Siderbar = React.createClass({
   propTypes: {
     active: React.PropTypes.bool,

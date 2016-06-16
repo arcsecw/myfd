@@ -1,0 +1,27 @@
+<<<<<<< HEAD
+export About from './About';
+=======
+>>>>>>> da4a68f060f7c9d5dd06de552d76ce35feef64d0
+export Home from './Home';
+export Messages from './Messages';
+export Profile from './Profile';
+export Order from './Order';
+export Index_home from './Index_home';
+export Login from './Login';
+export AdminLogin from './AdminLogin';
+<<<<<<< HEAD
+export Register from './Register';
+export Reservation from './Reservation';
+export CheckReservation from './CheckReservation';
+=======
+export Register_user from './Register_user';
+export Register_doctor from './Register_doctor';
+export CheckReservation from './CheckReservation';
+export Register_hospital from './Register_hospital';
+export ManageRoot from './ManageRoot';
+export User_reservation from './User_reservation';
+export Doctor_list from './Doctor_list';
+export Institution_list from './Institution_list';
+export Query_result from './Query_result';
+export System_manage from './System_manage';
+>>>>>>> da4a68f060f7c9d5dd06de552d76ce35feef64d0

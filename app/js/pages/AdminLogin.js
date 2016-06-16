@@ -45,15 +45,12 @@ var AdminLogin = React.createClass({
           <div id="u3" className="ax_text_field">
             <Input id="u3_input" type="text" value="" ref="password"/>
           </div>
-
-
           <div id="u4" className="ax_h1">
             <img id="u4_img" class="img " src="i/resources/images/transparent.gif"/>
             <div id="u5" class="text">
               <p><span>管理登录</span></p>
             </div>
           </div>
-
           <div id="u6" class="ax_paragraph">
             <img id="u6_img" class="img " src="i/resources/images/transparent.gif"/>
             <div id="u7" class="text">
@@ -75,3 +72,4 @@ var AdminLogin = React.createClass({
   }
 });
 export default AdminLogin;
+

@@ -44,19 +44,7 @@
     "gulp-util": "^3.0.7",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     "react-router": "^2.4.0",
-=======
-    "react-router": "^2.0.0",
->>>>>>> 1d4b8a44027ab706cba36a001d0c986294bd2c5b
-=======
-    "react-router": "^2.0.0",
->>>>>>> 1d4b8a44027ab706cba36a001d0c986294bd2c5b
-=======
-    "react-router": "^2.0.0",
->>>>>>> da4a68f060f7c9d5dd06de552d76ce35feef64d0
     "run-sequence": "^1.1.5",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
@@ -80,23 +68,8 @@
     "plugins": [
       "transform-object-rest-spread"
     ]
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
   },
   "dependencies": {
     "react-fontawesome": "^1.1.0"
->>>>>>> 1d4b8a44027ab706cba36a001d0c986294bd2c5b
-=======
-  },
-  "dependencies": {
-    "react-fontawesome": "^1.1.0"
->>>>>>> 1d4b8a44027ab706cba36a001d0c986294bd2c5b
-=======
-  },
-  "dependencies": {
-    "react-fontawesome": "^1.1.0"
->>>>>>> da4a68f060f7c9d5dd06de552d76ce35feef64d0
   }
 }
