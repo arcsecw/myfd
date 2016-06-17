@@ -683,7 +683,7 @@
   position:absolute;
   left:0px;
   top:0px;
-  width:92px;
+  width:110px;
   height:22px;
   font-family:'Arial Normal', 'Arial';
   font-weight:400;
@@ -899,4 +899,19 @@
   top:0px;
   width:57px;
   white-space:nowrap;
+}
+.u77{
+text-decoration:underline;
+}
+.u78{
+color:#1E1E1E;
+}
+.u79{
+color:#0099FF;
+}
+.u80{
+color:#CCCCCC;
+}
+.u81{
+color:#333333;
 }
