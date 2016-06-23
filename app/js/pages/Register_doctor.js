@@ -21,7 +21,7 @@ var Register_doctor = React.createClass({
                {key:'experience',value:this.refs.experience.value}, 
                {key:'honor',value:this.refs.honor.value}, 
                {key:'team',value:this.refs.team.value},                
-               {key:'role',value:'4'}, 
+               {key:'role',value:'3'}, 
                ]
                 },(res)=>{
                         if(res.regist_error){alert(res.regist_error)}else{

@@ -15,3 +15,4 @@ export Doctor_list from './Doctor_list';
 export Institution_list from './Institution_list';
 export Query_result from './Query_result';
 export System_manage from './System_manage';
+export User_home from './User_home';

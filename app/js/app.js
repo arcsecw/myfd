@@ -40,6 +40,7 @@ import {
   Institution_list,
   Query_result,
   System_manage,
+  User_home,
   
 } from './pages';
 
@@ -61,6 +62,7 @@ const pages = {
   institution_list:Institution_list,
   query_result:Query_result,
   system_manage:System_manage,
+  user_home:User_home,
   
 };
 

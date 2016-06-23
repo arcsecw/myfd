@@ -43,7 +43,7 @@ var About = React.createClass({
       <Col sm={6}>
         <div>
           <Form onSubmit={this.handleSubmit} horizontal>
-            <Input label="用户名" labelClassName="am-u-sm-3" wrapperClassName="am-u-sm-7" amSize="sm" ref="userName"/>
+            <Input label="用户" labelClassName="am-u-sm-3" wrapperClassName="am-u-sm-7" amSize="sm" ref="userName"/>
             <Input label="密码" labelClassName="am-u-sm-3" wrapperClassName="am-u-sm-7" amSize="sm" ref="passWord"/>
             <Input label="确认密码" labelClassName="am-u-sm-3" wrapperClassName="am-u-sm-7" amSize="sm" ref="repassWord" />
             <Input label="验证手机" labelClassName="am-u-sm-3" wrapperClassName="am-u-sm-7" amSize="sm" ref="verificatePhone"/>

@@ -15,6 +15,11 @@ const navs = [
     title: '医生列表',
     icon: 'info'
   },
+  {
+    id:'user_home',
+    title:'用户首页',
+    icon:'phone'
+  },
    {
     id:'institution_list',
     title:'机构列表',
