@@ -9,11 +9,10 @@ import {
 const Order_null = React.createClass({
   getInitialState() {
     return {
-      dataSource: [],
-      
+      dataSource: [],     
     };
   },
-
+ 
   componentWillMount() {
     if (!window.fetch) {
       return console.error('fetch API is not supported!');
@@ -29,7 +28,7 @@ const Order_null = React.createClass({
       }
     }
 
-    fetch('http://211.82.97.30:8080/myfd/orderAdmin.do')
+    fetch('http://123.56.133.208:8080/myfd/orderAdmin.do')
       .then(checkStatus)
       .then(res => {
         return res.json();

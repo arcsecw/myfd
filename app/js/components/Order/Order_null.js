@@ -29,7 +29,7 @@ const Order_null = React.createClass({
       }
     }
 
-    fetch('http://211.82.97.30:8080/myfd/orderAdmin.do')
+    fetch('http://123.56.133.208:8080/myfd/orderAdmin.do')
       .then(checkStatus)
       .then(res => {
         return res.json();

@@ -16,7 +16,7 @@ var AdminLogin = React.createClass({
     e.preventDefault();
     var username = this.refs.username.value;
     var password = this.refs.password.value;
-    var url = "http://211.82.97.30:8080/myfd/login.do?" + "username" + "=" + username + "&" + "password" + "=" + password + "&" + "role=1"
+    var url = "http://123.56.133.208:8080/myfd/login.do?" + "username" + "=" + username + "&" + "password" + "=" + password + "&" + "role=1"
     console.log(username);
     console.log(password);
     if (!username || !password) {

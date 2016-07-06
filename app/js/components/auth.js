@@ -41,7 +41,7 @@ module.exports = {
     console.log(val)
     var to = val['to']
     var parms = val['parms']
-    var  url = 'http://211.82.97.30:8080/myfd/'+to+'?'
+    var  url = 'http://123.56.133.208:8080/myfd/'+to+'?'
     parms.map(parm=>{
     url +=parm.key+'='+parm.value+'&'
   })
@@ -71,7 +71,7 @@ function checkStatus(response) {
     }
 function pretendRequest(email, pass, cb) {
   localStorage.username = email
-  fetch('http://211.82.97.30:8080/myfd/login.do?username'+'='+email+'&'+'password'+'='+pass+'&'+'role'+'=1')
+  fetch('http://123.56.133.208:8080/myfd/login.do?username'+'='+email+'&'+'password'+'='+pass+'&'+'role'+'=1')
       .then(checkStatus)
       .then(res => {
         return res.json();

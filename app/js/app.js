@@ -41,6 +41,7 @@ import {
   Query_result,
   System_manage,
   User_home,
+  Test1,
   
 } from './pages';
 
@@ -63,6 +64,7 @@ const pages = {
   query_result:Query_result,
   system_manage:System_manage,
   user_home:User_home,
+  test1:Test1,
   
 };
 

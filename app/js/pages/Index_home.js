@@ -8,7 +8,6 @@ import {
   Button,
   Container,
 } from 'amazeui-react';
-
 var Index_home = React.createClass({
   render() {
     return (
@@ -371,7 +370,7 @@ var Index_home = React.createClass({
             <img id="u83_img" className="img " src="i/images/index_home/u69.png"/>
 
             <div id="u84" className="text">
-              <p><span>立即预约</span></p>
+              <p><button>立即预约</button></p>
             </div>
           </div>
 

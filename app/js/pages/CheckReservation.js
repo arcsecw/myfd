@@ -14,10 +14,6 @@ var CheckReservation = React.createClass({
                     <div id="u0" className="ax_shape">
                         <img id="u0_img" class="img "/>
                         <div id="service" className="u101">
-
-
-
-
                             服务内容: 预约3天内(<span className="content">2016年3月20</span>日前) <span className="content">XXX 团队</span>对<span className="content">杜海涛</span>进行<span className="content">髌骨</span>方面手术<br/>
 
                             地点: <span className="content">北京</span>任何地区<br/>

@@ -9,6 +9,11 @@ import {
 } from 'amazeui-react';
 
 const navs = [
+    {
+    id:'test1',
+    title:'test',
+    icon:'info'
+  },
   
   {
     id: 'doctor_list',
@@ -86,6 +91,7 @@ const navs = [
     title:'飞刀平台系统管理',
     icon:'info',
   }, 
+
 ];
 const Siderbar = React.createClass({
   propTypes: {

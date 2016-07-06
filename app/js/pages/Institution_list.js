@@ -1,23 +1,82 @@
 import React from 'react';
 import PageContainer from '../components/PageContainer';
-var Institution_list = React.createClass({
+const Institution_list = React.createClass({
+    getInitialState() {
+        return {
+            dataSource: [],
+
+        };
+    },
+    componentWillMount() {
+        if (!window.fetch) {
+            return console.error('fetch API is not supported!');
+        }
+        function checkStatus(response) {
+            if (response.status >= 200 && response.status < 300) {
+                return response;
+            } else {
+                var error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+        }
+
+
+
+    },
+    componentDidMount() {
+        fetch('http://123.56.133.208:8080/myfd/pagelist.do')
+            .then(checkStatus)
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                this.updateDataSource(data);
+            })
+            .catch(error => {
+                console.log('Request failed: ', error)
+            });
+        function checkStatus(response) {
+            if (response.status >= 200 && response.status < 300) {
+                return response;
+            } else {
+                var error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+
+        }
+       
+
+    },
+    updateDataSource(data) {
+        this.setState({
+            dataSource: data,
+        })
+    },
+     getProps() {
+        this.setState({
+            blogTitle: dataSource[0].agencydoctorid,       
+        });
+    },
     render() {
+        const {dataSource}  = this.state;
+        var no = "无";
+        var a = "";
         return (
             <PageContainer>
+
                 <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
                 <link href="i/data/styles.css" type="text/css" rel="stylesheet"/>
                 <link href="i/css/institution_list/styles.css" type="text/css" rel="stylesheet"/>
                 <div id="base" className="">
 
-
                     <div id="u0" className="ax_shape">
                         <img id="u0_img" className="img " src="i/images/doctor_list/u0.png"/>
-
                         <div id="u1" className="text">
                             <p><span></span></p>
                         </div>
                     </div>
-
 
                     <div id="u2" className="ax_shape">
                         <img id="u2_img" className="img " src="i/images/query_result/u0.png"/>
@@ -386,8 +445,6 @@ var Institution_list = React.createClass({
                             <p><span>上海</span></p>
                         </div>
                     </div>
-
-
                     <div id="u81" className="ax_paragraph">
                         <img id="u81_img" className="img " src="i/resources/images/transparent.gif"/>
 
@@ -395,8 +452,6 @@ var Institution_list = React.createClass({
                             <p><span>广州</span></p>
                         </div>
                     </div>
-
-
                     <div id="u83" className="ax_paragraph">
                         <img id="u83_img" className="img " src="i/resources/images/transparent.gif"/>
 
@@ -405,23 +460,19 @@ var Institution_list = React.createClass({
                         </div>
                     </div>
 
-
                     <div id="u85" className="ax_paragraph">
                         <img id="u85_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u86" className="text">
-                            <p className="u129"><span className="u124">XXXX</span><span className="u124">&nbsp; </span><span className="u124">医院</span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">9</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">北京</span><span className="u127">宣武区</span><span className="u127">&nbsp; </span><span className="u126">三甲</span></p><p className="u128"><span className="u127">可预约专家：知名三甲医院骨科高职及以上</span></p><p className="u128"><span className="u127">最快手术时间： 1日内</span></p><p className="u128"><span className="u127">床位：充足</span></p>
+                            {console.log(dataSource[1]) }
+                            <p className="u129"><span className="u124">{a=(dataSource[0]==undefined)?no:dataSource[0]}</span><span className="u124">&nbsp; </span><span className="u124">医院</span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">9</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">北京</span><span className="u127">宣武区</span><span className="u127">&nbsp; </span><span className="u126">三甲</span></p><p className="u128"><span className="u127">可预约专家：知名三甲医院骨科高职及以上</span></p><p className="u128"><span className="u127">最快手术时间： 1日内</span></p><p className="u128"><span className="u127">床位：充足</span></p>
                         </div>
                     </div>
-
-
                     <div id="u87" className="ax_horizontal_line">
                         <img id="u87_start" className="img " src="i/resources/images/transparent.gif" alt="u87_start"/>
                         <img id="u87_end" className="img " src="i/resources/images/transparent.gif" alt="u87_end"/>
                         <img id="u87_line" className="img " src="i/images/query_result/u43_line.png" alt="u87_line"/>
                     </div>
-
-
                     <div id="u88" className="ax_paragraph">
                         <img id="u88_img" className="img " src="i/resources/images/transparent.gif"/>
 
