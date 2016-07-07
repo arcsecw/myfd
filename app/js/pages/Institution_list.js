@@ -53,19 +53,20 @@ const Institution_list = React.createClass({
         this.setState({
             dataSource: data,
         })
+        
     },
      getProps() {
         this.setState({
             blogTitle: dataSource[0].agencydoctorid,       
         });
     },
+    
     render() {
-        const {dataSource}  = this.state;
-        var no = "无";
-        var a = "";
-        return (
-            <PageContainer>
-
+        var page =''
+        if (this.state.dataSource.length==3){
+            console.log('success')
+            page =  <PageContainer>
+                
                 <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
                 <link href="i/data/styles.css" type="text/css" rel="stylesheet"/>
                 <link href="i/css/institution_list/styles.css" type="text/css" rel="stylesheet"/>
@@ -464,8 +465,7 @@ const Institution_list = React.createClass({
                         <img id="u85_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u86" className="text">
-                            {console.log(dataSource[1]) }
-                            <p className="u129"><span className="u124">{a=(dataSource[0]==undefined)?no:dataSource[0]}</span><span className="u124">&nbsp; </span><span className="u124">医院</span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">9</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">北京</span><span className="u127">宣武区</span><span className="u127">&nbsp; </span><span className="u126">三甲</span></p><p className="u128"><span className="u127">可预约专家：知名三甲医院骨科高职及以上</span></p><p className="u128"><span className="u127">最快手术时间： 1日内</span></p><p className="u128"><span className="u127">床位：充足</span></p>
+                            <p className="u129"><span className="u124"></span><span className="u124">&nbsp; </span><span className="u124">医院</span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">9</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">北京</span><span className="u127">宣武区</span><span className="u127">&nbsp; </span><span className="u126">三甲</span></p><p className="u128"><span className="u127">可预约专家：知名三甲医院骨科高职及以上</span></p><p className="u128"><span className="u127">最快手术时间： 1日内</span></p><p className="u128"><span className="u127">床位：充足</span></p>
                         </div>
                     </div>
                     <div id="u87" className="ax_horizontal_line">
@@ -637,6 +637,15 @@ const Institution_list = React.createClass({
                     </div>
                 </div>
             </PageContainer>
+        }else{
+            page = ''
+        }
+        var no = "无";
+        var a = "";
+        return (
+           <div>
+           {page}
+           </div>
         );
     }
 });
