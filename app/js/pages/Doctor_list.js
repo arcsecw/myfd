@@ -50,8 +50,6 @@ var Doctor_list = React.createClass({
         <link href="i/data/styles.css" type="text/css" rel="stylesheet"/>
         <link href="i/css/doctor_list/styles.css" type="text/css" rel="stylesheet"/>
         <div id="base" className="">
-
-
           <div id="u0" className="ax_shape">
             <img id="u0_img" className="img " src="i/images/doctor_list/u0.png"/>
 
@@ -59,8 +57,6 @@ var Doctor_list = React.createClass({
               <p><span></span></p>
             </div>
           </div>
-
-
           <div id="u2" className="ax_shape">
             <img id="u2_img" className="img " src="i/images/query_result/u0.png"/>
 
@@ -68,8 +64,6 @@ var Doctor_list = React.createClass({
               <p><span></span></p>
             </div>
           </div>
-
-
           <div id="u4" className="ax_shape">
             <img id="u4_img" className="img " src="i/images/query_result/u4.png"/>
 
@@ -77,8 +71,6 @@ var Doctor_list = React.createClass({
               <p><span></span></p>
             </div>
           </div>
-
-
           <div id="u6" className="ax_paragraph">
             <img id="u6_img" className="img " src="i/resources/images/transparent.gif"/>
 
@@ -86,8 +78,6 @@ var Doctor_list = React.createClass({
               <p><span>类型：</span></p>
             </div>
           </div>
-
-
           <div id="u8" className="ax_paragraph">
             <img id="u8_img" className="img " src="i/resources/images/transparent.gif"/>
 
@@ -95,8 +85,6 @@ var Doctor_list = React.createClass({
               <p><span>医疗机构</span></p>
             </div>
           </div>
-
-
           <div id="u10" className="ax_paragraph">
             <img id="u10_img" className="img " src="i/images/doctor_list/u10.png"/>
 
@@ -104,8 +92,6 @@ var Doctor_list = React.createClass({
               <p><span>专家</span><span>团队 </span></p>
             </div>
           </div>
-
-
           <div id="u12" className="ax_paragraph">
             <img id="u12_img" className="img " src="i/images/doctor_list/u12.png"/>
 
