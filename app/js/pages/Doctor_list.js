@@ -3,15 +3,74 @@ import PageContainer from '../components/PageContainer';
 import {
 }from 'amazeui-react';
 var Doctor_list = React.createClass({
+   getInitialState() {
+        return {
+            dataSource: [],
+
+        };
+    },
+    componentWillMount() {
+        if (!window.fetch) {
+            return console.error('fetch API is not supported!');
+        }
+        function checkStatus(response) {
+            if (response.status >= 200 && response.status < 300) {
+                return response;
+            } else {
+                var error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+        }
+
+
+
+    },
+    componentDidMount() {
+        fetch('http://123.56.133.208:8080/myfd/doctorlist.do')
+            .then(checkStatus)
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                this.updateDataSource(data);
+            })
+            .catch(error => {
+                console.log('Request failed: ', error)
+            });
+        function checkStatus(response) {
+            if (response.status >= 200 && response.status < 300) {
+                return response;
+            } else {
+                var error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+
+        }
+       
+    },
+    updateDataSource(data) {
+        this.setState({
+            dataSource: data,
+        })
+    },
+     getProps() {
+        this.setState({
+            blogTitle: dataSource[0].agencydoctorid,       
+        });
+    },
   render() {
+    const {dataSource}  = this.state;
+        var no = "无";
+        var a = "";
+        console.log(dataSource);
     return (
       <PageContainer>
         <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
         <link href="i/data/styles.css" type="text/css" rel="stylesheet"/>
         <link href="i/css/doctor_list/styles.css" type="text/css" rel="stylesheet"/>
         <div id="base" className="">
-
-
           <div id="u0" className="ax_shape">
             <img id="u0_img" className="img " src="i/images/doctor_list/u0.png"/>
 
@@ -19,8 +78,6 @@ var Doctor_list = React.createClass({
               <p><span></span></p>
             </div>
           </div>
-
-
           <div id="u2" className="ax_shape">
             <img id="u2_img" className="img " src="i/images/query_result/u0.png"/>
 
@@ -28,8 +85,6 @@ var Doctor_list = React.createClass({
               <p><span></span></p>
             </div>
           </div>
-
-
           <div id="u4" className="ax_shape">
             <img id="u4_img" className="img " src="i/images/query_result/u4.png"/>
 
@@ -37,8 +92,6 @@ var Doctor_list = React.createClass({
               <p><span></span></p>
             </div>
           </div>
-
-
           <div id="u6" className="ax_paragraph">
             <img id="u6_img" className="img " src="i/resources/images/transparent.gif"/>
 
@@ -46,8 +99,6 @@ var Doctor_list = React.createClass({
               <p><span>类型：</span></p>
             </div>
           </div>
-
-
           <div id="u8" className="ax_paragraph">
             <img id="u8_img" className="img " src="i/resources/images/transparent.gif"/>
 
@@ -55,8 +106,6 @@ var Doctor_list = React.createClass({
               <p><span>医疗机构</span></p>
             </div>
           </div>
-
-
           <div id="u10" className="ax_paragraph">
             <img id="u10_img" className="img " src="i/images/doctor_list/u10.png"/>
 
@@ -64,8 +113,6 @@ var Doctor_list = React.createClass({
               <p><span>专家</span><span>团队 </span></p>
             </div>
           </div>
-
-
           <div id="u12" className="ax_paragraph">
             <img id="u12_img" className="img " src="i/images/doctor_list/u12.png"/>
 
