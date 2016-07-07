@@ -46,27 +46,37 @@ const Institution_list = React.createClass({
             }
 
         }
-       
+
 
     },
     updateDataSource(data) {
         this.setState({
             dataSource: data,
         })
-        
+
     },
-     getProps() {
-        this.setState({
-            blogTitle: dataSource[0].agencydoctorid,       
-        });
-    },
-    
+    judgeBed(bed) {
+        var bedMount='';
+        if(bed==0){
+            bedMount="10以下";
+        }else if(bed==1){
+            bedMount="10-50";
+        }else  if(bed==2){
+            bedMount="50-100";
+        }else{
+            bedMount="100以上";
+        }
+        return bedMount;
+
+    }
+    ,
     render() {
-        var page =''
-        if (this.state.dataSource.length==3){
+        var page = ''
+        if (this.state.dataSource.length == 3) {
             console.log('success')
-            page =  <PageContainer>
-                
+            console.log(this.state.dataSource)
+            page = <PageContainer>
+
                 <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
                 <link href="i/data/styles.css" type="text/css" rel="stylesheet"/>
                 <link href="i/css/institution_list/styles.css" type="text/css" rel="stylesheet"/>
@@ -460,12 +470,11 @@ const Institution_list = React.createClass({
                             <p><span>赤峰</span></p>
                         </div>
                     </div>
-
                     <div id="u85" className="ax_paragraph">
                         <img id="u85_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u86" className="text">
-                            <p className="u129"><span className="u124"></span><span className="u124">&nbsp; </span><span className="u124">医院</span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">9</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">北京</span><span className="u127">宣武区</span><span className="u127">&nbsp; </span><span className="u126">三甲</span></p><p className="u128"><span className="u127">可预约专家：知名三甲医院骨科高职及以上</span></p><p className="u128"><span className="u127">最快手术时间： 1日内</span></p><p className="u128"><span className="u127">床位：充足</span></p>
+                            <p className="u129"><span className="u124">{this.state.dataSource[0].agencyname}</span><span className="u124">&nbsp; </span><span className="u124"></span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">{this.state.dataSource[0].agencyhot}</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">{this.state.dataSource[0].agencyprovince}</span><span className="u127">{this.state.dataSource[0].agencydistrict}</span><span className="u127">&nbsp; </span><span className="u126">{this.state.dataSource[0].agencyclass}</span></p><p className="u128"><span className="u127">可预约专家：{this.state.dataSource[0].agencydoctorid}</span></p><p className="u128"><span className="u127">最快手术时间：{this.state.dataSource[0].agencyyytime}天内</span></p><p className="u128"><span className="u127">床位：{this.judgeBed(this.state.dataSource[0].agencybed)}</span></p>
                         </div>
                     </div>
                     <div id="u87" className="ax_horizontal_line">
@@ -477,7 +486,7 @@ const Institution_list = React.createClass({
                         <img id="u88_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u89" className="text">
-                            <p><span>优惠</span><span>：单间8折，免费加陪护床</span></p>
+                            <p><span>优惠</span><span>：{this.state.dataSource[0].agencydiscount}</span></p>
                         </div>
                     </div>
 
@@ -504,7 +513,7 @@ const Institution_list = React.createClass({
                         <img id="u94_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u95" className="text">
-                            <p className="u129"><span className="u124">XXXX</span><span className="u124">&nbsp; </span><span className="u124">医院</span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">9</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">北京</span><span className="u127">海淀</span><span className="u127">区</span><span className="u127">&nbsp; </span><span className="u126">三</span><span className="u126">乙</span></p><p className="u128"><span className="u127">可预约专家：知名三甲医院骨科高职及以上</span></p><p className="u128"><span className="u127">最快手术时间： 1日内</span></p><p className="u128"><span className="u127">床位：充足</span></p>
+                            <p className="u129"><span className="u124">{this.state.dataSource[1].agencyname}</span><span className="u124">&nbsp; </span><span className="u124"></span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">{this.state.dataSource[1].agencyhot}</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">{this.state.dataSource[1].agencyprovince}</span><span className="u127">{this.state.dataSource[1].agencydistrict}</span><span className="u127">区</span><span className="u127">&nbsp; </span><span className="u126">三</span><span className="u126">乙</span></p><p className="u128"><span className="u127">可预约专家：{this.state.dataSource[1].agencydoctorid}</span></p><p className="u128"><span className="u127">最快手术时间： {this.state.dataSource[1].agencyyytime}天内</span></p><p className="u128"><span className="u127">床位：{this.judgeBed(this.state.dataSource[1].agencybed)}</span></p>
                         </div>
                     </div>
 
@@ -520,7 +529,7 @@ const Institution_list = React.createClass({
                         <img id="u97_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u98" className="text">
-                            <p><span>优惠</span><span>：单间8折，免费加陪护床</span></p>
+                            <p><span>优惠</span><span>：{this.state.dataSource[1].agencydiscount}</span></p>
                         </div>
                     </div>
 
@@ -538,7 +547,7 @@ const Institution_list = React.createClass({
                         <img id="u101_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u102" className="text">
-                            <p className="u129"><span className="u124">XXXX</span><span className="u124">&nbsp; </span><span className="u124">医院</span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">9</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">北京</span><span className="u127">宣武区</span><span className="u127">&nbsp; </span><span className="u126">民营</span></p><p className="u128"><span className="u127">可预约专家：知名三甲医院骨科高职及以上</span></p><p className="u128"><span className="u127">最快手术时间： 1日内</span></p><p className="u128"><span className="u127">床位：充足</span></p>
+                            <p className="u129"><span className="u124">{this.state.dataSource[2].agencyname}</span><span className="u124">&nbsp; </span><span className="u124"></span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">{this.state.dataSource[2].agencyhot}</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">{this.state.dataSource[2].agencyprovince}</span><span className="u127">{this.state.dataSource[2].agencydistrict}</span><span className="u127">&nbsp; </span><span className="u126">{this.state.dataSource[2].agencyclass}</span></p><p className="u128"><span className="u127">可预约专家：{this.state.dataSource[2].agencydoctorid}</span></p><p className="u128"><span className="u127">最快手术时间： {this.state.dataSource[2].agencyyytime}天内</span></p><p className="u128"><span className="u127">床位：{this.judgeBed(this.state.dataSource[2].agencybed)}</span></p>
                         </div>
                     </div>
 
@@ -554,7 +563,7 @@ const Institution_list = React.createClass({
                         <img id="u104_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u105" className="text">
-                            <p><span>优惠</span><span>：单间8折，免费加陪护床</span></p>
+                            <p><span>优惠</span><span>：{this.state.dataSource[2].agencydiscount}</span></p>
                         </div>
                     </div>
 
@@ -637,15 +646,13 @@ const Institution_list = React.createClass({
                     </div>
                 </div>
             </PageContainer>
-        }else{
+        } else {
             page = ''
         }
-        var no = "无";
-        var a = "";
         return (
-           <div>
-           {page}
-           </div>
+            <div>
+                {page}
+            </div>
         );
     }
 });
