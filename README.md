@@ -51,8 +51,5 @@ npm run build
 ##Ying Wang
 ###哈哈
 ###好的
-<<<<<<< HEAD
 ###Cristiano
-=======
 ##hao
->>>>>>> 79f5bf527606f5e1f85c2b63ed9d61c67d618a3f
