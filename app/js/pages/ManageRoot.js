@@ -4,8 +4,43 @@ import {
     Grid,
     Col,
 }from 'amazeui-react';
+import auth from '../components/auth'
 var ManageRoot = React.createClass({
+    getInitialState() {
+        return {
+            dataSource: {re:[{"user_name":"ffff","user_group":"iiiii","user_mobile":"111","user_mail":"qqq"}],totalpage:1},
+            nowpage:1
+        };
+    },
+    query(page = this.state.nowpage){
+        var to = "http://123.56.133.208:8080/myfd/manager/accountlist.do"
+        auth.myact(
+          {to:'manager/accountlist.do',
+           parms:[{'page':page}]
+          },
+          (res)=>{
+                this.updateDataSource(res)
+                })
+    },
+    querynext(){
+        this.query(this.state.nowpage+1)
+    }
+    ,querybefore(){
+        this.query(this.state.nowpage-1)
+    }
+    ,
+      componentDidMount() {
+    },
+      updateDataSource(data) {
+        this.setState({
+            dataSource: data,
+        })
+        
+    },
     render() {
+            var data = this.state.dataSource
+            var person = data.re[0]
+
         return (
             <PageContainer>
                 <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
@@ -110,7 +145,7 @@ var ManageRoot = React.createClass({
                                         <img id="u20_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
 
                                         <div id="u21" className="text">
-                                            <p><span>张三</span></p>
+                                            <p><span>{person.user_name}</span></p>
                                         </div>
                                     </div>
 
@@ -119,7 +154,7 @@ var ManageRoot = React.createClass({
                                         <img id="u22_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
 
                                         <div id="u23" className="text">
-                                            <p><span>手术助理-骨科</span></p>
+                                            <p><span>{person.user_group}</span></p>
                                         </div>
                                     </div>
 
