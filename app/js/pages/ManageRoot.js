@@ -4,59 +4,50 @@ import {
     Grid,
     Col,
 }from 'amazeui-react';
+import auth from '../components/auth'
 var ManageRoot = React.createClass({
     getInitialState() {
         return {
-            dataSource: [],
-
+            dataSource: {re:[{"user_name":"ffff","user_group":"iiiii","user_mobile":"111","user_mail":"qqq"}],totalpage:1},
+            nowpage:1
         };
     },
-    componentWillMount() {
-        if (!window.fetch) {
-            return console.error('fetch API is not supported!');
-        }
-        function checkStatus(response) {
-            if (response.status >= 200 && response.status < 300) {
-                return response;
-            } else {
-                var error = new Error(response.statusText);
-                error.response = response;
-                throw error;
-            }
-        }
+    query(page = this.state.nowpage){
+        var to = "http://123.56.133.208:8080/myfd/manager/accountlist.do"
+        auth.myact(
+          {to:'manager/accountlist.do',
+           parms:[{'page':page}]
+          },
+          (res)=>{
+                this.updateDataSource(res)
+                })
     },
-    componentDidMount() {
-        fetch('http://123.56.133.208:8080/myfd/manager/userlist.do')
-            .then(checkStatus)
-            .then(res => {
-                return res.json();
-            })
-            .then(data => {
-                this.updateDataSource(data);
-            })
-            .catch(error => {
-                console.log('Request failed:', error)
-            });
-        function checkStatus(response) {
-            if (response.status >= 200 && response.status < 300) {
-                return response;
-            } else {
-                var error = new Error(response.statusText);
-                error.response = response;
-                throw error;
-            }
-
-        }
-
+    querynext(){
+        this.query(this.state.nowpage+1)
+    }
+    ,querybefore(){
+        this.query(this.state.nowpage-1)
+    }
+    ,
+      componentDidMount() {
+          this.query(1)
     },
-    updateDataSource(data) {
+      updateDataSource(data) {
+            console.log(data)        
         this.setState({
             dataSource: data,
         })
-
+        
     },
     render() {
-        console.log(this.state.dataSource.length);
+            var data = this.state.dataSource
+            var person = data.re[0]
+            var person2 = ''
+            
+            if (data.re.length >=2)
+            {
+                var person2 = data.re[1]
+            }
         return (
             <PageContainer>
                 <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
@@ -68,6 +59,8 @@ var ManageRoot = React.createClass({
                         <img id="u0_end" className="img " src="i/images/web_manage_page_root/transparent.gif" alt="u0_end"/>
                         <img id="u0_line" className="img " src="i/images/web_manage_page_root/u0_line.png" alt="u0_line"/>
                     </div>
+
+
                     <div id="u1" className="ax_h1">
                         <img id="u1_img" className="img " src="i/images/web_manage_page_root/transparent.gif"/>
 
@@ -75,6 +68,8 @@ var ManageRoot = React.createClass({
                             <p><span>飞刀平台系统管理</span></p>
                         </div>
                     </div>
+
+
                     <div id="u3" className="ax_paragraph">
                         <img id="u3_img" className="img " src="i/images/web_manage_page_root/transparent.gif"/>
 
@@ -82,6 +77,7 @@ var ManageRoot = React.createClass({
                             <p><span className="hi">您好，Admin&nbsp; &nbsp; </span><span className="quit">退出</span><span className="hi">&nbsp; &nbsp; </span></p>
                         </div>
                     </div>
+
 
                     <div id="u5" className="ax_horizontal_line">
                         <img id="u5_start" className="img " src="i/images/web_manage_page_root/transparent.gif" alt="u5_start"/>
@@ -156,7 +152,7 @@ var ManageRoot = React.createClass({
                                         <img id="u20_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
 
                                         <div id="u21" className="text">
-                                            <p><span>张三</span></p>
+                                            <p><span>{person.user_name}</span></p>
                                         </div>
                                     </div>
 
@@ -165,7 +161,7 @@ var ManageRoot = React.createClass({
                                         <img id="u22_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
 
                                         <div id="u23" className="text">
-                                            <p><span>手术助理-骨科</span></p>
+                                            <p><span>{person.user_group}</span></p>
                                         </div>
                                     </div>
 
@@ -183,7 +179,7 @@ var ManageRoot = React.createClass({
                                         <img id="u26_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
 
                                         <div id="u27" className="text">
-                                            <p><span>ZhangSan @FD.com</span></p>
+                                            <p><span>{person.user_mail}</span></p>
                                         </div>
                                     </div>
 
@@ -192,7 +188,7 @@ var ManageRoot = React.createClass({
                                         <img id="u28_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
 
                                         <div id="u29" className="text">
-                                            <p><span>启用</span></p>
+                                            <p><span>{person.user_name!=undefined?'启用':''}</span></p>
                                         </div>
                                     </div>
 
@@ -201,7 +197,7 @@ var ManageRoot = React.createClass({
                                         <img id="u30_img" className="img " src="i/images/web_manage_page_root/u30.png"/>
 
                                         <div id="u31" className="text">
-                                            <p><span>删除/禁用/修改</span></p>
+                                            <p><span>{person.user_name!=undefined?'删除/禁用/修改':''}</span></p>
                                         </div>
                                     </div>
 
@@ -210,7 +206,7 @@ var ManageRoot = React.createClass({
                                         <img id="u32_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
 
                                         <div id="u33" className="text">
-                                            <p><span>李四</span></p>
+                                            <p><span>{person2.user_name}</span></p>
                                         </div>
                                     </div>
 
@@ -219,7 +215,7 @@ var ManageRoot = React.createClass({
                                         <img id="u34_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
 
                                         <div id="u35" className="text">
-                                            <p><span>手术助理-骨科</span></p>
+                                            <p><span>{person2.user_group}</span></p>
                                         </div>
                                     </div>
 
@@ -228,7 +224,7 @@ var ManageRoot = React.createClass({
                                         <img id="u36_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
 
                                         <div id="u37" className="text">
-                                            <p><span>18812345678</span></p>
+                                            <p><span>{person2.user_mobile}</span></p>
                                         </div>
                                     </div>
 
@@ -237,7 +233,7 @@ var ManageRoot = React.createClass({
                                         <img id="u38_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
 
                                         <div id="u39" className="text">
-                                            <p><span>LiSi @FD.com</span></p>
+                                            <p><span>{person2.user_mail}</span></p>
                                         </div>
                                     </div>
 
@@ -246,7 +242,7 @@ var ManageRoot = React.createClass({
                                         <img id="u40_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
 
                                         <div id="u41" className="text">
-                                            <p><span>启用</span></p>
+                                            <p><span>{person2.user_name!=undefined?'启用':''}</span></p>
                                         </div>
                                     </div>
 
@@ -255,7 +251,7 @@ var ManageRoot = React.createClass({
                                         <img id="u42_img" className="img " src="i/images/web_manage_page_root/u42.png"/>
 
                                         <div id="u43" className="text">
-                                            <p><span>删除/禁用/修改</span></p>
+                                            <p><span>{person2.user_name!=undefined?'删除/禁用/修改':''}</span></p>
                                         </div>
                                     </div>
                                 </div>
