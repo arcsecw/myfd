@@ -5,7 +5,58 @@ import {
     Col,
 }from 'amazeui-react';
 var ManageRoot = React.createClass({
+    getInitialState() {
+        return {
+            dataSource: [],
+
+        };
+    },
+    componentWillMount() {
+        if (!window.fetch) {
+            return console.error('fetch API is not supported!');
+        }
+        function checkStatus(response) {
+            if (response.status >= 200 && response.status < 300) {
+                return response;
+            } else {
+                var error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+        }
+    },
+    componentDidMount() {
+        fetch('http://123.56.133.208:8080/myfd/manager/userlist.do')
+            .then(checkStatus)
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                this.updateDataSource(data);
+            })
+            .catch(error => {
+                console.log('Request failed:', error)
+            });
+        function checkStatus(response) {
+            if (response.status >= 200 && response.status < 300) {
+                return response;
+            } else {
+                var error = new Error(response.statusText);
+                error.response = response;
+                throw error;
+            }
+
+        }
+
+    },
+    updateDataSource(data) {
+        this.setState({
+            dataSource: data,
+        })
+
+    },
     render() {
+        console.log(this.state.dataSource.length);
         return (
             <PageContainer>
                 <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
@@ -17,8 +68,6 @@ var ManageRoot = React.createClass({
                         <img id="u0_end" className="img " src="i/images/web_manage_page_root/transparent.gif" alt="u0_end"/>
                         <img id="u0_line" className="img " src="i/images/web_manage_page_root/u0_line.png" alt="u0_line"/>
                     </div>
-
-
                     <div id="u1" className="ax_h1">
                         <img id="u1_img" className="img " src="i/images/web_manage_page_root/transparent.gif"/>
 
@@ -26,8 +75,6 @@ var ManageRoot = React.createClass({
                             <p><span>飞刀平台系统管理</span></p>
                         </div>
                     </div>
-
-
                     <div id="u3" className="ax_paragraph">
                         <img id="u3_img" className="img " src="i/images/web_manage_page_root/transparent.gif"/>
 
@@ -35,7 +82,6 @@ var ManageRoot = React.createClass({
                             <p><span className="hi">您好，Admin&nbsp; &nbsp; </span><span className="quit">退出</span><span className="hi">&nbsp; &nbsp; </span></p>
                         </div>
                     </div>
-
 
                     <div id="u5" className="ax_horizontal_line">
                         <img id="u5_start" className="img " src="i/images/web_manage_page_root/transparent.gif" alt="u5_start"/>

@@ -56,15 +56,15 @@ const Institution_list = React.createClass({
 
     },
     judgeBed(bed) {
-        var bedMount='';
-        if(bed==0){
-            bedMount="10以下";
-        }else if(bed==1){
-            bedMount="10-50";
-        }else  if(bed==2){
-            bedMount="50-100";
-        }else{
-            bedMount="100以上";
+        var bedMount = '';
+        if (bed == 0) {
+            bedMount = "10以下";
+        } else if (bed == 1) {
+            bedMount = "10-50";
+        } else if (bed == 2) {
+            bedMount = "50-100";
+        } else {
+            bedMount = "100以上";
         }
         return bedMount;
 
@@ -474,7 +474,7 @@ const Institution_list = React.createClass({
                         <img id="u85_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u86" className="text">
-                            <p className="u129"><span className="u124">{this.state.dataSource[0].agencyname}</span><span className="u124">&nbsp; </span><span className="u124"></span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">{this.state.dataSource[0].agencyhot}</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">{this.state.dataSource[0].agencyprovince}</span><span className="u127">{this.state.dataSource[0].agencydistrict}</span><span className="u127">&nbsp; </span><span className="u126">{this.state.dataSource[0].agencyclass}</span></p><p className="u128"><span className="u127">可预约专家：{this.state.dataSource[0].agencydoctorid}</span></p><p className="u128"><span className="u127">最快手术时间：{this.state.dataSource[0].agencyyytime}天内</span></p><p className="u128"><span className="u127">床位：{this.judgeBed(this.state.dataSource[0].agencybed)}</span></p>
+                            <p className="u129"><span className="u124">{this.state.dataSource[0].agencyname}</span><span className="u124">&nbsp; </span><span className="u124"></span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">{this.state.dataSource[0].agencyhot}</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">{this.state.dataSource[0].agencyprovince}</span><span className="u127">{this.state.dataSource[0].agencydistrict}</span><span className="u127">&nbsp; </span><span className="u126">{this.state.dataSource[0].agencyclass}</span></p><p className="u128"><span className="u127">可预约专家：{this.state.dataSource[0].agencydoctorid}</span></p><p className="u128"><span className="u127">最快手术时间：{this.state.dataSource[0].agencyyytime}天内</span></p><p className="u128"><span className="u127">床位：{this.judgeBed(this.state.dataSource[0].agencybed) }</span></p>
                         </div>
                     </div>
                     <div id="u87" className="ax_horizontal_line">
@@ -513,7 +513,7 @@ const Institution_list = React.createClass({
                         <img id="u94_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u95" className="text">
-                            <p className="u129"><span className="u124">{this.state.dataSource[1].agencyname}</span><span className="u124">&nbsp; </span><span className="u124"></span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">{this.state.dataSource[1].agencyhot}</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">{this.state.dataSource[1].agencyprovince}</span><span className="u127">{this.state.dataSource[1].agencydistrict}</span><span className="u127">区</span><span className="u127">&nbsp; </span><span className="u126">三</span><span className="u126">乙</span></p><p className="u128"><span className="u127">可预约专家：{this.state.dataSource[1].agencydoctorid}</span></p><p className="u128"><span className="u127">最快手术时间： {this.state.dataSource[1].agencyyytime}天内</span></p><p className="u128"><span className="u127">床位：{this.judgeBed(this.state.dataSource[1].agencybed)}</span></p>
+                            <p className="u129"><span className="u124">{this.state.dataSource[1].agencyname}</span><span className="u124">&nbsp; </span><span className="u124"></span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">{this.state.dataSource[1].agencyhot}</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">{this.state.dataSource[1].agencyprovince}</span><span className="u127">{this.state.dataSource[1].agencydistrict}</span><span className="u127">区</span><span className="u127">&nbsp; </span><span className="u126">三</span><span className="u126">乙</span></p><p className="u128"><span className="u127">可预约专家：{this.state.dataSource[1].agencydoctorid}</span></p><p className="u128"><span className="u127">最快手术时间： {this.state.dataSource[1].agencyyytime}天内</span></p><p className="u128"><span className="u127">床位：{this.judgeBed(this.state.dataSource[1].agencybed) }</span></p>
                         </div>
                     </div>
 
@@ -547,7 +547,7 @@ const Institution_list = React.createClass({
                         <img id="u101_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u102" className="text">
-                            <p className="u129"><span className="u124">{this.state.dataSource[2].agencyname}</span><span className="u124">&nbsp; </span><span className="u124"></span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">{this.state.dataSource[2].agencyhot}</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">{this.state.dataSource[2].agencyprovince}</span><span className="u127">{this.state.dataSource[2].agencydistrict}</span><span className="u127">&nbsp; </span><span className="u126">{this.state.dataSource[2].agencyclass}</span></p><p className="u128"><span className="u127">可预约专家：{this.state.dataSource[2].agencydoctorid}</span></p><p className="u128"><span className="u127">最快手术时间： {this.state.dataSource[2].agencyyytime}天内</span></p><p className="u128"><span className="u127">床位：{this.judgeBed(this.state.dataSource[2].agencybed)}</span></p>
+                            <p className="u129"><span className="u124">{this.state.dataSource[2].agencyname}</span><span className="u124">&nbsp; </span><span className="u124"></span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">{this.state.dataSource[2].agencyhot}</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">{this.state.dataSource[2].agencyprovince}</span><span className="u127">{this.state.dataSource[2].agencydistrict}</span><span className="u127">&nbsp; </span><span className="u126">{this.state.dataSource[2].agencyclass}</span></p><p className="u128"><span className="u127">可预约专家：{this.state.dataSource[2].agencydoctorid}</span></p><p className="u128"><span className="u127">最快手术时间： {this.state.dataSource[2].agencyyytime}天内</span></p><p className="u128"><span className="u127">床位：{this.judgeBed(this.state.dataSource[2].agencybed) }</span></p>
                         </div>
                     </div>
 
@@ -643,12 +643,17 @@ const Institution_list = React.createClass({
                         <div id="u122" className="text">
                             <p><span>媒体更新</span></p>
                         </div>
+                        <div id="u134" class="ax_html_button">
+                            <input />
+                        </div>
+
                     </div>
                 </div>
             </PageContainer>
         } else {
             page = ''
         }
+
         return (
             <div>
                 {page}

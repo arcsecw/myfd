@@ -90,17 +90,6 @@ const Login = withRouter(
             <p><span>欢迎登录</span></p>
           </div>
         </div>
-
-
-        <div id="u4" class="ax_paragraph">
-          <img id="u4_img" class="img " src="i/resources/images/transparent.gif"/>
-
-          <div id="u5" class="text">
-            <p><span>footpage</span></p>
-          </div>
-        </div>
-
-
         <div id="u6" class="ax_shape">
           <img id="u6_img" class="img " src="i/images/user_login_page/u6.png"/>
 
