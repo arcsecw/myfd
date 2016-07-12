@@ -46,10 +46,4 @@ npm start
 ```
 npm run build
 ```
-###郑国伟
-### 王文超
-##Ying Wang
-###哈哈
-###好的
-###Cristiano
-##hao
+成员：王文超 郑国伟 李长磊 朱星嘉 王莹

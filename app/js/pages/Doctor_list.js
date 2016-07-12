@@ -1,68 +1,56 @@
 import React from 'react';
 import PageContainer from '../components/PageContainer';
 import {
-  Button
 }from 'amazeui-react';
+import auth from '../components/auth'
 var Doctor_list = React.createClass({
-  getInitialState() {
-    return {
-      dataSource: [],
-
-    };
-  },
-  componentWillMount() {
-    if (!window.fetch) {
-      return console.error('fetch API is not supported!');
+    getInitialState() {
+        return {
+            dataSource: [],
+            nowpage:1
+        };
+    },
+    query(page = this.state.nowpage){        
+        var to = "http://123.56.133.208:8080/myfd/doctorlist.do"
+        auth.myact(
+          {to:'doctorlist.do',
+           parms:[{'page':page}]
+          },
+          (res)=>{
+                this.updateDataSource(res)
+                })
+    },
+    querynext(){
+        this.query(this.state.nowpage+1)
     }
-    function checkStatus(response) {
-      if (response.status >= 200 && response.status < 300) {
-        return response;
-      } else {
-        var error = new Error(response.statusText);
-        error.response = response;
-        throw error;
-      }
+    ,querybefore(){
+        this.query(this.state.nowpage+1)
     }
-
-
-  },
-  componentDidMount() {
-    fetch('http://123.56.133.208:8080/myfd/doctorlist.do')
-      .then(checkStatus)
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        this.updateDataSource(data);
-      })
-      .catch(error => {
-        console.log('Request failed: ', error)
-      });
-    function checkStatus(response) {
-      if (response.status >= 200 && response.status < 300) {
-        return response;
-      } else {
-        var error = new Error(response.statusText);
-        error.response = response;
-        throw error;
-      }
-
-    }
-
-
-  },
-  updateDataSource(data) {
-    this.setState({
-      dataSource: data,
-    })
-
-  },
+    ,
+    componentDidMount() {
+        this.query(1)
+    },
+      updateDataSource(data) {
+        this.setState({
+            dataSource: data,
+        })
+        
+    },
   render() {
-    var page = '';
-    if (this.state.dataSource.length == 3) {
-      console.log('success')
-      console.log(this.state.dataSource)
-      page = <PageContainer>
+    
+    //this.stte.dataSource.length==0
+        var data = this.state.dataSource
+        var line1 = ''
+        var line2 = ''
+        var line3 = ''
+        if (data.length>=3){
+        var line1 = data[0]
+        var line2 = data[1]
+        var line3 = data[2]
+        }
+        
+    return (
+      <PageContainer>
         <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
         <link href="i/data/styles.css" type="text/css" rel="stylesheet"/>
         <link href="i/css/doctor_list/styles.css" type="text/css" rel="stylesheet"/>
@@ -205,7 +193,7 @@ var Doctor_list = React.createClass({
             <img id="u31_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u32" className="text">
-              <p><span>下一页</span></p>
+              <p ><span>下一页</span></p>
             </div>
           </div>
 
@@ -214,7 +202,7 @@ var Doctor_list = React.createClass({
             <img id="u33_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u34" className="text">
-              <p className="u130"><span className="u131">{this.state.dataSource[0].realname}</span><span className="u131"> {this.state.dataSource[0].title}</span><span className="u132">&nbsp; </span><span className="u132">&nbsp; &nbsp; &nbsp; &nbsp; </span><span className="u132">&nbsp; </span><span className="u134">人气指数 {this.state.dataSource[0].hot}</span></p><p className="u133"><span className="u132">擅长治疗: {this.state.dataSource[0].excel}</span></p><p className="u133"><span className="u134">可预约地点: {this.state.dataSource[0].reservePlace}</span></p><p className="u135"><span className="u134">最快手术时间: 预计{this.state.dataSource[0].reserveTime}日内</span><span className="u141">&nbsp; </span></p>
+              <p className="u130"><span className="u131"></span><span className="u131"> {line1.title}</span><span className="u132">&nbsp; </span><span className="u132">&nbsp; &nbsp; &nbsp; &nbsp; </span><span className="u132">&nbsp; </span><span className="u134">人气指数 {line1.hot}</span></p><p className="u133"><span className="u132">擅长治疗: XXXX， XXXX， XXXX髌骨</span></p><p className="u133"><span className="u134">可预约地点: {line1.province}</span></p><p className="u135"><span className="u134">最快手术时间: {line1.reserveTime}</span><span className="u141">&nbsp; </span></p>
             </div>
           </div>
 
@@ -223,7 +211,7 @@ var Doctor_list = React.createClass({
             <img id="u35_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u36" className="text">
-              <p><span className="u140">第一</span><span className="u140">执业点：{this.state.dataSource[0].hospital}</span></p><p><span className="u142">荣誉：XXXX XXXXX</span></p><p><span className="u140">&nbsp; </span></p>
+              <p><span className="u140">第一</span><span className="u140">执业点： {line1.hospital}</span></p><p><span className="u142">荣誉：{line1.honor}</span></p><p><span className="u140">&nbsp; </span></p>
             </div>
           </div>
 
@@ -232,7 +220,7 @@ var Doctor_list = React.createClass({
             <img id="u37_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u38" className="text">
-              <p className="u130"><span className="u137">XXXX</span><span className="u137"> 主任</span><span className="u137">团队</span><span className="u137">&nbsp; &nbsp; </span><span className="u139">&nbsp; </span><span className="u136">人气指数 </span><span className="u136">10</span></p><p className="u135"><span className="u139">擅长治疗: XXXX， XXXX， </span><span className="u139">关节置换</span></p><p className="u133"><span className="u138">可预约地点: 北京不限地区</span></p><p className="u135"><span className="u138">最快手术时间: 预计</span><span className="u138">5</span><span className="u138">日内</span><span className="u139">&nbsp; </span></p>
+              <p className="u130"><span className="u137"> </span><span className="u137"> {line2.title}</span><span className="u137">团队</span><span className="u137">&nbsp; &nbsp; </span><span className="u139">&nbsp; </span><span className="u136">人气指数 </span><span className="u136">{line2.hot}</span></p><p className="u135"><span className="u139">擅长治疗: XXXX， XXXX， </span><span className="u139">关节置换</span></p><p className="u133"><span className="u138">可预约地点: {line2.province}</span></p><p className="u135"><span className="u138">最快手术时间: {line2.reserveTime}</span><span className="u139">&nbsp; </span></p>
             </div>
           </div>
 
@@ -257,7 +245,7 @@ var Doctor_list = React.createClass({
             <img id="u42_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u43" className="text">
-              <p><span>优惠</span><span>： </span><span>{this.state.dataSource[0].discount}</span></p>
+              <p><span>优惠</span><span>： </span><span>预约手续</span><span></span><span>费</span><span>限时</span><span>8折</span></p>
             </div>
           </div>
 
@@ -343,10 +331,10 @@ var Doctor_list = React.createClass({
 
 
           <div id="u61" className="ax_shape">
-            <img id="u61_img" className="img " />
+            <img id="u61_img" className="img " src="i/images/query_result/u68.png"/>
 
             <div id="u62" className="text">
-              <Button amStyle="success" amSize="xs" radius>立即预约</Button>
+              <p><span>立即预约</span></p>
             </div>
           </div>
 
@@ -559,16 +547,14 @@ var Doctor_list = React.createClass({
             <img id="u107_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u108" className="text">
-              <p className="u130"><span className="u131">{this.state.dataSource[2].realname}</span><span className="u131"> {this.state.dataSource[2].title}</span><span className="u132">&nbsp; </span><span className="u132">&nbsp; &nbsp; &nbsp; &nbsp; </span><span className="u132">&nbsp; </span><span className="u134">人气指数 {this.state.dataSource[2].hot}</span></p><p className="u133"><span className="u132">擅长治疗: </span><span className="u132">{this.state.dataSource[2].excel}</span><span className="u132"></span></p><p className="u133"><span className="u134">可预约地点: {this.state.dataSource[2].reservePlace}</span></p><p className="u135"><span className="u134">最快手术时间: 预计{this.state.dataSource[2].reserveTime}日内</span><span className="u141">&nbsp; </span></p>
+              <p className="u130"><span className="u131"></span><span className="u131"> {line3.title}</span><span className="u132">&nbsp; </span><span className="u132">&nbsp; &nbsp; &nbsp; &nbsp; </span><span className="u132">&nbsp; </span><span className="u134">人气指数 {line3.hot}</span></p><p className="u133"><span className="u132">擅长治疗: </span><span className="u132">脊椎</span><span className="u132">， XXXX，</span></p><p className="u133"><span className="u134">可预约地点: {line3.province}</span></p><p className="u135"><span className="u134">最快手术时间: {line3.reserveTime}</span><span className="u141">&nbsp; </span></p>
             </div>
           </div>
-
-
           <div id="u109" className="ax_paragraph">
             <img id="u109_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u110" className="text">
-              <p><span className="u140">第一</span><span className="u140">执业点： {this.state.dataSource[2].hospital}</span></p><p><span className="u142">荣誉：XXXX XXXXX</span></p><p><span className="u143">&nbsp; </span></p>
+              <p><span className="u140">第一</span><span className="u140">执业点：{line3.hospital}</span></p><p><span className="u142">荣誉：XXXX XXXXX</span></p><p><span className="u143">&nbsp; </span></p>
             </div>
           </div>
           <div id="u111" className="ax_horizontal_line">
@@ -580,7 +566,7 @@ var Doctor_list = React.createClass({
             <img id="u112_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u113" className="text">
-              <p><span>优惠</span><span>： </span><span>{this.state.dataSource[2].discount}</span></p>
+              <p><span>优惠</span><span>： </span><span>赠送康复礼包</span></p>
             </div>
           </div>
           <div id="u114" className="ax_shape">
@@ -647,20 +633,11 @@ var Doctor_list = React.createClass({
             <div id="u128" className="text">
               <p><span>媒体更新</span></p>
             </div>
-            <div id="u145" class="ax_html_button">
-              <input />
-            </div>
           </div>
         </div>
 
       </PageContainer>
-    } else {
-      page = '';
-    }
-    return (
-      <div>{page}</div>
     );
   }
 });
 export default Doctor_list;
-

@@ -1,82 +1,114 @@
 import React from 'react';
 import PageContainer from '../components/PageContainer';
+import auth from '../components/auth'
+
 const Institution_list = React.createClass({
     getInitialState() {
         return {
-            dataSource: [],
+            dataSource: [
+                    {
+                    agencydoctorid: 123,
+                    agencyprovince: "河东",
+                    agencydistrict: "莆田系",
+                    agencyname: "莆田医院",
+                    agencybed: 1,
+                    agencydiscount: 'discount',
+                    agencyhot: "23.00",
+                    agencyyytime: 1,
+                    agencyclass: "sanjia"
+                    },
+                    {
+                    agencydoctorid: 1234,
+                    agencyprovince: "河东2",
+                    agencydistrict: "莆田系22",
+                    agencyname: "莆田医院3",
+                    agencybed: 2,
+                    agencydiscount: 'discount22',
+                    agencyhot: "223.00",
+                    agencyyytime: 1,
+                    agencyclass: "sanjiaadasd"
+                    },                
+            ],
+            leixing:'不限',//or 专家团队 or 医疗机构
+            didian:'不限',//or 北京上海广州赤峰
+            check_yuyue:false,
+            check_youyouhui:false,
+            search_paixu:'智能',//or人气 预约时间,
+            nowpage :1,
+            totalpage:2,
 
+            
         };
     },
-    componentWillMount() {
-        if (!window.fetch) {
-            return console.error('fetch API is not supported!');
+    query(page){
+        auth.myact(
+          {to:'pagelist.do',
+           parms:[{'key':'page','value':page}]
+          },
+          (res)=>{
+                this.updateDataSource(res)
+                });
+        this.setState({nowpage:page})
+    },
+    querynext(){
+        var nowpage = this.state.nowpage
+        var totalpage = this.state.totalpage
+        if (nowpage+1<=totalpage){
+            nowpage+=1
+            this.query(nowpage)
+               
         }
-        function checkStatus(response) {
-            if (response.status >= 200 && response.status < 300) {
-                return response;
-            } else {
-                var error = new Error(response.statusText);
-                error.response = response;
-                throw error;
-            }
-        }
-
-
-
+        
+    }
+    ,querybefore(){
+        
+        var nowpage = this.state.nowpage
+        var totalpage = this.state.totalpage
+        if (nowpage-1>=1){
+            nowpage -=1
+            this.query(nowpage);
+    } 
+        
     },
     componentDidMount() {
-        fetch('http://123.56.133.208:8080/myfd/pagelist.do')
-            .then(checkStatus)
-            .then(res => {
-                return res.json();
-            })
-            .then(data => {
-                this.updateDataSource(data);
-            })
-            .catch(error => {
-                console.log('Request failed: ', error)
-            });
-        function checkStatus(response) {
-            if (response.status >= 200 && response.status < 300) {
-                return response;
-            } else {
-                var error = new Error(response.statusText);
-                error.response = response;
-                throw error;
-            }
-
-        }
-
-
+        this.query(1)
     },
     updateDataSource(data) {
         this.setState({
             dataSource: data,
         })
-
+        console.log(data)
+        
     },
-    judgeBed(bed) {
-        var bedMount = '';
-        if (bed == 0) {
-            bedMount = "10以下";
-        } else if (bed == 1) {
-            bedMount = "10-50";
-        } else if (bed == 2) {
-            bedMount = "50-100";
-        } else {
-            bedMount = "100以上";
-        }
-        return bedMount;
-
-    }
-    ,
+   
+    kaifazhong (str){ 
+        console.log(str)    
+    },
+    
+     
+    
     render() {
-        var page = ''
-        if (this.state.dataSource.length == 3) {
-            console.log('success')
-            console.log(this.state.dataSource)
-            page = <PageContainer>
-
+        var page =''
+        var line1 = {}
+        var data =  this.state.dataSource
+        if (data.length>=1){
+            line1 = data[0]
+        }
+        var line2 = {}
+        if (data.length>=2){
+            line2 = data[1]
+        }
+        var line3 = {}        
+       
+        if (data.length>=3){
+            line3 = data[2]
+        }
+        var black = {
+            color:'black'
+        }
+        return (
+           <PageContainer>
+                
                 <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
                 <link href="i/data/styles.css" type="text/css" rel="stylesheet"/>
                 <link href="i/css/institution_list/styles.css" type="text/css" rel="stylesheet"/>
@@ -117,28 +149,28 @@ const Institution_list = React.createClass({
 
 
                     <div id="u8" className="ax_paragraph">
-                        <img id="u8_img" className="img " src="i/images/doctor_list/u10.png"/>
+                        <img id="u8_img" className="img " src={this.state.leixing=='医疗机构'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
 
-                        <div id="u9" className="text">
+                        <div id="u9" className="text"style = {{color:this.state.leixing=='医疗机构'?'white':'black'}} onClick = {()=>{this.setState({'leixing':'医疗机构'})}} >
                             <p><span>医疗机构</span></p>
                         </div>
                     </div>
 
 
-                    <div id="u10" className="ax_paragraph">
-                        <img id="u10_img" className="img " src="i/images/institution_list/u10.png"/>
+                    <div id="u10" className="ax_paragraph" style = {{color:this.state.leixing=='专家团队'?'white':'black'}} onClick = {()=>{this.setState({'leixing':'专家团队'})}} >
+                        <img id="u10_img" className="img " src={this.state.leixing=='专家团队'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
 
                         <div id="u11" className="text">
-                            <p><span>专家</span><span>团队 </span></p>
+                            <p><span >专家团队 </span></p>
                         </div>
                     </div>
 
 
-                    <div id="u12" className="ax_paragraph">
-                        <img id="u12_img" className="img " src="i/images/doctor_list/u12.png"/>
+                    <div id="u12" className="ax_paragraph" >
+                        <img id="u12_img" className="img " src={this.state.leixing=='不限'?'i/images/query_result/u14.png':'i/images/institution_list/u10.png'}/>
 
-                        <div id="u13" className="text">
-                            <p><span>不限</span></p>
+                        <div id="u13" className="text" style = {{color:this.state.leixing=='不限'?'white':'black'}} onClick = {()=>{this.setState({'leixing':'不限'})}} >
+                            <p ><span>不限</span></p>
                         </div>
                     </div>
 
@@ -152,8 +184,8 @@ const Institution_list = React.createClass({
                     </div>
 
 
-                    <div id="u16" className="ax_paragraph">
-                        <img id="u16_img" className="img " src="i/resources/images/transparent.gif"/>
+                    <div id="u16" className="ax_paragraph" style = {{color:this.state.didian=='北京'?'white':'black'}} onClick = {()=>{this.setState({'didian':'北京'})}} >
+                        <img id="u16_img" className="img " src={this.state.didian=='北京'?'i/images/query_result/u14.png':'i/resources/images/transparent.gif'} />
 
                         <div id="u17" className="text">
                             <p><span>北京</span></p>
@@ -161,8 +193,8 @@ const Institution_list = React.createClass({
                     </div>
 
 
-                    <div id="u18" className="ax_paragraph">
-                        <img id="u18_img" className="img " src="i/images/query_result/u14.png"/>
+                    <div id="u18" className="ax_paragraph"style = {{color:this.state.didian=='不限'?'white':'black'}} onClick = {()=>{this.setState({'didian':'不限'})}} >
+                        <img id="u18_img" className="img " src={this.state.didian=='不限'?'i/images/query_result/u14.png':'i/resources/images/transparent.gif'} />
 
                         <div id="u19" className="text">
                             <p><span>不限</span></p>
@@ -184,7 +216,10 @@ const Institution_list = React.createClass({
                                 <p><span>7日内可预约</span></p>
                             </div>
                         </label>
-                        <input id="u21_input" type="checkbox" value="checkbox"/>
+                        <input id="u21_input" type="checkbox" value="checkbox" checked={this.state.check_yuyue?'checked':''} onClick = {()=>{
+                            this.setState({check_yuyue:!this.state.check_yuyue})
+
+                        }}/>
                     </div>
 
 
@@ -195,33 +230,41 @@ const Institution_list = React.createClass({
                                 <p><span>有优惠</span></p>
                             </div>
                         </label>
-                        <input id="u23_input" type="checkbox" value="checkbox"/>
+                        <input id="u23_input" type="checkbox" value="checkbox" checked={this.state.check_youyouhui?'checked':''} onClick = {()=>{
+                            this.setState({check_youyouhui:!this.state.check_youyouhui})
+
+                        }}/>
                     </div>
 
 
                     <div id="u25" className="ax_paragraph">
                         <img id="u25_img" className="img " src="i/resources/images/transparent.gif"/>
 
-                        <div id="u26" className="text">
-                            <p><span>智能</span><span>&nbsp; </span><span> |&nbsp; 人气&nbsp; |&nbsp; 预约时间&nbsp; &nbsp; </span></p>
+                        <div id="u26" className="text" >
+                            <p>
+                            <span style = {{color:this.state.search_paixu=='智能'?'red':'black'}} onClick = {()=>{
+                            this.setState({search_paixu:'智能'})
+                        }}>智能</span>
+                        <span>&nbsp; </span>
+                        <span> |&nbsp; <span
+                        style = {{color:this.state.search_paixu=='人气'?'red':'black'}} onClick = {()=>{
+                            this.setState({search_paixu:'人气'})
+                        }}>人气</span>&nbsp; |&nbsp; <span
+                        style = {{color:this.state.search_paixu=='预约时间'?'red':'black'}} onClick = {()=>{
+                            this.setState({search_paixu:'预约时间'})
+                        }}
+                        >预约时间</span>&nbsp; &nbsp; </span></p>
                         </div>
                     </div>
 
 
-                    <div id="u27" className="ax_paragraph">
-                        <img id="u27_img" className="img " src="i/resources/images/transparent.gif"/>
-
-                        <div id="u28" className="text">
-                            <p><span className="u123">1</span></p>
-                        </div>
-                    </div>
 
 
                     <div id="u29" className="ax_paragraph">
                         <img id="u29_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u30" className="text">
-                            <p><span>2</span></p>
+                            <p onClick = {this.querybefore} > <span>上一页</span></p>
                         </div>
                     </div>
 
@@ -230,7 +273,7 @@ const Institution_list = React.createClass({
                         <img id="u31_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u32" className="text">
-                            <p><span>下一页</span></p>
+                            <p onClick = {this.querynext} > <span>下一页</span></p>
                         </div>
                     </div>
 
@@ -449,32 +492,33 @@ const Institution_list = React.createClass({
                     </div>
 
 
-                    <div id="u79" className="ax_paragraph">
-                        <img id="u79_img" className="img " src="i/resources/images/transparent.gif"/>
+                    <div id="u79" className="ax_paragraph" style =  {{color:this.state.didian=='上海'?'white':'black'}} onClick = {()=>{this.setState({'didian':'上海'})}}>
+                        <img id="u79_img" className="img " src={this.state.didian=='上海'?'i/images/query_result/u14.png':'i/resources/images/transparent.gif'} />
 
                         <div id="u80" className="text">
                             <p><span>上海</span></p>
                         </div>
                     </div>
-                    <div id="u81" className="ax_paragraph">
-                        <img id="u81_img" className="img " src="i/resources/images/transparent.gif"/>
+                    <div id="u81" className="ax_paragraph" style = {{color:this.state.didian=='广州'?'black':'black'}} onClick = {()=>{this.setState({'didian':'广州'})}}>
+                        <img id="u81_img" className="img " src={this.state.didian=='广州'?'i/images/query_result/u14.png':'i/resources/images/transparent.gif'}/>
 
                         <div id="u82" className="text">
                             <p><span>广州</span></p>
                         </div>
                     </div>
-                    <div id="u83" className="ax_paragraph">
-                        <img id="u83_img" className="img " src="i/resources/images/transparent.gif"/>
+                    <div id="u83" className="ax_paragraph" style =  {{color:this.state.didian=='赤峰'?'white':'black'}} onClick = {()=>{this.setState({'didian':'赤峰'})}}>
+                        <img id="u83_img" className="img " src={this.state.didian=='赤峰'?'i/images/query_result/u14.png':'i/resources/images/transparent.gif'} />
 
                         <div id="u84" className="text">
                             <p><span>赤峰</span></p>
                         </div>
                     </div>
+
                     <div id="u85" className="ax_paragraph">
                         <img id="u85_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u86" className="text">
-                            <p className="u129"><span className="u124">{this.state.dataSource[0].agencyname}</span><span className="u124">&nbsp; </span><span className="u124"></span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">{this.state.dataSource[0].agencyhot}</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">{this.state.dataSource[0].agencyprovince}</span><span className="u127">{this.state.dataSource[0].agencydistrict}</span><span className="u127">&nbsp; </span><span className="u126">{this.state.dataSource[0].agencyclass}</span></p><p className="u128"><span className="u127">可预约专家：{this.state.dataSource[0].agencydoctorid}</span></p><p className="u128"><span className="u127">最快手术时间：{this.state.dataSource[0].agencyyytime}天内</span></p><p className="u128"><span className="u127">床位：{this.judgeBed(this.state.dataSource[0].agencybed) }</span></p>
+                            <p className="u129"><span className="u124"></span><span className="u124">&nbsp; </span><span className="u124">{line1.agencyname}</span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">{line1.agencyhot}</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">{line1.agencydistrict}</span><span className="u127">&nbsp; </span><span className="u126">{line1.agencyclass}</span></p><p className="u128"><span className="u127">可预约专家：知名三甲医院骨科高职及以上</span></p><p className="u128"><span className="u127">最快手术时间：{line1.agencyyytime}</span></p><p className="u128"><span className="u127">床位：{line1.agencybed}</span></p>
                         </div>
                     </div>
                     <div id="u87" className="ax_horizontal_line">
@@ -486,7 +530,7 @@ const Institution_list = React.createClass({
                         <img id="u88_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u89" className="text">
-                            <p><span>优惠</span><span>：{this.state.dataSource[0].agencydiscount}</span></p>
+                            <p><span>优惠</span><span>：单间8折，免费加陪护床</span></p>
                         </div>
                     </div>
 
@@ -495,7 +539,7 @@ const Institution_list = React.createClass({
                         <img id="u90_img" className="img " src="i/images/query_result/u68.png"/>
 
                         <div id="u91" className="text">
-                            <p><span>立即预约</span></p>
+                            <p ><span  onClick={this.kaifazhong.bind(this, '开发中')} >立即预约33</span></p>
                         </div>
                     </div>
 
@@ -513,7 +557,7 @@ const Institution_list = React.createClass({
                         <img id="u94_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u95" className="text">
-                            <p className="u129"><span className="u124">{this.state.dataSource[1].agencyname}</span><span className="u124">&nbsp; </span><span className="u124"></span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">{this.state.dataSource[1].agencyhot}</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">{this.state.dataSource[1].agencyprovince}</span><span className="u127">{this.state.dataSource[1].agencydistrict}</span><span className="u127">区</span><span className="u127">&nbsp; </span><span className="u126">三</span><span className="u126">乙</span></p><p className="u128"><span className="u127">可预约专家：{this.state.dataSource[1].agencydoctorid}</span></p><p className="u128"><span className="u127">最快手术时间： {this.state.dataSource[1].agencyyytime}天内</span></p><p className="u128"><span className="u127">床位：{this.judgeBed(this.state.dataSource[1].agencybed) }</span></p>
+                            <p className="u129"><span className="u124">{line2.agencyname}</span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">{line2.agencyhot}</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">{line2.agencyprovince}</span><span className="u127">{line2.agencydistrict}</span><span className="u127">区</span><span className="u127">&nbsp; </span><span className="u126">{line2.agencyclass}</span></p><p className="u128"><span className="u127">可预约专家：知名三甲医院骨科高职及以上</span></p><p className="u128"><span className="u127">最快手术时间：{line2.agencyyytime}</span></p><p className="u128"><span className="u127">床位：{line2.agencybed}</span></p>
                         </div>
                     </div>
 
@@ -529,7 +573,7 @@ const Institution_list = React.createClass({
                         <img id="u97_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u98" className="text">
-                            <p><span>优惠</span><span>：{this.state.dataSource[1].agencydiscount}</span></p>
+                            <p><span>优惠</span><span>：单间8折，免费加陪护床</span></p>
                         </div>
                     </div>
 
@@ -538,7 +582,7 @@ const Institution_list = React.createClass({
                         <img id="u99_img" className="img " src="i/images/query_result/u68.png"/>
 
                         <div id="u100" className="text">
-                            <p><span>立即预约</span></p>
+                            <p ><span>立即预约</span></p>
                         </div>
                     </div>
 
@@ -547,7 +591,7 @@ const Institution_list = React.createClass({
                         <img id="u101_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u102" className="text">
-                            <p className="u129"><span className="u124">{this.state.dataSource[2].agencyname}</span><span className="u124">&nbsp; </span><span className="u124"></span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">{this.state.dataSource[2].agencyhot}</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">{this.state.dataSource[2].agencyprovince}</span><span className="u127">{this.state.dataSource[2].agencydistrict}</span><span className="u127">&nbsp; </span><span className="u126">{this.state.dataSource[2].agencyclass}</span></p><p className="u128"><span className="u127">可预约专家：{this.state.dataSource[2].agencydoctorid}</span></p><p className="u128"><span className="u127">最快手术时间： {this.state.dataSource[2].agencyyytime}天内</span></p><p className="u128"><span className="u127">床位：{this.judgeBed(this.state.dataSource[2].agencybed) }</span></p>
+                            <p className="u129"><span className="u124">{line3.agencyname}</span><span className="u124">&nbsp; </span><span className="u124">医院</span><span className="u125"> ， </span><span className="u130">人气指数 </span><span className="u130">{line3.agencyhot}</span></p><p className="u128"><span className="u127">地点：</span><span className="u127">{line3.agencyprovince}</span><span className="u127">{line3.agencydistrict}</span><span className="u127">&nbsp; </span><span className="u126">{line3.agencyclass}</span></p><p className="u128"><span className="u127">可预约专家：知名三甲医院骨科高职及以上</span></p><p className="u128"><span className="u127">最快手术时间：{line3.agencyyytime}</span></p><p className="u128"><span className="u127">床位：{line3.agencybed}</span></p>
                         </div>
                     </div>
 
@@ -563,7 +607,7 @@ const Institution_list = React.createClass({
                         <img id="u104_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u105" className="text">
-                            <p><span>优惠</span><span>：{this.state.dataSource[2].agencydiscount}</span></p>
+                            <p><span>优惠</span><span>：单间8折，免费加陪护床</span></p>
                         </div>
                     </div>
 
@@ -572,7 +616,7 @@ const Institution_list = React.createClass({
                         <img id="u106_img" className="img " src="i/images/query_result/u68.png"/>
 
                         <div id="u107" className="text">
-                            <p><span>立即预约</span></p>
+                            <p ><span>立即预约</span></p>
                         </div>
                     </div>
 
@@ -643,21 +687,9 @@ const Institution_list = React.createClass({
                         <div id="u122" className="text">
                             <p><span>媒体更新</span></p>
                         </div>
-                        <div id="u134" class="ax_html_button">
-                            <input />
-                        </div>
-
                     </div>
                 </div>
             </PageContainer>
-        } else {
-            page = ''
-        }
-
-        return (
-            <div>
-                {page}
-            </div>
         );
     }
 });
