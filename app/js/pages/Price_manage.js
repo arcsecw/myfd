@@ -1,9 +1,116 @@
 import React from 'react'
 import PageContainer from '../components/PageContainer';
+import auth from '../components/auth'
 import {
 } from 'amazeui-react';
 var Price_manage = React.createClass({
+     getInitialState() {
+        return {
+            dataSource: [
+                    {
+                    agencydoctorid: "无",
+                    agencyprovince: "无",
+                    agencydistrict: "无",
+                    agencyname: "无",
+                    agencybed: "无",
+                    agencydiscount: "无",
+                    agencyhot: "无",
+                    agencyyytime: "无",
+                    agencyclass: "无"
+                    },
+                     {
+                    agencydoctorid: "无",
+                    agencyprovince: "无",
+                    agencydistrict: "无",
+                    agencyname: "无",
+                    agencybed: "无",
+                    agencydiscount: "无",
+                    agencyhot: "无",
+                    agencyyytime: "无",
+                    agencyclass: "无"
+                    }
+                   , 
+                    {
+                    agencydoctorid: "无",
+                    agencyprovince: "无",
+                    agencydistrict: "无",
+                    agencyname: "无",
+                    agencybed: "无",
+                    agencydiscount: "无",
+                    agencyhot: "无",
+                    agencyyytime: "无",
+                    agencyclass: "无"
+                    }               
+            ],
+            nowpage :1,
+            totalpage:2,          
+        };
+    },
+    query(page){
+        auth.myact(
+          {to:'manager/pricelist.do',
+           parms:[{'key':'page','value':page}]
+          },
+          (res)=>{
+                this.updateDataSource(res)
+                });
+        this.setState({nowpage:page})
+    },
+    querynext(){
+        var nowpage = this.state.nowpage
+        var totalpage = this.state.totalpage
+        if (nowpage+1<=totalpage){
+            nowpage+=1
+            this.query(nowpage)
+               
+        }
+        
+    }
+    ,querybefore(){
+        
+        var nowpage = this.state.nowpage
+        var totalpage = this.state.totalpage
+        if (nowpage-1>=1){
+            nowpage -=1
+            this.query(nowpage);
+    } 
+        
+    },
+    componentDidMount() {
+        this.query(1)
+    },
+    updateDataSource(data) {
+        this.setState({
+            dataSource: data,
+        })
+        console.log(data)
+        
+    },
+   
+    kaifazhong (str){ 
+        console.log(str)    
+    },
+    
+    
   render() {
+       var page =''
+        var line1 = {}
+        var data =  this.state.dataSource
+        if (data.length>=1){
+            line1 = data[0]
+        }
+        var line2 = {}
+        if (data.length>=2){
+            line2 = data[1]
+        }
+        var line3 = {}        
+       
+        if (data.length>=3){
+            line3 = data[2]
+        }
+        var black = {
+            color:'black'
+        }
     return (
       <PageContainer>
          <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
