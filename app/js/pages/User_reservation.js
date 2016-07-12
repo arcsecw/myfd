@@ -72,6 +72,10 @@ var User_reservation = React.createClass({
                         <div id="u11" className="text">
                             <p><span>核对手术预约信息</span></p>
                         </div>
+                        <div id="u45" class="ax_html_button">
+                            <input />
+                        </div>
+
                     </div>
 
 

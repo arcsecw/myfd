@@ -719,4 +719,3 @@ var Doctor_list = React.createClass({
   }
 });
 export default Doctor_list;
-

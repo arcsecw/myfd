@@ -9,6 +9,17 @@ import {
 } from 'amazeui-react';
 
 const navs = [
+  {
+    id:'price_manage',
+    title:'价格管理',
+    icon:'info',
+  },
+  {
+    id:'account_manage',
+    title:'账户管理',
+    icon:'info',
+
+  },
     {
     id:'test1',
     title:'test',

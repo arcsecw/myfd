@@ -272,7 +272,7 @@ var User_home = React.createClass({
                         </div>
                     </div>
 
-                 
+
                     <div id="u59" className="ax_droplist">
                         <select id="u59_input">
                             <option selected value="今年的订单">今年的订单</option>
@@ -357,6 +357,9 @@ var User_home = React.createClass({
 
                         <div id="u76" className="text">
                             <p><span>媒体更新</span></p>
+                        </div>
+                        <div id="u82" class="ax_html_button">
+                            <input />
                         </div>
                     </div>
                 </div>

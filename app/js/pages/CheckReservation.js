@@ -82,10 +82,15 @@ var CheckReservation = React.createClass({
                         <div id="u12" className="text">
                             <p><span>前往结算&nbsp; </span></p>
                         </div>
+                        <div id="u39" class="ax_html_button">
+                            <input />
+                        </div>
+
+
                     </div>
                     <div>
-                    
-                    
+
+
                     </div>
                     <div id="u13" className="ax_radio_button">
                         <label for="u13_input">

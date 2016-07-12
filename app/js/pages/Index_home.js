@@ -786,6 +786,10 @@ var Index_home = React.createClass({
             <div id="u177" className="text">
               <p><span>媒体更新</span></p>
             </div>
+            <div id="u194" class="ax_html_button">
+              <input />
+            </div>
+
           </div>
 
           <div id="u178" className="ax_hot_spot">

@@ -1515,3 +1515,30 @@ font-size:14px;
 .u132{
 color:#999999;
 }
+<<<<<<< HEAD
+#u133{
+position:absolute;
+top:50px;
+=======
+#u133 {
+  position:absolute;
+  left:460px;
+  top:737px;
+  width:177px;
+  height:16px;
+}
+#u133_img {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:177px;
+  height:16px;
+}
+#u134 {
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:177px;
+  white-space:nowrap;
+>>>>>>> 201836f9bdd8133298d1ca68d69eadd8ea6a8b0f
+}
