@@ -23,12 +23,6 @@ var Index_home = React.createClass({
     document.getElementById("u190").style.visibility="hidden";
     document.getElementById("u184_state1").style.visibility="hidden";
   },
-  mouseOver_null() {  //空右菜单
-    document.getElementById("u190").style.visibility="visible";
-  },
-  mouseOut_null() {
-    document.getElementById("u190").style.visibility="hidden";
-  },
 
   render() {
     return (
@@ -825,15 +819,15 @@ var Index_home = React.createClass({
           <div id="u181" className="ax_hot_spot" onMouseOver={this.mouseOver2} onMouseOut={this.mouseOut2}>
           </div>
 
-          <div id="u182" className="ax_hot_spot" onMouseOver={this.mouseOver_null} onMouseOut={this.mouseOut_null}>
+          <div id="u182" className="ax_hot_spot">
           </div>
 
 
-          <div id="u183" className="ax_hot_spot" onMouseOver={this.mouseOver_null} onMouseOut={this.mouseOut_null}>
+          <div id="u183" className="ax_hot_spot">
           </div>
 
           <div id="u184" className="ax_dynamic_panel" data-label="关节疾病右菜单">
-            <div id="u184_state0" className="panel_state" data-label="State1">
+            <div id="u184_state0" className="panel_state" data-label="State1" onMouseOver={this.mouseOver1} onMouseOut={this.mouseOut1}>
               <div id="u184_state0_content" className="panel_state_content">
 
 
@@ -855,7 +849,7 @@ var Index_home = React.createClass({
                 </div>
               </div>
             </div>
-            <div id="u184_state1" className="panel_state" data-label="State2">
+            <div id="u184_state1" className="panel_state" data-label="State2" onMouseOver={this.mouseOver2} onMouseOut={this.mouseOut2}>
               <div id="u184_state1_content" className="panel_state_content">
 
 
