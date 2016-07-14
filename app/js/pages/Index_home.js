@@ -16,9 +16,11 @@ var Index_home = React.createClass({
     document.getElementById("u184").style.visibility="hidden";
   },
   mouseOver2() {  //脊椎右菜单
+    document.getElementById("u190").style.visibility="visible";
     document.getElementById("u184_state1").style.visibility="visible";
   },
   mouseOut2() {
+    document.getElementById("u190").style.visibility="hidden";
     document.getElementById("u184_state1").style.visibility="hidden";
   },
   mouseOver_null() {  //空右菜单
