@@ -1,5 +1,7 @@
 import React from 'react';
 import PageContainer from '../components/PageContainer';
+import {Link } from 'react-router'
+
 import {
     Grid,
     Col,
@@ -12,7 +14,42 @@ import {
     Panel,
 } from 'amazeui-react';
 var User_reservation = React.createClass({
+    getInitialState() {
+        return {
+            yuyue:{
+                notice1:'！该医生仅治疗15-70岁',
+                notice2:'！该医生手术量大，请及时支付预定',
+                notice3:'！为保证手术质量，该医生仅使用知名进口器械，请提前做好准备',
+                didian:'北京',
+                zhuanjia:'主任医师教授',
+                yuyueshijian:'2016年7月20日',
+                shoushuneirong:'神经病',                
+                shifouyibao:'否',
+                xingming:'李长磊',
+                chushengriqi:'1988年8月8日',
+                quezhenxinxi:'无',
+                bingqingmiaoshu:'',
+                lianxirenxingming:'王文超',
+                yuhuanzheguanxi:'父子',
+                shouji:'110110110',
+                dizhi:'健翔桥',
+                qitafuwu1:'按摩',
+                qitafuwu2:'捏脚',
+                qitafuwu3:'剪头发',
+                qitafuwu4:'拔罐',
+            }
+        };
+    },
+    componentWillMount() {
+        
+        var par = this.props.query
+        if (par.realname!=undefined){
+            this.state.yuyue.didian = par.reservePlace
+            this.state.yuyue.zhuanjia = par.realname+par.title
+        }
+    },
     render() {
+        var pr = this.state.yuyue
         return (
             <PageContainer>
                 <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
@@ -65,7 +102,7 @@ var User_reservation = React.createClass({
                         </div>
                     </div>
 
-
+<Link to={{pathname:'/user_reservation', query:this.state.yuyue }}>
                     <div id="u10" className="ax_shape">
                         <img id="u10_img" className="img " src="i/images/user_reservation_operation_fill_page/u10.png"/>
 
@@ -77,7 +114,7 @@ var User_reservation = React.createClass({
                         </div>
 
                     </div>
-
+</Link>
 
                     <div id="u12" className="ax_image">
                         <img id="u12_img" className="img " src="i/images/user_check_operation_reservation_page/u21.png"/>
@@ -101,7 +138,7 @@ var User_reservation = React.createClass({
                         <img id="u16_img" className="img " src="i/images/user_reservation_operation_fill_page/u16.png"/>
 
                         <div id="u17" className="text">
-                            <p><span>！</span><span>该专家仅治疗15-70岁</span></p><p><span>！该专家手术量大，请及时支付预定</span></p><p><span>！为保证手术质量，该专家仅使用知名进口器械，请提前做好准备</span></p>
+                            <p><span></span><span>{pr.notice1}</span></p><p><span>{pr.notice2}</span></p><p><span>{pr.notice3}</span></p>
                         </div>
                     </div>
 
@@ -110,7 +147,7 @@ var User_reservation = React.createClass({
                         <img id="u18_img" className="img " src="i/images/user_reservation_operation_fill_page/u18.png"/>
 
                         <div id="u19" className="text">
-                            <p><span> 姓名：</span><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span> 杜海涛</span></p><p><span> 出生日期：</span><span>&nbsp; </span><span>&nbsp; </span><span>1988年8月8日</span></p><p><span> 确诊信息：</span><span>&nbsp; &nbsp; </span><span> 无</span></p><p><span> 病情描述：</span></p><p><span>&nbsp; </span></p><p><span>&nbsp; </span></p><p><span>&nbsp; </span></p><p><span> CT或相关图片资料：</span></p><p><span>&nbsp; </span></p>
+                            <p><span> 姓名：</span><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><input type="text" placeholder={pr.xingming}/></p><p><span> 出生日期：</span><span>&nbsp; </span><span>&nbsp; </span><span><input type="text" placeholder={pr.chushengriqi}/></span></p><p><span> 确诊信息：</span><span>&nbsp; &nbsp; </span><span><input type="text" placeholder={pr.quezhenxinxi}/></span></p><p><span> 病情描述：</span></p><p><span>&nbsp; </span></p><p><span>&nbsp; </span></p><p><span>&nbsp; </span></p><p><span> CT或相关图片资料：</span></p><p><span>&nbsp; </span></p>
                         </div>
                     </div>
 
@@ -119,7 +156,7 @@ var User_reservation = React.createClass({
                         <img id="u20_img" className="img " src="i/images/user_reservation_operation_fill_page/u16.png"/>
 
                         <div id="u21" className="text">
-                            <p><span> 姓名：</span></p><p><span> 与患者关系：</span></p><p><span> 手机：</span></p><p><span> 地址：</span></p>
+                            <p><span> 姓名：</span><input type="text" placeholder={pr.lianxirenxingming}/></p><p><span> 与患者关系：</span><input type="text" placeholder={pr.yuhuanzheguanxi}/></p><p><span> 手机：</span><input type="text" placeholder={pr.shouji}/></p><p><span> 地址：</span><input type="text" placeholder={pr.dizhi}/></p>
                         </div>
                     </div>
 
@@ -128,7 +165,7 @@ var User_reservation = React.createClass({
                         <img id="u22_img" className="img " src="i/images/user_reservation_operation_fill_page/u16.png"/>
 
                         <div id="u23" className="text">
-                            <p><span> 优惠复诊</span></p><p><span> 康复礼包</span></p><p><span> 就近安排住宿</span></p><p><span> 健康保险</span></p>
+                            <p><span> {pr.qitafuwu1}</span></p><p><span> {pr.qitafuwu2}</span></p><p><span> {pr.qitafuwu3}</span></p><p><span> {pr.qitafuwu4}</span></p>
                         </div>
                     </div>
 
@@ -155,14 +192,14 @@ var User_reservation = React.createClass({
                         <img id="u28_img" className="img " src="i/images/user_reservation_operation_fill_page/u16.png"/>
 
                         <div id="u29" className="text">
-                            <p><span>&nbsp; </span><span>地点：北京不限区域</span></p><p><span>&nbsp; </span><span>专家： XXXX 主任</span></p><p><span>&nbsp; </span><span>预约时间：2016年3月20日</span></p><p><span>&nbsp; </span><span>手术内容：髌骨</span></p><p><span>&nbsp; </span><span>是否医保</span><span>：</span></p>
+                            <p><span>&nbsp; </span><span>地点：{pr.didian}</span></p><p><span>&nbsp; </span><span>专家：{pr.zhuanjia}</span></p><p><span>&nbsp; </span><span>预约时间:{pr.yuyueshijian}</span></p><p><span>&nbsp; </span><span>手术内容：{pr.shoushuneirong}</span></p><p><span>&nbsp; </span><span>是否医保</span><span>：</span></p>
                         </div>
                     </div>
 
 
                     <div id="u30" className="ax_droplist">
-                        <select id="u30_input">
-                            <option value="是">是</option>
+                        <select id="u30_input" defaultValue = {pr.shifouyibao}>
+                            <option value="是" >是</option>
                             <option value="否">否</option>
                         </select>
                     </div>

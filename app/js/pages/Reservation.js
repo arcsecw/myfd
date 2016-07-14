@@ -3,6 +3,10 @@ import PageContainer from '../components/PageContainer';
 import Header1 from '../components/FontComponents/Header';
 import Qbzz from '../components/FontComponents/Qbzz';
 var Reservation = React.createClass({
+    componentDidMount() {
+        let { showAge } = this.props.params
+        console.log(this.props.params)
+    },
     render() {
         return (
             <PageContainer>
