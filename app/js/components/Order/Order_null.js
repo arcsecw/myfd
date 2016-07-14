@@ -15,7 +15,17 @@ const Order_null = React.createClass({
     ]
     };
   },
-
+  formatstsate(id){
+    if (id == 0){
+      return '未完成'
+    }
+    if (id == 1){
+      return '进行中'
+    }
+    if (id == 2){
+      return '已完成'
+    }
+  },
   componentWillMount() {
     
     auth.myact(
@@ -57,7 +67,8 @@ const Order_null = React.createClass({
           dataSource.map((item, index) => {
             return (
               <tr key={index}>
-                <td>{item.status}</td>
+
+                <td>{this.formatstsate(item.orderState)}</td>//需要转换一下 0 未完成 1 进行中 2 已完成
                 <td>{item.orderNumber}</td>
                 <td>{item.patientRealname}</td>
                 <td>{item.patinetAge}</td>

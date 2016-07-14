@@ -2,6 +2,7 @@ import React from 'react';
 import PageContainer from '../components/PageContainer';
 import {
 }from 'amazeui-react';
+import {Link } from 'react-router'
 import auth from '../components/auth'
 var Doctor_list = React.createClass({
     getInitialState() {
@@ -405,7 +406,7 @@ var Doctor_list = React.createClass({
             <img id="u60_line" className="img " src="i/images/user_home/u68_line.png" alt="u60_line"/>
           </div>
 
-
+          <Link to ={{ pathname: 'user_reservation', query: { showAge: true } }}>
           <div id="u61" className="ax_shape">
             <img id="u61_img" className="img " src="i/images/query_result/u68.png"/>
 
@@ -413,7 +414,7 @@ var Doctor_list = React.createClass({
               <p><span>立即预约</span></p>
             </div>
           </div>
-
+          </Link>
 
           <div id="u63" className="ax_image">
             <img id="u63_img" className="img " src="i/images/query_result/u70.png"/>
