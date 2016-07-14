@@ -6,40 +6,25 @@ import {
     Dropdown,
     Icon,
 } from 'amazeui-react'
+import auth from '../auth'
 const Order_null = React.createClass({
   getInitialState() {
     return {
-      dataSource: [],
-      
+      dataSource: 
+      [
+    ]
     };
   },
 
   componentWillMount() {
-    if (!window.fetch) {
-      return console.error('fetch API is not supported!');
-    }
-
-    function checkStatus(response) {
-      if (response.status >= 200 && response.status < 300) {
-        return response;
-      } else {
-        var error = new Error(response.statusText);
-        error.response = response;
-        throw error;
-      }
-    }
-
-    fetch('http://123.56.133.208:8080/myfd/orderAdmin.do')
-      .then(checkStatus)
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        this.updateDataSource(data);
-      })
-      .catch(error => {
-        console.log('Request failed: ', error)
-      });
+    
+    auth.myact(
+          {to:'orderAdmin.do',
+           parms:[{'key':'state','value':'0'}]
+          },
+          (res)=>{
+                this.updateDataSource(res)
+                });
   },
 
   updateDataSource(data) {

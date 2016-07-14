@@ -6,60 +6,39 @@ import {
     Dropdown,
     Icon,
 } from 'amazeui-react'
-const Order_null = React.createClass({
-  renderTable() {
-    const data = [
-      {
-          status:'进行中',
-          orderid:'B3008',
-          name:'杜海涛',
-          age:'20',
-          area:'北京',
-          date:'asdf',
-          issue:'髌骨手术',
-          team:'',
-          more:'没有更多信息了',
-          ass:'王文超'
-      },
-      {
-          status:'进行中',
-          orderid:'B3008',
-          name:'杜海涛',
-          age:'20',
-          area:'北京',
-          date:'asdf',
-          issue:'髌骨手术',
-          team:'',
-          more:'没有更多信息了',
-          ass:'王文超'
-      },
-      {
-          status:'进行中',
-          orderid:'B3008',
-          name:'杜海涛',
-          age:'20',
-          area:'北京',
-          date:'asdf',
-          issue:'髌骨手术',
-          team:'',
-          more:'没有更多信息了',
-          ass:'王文超'
-      },
-      {
-          status:'进行中',
-          orderid:'B3008',
-          name:'杜海涛',
-          age:'20',
-          area:'北京',
-          date:'asdf',
-          issue:'髌骨手术',
-          team:'',
-          more:'没有更多信息了',
-          ass:'王文超'
-      },
-      
-    ];
+import auth from '../auth'
 
+const Order_null = React.createClass({
+  getInitialState() {
+    return {
+      dataSource: 
+      [
+      
+      
+    ]
+    };
+  },
+
+  componentWillMount() {
+    
+    auth.myact(
+          {to:'orderAdmin.do',
+              parms:[{'key':'state','value':'1'}]
+          },
+          (res)=>{
+                this.updateDataSource(res)
+                });
+  },
+
+  updateDataSource(data) {
+    this.setState({
+      dataSource: data,
+    })
+  },
+  renderTable() {
+  
+    const { dataSource } = this.state;
+    console.log(dataSource)
     return (
       <Table striped className="am-margin-bottom" responsive>
         <thead>
@@ -78,7 +57,7 @@ const Order_null = React.createClass({
         </thead>
         <tbody>
         {
-          data.map((item, index) => {
+          dataSource.map((item, index) => {
             return (
               <tr key={index}>
                 <td>{item.status}</td>

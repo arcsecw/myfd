@@ -6,37 +6,36 @@ import {
     Dropdown,
     Icon,
 } from 'amazeui-react'
-const Order_done = React.createClass({
-  renderTable() {
-    const data = [
-      {
-          status:'未处理',
-          orderid:'B3011',
-          name:'杜海涛',
-          age:'20',
-          area:'北京',
-          date:'asdf',
-          issue:'髌骨手术',
-          systemals:'',
-          adviceteam:'王文超1',
-          proferdoctor:'夏冰',
-          ass:'我要跟进'
-      },
-      {
-          status:'未处理',
-          orderid:'B3011',
-          name:'杜海涛',
-          age:'20',
-          area:'北京',
-          date:'asdf',
-          issue:'髌骨手术',
-          systemals:'',
-          adviceteam:'王文超1',
-          proferdoctor:'夏冰',
-          ass:'我要跟进'
-      },
-    ];
+import auth from '../auth'
 
+const Order_done = React.createClass({
+  getInitialState() {
+    return {
+      dataSource: 
+      [
+      ]
+    };
+  },
+
+  componentWillMount() {
+    
+    auth.myact(
+          {to:'orderAdmin.do',
+              parms:[{'key':'state','value':'2'}]
+          },
+          (res)=>{
+                this.updateDataSource(res)
+                });
+  },
+
+  updateDataSource(data) {
+    this.setState({
+      dataSource: data,
+    })
+  },
+  renderTable() {
+    const { dataSource } = this.state;
+    console.log(dataSource)
     return (
       <Table bordered striped hover radius responsive>
         <thead>
@@ -56,7 +55,7 @@ const Order_done = React.createClass({
         </thead>
         <tbody>
         {
-          data.map((item, index) => {
+          dataSource.map((item, index) => {
             return (
               <tr key={index}>
                 <td>{item.status}</td>
