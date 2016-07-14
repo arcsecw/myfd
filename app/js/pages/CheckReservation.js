@@ -1,7 +1,42 @@
 import React from 'react';
 import PageContainer from '../components/PageContainer';
 var CheckReservation = React.createClass({
+    getInitialState() {
+            return {
+                dataSource: [
+                        {
+                        PatientName: "郑国伟", //患者名字
+                        Date: "5", //几天内
+                        DueDay: "2016年5月20日前", //具体日期
+                        DoctorName: "XXX",  //医生名字
+                        InstitutionType: "团队", //主任 or 主任团队 or 医院
+                        OperationFor: "脑残", //治疗
+                        Disctict: "北京", //预约地点
+                        Information: "已提交", //确诊信息是否提交
+                        CorrespondingInformation: "已提交", //相关信息
+                        ContactName: "郑国伟",  //联系人姓名
+                        ContactNumber: "13812345678", //联系人电话
+                        Cost: {
+                           Reservation: "888", //
+                           OperationDiscount: "0", //
+                           Discount: "0", //
+                           TotalFee: "888" //
+                        } //费用明细
+                        },     
+                ]  
+            };
+        },
+        updateDataSource(data) {
+            this.setState({
+                dataSource: data,
+            })
+        },
     render() {
+        var info = {}
+        var data =  this.state.dataSource
+        if (data.length>=1){
+            info = data[0]
+        }
         return (
             <PageContainer>
                 <div id="base" className="">
@@ -14,13 +49,13 @@ var CheckReservation = React.createClass({
                     <div id="u0" className="ax_shape">
                         <img id="u0_img" class="img "/>
                         <div id="service" className="u101">
-                            服务内容: 预约3天内(<span className="content">2016年3月20</span>日前) <span className="content">XXX 团队</span>对<span className="content">杜海涛</span>进行<span className="content">髌骨</span>方面手术<br/>
+                            服务内容: 预约<span className="content">{info.Date}</span>天内(<span className="content">{info.DueDay}</span>) <span className="content">{info.DoctorName}</span><span className="content">{info.InstitutionType}</span>对<span className="content">{info.PatientName}</span>进行<span className="content">{info.OperationFor}</span>方面手术<br/>
 
-                            地点: <span className="content">北京</span>任何地区<br/>
-                            确诊信息: 已提交<br/>
-                            CT及相关影像信息：已提交<br/>
+                            地点: <span className="content">{info.Disctict}</span><br/>
+                            确诊信息: <span className="content">{info.Information}</span><br/><br/>
+                            CT及相关影像信息：<span className="content">{info.CorrespondingInformation}</span><br/><br/>
                             <br/>
-                            联系人：杜河海 手机： 13812345678<br/><br/><br/><br/>
+                            联系人：<span className="content">{info.ContactName}</span><br/> 手机：<span className="content">{info.ContactNumber}</span><br/><br/><br/><br/><br/>
 
 
 
@@ -37,10 +72,10 @@ var CheckReservation = React.createClass({
                             <div id="buy">
                                 已购服务信息：<br/>
 
-                                基础信息预审及专家预约 &nbsp; &nbsp; 880<br/>
-                                医院床位优惠包 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 200<hr/>
-                                优惠&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 100<br/>
-                                应付总计&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 980
+                                基础信息预审及专家预约 &nbsp; &nbsp; <span>{info.Cost.Reservation}</span><br/>
+                                医院床位优惠包 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span>{info.Cost.OperationDiscount}</span><hr/>
+                                优惠&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span>{info.Cost.Discount}</span><br/>
+                                应付总计&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span>{info.Cost.TotalFee}</span>
 
                             </div>
                         </div>
