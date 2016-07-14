@@ -18,7 +18,17 @@ const Order_null = React.createClass({
     ]
     };
   },
-
+formatstsate(id){
+    if (id == 0){
+      return '未完成'
+    }
+    if (id == 1){
+      return '进行中'
+    }
+    if (id == 2){
+      return '已完成'
+    }
+  },
   componentWillMount() {
     
     auth.myact(
@@ -60,13 +70,13 @@ const Order_null = React.createClass({
           dataSource.map((item, index) => {
             return (
               <tr key={index}>
-                <td>{item.status}</td>
-                <td>{item.orderid}</td>
-                <td>{item.name}</td>
-                <td>{item.age}</td>
-                <td>{item.area}</td>
-                <td>{item.date}</td>
-                <td>{item.issue}</td>
+                <td>{this.formatstsate(item.orderState)}</td> //也需要转化
+                <td>{item.orderNumber}</td>
+                <td>{item.patientRealname}</td>
+                <td>{item.patinetAge}</td>
+                <td>{item.patientProvince}</td>
+                <td>{item.orderReserveTime}</td>
+                <td>{item.patientDiagnose}</td>
                 <td>{item.team}</td>
                 <td>{item.more}</td>
                 <td>{item.ass}</td>

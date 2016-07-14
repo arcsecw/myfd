@@ -122,19 +122,22 @@ const Page = React.createClass({
     const page = this.props.params.page;
     const {query} = this.props.location;
     const breadcrumb = query && query.breadcrumb;
-
+    const location = this.props.location
     if (pages[page]) {
       return React.createElement(
         pages[page],
         {
-          breadcrumb: breadcrumb
+          breadcrumb: breadcrumb,
+          query:query
         }
       );
     }
 
     return (
       <PageContainer
+        query = {query}
         breadcrumb={breadcrumb}
+
       >
         你访问页面是: 「{this.props.params.page}」
       </PageContainer>

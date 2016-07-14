@@ -2,7 +2,97 @@ import React from 'react'
 import PageContainer from '../components/PageContainer';
 import {
 } from 'amazeui-react';
+import auth from '../components/auth';
+import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
 var Account_manage = React.createClass({
+     getInitialState() {
+        return {
+            dataSource: [
+                    {
+                    agencydoctorid: "无",
+                    agencyprovince: "无",
+                    agencydistrict: "无",
+                    agencyname: "无",
+                    agencybed: "无",
+                    agencydiscount: "无",
+                    agencyhot: "无",
+                    agencyyytime: "无",
+                    agencyclass: "无"
+                    },
+                     {
+                    agencydoctorid: "无",
+                    agencyprovince: "无",
+                    agencydistrict: "无",
+                    agencyname: "无",
+                    agencybed: "无",
+                    agencydiscount: "无",
+                    agencyhot: "无",
+                    agencyyytime: "无",
+                    agencyclass: "无"
+                    }
+                   , 
+                    {
+                    agencydoctorid: "无",
+                    agencyprovince: "无",
+                    agencydistrict: "无",
+                    agencyname: "无",
+                    agencybed: "无",
+                    agencydiscount: "无",
+                    agencyhot: "无",
+                    agencyyytime: "无",
+                    agencyclass: "无"
+                    }               
+            ],
+            nowpage :1,
+            totalpage:2, 
+            now:'',//仪表盘，管理账号，用户管理，价格管理，网站配置         
+        };
+    },
+    query(page){
+        auth.myact(
+          {to:'manager/pricelist.do',
+           parms:[{'key':'page','value':page}]
+          },
+          (res)=>{
+                this.updateDataSource(res)
+                });
+        this.setState({nowpage:page})
+    },
+    querynext(){
+        var nowpage = this.state.nowpage
+        var totalpage = this.state.totalpage
+        if (nowpage+1<=totalpage){
+            nowpage+=1
+            this.query(nowpage)
+               
+        }
+        
+    }
+    ,querybefore(){
+        
+        var nowpage = this.state.nowpage
+        var totalpage = this.state.totalpage
+        if (nowpage-1>=1){
+            nowpage -=1
+            this.query(nowpage);
+    } 
+        
+    },
+    componentDidMount() {
+        this.query(1)
+    },
+    updateDataSource(data) {
+        this.setState({
+            dataSource: data,
+        })
+        console.log(data)
+        
+    },
+   
+    kaifazhong (str){ 
+        console.log(str)    
+    },
+    
     render() {
         return (
             <PageContainer>
@@ -127,7 +217,7 @@ var Account_manage = React.createClass({
                                         <img id="u26_img" class="img " src="i/images/web_manage_page_root/u20.png"/>
 
                                         <div id="u27" class="text">
-                                            <p><span>ZhangSan@FD.com</span></p>
+                                            <p><span>ZhangSan @FD.com</span></p>
                                         </div>
                                     </div>
 
@@ -345,8 +435,8 @@ var Account_manage = React.createClass({
                                     <input id="u73_input" type="submit" value="提交"/>
                                 </div>
                                 <div id="u209" class="ax_html_button">
-                                 <input id="u209_input"/>
-                                
+                                    <input id="u209_input"/>
+
                                 </div>
                             </div>
                         </div>
@@ -368,10 +458,10 @@ var Account_manage = React.createClass({
 
 
                             <div id="u193" class="ax_table_cell">
-                                <img id="u193_img" class="img " src="i/images/web_manage_page_root/u193.png"/>
+                                <img id="u193_img" class="img " src='i/images/web_manage_page_root/u191_mouseOver.png'/>
 
-                                <div id="u194" class="text">
-                                    <p><span>管理账号</span></p>
+                                <div id="u194" class="text" style = {{color:'white'}} onClick = {()=>{this.setState({'now':'管理账号'})}}>
+                                    <p><span >管理账号</span></p>
                                 </div>
                             </div>
 
@@ -386,64 +476,64 @@ var Account_manage = React.createClass({
 
 
                             <div id="u197" class="ax_table_cell">
-                                <img id="u197_img" class="img " src="i/images/web_manage_page_root/u191.png"/>
+                                <img id="u197_img" class="img " src='i/images/web_manage_page_root/u191.png'/>
 
-                                <div id="u198" class="text">
-                                    <p><span>价格管理</span></p>
+                                <div id="u198" class="text" style = {{color:this.state.now=='价格管理'?'white':'black'}}  >
+                                    <p><Link to = '/price_manage'><span onClick = {()=>{this.setState({'now':'价格管理'})}}>价格管理</span></Link></p>
+                                </div>
+                                </div>
+
+
+                                <div id="u199" class="ax_table_cell">
+                                    <img id="u199_img" class="img " src="i/images/web_manage_page_root/u199.png"/>
+
+                                    <div id="u200" class="text">
+                                        <p><span>网站配置</span></p>
+                                    </div>
                                 </div>
                             </div>
 
 
-                            <div id="u199" class="ax_table_cell">
-                                <img id="u199_img" class="img " src="i/images/web_manage_page_root/u199.png"/>
-
-                                <div id="u200" class="text">
-                                    <p><span>网站配置</span></p>
-                                </div>
-                            </div>
-                        </div>
+                            <div id="u201" class="ax_menu sub_menu">
+                                <img id="u201_menu" class="img " src="i/images/web_manage_page_root/u201_menu.png" alt="u201_menu"/>
 
 
-                        <div id="u201" class="ax_menu sub_menu">
-                            <img id="u201_menu" class="img " src="i/images/web_manage_page_root/u201_menu.png" alt="u201_menu"/>
+                                <div id="u202" class="ax_table">
 
 
-                            <div id="u202" class="ax_table">
+                                    <div id="u203" class="ax_table_cell">
+                                        <img id="u203_img" class="img " src="i/images/web_manage_page_root/u203.png"/>
 
-
-                                <div id="u203" class="ax_table_cell">
-                                    <img id="u203_img" class="img " src="i/images/web_manage_page_root/u203.png"/>
-
-                                    <div id="u204" class="text">
-                                        <p><span>求医用户</span></p>
+                                        <div id="u204" class="text">
+                                            <p><span>求医用户</span></p>
+                                        </div>
                                     </div>
-                                </div>
 
 
-                                <div id="u205" class="ax_table_cell">
-                                    <img id="u205_img" class="img " src="i/images/web_manage_page_root/u203.png"/>
+                                    <div id="u205" class="ax_table_cell">
+                                        <img id="u205_img" class="img " src="i/images/web_manage_page_root/u203.png"/>
 
-                                    <div id="u206" class="text">
-                                        <p><span>医生</span></p>
+                                        <div id="u206" class="text">
+                                            <p><span>医生</span></p>
+                                        </div>
                                     </div>
-                                </div>
 
 
-                                <div id="u207" class="ax_table_cell">
-                                    <img id="u207_img" class="img " src="i/images/web_manage_page_root/u207.png"/>
+                                    <div id="u207" class="ax_table_cell">
+                                        <img id="u207_img" class="img " src="i/images/web_manage_page_root/u207.png"/>
 
-                                    <div id="u208" class="text">
-                                        <p><span>机构</span></p>
+                                        <div id="u208" class="text">
+                                            <p><span>机构</span></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </PageContainer>
 
-        );
-    }
-});
+                );
+                }
+                });
 
-export default Account_manage;
+                export default Account_manage;

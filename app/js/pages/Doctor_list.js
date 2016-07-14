@@ -2,6 +2,7 @@ import React from 'react';
 import PageContainer from '../components/PageContainer';
 import {
 }from 'amazeui-react';
+import {Link } from 'react-router'
 import auth from '../components/auth'
 var Doctor_list = React.createClass({
     getInitialState() {
@@ -404,8 +405,8 @@ var Doctor_list = React.createClass({
             <img id="u60_end" className="img " src="i/resources/images/transparent.gif" alt="u60_end"/>
             <img id="u60_line" className="img " src="i/images/user_home/u68_line.png" alt="u60_line"/>
           </div>
-
-
+          <Link to={{pathname:'/user_reservation', query:line1 }}>
+          
           <div id="u61" className="ax_shape">
             <img id="u61_img" className="img " src="i/images/query_result/u68.png"/>
 
@@ -413,7 +414,7 @@ var Doctor_list = React.createClass({
               <p><span>立即预约</span></p>
             </div>
           </div>
-
+          </Link>
 
           <div id="u63" className="ax_image">
             <img id="u63_img" className="img " src="i/images/query_result/u70.png"/>
@@ -423,7 +424,7 @@ var Doctor_list = React.createClass({
             </div>
           </div>
 
-
+<Link to={{pathname:'/user_reservation', query:line2}}>
           <div id="u65" className="ax_shape">
             <img id="u65_img" className="img " src="i/images/query_result/u68.png"/>
 
@@ -431,7 +432,7 @@ var Doctor_list = React.createClass({
               <p><span>立即预约</span></p>
             </div>
           </div>
-
+</Link>
 
           <div id="u67" className="ax_image">
             <img id="u67_img" className="img " src="i/images/query_result/u76.png"/>
@@ -645,8 +646,7 @@ var Doctor_list = React.createClass({
               <p><span>优惠</span><span>： </span><span>赠送康复礼包</span></p>
             </div>
           </div>
-
-          
+          <Link to={{pathname:'/user_reservation',query:line3}}>
           <div id="u114" className="ax_shape">
             <img id="u114_img" className="img " src="i/images/query_result/u68.png"/>
 
@@ -654,6 +654,7 @@ var Doctor_list = React.createClass({
               <p><span>立即预约</span></p>
             </div>
           </div>
+          </Link>
           <div id="u116" className="ax_image">
             <img id="u116_img" className="img " src="i/images/doctor_list/u116.png"/>
 
