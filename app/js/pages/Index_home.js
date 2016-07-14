@@ -9,6 +9,25 @@ import {
   Container,
 } from 'amazeui-react';
 var Index_home = React.createClass({
+  mouseOver1() {  //关节右菜单
+    document.getElementById("u184").style.visibility="visible";
+  },
+  mouseOut1() {
+    document.getElementById("u184").style.visibility="hidden";
+  },
+  mouseOver2() {  //脊椎右菜单
+    document.getElementById("u184_state1").style.visibility="visible";
+  },
+  mouseOut2() {
+    document.getElementById("u184_state1").style.visibility="hidden";
+  },
+  mouseOver_null() {  //空右菜单
+    document.getElementById("u190").style.visibility="visible";
+  },
+  mouseOut_null() {
+    document.getElementById("u190").style.visibility="hidden";
+  },
+
   render() {
     return (
       <PageContainer>
@@ -99,7 +118,7 @@ var Index_home = React.createClass({
 
           <div id="u22" className="ax_paragraph">
             <img id="u22_img" className="img " src="i/resources/images/transparent.gif"/>
-            <div id="u23" className="text">
+            <div id="u23" className="text" >
               <p><span>关节</span></p>
             </div>
           </div>
@@ -798,17 +817,17 @@ var Index_home = React.createClass({
           <div id="u179" className="ax_hot_spot">
           </div>
 
-          <div id="u180" className="ax_hot_spot">
+          <div id="u180" className="ax_hot_spot" onMouseOver={this.mouseOver1} onMouseOut={this.mouseOut1}>
           </div>
 
-          <div id="u181" className="ax_hot_spot">
+          <div id="u181" className="ax_hot_spot" onMouseOver={this.mouseOver2} onMouseOut={this.mouseOut2}>
           </div>
 
-          <div id="u182" className="ax_hot_spot">
+          <div id="u182" className="ax_hot_spot" onMouseOver={this.mouseOver_null} onMouseOut={this.mouseOut_null}>
           </div>
 
 
-          <div id="u183" className="ax_hot_spot">
+          <div id="u183" className="ax_hot_spot" onMouseOver={this.mouseOver_null} onMouseOut={this.mouseOut_null}>
           </div>
 
           <div id="u184" className="ax_dynamic_panel" data-label="关节疾病右菜单">
