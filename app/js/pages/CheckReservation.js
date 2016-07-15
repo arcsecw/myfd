@@ -31,12 +31,24 @@ var CheckReservation = React.createClass({
                 dataSource: data,
             })
         },
+    componentWillMount() {
+        var par = this.props.query
+        if(par.xingming!=undefined){            
+            this.state.dataSource[0].PatientName = par.xingming
+            this.state.dataSource[0].DueDay = par.yuyueshijian
+            this.state.dataSource[0].Disctict = par.didian
+            this.state.dataSource[0].OperationFor = par.shoushuneirong
+            this.state.dataSource[0].ContactName = par.lianxirenxingming
+            this.state.dataSource[0].ContactNumber = par.shouji
+        }
+    },
     render() {
         var info = {}
         var data =  this.state.dataSource
         if (data.length>=1){
             info = data[0]
         }
+        console.log(info)
         return (
             <PageContainer>
                 <div id="base" className="">
@@ -104,7 +116,7 @@ var CheckReservation = React.createClass({
                     <div id="u8" className="ax_html_button">
                         <input id="u8_input" type="submit" value="公司转账"/>
                     </div>
-                    <div id="u9" className="ax_shape">
+                    <div id="u9" className="ax_shape"onClick = {()=>{window.history.go(-1)}}>
                         <img id="u9_img" className="img " src="i/images/user_check_operation_reservation_page/u9.png"/>
 
                         <div id="u10" className="text">
