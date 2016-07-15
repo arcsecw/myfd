@@ -8,36 +8,86 @@ import auth from '../components/auth'
 var ManageRoot = React.createClass({
     getInitialState() {
         return {
-            dataSource: {re:[{"user_name":"ffff","user_group":"iiiii","user_mobile":"111","user_mail":"qqq"}],totalpage:1},
-            nowpage:1
+            dataSource: {re:[{"user_name":"ffff","user_group":"iiiii","user_mobile":"111","user_mail":"qqq","state":"0"}],totalpage:1},
+            nowpage:'1',
+            totalpage:'1'
         };
     },
     query(page = this.state.nowpage){
         var to = "http://123.56.133.208:8080/myfd/manager/accountlist.do"
         auth.myact(
           {to:'manager/accountlist.do',
-           parms:[{'page':page}]
+           parms:[{'key':'page','value':page}]
           },
           (res)=>{
                 this.updateDataSource(res)
-                })
-    },
+                });
+        this.setState({nowpage:page})
+},
     querynext(){
-        this.query(this.state.nowpage+1)
+        var nowpage = this.state.nowpage
+        var totalpage = this.state.totalpage
+        if (nowpage+1<=totalpage){
+            nowpage+=1
+            this.query(nowpage)
+               
+        }
+        
     }
     ,querybefore(){
-        this.query(this.state.nowpage-1)
+        
+        var nowpage = this.state.nowpage
+        var totalpage = this.state.totalpage
+        if (nowpage-1>=1){
+            nowpage -=1
+            this.query(nowpage);
+    } 
+        
+    }
+    ,
+    deletelist(id){
+        var to="http://123.56.133.208:8080/myfd/manager/deleteaccount.do"
+        auth.myact(
+          {to:'manager/deleteaccount.do',
+           parms:[{'key':'id','value':id}]
+          },
+          (res)=>{
+                console.log(res)
+                });
+            this.query()
+    }
+    ,
+    disable(id){
+        console.log(id)
+        var to="http://123.56.133.208:8080/myfd/manager/disableaccount.do"
+        auth.myact(
+          {to:'manager/disableaccount.do',
+           parms:[{'key':'id','value':id}]
+          },
+          (res)=>{
+                console.log(res)
+                });
+            this.query()
     }
     ,
       componentDidMount() {
           this.query(1)
     },
-      updateDataSource(data) {
-            console.log(data)        
+      updateDataSource(data) {        
         this.setState({
             dataSource: data,
+            totalpage:data.totalpage,
         })
         
+    },
+    judege(state1){
+        var he="";
+        if(state1==0||state1==undefined){
+            he="";
+        }else{
+            he="启用";
+        }
+        return he;
     },
     render() {
             var data = this.state.dataSource
@@ -48,6 +98,7 @@ var ManageRoot = React.createClass({
             {
                 var person2 = data.re[1]
             }
+            //console.log(person2.state)
         return (
             <PageContainer>
                 <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
@@ -170,7 +221,7 @@ var ManageRoot = React.createClass({
                                         <img id="u24_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
 
                                         <div id="u25" className="text">
-                                            <p><span>13912345678</span></p>
+                                            <p><span>{person.user_mobile}</span></p>
                                         </div>
                                     </div>
 
@@ -188,7 +239,7 @@ var ManageRoot = React.createClass({
                                         <img id="u28_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
 
                                         <div id="u29" className="text">
-                                            <p><span>{person.user_name!=undefined?'启用':''}</span></p>
+                                            <p><span>{this.judege(person.state)}</span></p>
                                         </div>
                                     </div>
 
@@ -197,7 +248,7 @@ var ManageRoot = React.createClass({
                                         <img id="u30_img" className="img " src="i/images/web_manage_page_root/u30.png"/>
 
                                         <div id="u31" className="text">
-                                            <p><span>{person.user_name!=undefined?'删除/禁用/修改':''}</span></p>
+                                            <p><span>{person.user_name!=undefined? <p><a onClick={this.deletelist.bind(this,person.user_id)}>删除</a>/<a onClick={this.disable.bind(this,person.user_id)}>禁用</a>/<a >修改</a></p>:''}</span></p>
                                         </div>
                                     </div>
 
@@ -242,7 +293,7 @@ var ManageRoot = React.createClass({
                                         <img id="u40_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
 
                                         <div id="u41" className="text">
-                                            <p><span>{person2.user_name!=undefined?'启用':''}</span></p>
+                                            <p><span>{this.judege(person2.state)}</span></p>
                                         </div>
                                     </div>
 
@@ -251,7 +302,7 @@ var ManageRoot = React.createClass({
                                         <img id="u42_img" className="img " src="i/images/web_manage_page_root/u42.png"/>
 
                                         <div id="u43" className="text">
-                                            <p><span>{person2.user_name!=undefined?'删除/禁用/修改':''}</span></p>
+                                            <p><span>{person2.user_name!=undefined? <p><a onClick={this.deletelist.bind(this,person2.user_id)}>删除</a>/<a onClick={this.disable.bind(this,person2.user_id)}>禁用</a>/<a >修改</a></p>:''}</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -277,7 +328,8 @@ var ManageRoot = React.createClass({
                                     <img id="u47_img" className="img " src="i/images/web_manage_page_root/transparent.gif"/>
 
                                     <div id="u48" className="text">
-                                        <p><span>首页 上一页 </span><span className="nextPage" >1</span><span> 2 下一页 尾页</span></p>
+                                        <p onClick = {this.querybefore} ><span>上一页</span></p>
+                                        <p onClick = {this.querynext}><span>下一页</span></p>
                                     </div>
                                 </div>
 
@@ -585,7 +637,7 @@ var ManageRoot = React.createClass({
                                     <img id="u113_img" className="img " src="i/images/web_manage_page_root/transparent.gif"/>
 
                                     <div id="u114" className="text">
-                                        <p><span>首页 上一页 </span><span className="nextPage">1</span><span> 2 下一页 尾页</span></p>
+                                        <p><span onClick = {this.querybefore}> 上一页 </span></p><p onClick = {this.querynext}><span> 下一页</span></p>
                                     </div>
                                 </div>
                             </div>
