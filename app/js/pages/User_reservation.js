@@ -43,6 +43,7 @@ var User_reservation = React.createClass({
     componentWillMount() {
         
         var par = this.props.query
+        console.log(par)
         if (par.realname!=undefined){
             this.state.yuyue.didian = par.reservePlace
             this.state.yuyue.zhuanjia = par.realname+par.title
@@ -102,7 +103,7 @@ var User_reservation = React.createClass({
                         </div>
                     </div>
 
-<Link to={{pathname:'/user_reservation', query:this.state.yuyue }}>
+<Link to={{pathname:'/checkReservation', query:this.state.yuyue }}>
                     <div id="u10" className="ax_shape">
                         <img id="u10_img" className="img " src="i/images/user_reservation_operation_fill_page/u10.png"/>
 

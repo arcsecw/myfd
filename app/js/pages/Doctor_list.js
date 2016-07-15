@@ -279,7 +279,7 @@ var Doctor_list = React.createClass({
             <img id="u33_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u34" className="text">
-              <p className="u130"><span className="u131"></span><span className="u131"> {line1.title}</span><span className="u132">&nbsp; </span><span className="u132">&nbsp; &nbsp; &nbsp; &nbsp; </span><span className="u132">&nbsp; </span><span className="u134">人气指数 {line1.hot}</span></p><p className="u133"><span className="u132">擅长治疗: XXXX， XXXX， XXXX髌骨</span></p><p className="u133"><span className="u134">可预约地点: {line1.province}</span></p><p className="u135"><span className="u134">最快手术时间: {line1.reserveTime}</span><span className="u141">&nbsp; </span></p>
+              <p className="u130"><span className="u131"></span><span className="u131"> {line1.realname+line1.title}</span><span className="u132">&nbsp; </span><span className="u132">&nbsp; &nbsp; &nbsp; &nbsp; </span><span className="u132">&nbsp; </span><span className="u134">人气指数 {line1.hot}</span></p><p className="u133"><span className="u132">擅长治疗: XXXX， XXXX， XXXX髌骨</span></p><p className="u133"><span className="u134">可预约地点: {line1.province}</span></p><p className="u135"><span className="u134">最快手术时间: {line1.reserveTime}</span><span className="u141">&nbsp; </span></p>
             </div>
           </div>
 
@@ -297,7 +297,7 @@ var Doctor_list = React.createClass({
             <img id="u37_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u38" className="text">
-              <p className="u130"><span className="u137"> </span><span className="u137"> {line2.title}</span><span className="u137">团队</span><span className="u137">&nbsp; &nbsp; </span><span className="u139">&nbsp; </span><span className="u136">人气指数 </span><span className="u136">{line2.hot}</span></p><p className="u135"><span className="u139">擅长治疗: XXXX， XXXX， </span><span className="u139">关节置换</span></p><p className="u133"><span className="u138">可预约地点: {line2.province}</span></p><p className="u135"><span className="u138">最快手术时间: {line2.reserveTime}</span><span className="u139">&nbsp; </span></p>
+              <p className="u130"><span className="u137"> </span><span className="u137"> {line2.realname+line2.title}</span><span className="u137"></span><span className="u137">&nbsp; &nbsp; </span><span className="u139">&nbsp; </span><span className="u136">人气指数 </span><span className="u136">{line2.hot}</span></p><p className="u135"><span className="u139">擅长治疗: XXXX， XXXX， </span><span className="u139">关节置换</span></p><p className="u133"><span className="u138">可预约地点: {line2.province}</span></p><p className="u135"><span className="u138">最快手术时间: {line2.reserveTime}</span><span className="u139">&nbsp; </span></p>
             </div>
           </div>
 
@@ -624,7 +624,7 @@ var Doctor_list = React.createClass({
             <img id="u107_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u108" className="text">
-              <p className="u130"><span className="u131"></span><span className="u131"> {line3.title}</span><span className="u132">&nbsp; </span><span className="u132">&nbsp; &nbsp; &nbsp; &nbsp; </span><span className="u132">&nbsp; </span><span className="u134">人气指数 {line3.hot}</span></p><p className="u133"><span className="u132">擅长治疗: </span><span className="u132">脊椎</span><span className="u132">， XXXX，</span></p><p className="u133"><span className="u134">可预约地点: {line3.province}</span></p><p className="u135"><span className="u134">最快手术时间: {line3.reserveTime}</span><span className="u141">&nbsp; </span></p>
+              <p className="u130"><span className="u131"></span><span className="u131"> {line3.realname+line3.title}</span><span className="u132">&nbsp; </span><span className="u132">&nbsp; &nbsp; &nbsp; &nbsp; </span><span className="u132">&nbsp; </span><span className="u134">人气指数 {line3.hot}</span></p><p className="u133"><span className="u132">擅长治疗: </span><span className="u132">脊椎</span><span className="u132">， XXXX，</span></p><p className="u133"><span className="u134">可预约地点: {line3.province}</span></p><p className="u135"><span className="u134">最快手术时间: {line3.reserveTime}</span><span className="u141">&nbsp; </span></p>
             </div>
           </div>
           <div id="u109" className="ax_paragraph">
