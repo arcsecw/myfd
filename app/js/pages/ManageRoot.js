@@ -451,6 +451,9 @@ var ManageRoot = React.createClass({
 
                                 <div id="u73" className="ax_html_button">
                                     <input id="u73_input" type="submit" value="提交"/>
+                                    <p id="u210" class="ax_html_button">
+                                    <input />
+                                </p>
                                 </div>
                             </div>
                         </div>
