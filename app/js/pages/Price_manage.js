@@ -92,13 +92,50 @@ var Price_manage = React.createClass({
         var state="";
         if(intState==0){
             state="禁用";
+        }else if(intState==1){
+            state="启用";      
         }else{
-            state="启用";
+            state="";
         }
         return state;
     },
-    
-    
+    judgeOperaton(id){
+        var judge1=false;
+        if(id==0||id==1){
+            judge1=true;
+        }
+        console.log(id);
+        console.log(judge1);
+        return judge1;
+    }
+    ,
+    deletePrice(id){
+        var nowpage = this.state.nowpage
+         auth.myact(
+          {to:'manager/deleteprice.do',
+           parms:[{'key':'id','value':id}]
+          },
+          (res)=>{
+                this.updateDataSource(res)
+                console.log("你妹的2")
+                });
+        this.setState({nowpage:this.state.page})
+        this.query(nowpage) 
+    },
+    disableprice(id){
+        var nowpage = this.state.nowpage
+         auth.myact(
+          {to:'manager/disableprice.do',
+           parms:[{'key':'id','value':id}]
+          },
+          (res)=>{
+                this.updateDataSource(res)
+                console.log("你妹的2")
+                });
+        this.setState({nowpage:this.state.page})
+        this.query(nowpage) 
+
+    },
   render() {
        var page =''
         var line1 = {}
@@ -261,7 +298,7 @@ var Price_manage = React.createClass({
                                         <img id="u30_img" className="img " src="i/images/web_manage_page_root/u30.png"/>
 
                                         <div id="u31" className="text">
-                                            <p><span>删除/禁用/修改</span></p>
+                                            <p><div>{this.judgeOperaton(line1.state) ? <p><span onClick={this.deletePrice.bind(this,line1.id)}>删除</span>/<span onClick={this.disableprice.bind(this,line1.id)}>禁用</span>/<span>修改</span></p>:''}</div></p>
                                         </div>
                                     </div>
 
@@ -315,7 +352,7 @@ var Price_manage = React.createClass({
                                         <img id="u42_img" className="img " src="i/images/web_manage_page_root/u42.png"/>
 
                                         <div id="u43" className="text">
-                                            <p><span>删除/禁用/修改</span></p>
+                                            <p><div>{this.judgeOperaton(line2.state) ? <p><span onClick={this.deletePrice.bind(this,line2.id)}>删除</span>/<span>禁用</span>/<span>修改</span></p>:''}</div></p>
                                         </div>
                                     </div>
                                 </div>

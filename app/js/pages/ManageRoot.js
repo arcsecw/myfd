@@ -83,7 +83,7 @@ var ManageRoot = React.createClass({
     judege(state1){
         var he="";
         if(state1==0||state1==undefined){
-            he="";
+            he="禁用";
         }else{
             he="启用";
         }
