@@ -29,21 +29,27 @@ const Institution_list = React.createClass({
                     agencyclass: "sanjiaadasd"
                     },                
             ],
-            leixing:'不限',//or 专家团队 or 医疗机构
-            didian:'不限',//or 北京上海广州赤峰
+            leixing:'0',//or 专家团队 or 医疗机构
+            didian:'0',//or 北京上海广州赤峰
             check_yuyue:false,
             check_youyouhui:false,
-            search_paixu:'智能',//or人气 预约时间,
+            search_paixu:'1',//or人气 预约时间,
             nowpage :1,
             totalpage:2,
-
+            keyword:''
             
         };
     },
     query(page){
         auth.myact(
           {to:'pagelist.do',
-           parms:[{'key':'page','value':page}]
+           parms:[
+               {'key':'page','value':page},
+               {'key':'role','value':this.state.leixing},
+               {'key':'province','value':''},
+               {'key':'paixu','value':this.state.search_paixu},
+               {'key':'disease','value':this.refs.desces.value},               
+           ]
           },
           (res)=>{
                 this.updateDataSource(res)
@@ -149,16 +155,16 @@ const Institution_list = React.createClass({
 
 
                     <div id="u8" className="ax_paragraph">
-                        <img id="u8_img" className="img " src={this.state.leixing=='医疗机构'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
+                        <img id="u8_img" className="img " src={this.state.leixing=='1'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
 
-                        <div id="u9" className="text"style = {{color:this.state.leixing=='医疗机构'?'white':'black'}} onClick = {()=>{this.setState({'leixing':'医疗机构'})}} >
+                        <div id="u9" className="text"style = {{color:this.state.leixing=='1'?'white':'black'}} onClick = {()=>{this.setState({'leixing':'1'},this.query(this.state.nowpage));}} >
                             <p><span>医疗机构</span></p>
                         </div>
                     </div>
 
 
-                    <div id="u10" className="ax_paragraph" style = {{color:this.state.leixing=='专家团队'?'white':'black'}} onClick = {()=>{this.setState({'leixing':'专家团队'})}} >
-                        <img id="u10_img" className="img " src={this.state.leixing=='专家团队'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
+                    <div id="u10" className="ax_paragraph" style = {{color:this.state.leixing=='2'?'white':'black'}} onClick = {()=>{this.setState({'leixing':'2'});this.query(this.state.nowpage)}} >
+                        <img id="u10_img" className="img " src={this.state.leixing=='2'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
 
                         <div id="u11" className="text">
                             <p><span >专家团队 </span></p>
@@ -167,9 +173,9 @@ const Institution_list = React.createClass({
 
 
                     <div id="u12" className="ax_paragraph" >
-                        <img id="u12_img" className="img " src={this.state.leixing=='不限'?'i/images/query_result/u14.png':'i/images/institution_list/u10.png'}/>
+                        <img id="u12_img" className="img " src={this.state.leixing=='0'?'i/images/query_result/u14.png':'i/images/institution_list/u10.png'}/>
 
-                        <div id="u13" className="text" style = {{color:this.state.leixing=='不限'?'white':'black'}} onClick = {()=>{this.setState({'leixing':'不限'})}} >
+                        <div id="u13" className="text" style = {{color:this.state.leixing=='0'?'white':'black'}} onClick = {()=>{this.setState({'leixing':'0'});this.query(this.state.nowpage)}} >
                             <p ><span>不限</span></p>
                         </div>
                     </div>
@@ -184,8 +190,8 @@ const Institution_list = React.createClass({
                     </div>
 
 
-                    <div id="u16" className="ax_paragraph" style = {{color:this.state.didian=='北京'?'white':'black'}} onClick = {()=>{this.setState({'didian':'北京'})}} >
-                        <img id="u16_img" className="img " src={this.state.didian=='北京'?'i/images/query_result/u14.png':'i/resources/images/transparent.gif'} />
+                    <div id="u16" className="ax_paragraph" style = {{color:this.state.didian=='beijing'?'white':'black'}} onClick = {()=>{this.setState({'didian':'beijing'});this.query(this.state.nowpage)}} >
+                        <img id="u16_img" className="img " src={this.state.didian=='beijing'?'i/images/query_result/u14.png':'i/resources/images/transparent.gif'} />
 
                         <div id="u17" className="text">
                             <p><span>北京</span></p>
@@ -193,8 +199,8 @@ const Institution_list = React.createClass({
                     </div>
 
 
-                    <div id="u18" className="ax_paragraph"style = {{color:this.state.didian=='不限'?'white':'black'}} onClick = {()=>{this.setState({'didian':'不限'})}} >
-                        <img id="u18_img" className="img " src={this.state.didian=='不限'?'i/images/query_result/u14.png':'i/resources/images/transparent.gif'} />
+                    <div id="u18" className="ax_paragraph"style = {{color:this.state.didian=='0'?'white':'black'}} onClick = {()=>{this.setState({'didian':'0'});this.query(this.state.nowpage)}} >
+                        <img id="u18_img" className="img " src={this.state.didian=='0'?'i/images/query_result/u14.png':'i/resources/images/transparent.gif'} />
 
                         <div id="u19" className="text">
                             <p><span>不限</span></p>
@@ -218,7 +224,7 @@ const Institution_list = React.createClass({
                         </label>
                         <input id="u21_input" type="checkbox" value="checkbox" checked={this.state.check_yuyue?'checked':''} onClick = {()=>{
                             this.setState({check_yuyue:!this.state.check_yuyue})
-
+                            ;this.query(this.state.nowpage)
                         }}/>
                     </div>
 
@@ -231,7 +237,7 @@ const Institution_list = React.createClass({
                             </div>
                         </label>
                         <input id="u23_input" type="checkbox" value="checkbox" checked={this.state.check_youyouhui?'checked':''} onClick = {()=>{
-                            this.setState({check_youyouhui:!this.state.check_youyouhui})
+                            this.setState({check_youyouhui:!this.state.check_youyouhui});this.query(this.state.nowpage)
 
                         }}/>
                     </div>
@@ -242,16 +248,16 @@ const Institution_list = React.createClass({
 
                         <div id="u26" className="text" >
                             <p>
-                            <span style = {{color:this.state.search_paixu=='智能'?'red':'black'}} onClick = {()=>{
-                            this.setState({search_paixu:'智能'})
+                            <span style = {{color:this.state.search_paixu=='1'?'red':'black'}} onClick = {()=>{
+                            this.setState({search_paixu:'1'});this.query(this.state.nowpage)
                         }}>智能</span>
                         <span>&nbsp; </span>
                         <span> |&nbsp; <span
-                        style = {{color:this.state.search_paixu=='人气'?'red':'black'}} onClick = {()=>{
-                            this.setState({search_paixu:'人气'})
+                        style = {{color:this.state.search_paixu=='2'?'red':'black'}} onClick = {()=>{
+                            this.setState({search_paixu:'2'});this.query(this.state.nowpage)
                         }}>人气</span>&nbsp; |&nbsp; <span
-                        style = {{color:this.state.search_paixu=='预约时间'?'red':'black'}} onClick = {()=>{
-                            this.setState({search_paixu:'预约时间'})
+                        style = {{color:this.state.search_paixu=='3'?'red':'black'}} onClick = {()=>{
+                            this.setState({search_paixu:'3'});this.query(this.state.nowpage)
                         }}
                         >预约时间</span>&nbsp; &nbsp; </span></p>
                         </div>
@@ -279,7 +285,7 @@ const Institution_list = React.createClass({
 
 
                     <div id="u33" className="ax_text_field">
-                        <input id="u33_input" type="text"  />
+                        <input id="u33_input"  ref="desces"  type="text"  />
                     </div>
 
 
@@ -319,7 +325,7 @@ const Institution_list = React.createClass({
                     </div>
 
 
-                    <div id="u43" className="ax_shape">
+                    <div id="u43" className="ax_shape" onClick = {()=>{this.query(1)}}>
                         <img id="u43_img" className="img " src="i/images/query_result/u64.png"/>
 
                         <div id="u44" className="text">
@@ -492,22 +498,22 @@ const Institution_list = React.createClass({
                     </div>
 
 
-                    <div id="u79" className="ax_paragraph" style =  {{color:this.state.didian=='上海'?'white':'black'}} onClick = {()=>{this.setState({'didian':'上海'})}}>
-                        <img id="u79_img" className="img " src={this.state.didian=='上海'?'i/images/query_result/u14.png':'i/resources/images/transparent.gif'} />
+                    <div id="u79" className="ax_paragraph" style =  {{color:this.state.didian=='shanghai'?'white':'black'}} onClick = {()=>{this.setState({'didian':'shanghai'});this.query(this.state.nowpage)}}>
+                        <img id="u79_img" className="img " src={this.state.didian=='shanghai'?'i/images/query_result/u14.png':'i/resources/images/transparent.gif'} />
 
                         <div id="u80" className="text">
                             <p><span>上海</span></p>
                         </div>
                     </div>
-                    <div id="u81" className="ax_paragraph" style = {{color:this.state.didian=='广州'?'black':'black'}} onClick = {()=>{this.setState({'didian':'广州'})}}>
-                        <img id="u81_img" className="img " src={this.state.didian=='广州'?'i/images/query_result/u14.png':'i/resources/images/transparent.gif'}/>
+                    <div id="u81" className="ax_paragraph" style = {{color:this.state.didian=='guangzhou'?'black':'black'}} onClick = {()=>{this.setState({'didian':'广州'});this.query(this.state.nowpage)}}>
+                        <img id="u81_img" className="img " src={this.state.didian=='guangzhou'?'i/images/query_result/u14.png':'i/resources/images/transparent.gif'}/>
 
                         <div id="u82" className="text">
                             <p><span>广州</span></p>
                         </div>
                     </div>
-                    <div id="u83" className="ax_paragraph" style =  {{color:this.state.didian=='赤峰'?'white':'black'}} onClick = {()=>{this.setState({'didian':'赤峰'})}}>
-                        <img id="u83_img" className="img " src={this.state.didian=='赤峰'?'i/images/query_result/u14.png':'i/resources/images/transparent.gif'} />
+                    <div id="u83" className="ax_paragraph" style =  {{color:this.state.didian=='chifeng'?'white':'black'}} onClick = {()=>{this.setState({'didian':'chifeng'});this.query(this.state.nowpage)}}>
+                        <img id="u83_img" className="img " src={this.state.didian=='chifeng'?'i/images/query_result/u14.png':'i/resources/images/transparent.gif'} />
 
                         <div id="u84" className="text">
                             <p><span>赤峰</span></p>
