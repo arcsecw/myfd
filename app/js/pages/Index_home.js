@@ -8,6 +8,8 @@ import {
   Button,
   Container,
 } from 'amazeui-react';
+import {Link } from 'react-router'
+
 var Index_home = React.createClass({
   mouseOver1() {  //关节右菜单
     document.getElementById("u184").style.visibility="visible";
@@ -44,7 +46,7 @@ var Index_home = React.createClass({
           <div id="u2" className="ax_paragraph">
             <img id="u2_img" className="img " src="i/resources/images/transparent.gif"/>
             <div id="u3" className="text">
-              <p><a id="u4" className="link" data-label="CusUserName"><span style={{ color: '#0000FF' }}>登录</span></a><span style={{ color: '#CCCCCC' }}>&nbsp; |</span><span style={{ color: '#333333' }}>&nbsp; 手机APP</span><span style={{ color: '#CCCCCC' }}>&nbsp; |</span><span style={{ color: '#333333' }}>&nbsp; 客户服务&nbsp; </span><span style={{ color: '#CCCCCC' }}>|</span><span style={{ color: '#333333' }}>&nbsp; 网站导航</span></p>
+              <p><a id="u4" className="link" data-label="CusUserName"><Link to = '/login'><span style={{ color: '#0000FF' }}>登录</span></Link></a><span style={{ color: '#CCCCCC' }}>&nbsp; |</span><span style={{ color: '#333333' }}>&nbsp; 手机APP</span><span style={{ color: '#CCCCCC' }}>&nbsp; |</span><span style={{ color: '#333333' }}>&nbsp; 客户服务&nbsp; </span><span style={{ color: '#CCCCCC' }}>|</span><span style={{ color: '#333333' }}>&nbsp; 网站导航</span></p>
             </div>
           </div>
 
@@ -535,9 +537,10 @@ var Index_home = React.createClass({
           <div id="u117" className="ax_paragraph">
             <img id="u117_img" className="img " src="i/resources/images/transparent.gif"/>
 
+
             <div id="u118" className="text">
               <p><span>合作机构</span></p>
-            </div>
+            </div>          
           </div>
 
 
@@ -806,12 +809,15 @@ var Index_home = React.createClass({
             </div>
 
           </div>
-
+<Link to='/doctor_list'>
           <div id="u178" className="ax_hot_spot">
           </div>
+</Link>
+<Link to='/institution_list'>
 
           <div id="u179" className="ax_hot_spot">
           </div>
+</Link>
 
           <div id="u180" className="ax_hot_spot" onMouseOver={this.mouseOver1} onMouseOut={this.mouseOut1}>
           </div>
