@@ -5,30 +5,186 @@ import Qbzz from '../components/FontComponents/Qbzz';
 import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
 import auth from '../components/auth'
 
-var Register_doctor = React.createClass({
-    handleSubmit:function(e){
-    auth.myact({to:'regist.do',
-               parms:[
-               {key:'regist_username',value:this.refs.regist_username.value}, 
-               {key:'regist_confirmPwd',value:this.refs.regist_confirmPwd.value}, 
-               {key:'regist_password',value:this.refs.regist_password.value}, 
-               {key:'regist_mobile',value:this.refs.regist_mobile.value}, 
-               {key:'department',value:this.refs.department.value}, 
-               {key:'province',value:this.refs.province.value}, 
-               {key:'hospital',value:this.refs.hospital.value}, 
-               {key:'title',value:this.refs.title.value}, 
-               {key:'excel',value:this.refs.excel.value}, 
-               {key:'experience',value:this.refs.experience.value}, 
-               {key:'honor',value:this.refs.honor.value}, 
-               {key:'team',value:this.refs.team.value},                
-               {key:'role',value:'3'}, 
+var Register_doctor = React.createClass({ 
+    getInitialState() {
+        return {
+            InterValObj: '',
+            code: '',
+            startTime: '',
+            phoneNum: '',
+            count:'60', //间隔函数，1秒执行
+            curCount: '', //当前剩余秒数
+            username: '',
+            password: '',
+            cfmPwd: '',
+            province: '',
+            hospital: '',
+            department: '',
+            title: '',
+            excel: '',
+            experience: '',
+            honor: '',
+            checkedTeam: '',
+            num: 1,
+        };
+    },
+    submitForm() {	  
+	    this.state.username = document.getElementById("u4_input").value;
+        this.state.password = document.getElementById("u5_input").value;
+        this.state.cfmPwd = document.getElementById("u6_input").value;
+        this.state.mobile = document.getElementById("u7_input").value;
+        this.state.code = document.getElementById("u9_input").value; //短信验证码
+        this.state.province = document.getElementById("u31_input").value;
+        this.state.hospital = document.getElementById("u32_input").value;
+        this.state.department = document.getElementById("u33_input").value;
+        this.state.title = document.getElementById("u34_input").value;
+        
+        var goods = '';
+        for(var i=1; i<this.state.num; i++){
+            var good = document.getElementById("u39_input_"+i).value;
+            if (good != undefined || good != ' ') {
+                console.log(good);
+                goods += good + ' ';
+            }
+        }
+        this.state.excel = goods;
+        this.state.experience = document.getElementById("u40_input").value;
+        this.state.honor = document.getElementById("u41_input").value;
+        var team = document.getElementsByName("team");
+        this.state.checkedTeam = "";
+        for(var i = 0;i < team.length;i ++){
+            if(team[i].checked == true){
+                this.state.checkedTeam += team[i].value + ",";
+            }
+        }
+        this.handleSubmit();
+    },
+    handleSubmit() {
+        auth.myact({to:'regist.do',
+            parms:[
+               {'key':'regist_username','value':this.state.username}, 
+               {'key':'regist_password','value':this.state.password}, 
+               {'key':'regist_confirmPwd','value':this.state.cfmPwd},
+               {'key':'regist_mobile','value':this.state.phoneNum}, 
+               {'key':'province','value':this.state.province}, 
+               {'key':'hospital','value':this.state.hospital}, 
+               {'key':'department','value':this.state.department},
+               {'key':'title','value':this.state.title},
+               {'key':'name','value':this.state.excel},
+               {'key':'experience','value':this.state.experience},
+               {'key':'honor','value':this.state.honor}, 
+               {'key':'team','value':this.state.checkedTeam},                
+               {'key':'role','value':'3'}, 
+               {'key':'regist_validate', 'value':this.state.code},
                ]
-                },(res)=>{
-                        if(res.regist_error){alert(res.regist_error)}else{
-                            alert ('success')
-                        }
-                })
-  },
+        },
+        (res)=>{
+            console.log(res)
+            if(res.regist_error){alert(res.regist_error)}else{
+                alert ('success')
+            }
+        })
+    },
+    queryCode() {
+        auth.myact(
+          { 
+            to:'send.do',
+            parms:[{'key':'phone', 'value': this.state.phoneNum},
+                    {'key':'code', 'value': this.state.code},
+                    {'key':'startTime', 'value': this.state.startTime},
+                    ]
+          },
+            (res)=>{
+                console.log(res)
+            });
+    },
+    sendMessage() {        
+        var codeLength = 6;//验证码长度
+		this.state.curCount = this.state.count;
+		this.state.phoneNum=document.getElementById("u7_input").value; //手机号码
+		if(this.state.phoneNum.length > 0){
+			//产生验证码
+            this.state.code = '';
+			for (var i = 0; i < codeLength; i++) {
+				this.state.code += parseInt(Math.random() * 9).toString();
+			}
+			//设置button效果，开始计时
+			$("#u10_input").attr("disabled", "true");
+			$("#u10_input").val("请在" + this.state.curCount + "秒内输入验证码");
+			this.state.InterValObj = window.setInterval(this.SetRemainTime, 1000); //启动计时器，1秒执行一次
+			var myDate = new Date();
+			this.state.startTime = myDate.getTime();
+			//向后台发送处理数据
+            console.log(this.state.phoneNum);
+            console.log(this.state.code);
+            this.queryCode();
+		}else{
+			alert("手机号码不能为空！");
+		}
+    },
+    SetRemainTime() {
+		if (this.state.curCount == 0) {
+			window.clearInterval(this.state.InterValObj);//停止计时器
+			$("#u10_input").removeAttr("disabled");//启用按钮
+			$("#u10_input").val("重新发送验证码");
+		}
+		else {
+			this.state.curCount--;
+			$("#u10_input").val("请在" + this.state.curCount + "秒内输入验证码");
+		}
+	},
+    addSelect() {
+        var selection = document.createElement("SELECT");
+        selection.setAttribute("id", "u39_input_"+this.state.num);
+        document.getElementById("u39").appendChild(selection);
+        var option0 = document.createElement("option");
+        option0.setAttribute("value", "");
+        var option0_text = document.createTextNode("请选择");
+        var option1 = document.createElement("option");
+        option1.setAttribute("value", "足踝");
+        var option1_text = document.createTextNode("足踝");
+        var option2 = document.createElement("option");
+        option2.setAttribute("value", "脊柱");
+        var option2_text = document.createTextNode("脊柱");
+        var option3 = document.createElement("option");
+        option3.setAttribute("value", "髋关节");
+        var option3_text = document.createTextNode("髋关节");
+        var option4 = document.createElement("option");
+        option4.setAttribute("value", "股骨头坏死");
+        var option4_text = document.createTextNode("股骨头坏死");
+        var option5 = document.createElement("option");
+        option5.setAttribute("value", "髋关节骨性关节炎");
+        var option5_text = document.createTextNode("髋关节骨性关节炎");
+        var option6 = document.createElement("option");
+        option6.setAttribute("value", "踝关节骨性关节炎");
+        var option6_text = document.createTextNode("踝关节骨性关节炎");
+        var option7 = document.createElement("option");
+        option7.setAttribute("value", "颈椎骨折伴或不伴脱位，颈髓损伤");
+        var option7_text = document.createTextNode("颈椎骨折伴或不伴脱位，颈髓损伤");
+        var option8 = document.createElement("option");
+        option8.setAttribute("value", "颈椎间盘突出伴或不伴滑脱");
+        var option8_text = document.createTextNode("颈椎间盘突出伴或不伴滑脱");
+        option0.appendChild(option0_text)
+        option1.appendChild(option1_text);
+        option2.appendChild(option2_text);
+        option3.appendChild(option3_text);
+        option4.appendChild(option4_text);
+        option5.appendChild(option5_text);
+        option6.appendChild(option6_text);
+        option7.appendChild(option7_text);
+        option8.appendChild(option8_text);
+        selection.appendChild(option0);
+        selection.appendChild(option1);
+        selection.appendChild(option2);
+        selection.appendChild(option3);
+        selection.appendChild(option4);
+        selection.appendChild(option5);
+        selection.appendChild(option6);
+        selection.appendChild(option7);
+        selection.appendChild(option8);
+        this.state.num++;
+    },
+
     render() {
         return (
             <PageContainer>
@@ -84,7 +240,7 @@ var Register_doctor = React.createClass({
 
 
                     <div id="u10" className="ax_html_button">
-                         <input ref=""  id="u10_input" type="submit" value="获取短信验证码"/>
+                         <input ref=""  id="u10_input" type="submit" value="获取短信验证码" onClick={this.sendMessage}/>
                     </div>
 
 
@@ -210,6 +366,10 @@ var Register_doctor = React.createClass({
                         </select>
                     </div>
 
+                    <div id="u39" className="ax_droplist"> </div>
+                    <div id="u39_add" className="ax_paragraph">
+                        <input id="u39_button" type="button" value="添加" onClick={this.addSelect}/>
+                    </div>
 
                     <div id="u35" className="ax_paragraph">
                         <img id="u35_img" className="img " src="i/resources/images/transparent.gif"/>
@@ -226,12 +386,6 @@ var Register_doctor = React.createClass({
                             <p><span>职称</span></p>
                         </div>
                     </div>
-
-
-                    <div id="u39" className="ax_text_area">
-                        <textarea id="u39_input" ref = "excel"></textarea>
-                    </div>
-
 
                     <div id="u40" className="ax_text_area">
                         <textarea id="u40_input"ref="experience"></textarea>
@@ -269,34 +423,34 @@ var Register_doctor = React.createClass({
                         </div>
                     </div>
 
+                    <form action="upload.do" method="post" enctype="multipart/form-data" id="form2">
+                        <div id="u48" className="ax_paragraph">
+                            <img id="u48_img" className="img " src="i/resources/images/transparent.gif"/>
 
-                    <div id="u48" className="ax_paragraph">
-                        <img id="u48_img" className="img " src="i/resources/images/transparent.gif"/>
-
-                        <div id="u49" className="text">
-                            <p><span>上传本人执业证书，职称等图片</span></p>
+                            <div id="u49" className="text">
+                                <p><span>上传本人执业证书，职称等图片</span></p>
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div id="u50" className="ax_paragraph">
-                        <img id="u50_img" className="img " src="i/resources/images/transparent.gif"/>
+                        <div id="u50" className="ax_paragraph">
+                            <img id="u50_img" className="img " src="i/resources/images/transparent.gif"/>
 
-                        <div id="u51" className="text">
-                            <p><span>文件名</span></p>
+                            <div id="u51" className="text">
+                                <p><span>文件名</span></p>
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div id="u52" className="ax_text_field">
-                         <input ref=""  id="u52_input" type="text"  />
-                    </div>
+                        <div id="u52" className="ax_text_field">
+                            <input ref=""  id="u52_input" type="text"  />
+                        </div>
 
 
-                    <div id="u53" className="ax_html_button">
-                         <input ref=""  id="u53_input" type="submit" value="浏览"/>
-                    </div>
-
+                        <div id="u53" className="ax_html_button">
+                            <input name="imgFile" id="u53_input" type="file" value="浏览"/>
+                        </div>
+                    </form>
 
                     <div id="u54" className="ax_h3">
                         <img id="u54_img" className="img " src="i/resources/images/transparent.gif"/>
@@ -323,7 +477,7 @@ var Register_doctor = React.createClass({
                                 <p><span>助理</span></p>
                             </div>
                         </label>
-                         <input ref="team"  id="u58_input" type="checkbox" value="checkbox"/>
+                         <input ref="team"  id="u58_input" type="checkbox" name="team" value="助理"/>
                     </div>
 
 
@@ -334,7 +488,7 @@ var Register_doctor = React.createClass({
                                 <p><span>麻醉师</span></p>
                             </div>
                         </label>
-                         <input ref=""  id="u60_input" type="checkbox" value="checkbox"/>
+                         <input ref=""  id="u60_input" type="checkbox" name="team" value="麻醉师"/>
                     </div>
 
 
@@ -345,7 +499,7 @@ var Register_doctor = React.createClass({
                                 <p><span>护士</span></p>
                             </div>
                         </label>
-                         <input ref=""  id="u62_input" type="checkbox" value="checkbox"/>
+                         <input ref=""  id="u62_input" type="checkbox" name="team" value="护士"/>
                     </div>
 
 
@@ -356,7 +510,7 @@ var Register_doctor = React.createClass({
                                 <p><span>跟台</span></p>
                             </div>
                         </label>
-                         <input ref=""  id="u64_input" type="checkbox" value="checkbox"/>
+                         <input ref=""  id="u64_input" type="checkbox" name="team" value="跟台"/>
                     </div>
 
 
@@ -375,7 +529,7 @@ var Register_doctor = React.createClass({
                         <img id="u68_img" className="img " src="i/images/register_doctor/u68.png"/>
 
                         <div id="u69" className="text">
-                            <p><span onClick={this.handleSubmit}>立即注册</span></p>
+                            <p><span onClick={this.submitForm}>立即注册</span></p>
                         </div>
                     </div>
 
