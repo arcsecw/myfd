@@ -140,7 +140,7 @@ var CheckReservation = React.createClass({
 
                     </div>
                     <div id="u13" className="ax_radio_button">
-                        <label for="u13_input">
+                        <label htmlFor="u13_input">
 
                             <div id="u14" className="text">
                                 <p><span>支付宝</span></p>
@@ -149,7 +149,7 @@ var CheckReservation = React.createClass({
                         <input id="u13_input" type="radio" value="radio" name="u13"/>
                     </div>
                     <div id="u15" className="ax_radio_button">
-                        <label for="u15_input" >
+                        <label htmlFor="u15_input" >
                             <div id="u16" className="text">
                                 <p><span>微信支付</span></p>
                             </div>
@@ -157,7 +157,7 @@ var CheckReservation = React.createClass({
                         <input id="u15_input" type="radio" value="radio" name="u15"/>
                     </div>
                     <div id="u17" className="ax_radio_button">
-                        <label for="u17_input">
+                        <label htmlFor="u17_input">
 
                             <div id="u18" className="text">
                                 <p><span>百度支付</span></p>

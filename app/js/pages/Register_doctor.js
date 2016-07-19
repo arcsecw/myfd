@@ -471,7 +471,7 @@ var Register_doctor = React.createClass({
 
 
                     <div id="u58" className="ax_checkbox">
-                        <label for="u58_input">
+                        <label htmlFor="u58_input">
 
                             <div id="u59" className="text">
                                 <p><span>助理</span></p>
@@ -482,7 +482,7 @@ var Register_doctor = React.createClass({
 
 
                     <div id="u60" className="ax_checkbox">
-                        <label for="u60_input">
+                        <label htmlFor="u60_input">
 
                             <div id="u61" className="text">
                                 <p><span>麻醉师</span></p>
@@ -493,7 +493,7 @@ var Register_doctor = React.createClass({
 
 
                     <div id="u62" className="ax_checkbox">
-                        <label for="u62_input">
+                        <label htmlFor="u62_input">
 
                             <div id="u63" className="text">
                                 <p><span>护士</span></p>
@@ -504,7 +504,7 @@ var Register_doctor = React.createClass({
 
 
                     <div id="u64" className="ax_checkbox">
-                        <label for="u64_input">
+                        <label htmlFor="u64_input">
 
                             <div id="u65" className="text">
                                 <p><span>跟台</span></p>
@@ -515,7 +515,7 @@ var Register_doctor = React.createClass({
 
 
                     <div id="u66" className="ax_checkbox">
-                        <label for="u66_input">
+                        <label htmlFor="u66_input">
 
                             <div id="u67" className="text">
                                 <p><span>我已阅读并同意 <a href="">&lt;飞刀平台注册协议&gt;</a> </span></p>

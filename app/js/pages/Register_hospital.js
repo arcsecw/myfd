@@ -351,7 +351,7 @@ var Register_hospital = React.createClass({
 
 
       <div id="u60" className="ax_checkbox">
-        <label for="u60_input">
+        <label htmlFor="u60_input">
 
           <div id="u61" className="text">
             <p><span>我已阅读并同意<a href="#">&lt;飞刀平台注册协议&gt;</a></span></p>

@@ -225,7 +225,7 @@ var Query_result = React.createClass({
 
                     
                     <div id="u23" className="ax_checkbox">
-                        <label for="u23_input">
+                        <label htmlFor="u23_input">
                             
                             <div id="u24" className="text">
                                 <p><span>7日内可预约</span></p>
@@ -238,7 +238,7 @@ var Query_result = React.createClass({
 
                     
                     <div id="u25" className="ax_checkbox">
-                        <label for="u25_input">
+                        <label htmlFor="u25_input">
                             
                             <div id="u26" className="text">
                                 <p><span>有优惠</span></p>

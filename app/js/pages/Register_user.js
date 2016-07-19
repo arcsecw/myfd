@@ -173,7 +173,7 @@ React.createClass({
 
 
                     <div id="u13" className="ax_checkbox">
-                        <label for="u13_input">
+                        <label htmlFor="u13_input">
 
                             <div id="u14" className="text">
                                 <p><span>我已阅读并同意<a href="#">&lt; 飞刀平台注册协议&gt;</a> </span></p>

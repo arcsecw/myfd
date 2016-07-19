@@ -218,7 +218,7 @@ var Doctor_list = React.createClass({
 
 
           <div id="u21" className="ax_checkbox">
-            <label for="u21_input">
+            <label htmlFor="u21_input">
 
               <div id="u22" className="text">
                 <p><span>7日内可预约</span></p>
@@ -232,7 +232,7 @@ var Doctor_list = React.createClass({
 
 
           <div id="u23" className="ax_checkbox">
-            <label for="u23_input">
+            <label htmlFor="u23_input">
 
               <div id="u24" className="text">
                 <p><span>有优惠</span></p>
