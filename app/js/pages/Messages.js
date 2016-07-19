@@ -171,10 +171,11 @@ const Messages = React.createClass({
                 to="/messages"
                 className="am-show-sm-only"
               >
+              adsfasdfasdf
                 <Icon icon="mail-reply" />
               </Link>
             </MessageBar>
-
+            console.log(children)
             {children ? React.cloneElement(
               children,
               Object.assign(

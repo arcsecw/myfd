@@ -43,7 +43,8 @@ module.exports = {
     var parms = val['parms']
     var  url = 'http://123.56.133.208:8080/myfd/'+to+'?'
     parms.map(parm=>{
-    url +=parm.key+'='+parm.value+'&'
+      if(parm.value!=''){ url +=parm.key+'='+parm.value+'&'}
+   
   })
   fetch(url)
       .then(checkStatus)

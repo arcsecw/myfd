@@ -1,6 +1,7 @@
 import React from 'react';
 import PageContainer from '../components/PageContainer';
 import auth from '../components/auth'
+import {Link } from 'react-router'
 
 var Query_result = React.createClass({
         getInitialState() {
@@ -40,11 +41,11 @@ var Query_result = React.createClass({
                         Discount: "单间8折，免费加陪护床"
                         },         
                 ],
-                type:'不限',//or 专家团队 or 综合医院 or 专科医院
+                type:'',//or 专家团队2 or 综合医院1 or 专科医院3
                 place:'不限',//or 行政区
                 check_appointment:false,
                 check_discount:false,
-                search_inOrder:'智能',//or人气 or 预约时间,
+                search_inOrder:'1',//or人气 or 预约时间,
                 nowpage :1,
                 totalpage:2,
 
@@ -53,8 +54,14 @@ var Query_result = React.createClass({
         },
         query(page){
             auth.myact(
-            {to:'',
-            parms:[{'key':'page','value':page}]
+            {to:'list.do',
+            parms:[
+               {'key':'page','value':page},
+               {'key':'role','value':this.state.type},
+               //{'key':'province','value':this.state.place},
+               {'key':'paixu','value':this.state.search_inOrder},
+               {'key':'disease','value':this.refs.desces.value},
+                ]
             },
             (res)=>{
                     this.updateDataSource(res)
@@ -148,36 +155,36 @@ var Query_result = React.createClass({
 
                     
                     <div id="u8" className="ax_paragraph">
-                        <img id="u8_img" className="img " src={this.state.type=='综合医院'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
+                        <img id="u8_img" className="img " src={this.state.type=='1'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
                         
-                        <div id="u9" className="text" style = {{color:this.state.type=='综合医院'?'white':'black'}} onClick = {()=>{this.setState({'type':'综合医院'})}}>
+                        <div id="u9" className="text" style = {{color:this.state.type=='1'?'white':'black'}} onClick = {()=>{this.state.type='1';this.query(this.state.nowpage)}}>
                             <p><span>综合医院</span></p>
                         </div>
                     </div>
 
                     
                     <div id="u10" className="ax_paragraph">
-                        <img id="u10_img" className="img " src={this.state.type=='专科医院'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
+                        <img id="u10_img" className="img " src={this.state.type=='3'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
                         
-                        <div id="u11" className="text" style = {{color:this.state.type=='专科医院'?'white':'black'}} onClick = {()=>{this.setState({'type':'专科医院'})}}>
+                        <div id="u11" className="text" style = {{color:this.state.type=='3'?'white':'black'}} onClick = {()=>{this.state.type='3';this.query(this.state.nowpage)}}>
                             <p><span>专科医院</span></p>
                         </div>
                     </div>
 
                     
                     <div id="u12" className="ax_paragraph">
-                        <img id="u12_img" className="img " src={this.state.type=='专家团队'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
+                        <img id="u12_img" className="img " src={this.state.type=='2'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
                         
-                        <div id="u13" className="text" style = {{color:this.state.type=='专家团队'?'white':'black'}} onClick = {()=>{this.setState({'type':'专家团队'})}}>
+                        <div id="u13" className="text" style = {{color:this.state.type=='2'?'white':'black'}} onClick = {()=>{this.state.type='2';this.query(this.state.nowpage)}}>
                             <p><span>专家团队</span></p>
                         </div>
                     </div>
 
                     
                     <div id="u14" className="ax_paragraph">
-                        <img id="u14_img" className="img " src={this.state.type=='不限'?'i/images/query_result/u14.png':'i/images/institution_list/u10.png'}/>
+                        <img id="u14_img" className="img " src={this.state.type==''?'i/images/query_result/u14.png':'i/images/institution_list/u10.png'}/>
                         
-                        <div id="u15" className="text" style = {{color:this.state.type=='不限'?'white':'black'}} onClick = {()=>{this.setState({'type':'不限'})}}>
+                        <div id="u15" className="text" style = {{color:this.state.type==''?'white':'black'}} onClick = {()=>{this.state.type='';this.query(this.state.nowpage)}}>
                             <p><span>不限</span></p>
                         </div>
                     </div>
@@ -195,7 +202,7 @@ var Query_result = React.createClass({
                     <div id="u18" className="ax_paragraph">
                         <img id="u18_img" className="img " src={this.state.place=='行政区'?'i/images/query_result/u14.png':'i/images/institution_list/u10.png'}/>
                         
-                        <div id="u19" className="text" style = {{color:this.state.place=='行政区'?'white':'black'}} onClick = {()=>{this.setState({'place':'行政区'})}}>
+                        <div id="u19" className="text" style = {{color:this.state.place=='行政区'?'white':'black'}} onClick = {()=>{this.state.place='行政区';this.query(this.state.nowpage)}}>
                             <p><span>行政区</span></p>
                         </div>
                     </div>
@@ -204,7 +211,7 @@ var Query_result = React.createClass({
                     <div id="u20" className="ax_paragraph">
                         <img id="u20_img" className="img " src={this.state.place=='不限'?'i/images/query_result/u14.png':'i/images/institution_list/u10.png'}/>
                         
-                        <div id="u21" className="text" style = {{color:this.state.place=='不限'?'white':'black'}} onClick = {()=>{this.setState({'place':'不限'})}}>
+                        <div id="u21" className="text" style = {{color:this.state.place=='不限'?'white':'black'}} onClick = {()=>{this.state.place='行政区';this.query(this.state.nowpage)}}>
                             <p><span>不限</span></p>
                         </div>
                     </div>
@@ -225,7 +232,8 @@ var Query_result = React.createClass({
                             </div>
                         </label>
                         <input id="u23_input" type="checkbox" value="checkbox" checked={this.state.check_appointment?'checked':''} onClick = {()=>{
-                            this.setState({check_appointment:!this.state.check_appointment})}}/>
+                            this.state.check_appointment=!this.state.check_appointment;this.query(this.state.nowpage)
+                        }}/>
                     </div>
 
                     
@@ -237,7 +245,8 @@ var Query_result = React.createClass({
                             </div>
                         </label>
                         <input id="u25_input" type="checkbox" value="checkbox" checked={this.state.check_discount?'checked':''} onClick = {()=>{
-                            this.setState({check_discount:!this.state.check_discount})}}/>
+                            this.state.check_discount = !this.state.check_discount ;this.query(this.state.nowpage)  
+                        }}/>
                     </div>
 
                     
@@ -246,15 +255,17 @@ var Query_result = React.createClass({
                         
                         <div id="u28" className="text">
                         <p>
-                            <span style = {{color:this.state.search_inOrder=='智能'?'red':'black'}} onClick = {()=>{
-                                this.setState({search_inOrder:'智能'})}}>智能</span>
+                            <span style = {{color:this.state.search_inOrder=='1'?'red':'black'}} onClick = {()=>{
+                                this.state.search_inOrder= '1';this.query(this.state.nowpage)
+                            }}>智能</span>
                         <span>&nbsp; </span>
                         <span> |&nbsp; 
-                        <span style = {{color:this.state.search_inOrder=='人气'?'red':'black'}} onClick = {()=>{
-                            this.setState({search_inOrder:'人气'})}}>人气
+                        <span style = {{color:this.state.search_inOrder=='2'?'red':'black'}} onClick = {()=>{
+                            this.state.search_inOrder= '2';this.query(this.state.nowpage)
+                        }}>人气
                         </span> &nbsp; |&nbsp; 
-                        <span style = {{color:this.state.search_inOrder=='预约时间'?'red':'black'}} onClick = {()=>{
-                            this.setState({search_inOrder:'预约时间'})
+                        <span style = {{color:this.state.search_inOrder=='3'?'red':'black'}} onClick = {()=>{
+                            this.state.search_inOrder= '3';this.query(this.state.nowpage)
                         }}
                         >预约时间</span>&nbsp; &nbsp; </span></p>
                             
@@ -451,7 +462,7 @@ var Query_result = React.createClass({
 
                     
                     <div id="u54" className="ax_text_field">
-                        <input id="u54_input" type="text"  />
+                        <input id="u54_input" type="text" ref="desces"   />
                     </div>
 
                     
@@ -463,7 +474,7 @@ var Query_result = React.createClass({
                         </div>
                     </div>
 
-                    
+                    <Link to = '/index_home'>
                     <div id="u57" className="ax_shape">
                         <img id="u57_img" className="img " src="i/images/user_check_operation_reservation_page/u23.png"/>
                         
@@ -471,7 +482,7 @@ var Query_result = React.createClass({
                             <p><span>公司主 Logo</span></p>
                         </div>
                     </div>
-
+                    </Link>
                     
                     <div id="u59" className="ax_paragraph">
                         <img id="u59_img" className="img " src="i/resources/images/transparent.gif"/>
@@ -491,7 +502,7 @@ var Query_result = React.createClass({
                     </div>
 
                     
-                    <div id="u64" className="ax_shape">
+                    <div id="u64" className="ax_shape" onClick = {()=>{this.query(1)}}>
                         <img id="u64_img" className="img " src="i/images/query_result/u64.png"/>
                         
                         <div id="u65" className="text">
@@ -675,19 +686,21 @@ var Query_result = React.createClass({
                     
                     <div id="u102" className="ax_paragraph">
                         <img id="u102_img" className="img " src="i/resources/images/transparent.gif"/>
-                        
+                        <Link to = '/doctor_list'>
                         <div id="u103" className="text">
                             <p><span>医生团队</span></p>
                         </div>
+                        </Link>
                     </div>
 
                     
                     <div id="u104" className="ax_paragraph">
                         <img id="u104_img" className="img " src="i/resources/images/transparent.gif"/>
-                        
+                        <Link to = '/institution_list'>
                         <div id="u105" className="text">
                             <p><span>合作机构</span></p>
                         </div>
+                        </Link>
                     </div>
 
                     
@@ -695,7 +708,7 @@ var Query_result = React.createClass({
                         <img id="u106_img" className="img " src="i/resources/images/transparent.gif"/>
                         
                         <div id="u107" className="text">
-                            <p><span>首页</span></p>
+                            <p><Link to = '/index_home'><span>首页</span></Link></p>
                         </div>
                     </div>
 
