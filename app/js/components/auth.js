@@ -38,14 +38,16 @@ module.exports = {
 
   onChange() {},
   myact(val,cb) {
-    console.log(val)
     var to = val['to']
     var parms = val['parms']
     var  url = 'http://123.56.133.208:8080/myfd/'+to+'?'
     parms.map(parm=>{
-      if(parm.value!=''){ url +=parm.key+'='+parm.value+'&'}
+      if(String(parm.value).length>0){ 
+        url +=parm.key+'='+parm.value+'&'
+      }
    
   })
+  console.log(url)
   fetch(url)
       .then(checkStatus)
       .then(res => {

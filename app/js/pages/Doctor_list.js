@@ -43,7 +43,7 @@ var Doctor_list = React.createClass({
               "discount":"???"}
 
             ],
-            leixing:'',//or 专家团队 or 医疗机构
+            leixing:'0',//or 专家团队 or 医疗机构
             didian:'',//or 北京上海广州赤峰
             check_yuyue:false,
             check_youyouhui:false,
@@ -54,7 +54,8 @@ var Doctor_list = React.createClass({
 
         };
     },
-    query(page = this.state.nowpage){        
+    query(page = this.state.nowpage){
+      console.log(page)        
         var to = "http://123.56.133.208:8080/myfd/doctorlist.do"
         auth.myact(
           {to:'list.do',
@@ -174,9 +175,9 @@ var Doctor_list = React.createClass({
 
 
           <div id="u12" className="ax_paragraph">
-            <img id="u12_img" className="img " src={this.state.leixing==''?'i/images/query_result/u14.png':'i/images/institution_list/u10.png'}/>
+            <img id="u12_img" className="img " src={this.state.leixing=='0'?'i/images/query_result/u14.png':'i/images/institution_list/u10.png'}/>
 
-            <div id="u13" className="text" style = {{color:this.state.leixing==''?'white':'black'}} onClick = {()=>{this.state.leixing='';this.query(this.state.nowpage)}}>
+            <div id="u13" className="text" style = {{color:this.state.leixing=='0'?'white':'black'}} onClick = {()=>{this.state.leixing='0';this.query(this.state.nowpage)}}>
               <p><span>不限</span></p>
             </div>
           </div>
