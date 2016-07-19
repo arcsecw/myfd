@@ -1,76 +1,100 @@
 import React from 'react'
 import PageContainer from '../components/PageContainer';
 import auth from '../components/auth'
-import {
-} from 'amazeui-react';
+
 import { browserHistory, Router, Route, Link, withRouter } from 'react-router';
 var Price_manage = React.createClass({
-     getInitialState() {
+    getInitialState() {
         return {
-            dataSource:{
-                're':[
+            dataSource: {
+                're': [
                     {
-                    id: "无",
-                    detail: "无",
-                    price: "无",
-                    description: "无",
-                    state: "无",
-                    },
-                     {
                         id: "无",
-                    detail: "无",
-                    price: "无",
-                    description: "无",
-                    state: "无",
-                    }
-                   , 
+                        detail: "无",
+                        price: "无",
+                        description: "无",
+                        state: "无",
+                    },
                     {
-                         id: "无",
-                    detail: "无",
-                    price: "无",
-                    description: "无",
-                    state: "无",
-                    }               
-            ],
-            'totalpage':2,
-            'nowpage':1,
-             'now':'',//仪表盘，管理账号，用户管理，价格管理，网站配置 
+                        id: "无",
+                        detail: "无",
+                        price: "无",
+                        description: "无",
+                        state: "无",
+                    }
+                    ,
+                    {
+                        id: "无",
+                        detail: "无",
+                        price: "无",
+                        description: "无",
+                        state: "无",
+                    }
+                ],
+                totalpage: 2,
+                nowpage: 1,
+                now: '',//仪表盘，管理账号，用户管理，价格管理，网站配置 
+                change:false,
             },
-                   
+
         };
     },
-    query(page){
+    handleSubmit: function (e) {
+        auth.myact({
+            to: 'manager/insertprice.do',
+            parms: [
+                { key: 'description', value: this.refs.description.value },
+                { key: 'detail', value: this.refs.detail.value },
+                { key: 'price', value: this.refs.price.value },
+                { key: 'state', value: this.refs.state.value },
+            ]
+        }
+            , (res) => {
+                if (res.regist_error) { alert(res.regist_error) } else {
+                    this.setState({ nowpage: this.state.page })
+                    this.query(nowpage)
+                    this.updateDataSource(res)
+                }
+            })
+        this.query(nowpage)
+
+
+    },
+    query(page) {
         auth.myact(
-          {to:'manager/pricelist.do',
-           parms:[{'key':'page','value':page}]
-          },
-          (res)=>{
+            {
+                to: 'manager/pricelist.do',
+                parms: [{ 'key': 'page', 'value': page }]
+            },
+            (res) => {
                 this.updateDataSource(res)
                 console.log("你妹的2")
-                });
-        this.setState({nowpage:page})
+            });
+        this.setState({ nowpage: page })
     },
-    querynext(){
+    querynext() {
         console.log("你妹的1")
         var nowpage = this.state.nowpage
         var totalpage = this.state.totalpage
-        if (nowpage+1<=totalpage){
-            nowpage+=1
+        console.log(totalpage)
+        if (nowpage + 1 <= totalpage) {
+            console.log("有病")
+            nowpage += 1
             this.query(nowpage)
-               
+
         }
-        
+
     }
     ,
-    querybefore(){
-        
+    querybefore() {
+
         var nowpage = this.state.nowpage
         var totalpage = this.state.totalpage
-        if (nowpage-1>=1){
-            nowpage -=1
+        if (nowpage - 1 >= 1) {
+            nowpage -= 1
             this.query(nowpage);
-    } 
-        
+        }
+
     },
     componentDidMount() {
         this.query(1)
@@ -78,88 +102,96 @@ var Price_manage = React.createClass({
     updateDataSource(data) {
         this.setState({
             dataSource: data,
-            totalpage:data.totalpage,
+            totalpage: data.totalpage,
         })
         console.log(data)
 
-        
+
     },
-   
-    kaifazhong (str){ 
-        console.log(str)    
+
+    kaifazhong(str) {
+        console.log(str)
     },
-    jude(intState){
-        var state="";
-        if(intState==0){
-            state="禁用";
-        }else if(intState==1){
-            state="启用";      
-        }else{
-            state="";
+    jude(intState) {
+        var state = "";
+        if (intState == 0) {
+            state = "禁用";
+        } else if (intState == 1) {
+            state = "启用";
+        } else {
+            state = "";
         }
         return state;
     },
-    judgeOperaton(id){
-        var judge1=false;
-        if(id==0||id==1){
-            judge1=true;
+    judgeOperaton(id) {
+        var judge1 = false;
+        if (id == 0 || id == 1) {
+            judge1 = true;
         }
         console.log(id);
         console.log(judge1);
         return judge1;
     }
     ,
-    deletePrice(id){
+    deletePrice(id) {
         var nowpage = this.state.nowpage
-         auth.myact(
-          {to:'manager/deleteprice.do',
-           parms:[{'key':'id','value':id}]
-          },
-          (res)=>{
+        auth.myact(
+            {
+                to: 'manager/deleteprice.do',
+                parms: [{ 'key': 'id', 'value': id }]
+            },
+            (res) => {
                 this.updateDataSource(res)
                 console.log("你妹的2")
-                });
-        this.setState({nowpage:this.state.page})
-        this.query(nowpage) 
+            });
+        this.setState({ nowpage: this.state.page })
+        this.query(nowpage)
     },
-    disableprice(id){
+    disableprice(id) {
         var nowpage = this.state.nowpage
-         auth.myact(
-          {to:'manager/disableprice.do',
-           parms:[{'key':'id','value':id}]
-          },
-          (res)=>{
+        auth.myact(
+            {
+                to: 'manager/disableprice.do',
+                parms: [{ 'key': 'id', 'value': id }]
+            },
+            (res) => {
                 this.updateDataSource(res)
                 console.log("你妹的2")
-                });
-        this.setState({nowpage:this.state.page})
-        this.query(nowpage) 
+            });
+        this.setState({ nowpage: this.state.page })
+        this.query(nowpage)
 
     },
-  render() {
-       var page =''
+    changeContent(id){
+        this.setState({
+            change:true,            
+        })
+    }
+    ,
+    render() {
+        var page = ''
         var line1 = {}
-        var data =  this.state.dataSource.re
-        if (data.length>=1){
+        var data = this.state.dataSource.re
+        if (data.length >= 1) {
             line1 = data[0]
         }
         var line2 = {}
-        if (data.length>=2){
+        if (data.length >= 2) {
             line2 = data[1]
 
         }
-        var line3 = {}        
-       
-        if (data.length>=3){
+        var line3 = {}
+
+        if (data.length >= 3) {
             line3 = data[2]
         }
         var black = {
-            color:'black'
+            color: 'black'
         }
-      
-    return (
-      <PageContainer>
-         <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+
+        return (
+            <PageContainer>
+                <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
                 <link href="i/data/styles.css" type="text/css" rel="stylesheet"/>
                 <link href="i/css/web_manage_page_root/style1.css" type="text/css" rel="stylesheet"/>
                 <div id="base" className="">
@@ -254,7 +286,6 @@ var Price_manage = React.createClass({
                                         <img id="u20_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
 
                                         <div id="u21" className="text">
-                                       
                                             <p><span>{line1.id}</span></p>
                                         </div>
                                     </div>
@@ -289,7 +320,7 @@ var Price_manage = React.createClass({
                                         <img id="u28_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
 
                                         <div id="u29" className="text">
-                                            <p><span>{this.jude(line1.state)}</span></p>
+                                            <p><span>{this.jude(line1.state) }</span></p>
                                         </div>
                                     </div>
 
@@ -298,7 +329,7 @@ var Price_manage = React.createClass({
                                         <img id="u30_img" className="img " src="i/images/web_manage_page_root/u30.png"/>
 
                                         <div id="u31" className="text">
-                                            <p><div>{this.judgeOperaton(line1.state) ? <p><span onClick={this.deletePrice.bind(this,line1.id)}>删除</span>/<span onClick={this.disableprice.bind(this,line1.id)}>禁用</span>/<span>修改</span></p>:''}</div></p>
+                                            <p><div>{this.judgeOperaton(line1.state) ? <p><span onClick={this.deletePrice.bind(this, line1.id) }>删除</span>/<span onClick={this.disableprice.bind(this, line1.id) }>禁用</span>/<span>修改</span></p> : ''}</div></p>
                                         </div>
                                     </div>
 
@@ -343,7 +374,7 @@ var Price_manage = React.createClass({
                                         <img id="u40_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
 
                                         <div id="u41" className="text">
-                                            <p><span>{this.jude(line2.state)}</span></p>
+                                            <p><span>{this.jude(line2.state) }</span></p>
                                         </div>
                                     </div>
 
@@ -352,7 +383,7 @@ var Price_manage = React.createClass({
                                         <img id="u42_img" className="img " src="i/images/web_manage_page_root/u42.png"/>
 
                                         <div id="u43" className="text">
-                                            <p><div>{this.judgeOperaton(line2.state) ? <p><span onClick={this.deletePrice.bind(this,line2.id)}>删除</span>/<span>禁用</span>/<span>修改</span></p>:''}</div></p>
+                                            <p><div>{this.judgeOperaton(line2.state) ? <p><span onClick={this.deletePrice.bind(this, line2.id) }>删除</span>/<span  onClick={this.disableprice.bind(this, line2.id) }>禁用</span>/<span>修改</span></p> : ''}</div></p>
                                         </div>
                                     </div>
                                 </div>
@@ -378,7 +409,7 @@ var Price_manage = React.createClass({
                                     <img id="u47_img" className="img " src="i/resources/images/transparent.gif"/>
 
                                     <div id="u48" className="text">
-                                        <p><span onClick = {this.query.bind(this,1)}>首页</span> <span onClick={this.querybefore}>上一页</span> <span classNameName="u211"></span><span onClick = {this.querynext}>下一页 </span> <span onClick = {this.query.bind(this,this.state.totalpage)}>尾页</span></p>
+                                        <p><span onClick = {this.query.bind(this, 1) }>首页</span> <span onClick={this.querybefore}>上一页</span> <span classNameName="u211"></span><span onClick = {this.querynext}>下一页 </span> <span onClick = {this.query.bind(this, this.state.totalpage) }>尾页</span></p>
                                     </div>
                                 </div>
 
@@ -420,9 +451,9 @@ var Price_manage = React.createClass({
 
 
                                 <div id="u57" className="ax_droplist">
-                                    <select id="u57_input">
-                                        <option selecte value="on">启用</option>
-                                        <option value="off">禁用</option>
+                                    <select id="u57_input" ref="state">
+                                        <option selecte value="1">启用</option>
+                                        <option value="0">禁用</option>
                                     </select>
                                 </div>
 
@@ -434,30 +465,30 @@ var Price_manage = React.createClass({
                                         <p><span>状态</span></p>
                                     </div>
                                 </div>
+                                <form>
+
+                                    <div id="u60" className="ax_text_field">
+                                        <input id="u60_input" type="text" ref="description"/>
+                                    </div>
 
 
-                                <div id="u60" className="ax_text_field">
-                                    <input id="u60_input" type="text" value=""/>
-                                </div>
+                                    <div id="u61" className="ax_text_field">
+                                        <input id="u61_input" type="text" ref="detail"/>
+                                    </div>
 
 
-                                <div id="u61" className="ax_text_field">
-                                    <input id="u61_input" type="text" value=""/>
-                                </div>
-
-
-                                <div id="u62" className="ax_text_field">
-                                    <input id="u62_input" type="text" value=""/>
-                                </div>
-                                <div id="u72" className="ax_html_button">
-                                    <input id="u72_input" type="submit" value="重置"/>
-                                </div>
-
+                                    <div id="u62" className="ax_text_field">
+                                        <input id="u62_input" type="text" ref="price"/>
+                                    </div>
+                                    <div id="u72" className="ax_html_button">
+                                        <input id="u72_input" type="reset" value="重置"/>
+                                    </div>
+                                </form>
 
                                 <div id="u73" className="ax_html_button">
-                                    <input id="u73_input" type="submit" value="提交"/>
+                                    <span onClick={this.handleSubmit}><input id="u73_input" type="submit" value="提交"/></span>
                                 </div>
-                                 <div id="u70" className="ax_html_button">
+                                <div id="u70" className="ax_html_button">
                                     <input />
                                 </div>
                             </div>
@@ -482,8 +513,8 @@ var Price_manage = React.createClass({
                             <div id="u193" className="ax_table_cell">
                                 <img id="u193_img" className="img " src='i/images/web_manage_page_root/u191.png'/>
 
-                                <div id="u194" className="text" style = {{color:this.state.now=='管理账号'?'white':'black'}} >
-                                    <p><Link to = '/account_manage'><span onClick = {()=>{this.setState({'now':'管理账号'})}}>管理账号</span></Link></p>
+                                <div id="u194" className="text" style = {{ color: this.state.now == '管理账号' ? 'white' : 'black' }} >
+                                    <p><Link to = '/account_manage'><span onClick = {() => { this.setState({ 'now': '管理账号' }) } }>管理账号</span></Link></p>
                                 </div>
                             </div>
 
@@ -492,7 +523,7 @@ var Price_manage = React.createClass({
                                 <img id="u195_img" className="img " src="i/images/web_manage_page_root/u191.png"/>
 
                                 <div id="u196" className="text">
-                                    <p><span>用户管理</span></p>
+                                    <p><Link to = '/user_manage'><span onClick = {() => { this.setState({ 'now': '用户管理' }) } }>用户管理</span></Link></p>
                                 </div>
                             </div>
 
@@ -500,7 +531,7 @@ var Price_manage = React.createClass({
                             <div id="u197" className="ax_table_cell">
                                 <img id="u197_img" className="img "  src='i/images/web_manage_page_root/u191_mouseOver.png'/>
 
-                                <div id="u198" className="text" style = {{color:'white'}}  onClick = {()=>{this.setState({'now':'价格管理'})}}>
+                                <div id="u198" className="text" style = {{ color: 'white' }}  onClick = {() => { this.setState({ 'now': '价格管理' }) } }>
                                     <p><span>价格管理</span></p>
                                 </div>
                             </div>
@@ -552,10 +583,10 @@ var Price_manage = React.createClass({
                         </div>
                     </div>
                 </div>
-      </PageContainer>
+            </PageContainer>
 
-    );
-  }
+        );
+    }
 });
 
 export default Price_manage;

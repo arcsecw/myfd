@@ -17,7 +17,7 @@ import {
 import {
   Header,
   Message,
-   NoMessage,
+  NoMessage,
   Sidebar,
   PageContainer,
 } from './components';
@@ -41,35 +41,35 @@ import {
   Query_result,
   System_manage,
   User_home,
-  Test1,
+  User_manage,
   Price_manage,
   Account_manage,
-  
+
 } from './pages';
 
 const pages = {
   home: Home,
   profile: Profile,
   messages: Messages,
-  order:Order,
-  index_home:Index_home,
-  login:Login,
-  adminLogin:AdminLogin,
-  register_user:Register_user,
-  register_doctor:Register_doctor,
-  checkReservation:CheckReservation,
-  register_hospital:Register_hospital,
-  manageRoot:ManageRoot,
-  user_reservation:User_reservation,
-  doctor_list:Doctor_list,
-  institution_list:Institution_list,
-  query_result:Query_result,
-  system_manage:System_manage,
-  user_home:User_home,
-  test1:Test1,
-  price_manage:Price_manage,
-  account_manage:Account_manage,
-  
+  order: Order,
+  index_home: Index_home,
+  login: Login,
+  adminLogin: AdminLogin,
+  register_user: Register_user,
+  register_doctor: Register_doctor,
+  checkReservation: CheckReservation,
+  register_hospital: Register_hospital,
+  manageRoot: ManageRoot,
+  user_reservation: User_reservation,
+  doctor_list: Doctor_list,
+  institution_list: Institution_list,
+  query_result: Query_result,
+  system_manage: System_manage,
+  user_home: User_home,
+  user_manage: User_manage,
+  price_manage: Price_manage,
+  account_manage: Account_manage,
+
 };
 
 var App = React.createClass({
@@ -96,7 +96,7 @@ var App = React.createClass({
   render() {
     const {
       sidebarActive,
-      } = this.state;
+    } = this.state;
 
     return (
       <div className="adm-container">
@@ -111,7 +111,7 @@ var App = React.createClass({
           icon={sidebarActive ? 'close' : 'bars'}
           className="adm-sidebar-toggle am-show-sm-only"
           onClick={this.toggleSidebar}
-        />
+          />
       </div>
     );
   },
@@ -128,7 +128,7 @@ const Page = React.createClass({
         pages[page],
         {
           breadcrumb: breadcrumb,
-          query:query
+          query: query
         }
       );
     }
@@ -138,7 +138,7 @@ const Page = React.createClass({
         query = {query}
         breadcrumb={breadcrumb}
 
-      >
+        >
         你访问页面是: 「{this.props.params.page}」
       </PageContainer>
     );
