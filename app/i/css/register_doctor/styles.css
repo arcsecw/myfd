@@ -190,7 +190,7 @@
   position:absolute;
   left:0px;
   top:0px;
-  width:100px;
+  width:160px;
   height:25px;
   font-family:'Arial Normal', 'Arial';
   font-weight:400;
@@ -419,14 +419,14 @@
   position:absolute;
   left:170px;
   top:537px;
-  width:80px;
+  width:130px;
   height:22px;
 }
 #u31_input {
   position:absolute;
   left:0px;
   top:0px;
-  width:90px;
+  width:130px;
   height:22px;
   font-family:'Arial Normal', 'Arial';
   font-weight:400;
@@ -440,7 +440,7 @@
 }
 #u32 {
   position:absolute;
-  left:260px;
+  left:300px;
   top:537px;
   width:200px;
   height:22px;
@@ -465,14 +465,14 @@
   position:absolute;
   left:170px;
   top:573px;
-  width:80px;
+  width:130px;
   height:22px;
 }
 #u33_input {
   position:absolute;
   left:0px;
   top:0px;
-  width:90px;
+  width:130px;
   height:22px;
   font-family:'Arial Normal', 'Arial';
   font-weight:400;
@@ -488,14 +488,14 @@
   position:absolute;
   left:170px;
   top:611px;
-  width:80px;
+  width:130px;
   height:22px;
 }
 #u34_input {
   position:absolute;
   left:0px;
   top:0px;
-  width:90px;
+  width:130px;
   height:22px;
   font-family:'Arial Normal', 'Arial';
   font-weight:400;
@@ -551,29 +551,35 @@
 }
 #u39 {
   position:absolute;
-  left:160px;
-  top:643px;
-  width:346px;
-  height:50px;
+  left:250px;
+  top:652px;
+  width:700px;
+  height:50px; 
+}
+#u39_add {
+  position:absolute;
+  left:170px;
+  top:652px;
+  height:22px; 
+}
+#u39_button {
+  width:70px;
 }
 #u39_input {
-  position:absolute;
-  left:10px;
-  top:0px;
-  width:346px;
-  height:50px;
   font-family:'Arial Normal', 'Arial';
   font-weight:400;
   font-style:normal;
   font-size:13px;
   text-decoration:none;
   color:#000000;
-  text-align:left;
+}
+#u39_input:disabled {
+  color:grayText;
 }
 #u40 {
   position:absolute;
   left:160px;
-  top:713px;
+  top:720px;
   width:346px;
   height:50px;
 }
@@ -615,7 +621,7 @@
 #u42 {
   position:absolute;
   left:122px;
-  top:660px;
+  top:652px;
   width:27px;
   height:16px;
 }
@@ -749,7 +755,7 @@
   position:absolute;
   left:10px;
   top:0px;
-  width:100px;
+  width:500px;
   height:25px;
   font-family:'Arial Normal', 'Arial';
   font-weight:400;

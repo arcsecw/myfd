@@ -6,31 +6,119 @@ import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
 import auth from '../components/auth'
 
 var Register_hospital = React.createClass({
+  getInitialState() {
+      return {
+          InterValObj: '',
+          startTime: '',
+          phoneNum: '',
+          count:'60', //间隔函数，1秒执行
+          curCount: '', //当前剩余秒数
+          username: '',
+          password: '',
+          cfmPwd: '',
+          hospital: '',
+          province: '',
+          district: '',
+          address: '',
+          class: '',
+          avaliable: '',
+          insurance: '',
+          contactName: '',
+          phone: '',
+          mobile: '',
+          code: '',
+      };
+  },
+  submitForm() {	  
+	    this.state.username = document.getElementById("u9_input").value;
+      this.state.password = document.getElementById("u10_input").value;
+      this.state.cfmPwd = document.getElementById("u11_input").value;
+      this.state.hospital = document.getElementById("u19_input").value;
+      this.state.province = document.getElementById("u22_input").value;
+      this.state.district = document.getElementById("u23_input").value;
+      this.state.address = document.getElementById("u26_input").value;
+      this.state.class = document.getElementById("u27_input").value;
+      this.state.avaliable = document.getElementById("u28_input").value;
+      this.state.insurance = document.getElementById("u35_input").value;
+      this.state.contactName = document.getElementById("u45_input").value;
+      this.state.phone = document.getElementById("u66_input").value;
+      this.state.mobile = document.getElementById("u46_input").value;
+      this.state.code = document.getElementById("u48_input").value; //短信验证码
+      this.handleSubmit();
+  },
   handleSubmit:function(e){
     auth.myact({to:'regist.do',
-               parms:[
-               {key:'regist_username',value:this.refs.regist_username.value}, 
-               {key:'regist_confirmPwd',value:this.refs.regist_confirmPwd.value}, 
-               {key:'regist_password',value:this.refs.regist_password.value}, 
-               {key:'regist_mobile',value:this.refs.regist_mobile.value}, 
-               {key:'agencyName',value:this.refs.agencyName.value}, 
-               {key:'province',value:this.refs.province.value}, 
-               {key:'district',value:this.refs.district.value}, 
-               {key:'address',value:this.refs.address.value}, 
-               {key:'class',value:this.refs.class.value}, 
-               {key:'bed',value:this.refs.bed.value}, 
-               {key:'insurance',value:this.refs.insurance.value}, 
-               {key:'contactName',value:this.refs.contactName.value}, 
-               {key:'phone',value:this.refs.phone.value}, 
-               
-               {key:'role',value:'4'}, 
-               ]
-                },(res)=>{
-                        if(res.regist_error){alert(res.regist_error)}else{
-                            alert ('success')
-                        }
-                })
+      parms:[
+        {key:'regist_username',value:this.state.username}, 
+        {key:'regist_confirmPwd',value:this.state.password}, 
+        {key:'regist_password',value:this.state.cfmPwd}, 
+        {key:'regist_mobile',value:this.state.mobile}, 
+        {key:'agencyName',value:this.state.hospital},
+        {key:'province',value:this.state.province}, 
+        {key:'district',value:this.state.district}, 
+        {key:'address',value:this.state.address}, 
+        {key:'class',value:this.state.class}, 
+        {key:'bed',value:this.state.avaliable}, 
+        {key:'insurance',value:this.state.insurance}, 
+        {key:'contactName',value:this.state.contactName}, 
+        {key:'phone',value:this.state.phone}, 
+        {key:'regist_validate',value:this.state.code}, 
+        {key:'role',value:'4'}, 
+      ]
+      },(res)=>{
+              if(res.regist_error){alert(res.regist_error)}else{
+                  alert ('success')
+              }
+      })
   },
+  queryCode() {
+    auth.myact(
+      { 
+        to:'send.do',
+        parms:[{'key':'phone', 'value': this.state.phoneNum},
+                {'key':'code', 'value': this.state.code},
+                {'key':'startTime', 'value': this.state.startTime},
+                ]
+      },
+        (res)=>{
+            console.log(res)
+        });
+    },
+    sendMessage() {        
+      var codeLength = 6;//验证码长度
+      this.state.curCount = this.state.count;
+      this.state.phoneNum=document.getElementById("u46_input").value; //手机号码
+      if(this.state.phoneNum.length > 0){
+        //产生验证码
+              this.state.code = '';
+        for (var i = 0; i < codeLength; i++) {
+          this.state.code += parseInt(Math.random() * 9).toString();
+        }
+        //设置button效果，开始计时
+        $("#u49_input").attr("disabled", "true");
+        $("#u49_input").val("请在" + this.state.curCount + "秒内输入验证码");
+        this.state.InterValObj = window.setInterval(this.SetRemainTime, 1000); //启动计时器，1秒执行一次
+        var myDate = new Date();
+        this.state.startTime = myDate.getTime();
+        //向后台发送处理数据
+              console.log(this.state.phoneNum);
+              console.log(this.state.code);
+              this.queryCode();
+      }else{
+        alert("手机号码不能为空！");
+      }
+    },
+    SetRemainTime() {
+      if (this.state.curCount == 0) {
+        window.clearInterval(this.state.InterValObj);//停止计时器
+        $("#u49_input").removeAttr("disabled");//启用按钮
+        $("#u49_input").val("重新发送验证码");
+      }
+      else {
+        this.state.curCount--;
+        $("#u49_input").val("请在" + this.state.curCount + "秒内输入验证码");
+      }
+	  },
     render() {
         return (
             <PageContainer>
@@ -301,7 +389,7 @@ var Register_hospital = React.createClass({
 
      
       <div id="u49" className="ax_html_button">
-        <input id="u49_input" type="submit" value="获取短信验证码"/>
+        <input id="u49_input" onClick={this.sendMessage} type="submit" value="获取短信验证码"/>
       </div>
 
     
@@ -365,7 +453,7 @@ var Register_hospital = React.createClass({
         <img id="u62_img" className="img " src="i/images/register_doctor/u68.png"/>
  
         <div id="u63" className="text">
-          <p><span onClick={this.handleSubmit} >立即注册</span></p>
+          <p><span onClick={this.submitForm} >立即注册</span></p>
         </div>
       </div>
 

@@ -18,21 +18,92 @@ var path1 = "i/companyLogo.png";
 var Register_user=withRouter(
 
 React.createClass({
+    getInitialState() {
+        return {
+            InterValObj: '',
+            code: '',
+            startTime: '',
+            phoneNum: '',
+            count:'60', //间隔函数，1秒执行
+            curCount: '', //当前剩余秒数
+            username: '',
+            password: '',
+            cfmPwd: '',
+        };
+    },
+    submitForm() {	  
+	    this.state.username = document.getElementById("u10_input").value;
+        this.state.password = document.getElementById("u11_input").value;
+        this.state.cfmPwd = document.getElementById("u12_input").value;
+        this.state.phoneNum = document.getElementById("u21_input").value;
+        this.state.code = document.getElementById("u23_input").value; //短信验证码
+        this.handleSubmit();
+    },
     handleSubmit:function(e){
-    auth.myact({to:'regist.do',
-               parms:[
-               {key:'regist_username',value:this.refs.regist_username.value}, 
-               {key:'regist_password',value:this.refs.regist_password.value}, 
-               {key:'regist_confirmPwd',value:this.refs.regist_confirmPwd.value}, 
-               {key:'regist_mobile',value:this.refs.regist_mobile.value}, 
-               {key:'role',value:'1'}, 
-               ]
-                },(res)=>{
-                        if(res.regist_error){alert(res.regist_error)}else{
-                            alert ('success')
-                        }
-                })
-  },
+        auth.myact({to:'regist.do',
+            parms:[
+                {key:'regist_username',value:this.state.username}, 
+                {key:'regist_password',value:this.state.password}, 
+                {key:'regist_confirmPwd',value:this.state.cfmPwd}, 
+                {key:'regist_mobile',value:this.state.phoneNum}, 
+                {key:'regist_validate',value:this.state.code}, 
+                {key:'role',value:'1'}, 
+
+            ]
+            },(res)=>{
+                if(res.regist_error){alert(res.regist_error)}else{
+                    alert ('success')
+                }
+            })
+    },
+    queryCode() {
+        auth.myact(
+          { 
+            to:'send.do',
+            parms:[{'key':'phone', 'value': this.state.phoneNum},
+                    {'key':'code', 'value': this.state.code},
+                    {'key':'startTime', 'value': this.state.startTime},
+                    ]
+          },
+            (res)=>{
+                console.log(res)
+            });
+    },
+    sendMessage() {        
+        var codeLength = 6;//验证码长度
+		this.state.curCount = this.state.count;
+		this.state.phoneNum=document.getElementById("u21_input").value; //手机号码
+		if(this.state.phoneNum.length > 0){
+			//产生验证码
+            this.state.code = '';
+			for (var i = 0; i < codeLength; i++) {
+				this.state.code += parseInt(Math.random() * 9).toString();
+			}
+			//设置button效果，开始计时
+			$("#u24_input").attr("disabled", "true");
+			$("#u24_input").val("请在" + this.state.curCount + "秒内输入验证码");
+			this.state.InterValObj = window.setInterval(this.SetRemainTime, 1000); //启动计时器，1秒执行一次
+			var myDate = new Date();
+			this.state.startTime = myDate.getTime();
+			//向后台发送处理数据
+            console.log(this.state.phoneNum);
+            console.log(this.state.code);
+            this.queryCode();
+		}else{
+			alert("手机号码不能为空！");
+		}
+    },
+    SetRemainTime() {
+		if (this.state.curCount == 0) {
+			window.clearInterval(this.state.InterValObj);//停止计时器
+			$("#u24_input").removeAttr("disabled");//启用按钮
+			$("#u24_input").val("重新发送验证码");
+		}
+		else {
+			this.state.curCount--;
+			$("#u24_input").val("请在" + this.state.curCount + "秒内输入验证码");
+		}
+	},
     render(){
         return(
          <PageContainer>
@@ -89,17 +160,17 @@ React.createClass({
 
 
                     <div id="u10" className="ax_text_field">
-                        <input id="u10_input" ref="regist_username" type="text"  />
+                        <input id="u10_input" type="text"  />
                     </div>
 
 
                     <div id="u11" className="ax_text_field">
-                        <input id="u11_input" ref="regist_password" type="text"  />
+                        <input id="u11_input" type="text"  />
                     </div>
 
 
                     <div id="u12" className="ax_text_field">
-                        <input id="u12_input" ref="regist_confirmPwd" type="text"  />
+                        <input id="u12_input" type="text"  />
                     </div>
 
 
@@ -135,13 +206,13 @@ React.createClass({
                         <img id="u19_img" className="img " src="i/images/register_doctor/u68.png"/>
 
                         <div id="u20" className="text">
-                            <p><span onClick={this.handleSubmit} >立即注册</span></p>
+                            <p><span onClick={this.submitForm} >立即注册</span></p>
                         </div>
                     </div>
 
 
                     <div id="u21" className="ax_text_field">
-                        <input id="u21_input" ref="regist_mobile"  type="text"  />
+                        <input id="u21_input" type="text"  />
                     </div>
 
 
@@ -156,7 +227,7 @@ React.createClass({
 
 
                     <div id="u24" className="ax_html_button">
-                        <input id="u24_input" type="submit" value="获取短信验证码"/>
+                        <input id="u24_input" type="submit" value="获取短信验证码" onClick={this.sendMessage}/>
                     </div>
 
 
