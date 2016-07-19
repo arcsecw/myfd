@@ -47,6 +47,8 @@ React.createClass({
                 {key:'regist_confirmPwd',value:this.state.cfmPwd}, 
                 {key:'regist_mobile',value:this.state.phoneNum}, 
                 {key:'regist_validate',value:this.state.code}, 
+                {key:'role',value:'1'}, 
+
             ]
             },(res)=>{
                 if(res.regist_error){alert(res.regist_error)}else{

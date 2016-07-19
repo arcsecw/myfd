@@ -4,8 +4,19 @@ import {
 } from 'amazeui-react';
 import auth from '../components/auth';
 import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
-var Account_manage = React.createClass({
-     getInitialState() {
+import {
+    Grid,
+    Col,
+    Form,
+    Input,
+    Thumbnail,
+    Image,
+    Icon,
+    Button,
+    Panel,
+} from 'amazeui-react';
+var User_manage = React.createClass({
+    getInitialState() {
         return {
             dataSource: [
                     {
@@ -151,7 +162,7 @@ var Account_manage = React.createClass({
                                         <img id="u10_img" class="img " src="i/images/web_manage_page_root/u8.png"/>
 
                                         <div id="u11" class="text">
-                                            <p><span>所属组</span></p>
+                                            <p><span>账户类型</span></p>
                                         </div>
                                     </div>
 
@@ -169,7 +180,7 @@ var Account_manage = React.createClass({
                                         <img id="u14_img" class="img " src="i/images/web_manage_page_root/u8.png"/>
 
                                         <div id="u15" class="text">
-                                            <p><span>电子邮件</span></p>
+                                            <p><span>上次登录时间</span></p>
                                         </div>
                                     </div>
 
@@ -458,19 +469,19 @@ var Account_manage = React.createClass({
 
 
                             <div id="u193" class="ax_table_cell">
-                                <img id="u193_img" class="img " src='i/images/web_manage_page_root/u191_mouseOver.png'/>
+                                <img id="u193_img" class="img " src='i/images/web_manage_page_root/u191.png'/>
 
-                                <div id="u194" class="text" style = {{color:'white'}} onClick = {()=>{this.setState({'now':'管理账号'})}}>
-                                    <p><span >管理账号</span></p>
+                                <div id="u194" class="text" >
+                                    <p><Link to = '/account_manage'><span onClick = {()=>{this.setState({'now':'管理账号'})}}>管理账号</span></Link></p>
                                 </div>
                             </div>
 
 
                             <div id="u195" class="ax_table_cell">
-                                <img id="u195_img" class="img " src="i/images/web_manage_page_root/u191.png"/>
+                                <img id="u195_img" class="img " src="i/images/web_manage_page_root/u191_mouseOver.png"/>
 
-                                <div id="u196" class="text">
-                                    <p><Link to = '/user_manage'><span onClick = {()=>{this.setState({'now':'管理用户'})}}>管理用户</span></Link></p>
+                                <div id="u196" class="text" style = {{color:'white'}} onClick = {()=>{this.setState({'now':'用户管理'})}}>
+                                    <p><span>用户管理</span></p>
                                 </div>
                             </div>
 
@@ -534,6 +545,5 @@ var Account_manage = React.createClass({
 
                 );
                 }
-                });
-
-                export default Account_manage;
+})
+export default User_manage;

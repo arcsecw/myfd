@@ -21,8 +21,8 @@ const navs = [
 
   },
     {
-    id:'test1',
-    title:'test',
+    id:'user_manage',
+    title:'用户管理',
     icon:'info'
   },
   
