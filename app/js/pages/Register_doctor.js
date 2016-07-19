@@ -76,11 +76,13 @@ var Register_doctor = React.createClass({
                {'key':'team','value':this.state.checkedTeam},                
                {'key':'role','value':'3'}, 
                {'key':'regist_validate', 'value':this.state.code},
-               ]
+            ]
         },
         (res)=>{
             console.log(res)
             if(res.regist_error){alert(res.regist_error)}else{
+                var form2 = document.getElementById("form2")
+                form2.submit();
                 alert ('success')
             }
         })
@@ -92,7 +94,7 @@ var Register_doctor = React.createClass({
             parms:[{'key':'phone', 'value': this.state.phoneNum},
                     {'key':'code', 'value': this.state.code},
                     {'key':'startTime', 'value': this.state.startTime},
-                    ]
+                ]
           },
             (res)=>{
                 console.log(res)
