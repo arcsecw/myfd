@@ -109,7 +109,7 @@ var User_manage = React.createClass({
             <PageContainer>
                 <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
                 <link href="i/data/styles.css" type="text/css" rel="stylesheet"/>
-                <link href="i/css/web_manage_page_root/styles.css" type="text/css" rel="stylesheet"/>
+                <link href="i/css/web_manage_page_root/style2.css" type="text/css" rel="stylesheet"/>
                 <div id="base" class="">
                     <div id="u0" class="ax_horizontal_line">
                         <img id="u0_start" class="img " src="i/resources/images/transparent.gif" alt="u0_start"/>
@@ -210,7 +210,7 @@ var User_manage = React.createClass({
                                         <img id="u22_img" class="img " src="i/images/web_manage_page_root/u20.png"/>
 
                                         <div id="u23" class="text">
-                                            <p><span>手术助理-骨科</span></p>
+                                            <p><span>患者</span></p>
                                         </div>
                                     </div>
 
@@ -228,7 +228,7 @@ var User_manage = React.createClass({
                                         <img id="u26_img" class="img " src="i/images/web_manage_page_root/u20.png"/>
 
                                         <div id="u27" class="text">
-                                            <p><span>ZhangSan @FD.com</span></p>
+                                            <p><span>2016-3-8 23:15:00</span></p>
                                         </div>
                                     </div>
 
@@ -264,7 +264,7 @@ var User_manage = React.createClass({
                                         <img id="u34_img" class="img " src="i/images/web_manage_page_root/u32.png"/>
 
                                         <div id="u35" class="text">
-                                            <p><span>手术助理-骨科</span></p>
+                                            <p><span>患者</span></p>
                                         </div>
                                     </div>
 
@@ -304,20 +304,11 @@ var User_manage = React.createClass({
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <div id="u44" class="ax_horizontal_line">
-                                    <img id="u44_start" class="img " src="i/resources/images/transparent.gif" alt="u44_start"/>
-                                    <img id="u44_end" class="img " src="i/resources/images/transparent.gif" alt="u44_end"/>
-                                    <img id="u44_line" class="img " src="i/images/web_manage_page_root/u0_line.png" alt="u44_line"/>
-                                </div>
-
-
                                 <div id="u45" class="ax_h4">
                                     <img id="u45_img" class="img " src="i/resources/images/transparent.gif"/>
 
                                     <div id="u46" class="text">
-                                        <strong><span>所有成员</span></strong>
+                                        <strong><span>所有账户</span></strong>
                                     </div>
                                 </div>
 
@@ -328,126 +319,6 @@ var User_manage = React.createClass({
                                     <div id="u48" class="text">
                                         <p><span>首页 上一页 </span><span className="u211">1</span><span> 2 下一页 尾页</span></p>
                                     </div>
-                                </div>
-
-
-                                <div id="u49" class="ax_h4">
-                                    <img id="u49_img" class="img " src="i/resources/images/transparent.gif"/>
-
-                                    <div id="u50" class="text">
-                                        <strong><span>增加成员</span></strong>
-                                    </div>
-                                </div>
-
-
-                                <div id="u51" class="ax_paragraph">
-                                    <img id="u51_img" class="img " src="i/resources/images/transparent.gif"/>
-
-                                    <div id="u52" class="text">
-                                        <p><span>账号</span></p>
-                                    </div>
-                                </div>
-
-
-                                <div id="u53" class="ax_paragraph">
-                                    <img id="u53_img" class="img " src="i/resources/images/transparent.gif"/>
-
-                                    <div id="u54" class="text">
-                                        <p><span>密码</span></p>
-                                    </div>
-                                </div>
-
-
-                                <div id="u55" class="ax_paragraph">
-                                    <img id="u55_img" class="img " src="i/resources/images/transparent.gif"/>
-
-                                    <div id="u56" class="text">
-                                        <p><span>确认密码</span></p>
-                                    </div>
-                                </div>
-
-
-                                <div id="u57" class="ax_droplist">
-                                    <select id="u57_input">
-                                        <option selected value="手术助理-骨科">手术助理-骨科</option>
-                                        <option value="客服">客服</option>
-                                    </select>
-                                </div>
-
-
-                                <div id="u58" class="ax_paragraph">
-                                    <img id="u58_img" class="img " src="i/resources/images/transparent.gif"/>
-
-                                    <div id="u59" class="text">
-                                        <p><span>所属组</span></p>
-                                    </div>
-                                </div>
-
-
-                                <div id="u60" class="ax_text_field">
-                                    <input id="u60_input" type="text" value=""/>
-                                </div>
-
-
-                                <div id="u61" class="ax_text_field">
-                                    <input id="u61_input" type="text" value=""/>
-                                </div>
-
-
-                                <div id="u62" class="ax_text_field">
-                                    <input id="u62_input" type="text" value=""/>
-                                </div>
-
-
-                                <div id="u63" class="ax_paragraph">
-                                    <img id="u63_img" class="img " src="i/resources/images/transparent.gif"/>
-
-                                    <div id="u64" class="text">
-                                        <p><span>姓名</span></p>
-                                    </div>
-                                </div>
-
-
-                                <div id="u65" class="ax_paragraph">
-                                    <img id="u65_img" class="img " src="i/resources/images/transparent.gif"/>
-
-                                    <div id="u66" class="text">
-                                        <p><span>电话</span></p>
-                                    </div>
-                                </div>
-
-
-                                <div id="u67" class="ax_paragraph">
-                                    <img id="u67_img" class="img " src="i/resources/images/transparent.gif"/>
-
-                                    <div id="u68" class="text">
-                                        <p><span>电子邮件</span></p>
-                                    </div>
-                                </div>
-
-
-                                <div id="u69" class="ax_text_field">
-                                    <input id="u69_input" type="text" value=""/>
-                                </div>
-
-
-                                <div id="u70" class="ax_text_field">
-                                    <input id="u70_input" type="text" value=""/>
-                                </div>
-
-
-                                <div id="u71" class="ax_text_field">
-                                    <input id="u71_input" type="text" value=""/>
-                                </div>
-                                <div id="u72" class="ax_html_button">
-                                    <input id="u72_input" type="submit" value="重置"/>
-                                </div>
-                                <div id="u73" class="ax_html_button">
-                                    <input id="u73_input" type="submit" value="提交"/>
-                                </div>
-                                <div id="u209" class="ax_html_button">
-                                    <input id="u209_input"/>
-
                                 </div>
                             </div>
                         </div>
