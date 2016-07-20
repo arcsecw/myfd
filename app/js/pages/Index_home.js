@@ -9,14 +9,65 @@ import {
   Container,
 } from 'amazeui-react';
 import {Link } from 'react-router'
+import auth from '../components/auth'
 
 var Index_home = React.createClass({
   getInitialState() {
       return {
-          disctrict:''
+          disctrict:'',
+          fourdoc:[
+            {
+              reserveTime: 0,
+              title: "主任医师教授",
+              honor: "",
+              province: "北京",
+              hot: ".00",
+              excel: [ ],
+              hospital: "积水潭医院"
+              },
+          ],
+          forhospital:[
+             {
+                        agencydoctorid: 0,
+                        agencyprovince: "北京",
+                        agencydistrict: "朝阳区",
+                        agencyname: "北京市朝阳医院",
+                        excel: [ ],
+                        agencybed: 2,
+                        agencydiscount: "有优惠",
+                        agencyhot: "20.00",
+                        agencyyytime: 10,
+                        agencyclass: "三乙"
+                        },
+          ],
       };
   },
-
+  queryhos() {
+        auth.myact(
+          { 
+            to:'fourpagelist.do',
+            parms:[
+                    ]
+          },
+            (res)=>{
+                this.setState({forhospital:res})
+            });
+    },
+    querydoc() {
+        auth.myact(
+          { 
+            to:'fourdoctorlist.do',
+            parms:[
+                    ]
+          },
+            (res)=>{
+                this.setState({fourdoc:res})
+            });
+    },
+    componentWillMount() {
+      this.queryhos()
+      this.querydoc()
+    },
   mouseOver1() {  //关节右菜单
     document.getElementById("u184").style.visibility="visible";
   },
@@ -59,6 +110,41 @@ var Index_home = React.createClass({
     console.log(str);
   },
   render() {
+        var data =  this.state.forhospital
+        var line1 = {excel:[]}
+        if (data.length>=1){
+            line1 = data[0]
+        }
+        var line2 = {excel:[]}
+        if (data.length>=2){
+            line2 = data[1]
+        }
+        var line3 = {excel:[]}      
+       if (data.length>=3){
+            line3 = data[2]
+        }var line4 = {excel:[]}      
+       if (data.length>=4){
+            line4 = data[3]
+        }
+        var ddata =  this.state.fourdoc
+
+        var dline1 = {excel:[]}
+        if (ddata.length>=1){
+            dline1 = ddata[0]
+        }
+        var dline2 = {excel:[]}
+        if (ddata.length>=2){
+            dline2 = ddata[1]
+        }
+        var dline3 = {excel:[]}      
+       if (ddata.length>=3){
+            dline3 = ddata[2]
+        }
+        var dline4 = {excel:[]}      
+       if (ddata.length>=4){
+            dline4 = ddata[3]
+        }
+        console.log(ddata)
     return (
       <PageContainer>
         <script type="text/javascript">
@@ -104,14 +190,14 @@ var Index_home = React.createClass({
               <p><span>医生团队</span></p>
             </div>
           </div>
-
+<Link to = '/doctor_list'>
           <div id="u9" className="ax_paragraph">
             <img id="u9_img" className="img " src="i/resources/images/transparent.gif"/>
             <div id="u10" className="text">
               <p><span>&gt; </span><span>&gt; 更多</span></p>
             </div>
           </div>
-
+</Link>
           <div id="u11" className="ax_shape">
             <img id="u11_img" className="img " src="i/images/query_result/u55.png"/>
             <div id="u12" className="text">
@@ -125,7 +211,6 @@ var Index_home = React.createClass({
               <p><span>banner</span></p>
             </div>
           </div>
-
           <div id="u15" className="ax_shape">
             <img id="u15_img" className="img " src="i/images/user_check_operation_reservation_page/u23.png"/>
             <div id="u16" className="text">
@@ -371,7 +456,7 @@ var Index_home = React.createClass({
             <img id="u65_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u66" className="text">
-              <p><span>韩梅梅</span></p>
+              <p><span>{dline1.realname}</span></p>
             </div>
           </div>
 
@@ -380,11 +465,11 @@ var Index_home = React.createClass({
             <img id="u67_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u68" className="text">
-              <p><span>积水潭医院&nbsp; &nbsp; 主任医生</span></p>
+              <p><span>{dline1.hospital}&nbsp; &nbsp; {dline1.title}</span></p>
             </div>
           </div>
 
-
+<Link to={{pathname:'/user_reservation', query:dline1 }}>
           <div id="u69" className="ax_shape">
             <img id="u69_img" className="img " src="i/images/index_home/u69.png"/>
 
@@ -392,13 +477,13 @@ var Index_home = React.createClass({
               <p><span>立即预约</span></p>
             </div>
           </div>
-
+</Link>
 
           <div id="u71" className="ax_shape">
             <img id="u71_img" className="img " src="i/images/index_home/u71.png"/>
 
             <div id="u72" className="text">
-              <p><span>关节置换</span></p>
+              <p><span>{dline1.excel.length>0?dline1.excel[0]:''}</span></p>
             </div>
           </div>
 
@@ -407,7 +492,7 @@ var Index_home = React.createClass({
             <img id="u73_img" className="img " src="i/images/index_home/u73.png"/>
 
             <div id="u74" className="text">
-              <p><span>骨肿瘤</span></p>
+              <p><span>{dline1.excel.length>1?dline1.excel[1]:''}</span></p>
             </div>
           </div>
 
@@ -433,7 +518,7 @@ var Index_home = React.createClass({
             <img id="u79_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u80" className="text">
-              <p><span>李</span><span>梅梅</span></p>
+              <p><span>{dline2.realname}</span></p>
             </div>
           </div>
 
@@ -442,25 +527,25 @@ var Index_home = React.createClass({
             <img id="u81_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u82" className="text">
-              <p><span>积水潭医院&nbsp; &nbsp; 主任医生</span></p>
+              <p><span>{dline2.hospital}&nbsp; &nbsp; {dline2.title}</span></p>
             </div>
           </div>
 
-
+<Link to={{pathname:'/user_reservation', query:dline2 }}>
           <div id="u83" className="ax_shape">
             <img id="u83_img" className="img " src="i/images/index_home/u69.png"/>
 
             <div id="u84" className="text">
-              <p><button>立即预约</button></p>
+              <p>立即预约</p>
             </div>
           </div>
-
+</Link>
 
           <div id="u85" className="ax_shape">
             <img id="u85_img" className="img " src="i/images/index_home/u71.png"/>
 
             <div id="u86" className="text">
-              <p><span>关节炎</span></p>
+              <p><span>{dline2.excel.length>0?dline2.excel[0]:''}</span></p>
             </div>
           </div>
 
@@ -469,7 +554,7 @@ var Index_home = React.createClass({
             <img id="u87_img" className="img " src="i/images/index_home/u73.png"/>
 
             <div id="u88" className="text">
-              <p><span>关节损伤</span></p>
+              <p><span>{dline2.excel.length>1?dline2.excel[1]:''}</span></p>
             </div>
           </div>
 
@@ -495,7 +580,7 @@ var Index_home = React.createClass({
             <img id="u93_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u94" className="text">
-              <p><span>王</span><span>梅梅</span></p>
+              <p><span>{dline3.realname}</span></p>
             </div>
           </div>
 
@@ -504,10 +589,11 @@ var Index_home = React.createClass({
             <img id="u95_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u96" className="text">
-              <p><span>积水潭医院&nbsp; &nbsp; 主任医生</span></p>
+              <p><span>{dline3.hospital}&nbsp; &nbsp; {dline3.title}</span></p>
             </div>
           </div>
 
+<Link to={{pathname:'/user_reservation', query:dline3 }}>
 
           <div id="u97" className="ax_shape">
             <img id="u97_img" className="img " src="i/images/index_home/u69.png"/>
@@ -516,13 +602,13 @@ var Index_home = React.createClass({
               <p><span>立即预约</span></p>
             </div>
           </div>
-
+</Link>
 
           <div id="u99" className="ax_shape">
             <img id="u99_img" className="img " src="i/images/index_home/u71.png"/>
 
             <div id="u100" className="text">
-              <p><span>腰椎间盘</span></p>
+              <p><span>{dline3.excel.length>0?dline3.excel[0]:''}</span></p>
             </div>
           </div>
 
@@ -531,7 +617,7 @@ var Index_home = React.createClass({
             <img id="u101_img" className="img " src="i/images/index_home/u73.png"/>
 
             <div id="u102" className="text">
-              <p><span>脊椎骨折</span></p>
+              <p><span>{dline3.excel.length>1?dline3.excel[1]:''}</span></p>
             </div>
           </div>
 
@@ -557,7 +643,7 @@ var Index_home = React.createClass({
             <img id="u107_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u108" className="text">
-              <p><span>范</span><span>梅梅</span></p>
+              <p><span>{dline4.realname}</span></p>
             </div>
           </div>
 
@@ -566,10 +652,11 @@ var Index_home = React.createClass({
             <img id="u109_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u110" className="text">
-              <p><span>积水潭医院&nbsp; &nbsp; 主任医生</span></p>
+              <p><span>{dline4.hospital}&nbsp; &nbsp; {dline4.title}</span></p>
             </div>
           </div>
 
+<Link to={{pathname:'/user_reservation', query:dline4 }}>
 
           <div id="u111" className="ax_shape">
             <img id="u111_img" className="img " src="i/images/index_home/u69.png"/>
@@ -578,13 +665,13 @@ var Index_home = React.createClass({
               <p><span>立即预约</span></p>
             </div>
           </div>
-
+</Link>
 
           <div id="u113" className="ax_shape">
             <img id="u113_img" className="img " src="i/images/index_home/u71.png"/>
 
             <div id="u114" className="text">
-              <p><span>骨质增生</span></p>
+              <p><span>{dline4.excel.length>0?dline4.excel[0]:''}</span></p>
             </div>
           </div>
 
@@ -593,7 +680,7 @@ var Index_home = React.createClass({
             <img id="u115_img" className="img " src="i/images/index_home/u73.png"/>
 
             <div id="u116" className="text">
-              <p><span>腰疼</span></p>
+              <p><span>{dline4.excel.length>1?dline4.excel[1]:''}</span></p>
             </div>
           </div>
 
@@ -607,7 +694,7 @@ var Index_home = React.createClass({
             </div>          
           </div>
 
-
+<Link to = '/institution_list'>
           <div id="u119" className="ax_paragraph">
             <img id="u119_img" className="img " src="i/resources/images/transparent.gif"/>
 
@@ -615,7 +702,7 @@ var Index_home = React.createClass({
               <p><span>&gt; </span><span>&gt; 更多</span></p>
             </div>
           </div>
-
+</Link>
 
           <div id="u121" className="ax_shape">
             <img id="u121_img" className="img " src="i/images/index_home/u61.png"/>
@@ -630,7 +717,7 @@ var Index_home = React.createClass({
             <img id="u123_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u124" className="text">
-              <p><span>北京大学第三医院</span></p>
+              <p><span>{line1.agencyname}</span></p>
             </div>
           </div>
 
@@ -639,7 +726,7 @@ var Index_home = React.createClass({
             <img id="u125_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u126" className="text">
-              <p><span>三甲医院&nbsp; &nbsp; &nbsp; 北京</span></p>
+              <p><span>{line1.agencyclass}医院&nbsp; &nbsp; &nbsp; {line1.agencyprovince}</span></p>
             </div>
           </div>
 
@@ -648,7 +735,7 @@ var Index_home = React.createClass({
             <img id="u127_img" className="img " src="i/images/index_home/u71.png"/>
 
             <div id="u128" className="text">
-              <p><span>创伤骨科</span></p>
+              <p><span>{line1.excel.length>0?line1.excel[0]:''}</span></p>
             </div>
           </div>
 
@@ -657,7 +744,7 @@ var Index_home = React.createClass({
             <img id="u129_img" className="img " src="i/images/index_home/u73.png"/>
 
             <div id="u130" className="text">
-              <p><span>矫形骨科</span></p>
+              <p><span>{line1.excel.length>1?line1.excel[1]:''}</span></p>
             </div>
           </div>
 
@@ -683,7 +770,7 @@ var Index_home = React.createClass({
             <img id="u135_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u136" className="text">
-              <p><span>积水潭</span><span>医院</span></p>
+              <p><span>{line2.agencyname}</span></p>
             </div>
           </div>
 
@@ -692,7 +779,7 @@ var Index_home = React.createClass({
             <img id="u137_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u138" className="text">
-              <p><span>三甲医院&nbsp; &nbsp; &nbsp; 北京</span></p>
+              <p><span>{line2.agencyclass}医院&nbsp; &nbsp; &nbsp; {line2.agencyprovince}</span></p>
             </div>
           </div>
 
@@ -701,7 +788,7 @@ var Index_home = React.createClass({
             <img id="u139_img" className="img " src="i/images/index_home/u71.png"/>
 
             <div id="u140" className="text">
-              <p><span>脊椎外科</span></p>
+              <p><span>{line2.excel.length>0?line2.excel[0]:''}</span></p>
             </div>
           </div>
 
@@ -710,7 +797,7 @@ var Index_home = React.createClass({
             <img id="u141_img" className="img " src="i/images/index_home/u73.png"/>
 
             <div id="u142" className="text">
-              <p><span>创伤骨科</span></p>
+              <p><span>{line2.excel.length>1?line2.excel[1]:''}</span></p>
             </div>
           </div>
 
@@ -736,7 +823,7 @@ var Index_home = React.createClass({
             <img id="u147_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u148" className="text">
-              <p><span>北京大学第三医院</span></p>
+              <p><span>{line3.agencyname}</span></p>
             </div>
           </div>
 
@@ -745,7 +832,7 @@ var Index_home = React.createClass({
             <img id="u149_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u150" className="text">
-              <p><span>三甲医院&nbsp; &nbsp; &nbsp; 北京</span></p>
+              <p><span>{line3.agencyclass}医院&nbsp; &nbsp; &nbsp; {line3.agencyprovince}</span></p>
             </div>
           </div>
 
@@ -754,7 +841,7 @@ var Index_home = React.createClass({
             <img id="u151_img" className="img " src="i/images/index_home/u71.png"/>
 
             <div id="u152" className="text">
-              <p><span>矫形骨科</span></p>
+              <p><span>{line3.excel.length>0?line3.excel[0]:''}</span></p>
             </div>
           </div>
 
@@ -763,7 +850,7 @@ var Index_home = React.createClass({
             <img id="u153_img" className="img " src="i/images/index_home/u73.png"/>
 
             <div id="u154" className="text">
-              <p><span>儿童骨科</span></p>
+              <p><span>{line3.excel.length>1?line3.excel[1]:''}</span></p>
             </div>
           </div>
 
@@ -789,7 +876,7 @@ var Index_home = React.createClass({
             <img id="u159_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u160" className="text">
-              <p><span>北京大学第三医院</span></p>
+              <p><span>{line4.agencyname}</span></p>
             </div>
           </div>
 
@@ -798,7 +885,7 @@ var Index_home = React.createClass({
             <img id="u161_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u162" className="text">
-              <p><span>三甲医院&nbsp; &nbsp; &nbsp; 北京</span></p>
+              <p><span>{line4.agencyclass}医院&nbsp; &nbsp; &nbsp; {line4.agencyprovince}</span></p>
             </div>
           </div>
 
@@ -807,7 +894,7 @@ var Index_home = React.createClass({
             <img id="u163_img" className="img " src="i/images/index_home/u71.png"/>
 
             <div id="u164" className="text">
-              <p><span>关节骨科</span></p>
+              <p><span>{line4.excel.length>0?line4.excel[0]:''}</span></p>
             </div>
           </div>
 
@@ -816,7 +903,7 @@ var Index_home = React.createClass({
             <img id="u165_img" className="img " src="i/images/index_home/u73.png"/>
 
             <div id="u166" className="text">
-              <p><span>创伤骨科</span></p>
+              <p><span>{line4.excel.length>1?line4.excel[1]:''}</span></p>
             </div>
           </div>
 
