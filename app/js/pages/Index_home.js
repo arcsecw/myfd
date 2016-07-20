@@ -8,10 +8,10 @@ import {
   Button,
   Container,
 } from 'amazeui-react';
-import {Link } from 'react-router'
 import auth from '../components/auth'
+import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
 
-var Index_home = React.createClass({
+var Index_home = withRouter(React.createClass({
   getInitialState() {
       return {
           disctrict:'',
@@ -176,10 +176,14 @@ var Index_home = React.createClass({
           </div>
 
           <div id="u5" className="ax_text_field">
-            <input id="u5_input" type="text"  />
+            <input id="u5_input" type="text" ref = 'des' />
           </div>
 
-          <div id="u6" className="ax_html_button" data-label="搜索">
+          <div id="u6" className="ax_html_button" data-label="搜索" onClick = {
+            ()=>{
+                this.props.router.replace({ pathname: '/query_result', query:{query:this.refs.des.value}})
+            }
+          }>
             <input id="u6_input" type="submit" value="搜索"/>
           </div>
 
@@ -1178,6 +1182,6 @@ var Index_home = React.createClass({
       </PageContainer>
     );
   }
-});
+}));
 //地点选择下拉列表
 export default Index_home;

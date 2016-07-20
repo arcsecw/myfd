@@ -1,9 +1,9 @@
 import React from 'react';
 import PageContainer from '../components/PageContainer';
 import auth from '../components/auth'
-import {Link } from 'react-router'
+import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
 
-var Query_result = React.createClass({
+var Query_result = withRouter (React.createClass({
         getInitialState() {
             return {
                 dataSource: [
@@ -44,8 +44,7 @@ var Query_result = React.createClass({
                 search_inOrder:'1',//or人气 or 预约时间,
                 nowpage :1,
                 totalpage:2,
-
-                
+                des:'',
             };
         },
         query(page){
@@ -56,7 +55,7 @@ var Query_result = React.createClass({
                {'key':'role','value':this.state.type},
                {'key':'province','value':this.state.place},
                {'key':'paixu','value':this.state.search_inOrder},
-               {'key':'disease','value':this.refs.desces.value},
+               {'key':'disease','value':this.state.des},
                 ]
             },
             (res)=>{
@@ -82,7 +81,10 @@ var Query_result = React.createClass({
             }     
         },
         componentDidMount() {
-            this.query(1)
+            if(this.props.location.query.query!=undefined){
+                this.state.des = this.props.location.query.query
+            }
+            this.query(1)    
         },
         updateDataSource(data) {
             this.setState({
@@ -93,6 +95,7 @@ var Query_result = React.createClass({
 
 
     render() {
+
         var page =''
         var line1 = {excel:[]}
         var data =  this.state.dataSource
@@ -129,7 +132,7 @@ var Query_result = React.createClass({
                         <img id="u2_img" className="img " src="i/resources/images/transparent.gif"/>
                         
                         <div id="u3" className="text">
-                            <p><span>全部</span><span>结果</span><span> &gt; ” 髌骨 “</span><span>&nbsp; (15) </span></p>
+                            <p><span>全部</span><span>结果</span><span> &gt; {this.state.des}</span><span>&nbsp;  </span></p>
                         </div>
                     </div>
                     
@@ -446,7 +449,7 @@ var Query_result = React.createClass({
 
                     
                     <div id="u54" className="ax_text_field">
-                        <input id="u54_input" type="text" ref="desces"   />
+                        <input id="u54_input" type="text" ref="desces" defaultValue = {this.state.des}  />
                     </div>
 
                     
@@ -484,16 +487,17 @@ var Query_result = React.createClass({
                             <p><a id="u63" className="link" data-label="CusUserName"><span className="u126">登录</span></a><span className="u127">&nbsp; |</span><span className="u128">&nbsp; 手机APP</span><span className="u127">&nbsp; |</span><span className="u128">&nbsp; 客户服务&nbsp; </span><span className="u127">|</span><span className="u128">&nbsp; 网站导航</span></p>
                         </div>
                     </div>
-
-                    
-                    <div id="u64" className="ax_shape" onClick = {()=>{this.query(1)}}>
+                 
+                    <div id="u64" className="ax_shape" onClick = {()=>{
+                            this.state.des = this.refs.desces.value!=undefined?this.refs.desces.value:''
+                            this.query(1)
+                    }}>
                         <img id="u64_img" className="img " src="i/images/query_result/u64.png"/>
                         
                         <div id="u65" className="text">
                             <p><span>搜索</span></p>
                         </div>
                     </div>
-
                     
                     <div id="u66" className="ax_horizontal_line">
                         <img id="u66_start" className="img " src="i/resources/images/transparent.gif" alt="u66_start"/>
@@ -755,5 +759,5 @@ var Query_result = React.createClass({
 
         );
     }
-});
+}));
 export default Query_result;
