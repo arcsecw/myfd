@@ -20,3 +20,4 @@ export User_manage from './User_manage';
 export Price_manage from './Price_manage';
 export Account_manage from './Account_manage';
 export Price_manage from './Price_manage';
+export User_index from './User_index';

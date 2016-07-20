@@ -32,7 +32,7 @@ const navs = [
     icon: 'info'
   },
   {
-    id:'user_home',
+    id:'user_index',
     title:'用户首页',
     icon:'phone'
   },
