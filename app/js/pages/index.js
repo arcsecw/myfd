@@ -15,7 +15,6 @@ export Doctor_list from './Doctor_list';
 export Institution_list from './Institution_list';
 export Query_result from './Query_result';
 export System_manage from './System_manage';
-export User_home from './User_home';
 export User_manage from './User_manage';
 export Price_manage from './Price_manage';
 export Account_manage from './Account_manage';
