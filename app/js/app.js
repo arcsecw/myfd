@@ -44,6 +44,7 @@ import {
   User_manage,
   Price_manage,
   Account_manage,
+  User_index,
 
 } from './pages';
 
@@ -69,6 +70,7 @@ const pages = {
   user_manage: User_manage,
   price_manage: Price_manage,
   account_manage: Account_manage,
+  user_index:User_index,
 
 };
 
