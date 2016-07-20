@@ -9,38 +9,21 @@ var Doctor_list = React.createClass({
         return {
             dataSource: [
               {
-              "reserveTime":2,
-              "title":"主任医师教授 ",
-              "honor":"XX",
-              "province":"北京",
-              "hot":"9.10",
-              "excel":" XXXX， XXXX， XXXX髌骨",
-              "realname":"郑国伟",
-              "reservePlace":"北京",
-              "hospital":"积水潭医院1",
-              "discount":"???"},
+              agencydoctorid: 0,
+              agencyprovince: "北京",
+              agencyname: "北京市第三医院1",
+              excel: [
+              "股骨头坏死",
+              "踝关节骨性关节炎",
+              "颈椎骨折伴或不伴脱位，颈髓损伤"
+              ],
+              agencybed: 0,
+              agencyhot: 0
+              },
               {
-              "reserveTime":3,
-              "title":"主任医师教授团队",
-              "honor":"XXX",
-              "province":"北京",
-              "hot":"9.20",
-              "excel":" XXXX， XXXX， 关节置换",
-              "realname":"郑国伟",
-              "reservePlace":"北京",
-              "hospital":"积水潭医院2",
-              "discount":"???"},
+              },
               {
-              "reserveTime":4,
-              "title":"主任医师教授  ",
-              "honor":"XXXX XXXXX",
-              "province":"北京",
-              "hot":"9.30",
-              "excel":" 脊椎， XXXX，",
-              "realname":"郑国伟",
-              "reservePlace":"北京",
-              "hospital":"积水潭医院3",
-              "discount":"???"}
+              }
 
             ],
             leixing:'0',//or 专家团队 or 医疗机构
@@ -62,9 +45,9 @@ var Doctor_list = React.createClass({
           parms:[
                {'key':'page','value':page},
                {'key':'role','value':this.state.leixing},
-               //{'key':'province','value':''},
+               {'key':'province','value':this.state.didian},
                {'key':'paixu','value':this.state.search_paixu},
-              {'key':'disease','value':this.refs.desces.value},
+               {'key':'disease','value':this.refs.desces.value},
             ]
           },
           (res)=>{
@@ -289,7 +272,7 @@ var Doctor_list = React.createClass({
             <img id="u33_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u34" className="text">
-              <p className="u130"><span className="u131"></span><span className="u131"> {line1.realname+line1.title}</span><span className="u132">&nbsp; </span><span className="u132">&nbsp; &nbsp; &nbsp; &nbsp; </span><span className="u132">&nbsp; </span><span className="u134">人气指数 {line1.hot}</span></p><p className="u133"><span className="u132">擅长治疗: XXXX， XXXX， XXXX髌骨</span></p><p className="u133"><span className="u134">可预约地点: {line1.province}</span></p><p className="u135"><span className="u134">最快手术时间: {line1.reserveTime}</span><span className="u141">&nbsp; </span></p>
+              <p className="u130"><span className="u131"></span><span className="u131"> {line1.agencyname}</span><span className="u132">&nbsp; </span><span className="u132">&nbsp; &nbsp; &nbsp; &nbsp; </span><span className="u132">&nbsp; </span><span className="u134">人气指数 {line1.agencyhot}</span></p><p className="u133"><span className="u132">擅长治疗:{line1.excel.join(',')}</span></p><p className="u133"><span className="u134">可预约地点: {line1.province}</span></p><p className="u135"><span className="u134"></span><span className="u141">&nbsp; </span></p>
             </div>
           </div>
 
@@ -298,7 +281,7 @@ var Doctor_list = React.createClass({
             <img id="u35_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u36" className="text">
-              <p><span className="u140">第一</span><span className="u140">执业点： {line1.hospital}</span></p><p><span className="u142">荣誉：{line1.honor}</span></p><p><span className="u140">&nbsp; </span></p>
+              <p><span className="u140"></span><span className="u140"></span></p><p><span className="u142"></span></p><p><span className="u140">&nbsp; </span></p>
             </div>
           </div>
 
