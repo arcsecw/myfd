@@ -17,51 +17,16 @@ import {
 } from 'amazeui-react';
 var User_manage = React.createClass({
     getInitialState() {
-        return {
-            dataSource: [
-                    {
-                    agencydoctorid: "无",
-                    agencyprovince: "无",
-                    agencydistrict: "无",
-                    agencyname: "无",
-                    agencybed: "无",
-                    agencydiscount: "无",
-                    agencyhot: "无",
-                    agencyyytime: "无",
-                    agencyclass: "无"
-                    },
-                     {
-                    agencydoctorid: "无",
-                    agencyprovince: "无",
-                    agencydistrict: "无",
-                    agencyname: "无",
-                    agencybed: "无",
-                    agencydiscount: "无",
-                    agencyhot: "无",
-                    agencyyytime: "无",
-                    agencyclass: "无"
-                    }
-                   , 
-                    {
-                    agencydoctorid: "无",
-                    agencyprovince: "无",
-                    agencydistrict: "无",
-                    agencyname: "无",
-                    agencybed: "无",
-                    agencydiscount: "无",
-                    agencyhot: "无",
-                    agencyyytime: "无",
-                    agencyclass: "无"
-                    }               
-            ],
-            nowpage :1,
-            totalpage:2, 
-            now:'',//仪表盘，管理账号，用户管理，价格管理，网站配置         
+         return {
+            dataSource: {re:[{"user_name":"ffff","user_role":"iii","user_mobile":"111","user_last_login":"qqq","state":"0"}],totalpage:1},
+            nowpage:'1',
+            totalpage:'1',
         };
     },
-    query(page){
+    query(page = this.state.nowpage){
+        var to = "http://localhost:8080/myfd/manager/userlist.do"
         auth.myact(
-          {to:'manager/pricelist.do',
+          {to:'manager/userlist.do',
            parms:[{'key':'page','value':page}]
           },
           (res)=>{
@@ -89,22 +54,83 @@ var User_manage = React.createClass({
     } 
         
     },
+    deletelist(id){
+        var to="http://localhost:8080/myfd/manager/deleteuser.do"
+        auth.myact(
+          {to:'manager/deleteuser.do',
+           parms:[{'key':'id','value':id}]
+          },
+          (res)=>{
+                console.log(res)
+                });
+            this.query()
+    }
+    ,
+    disable(id){
+        console.log(id)
+        var to="http://localhost:8080/myfd/manager/disableuser.do"
+        auth.myact(
+          {to:'manager/disableuser.do',
+           parms:[{'key':'id','value':id}]
+          },
+          (res)=>{
+                console.log(res)
+                });
+            this.query()
+    }
+    ,
     componentDidMount() {
         this.query(1)
     },
     updateDataSource(data) {
         this.setState({
             dataSource: data,
+            totalpage:data.totalpage,
         })
         console.log(data)
         
     },
-   
-    kaifazhong (str){ 
+   judege(intState){
+        var state="";
+        if(intState==0){
+            state="禁用";
+        }else if(intState==1){
+            state="启用";      
+        }else{
+            state="";
+        }
+        return state;
+    },
+    kaifazhong (str){
         console.log(str)    
     },
-    
+    change(id){
+      console.log(id)
+      auth.myact({to:'/manager/changeuser.do',
+               parms:[
+                {'key':'id','value':id},
+               {key:'name',value:this.refs.un.value}, 
+               {key:'mobile',value:this.refs.ug.value}, 
+               {key:'role',value:this.refs.um.value}, 
+               {key:'time',value:this.refs.uma.value}, 
+               {key:'state',value:this.refs.ps.value}, 
+               ]
+                },(res)=>{
+                    Console.log(username)
+                });
+                this.query()
+  }
+  ,
     render() {
+        var data = this.state.dataSource
+         console.log(data)
+            var person = data.re[0]
+            var person2 = ''
+            
+            if (data.re.length >=2)
+            {
+                var person2 = data.re[1]
+            }
         return (
             <PageContainer>
                 <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
@@ -199,111 +225,89 @@ var User_manage = React.createClass({
                                             <p><span>操作</span></p>
                                         </div>
                                     </div>
-                                    <div id="u20" class="ax_table_cell">
-                                        <img id="u20_img" class="img " src="i/images/web_manage_page_root/u20.png"/>
 
-                                        <div id="u21" class="text">
-                                            <p><span>张三</span></p>
-                                        </div>
-                                    </div>
-                                    <div id="u22" class="ax_table_cell">
-                                        <img id="u22_img" class="img " src="i/images/web_manage_page_root/u20.png"/>
+                                    <div id="u20" className="ax_table_cell">
 
-                                        <div id="u23" class="text">
-                                            <p><span>患者</span></p>
-                                        </div>
+                                        <input id="input1" type="text" ref="un" placeholder={person.user_name} />
                                     </div>
 
 
-                                    <div id="u24" class="ax_table_cell">
-                                        <img id="u24_img" class="img " src="i/images/web_manage_page_root/u20.png"/>
 
-                                        <div id="u25" class="text">
-                                            <p><span>13912345678</span></p>
-                                        </div>
+                                    <div id="u22" className="ax_table_cell">
+                                        
+                                        <input id="input2" type="text" ref="ur" placeholder={person.user_role} />
                                     </div>
 
 
-                                    <div id="u26" class="ax_table_cell">
-                                        <img id="u26_img" class="img " src="i/images/web_manage_page_root/u20.png"/>
-
-                                        <div id="u27" class="text">
-                                            <p><span>2016-3-8 23:15:00</span></p>
-                                        </div>
+                                    <div id="u24" className="ax_table_cell">
+                                        
+                                        <input id="input3" type="text" ref="um" placeholder={person.user_mobile} />
                                     </div>
 
 
-                                    <div id="u28" class="ax_table_cell">
-                                        <img id="u28_img" class="img " src="i/images/web_manage_page_root/u20.png"/>
-
-                                        <div id="u29" class="text">
-                                            <p><span>启用</span></p>
-                                        </div>
+                                    <div id="u26" className="ax_table_cell">
+                                        
+                                        <input id="input4" type="text" ref="uma" placeholder={person.user_last_login} />
                                     </div>
 
 
-                                    <div id="u30" class="ax_table_cell">
-                                        <img id="u30_img" class="img " src="i/images/web_manage_page_root/u30.png"/>
+                                    <div id="u28" className="ax_table_cell">
+                                        
+                                         <input id="input5" type="text" ref="ps" placeholder={this.judege(person.state)} />
+                                    </div>
 
-                                        <div id="u31" class="text">
-                                            <p><span>删除/禁用/修改</span></p>
+
+                                    <div id="u30" className="ax_table_cell">
+                                        <img id="u30_img" className="img " src="i/images/web_manage_page_root/u30.png"/>
+
+                                        <div id="u31" className="text">
+                                            <p><span>{person.user_name!=undefined? <p><a onClick={this.deletelist.bind(this,person.id)}>删除</a>/<a onClick={this.disable.bind(this,person.id)}>禁用</a>/<a onClick={this.change.bind(this,person.id)}>修改</a></p>:''}</span></p>
                                         </div>
                                     </div>
 
 
-                                    <div id="u32" class="ax_table_cell">
-                                        <img id="u32_img" class="img " src="i/images/web_manage_page_root/u32.png"/>
+                                    
+                                    <div id="u32" className="ax_table_cell">
 
-                                        <div id="u33" class="text">
-                                            <p><span>李四</span></p>
-                                        </div>
+                                        <input id="input6" type="text" ref="un" placeholder={person2.user_name} />
                                     </div>
 
 
-                                    <div id="u34" class="ax_table_cell">
-                                        <img id="u34_img" class="img " src="i/images/web_manage_page_root/u32.png"/>
 
-                                        <div id="u35" class="text">
-                                            <p><span>患者</span></p>
-                                        </div>
+                                    <div id="u34" className="ax_table_cell">
+                                        
+                                        <input id="input7" type="text" ref="ug" placeholder={person2.user_role} />
                                     </div>
 
 
-                                    <div id="u36" class="ax_table_cell">
-                                        <img id="u36_img" class="img " src="i/images/web_manage_page_root/u32.png"/>
-
-                                        <div id="u37" class="text">
-                                            <p><span>18812345678</span></p>
-                                        </div>
+                                    <div id="u36" className="ax_table_cell">
+                                        
+                                        <input id="input8" type="text" ref="um" placeholder={person2.user_mobile} />
                                     </div>
 
 
-                                    <div id="u38" class="ax_table_cell">
-                                        <img id="u38_img" class="img " src="i/images/web_manage_page_root/u32.png"/>
-
-                                        <div id="u39" class="text">
-                                            <p><span></span></p>
-                                        </div>
+                                    <div id="u38" className="ax_table_cell">
+                                        
+                                        <input id="input9" type="text" ref="uma" placeholder={person2.user_last_login} />
                                     </div>
 
 
-                                    <div id="u40" class="ax_table_cell">
-                                        <img id="u40_img" class="img " src="i/images/web_manage_page_root/u32.png"/>
-
-                                        <div id="u41" class="text">
-                                            <p><span>启用</span></p>
-                                        </div>
+                                    <div id="u40" className="ax_table_cell">
+                                        
+                                         <input id="input10" type="text" ref="ps" placeholder={this.judege(person2.state)} />
                                     </div>
 
 
-                                    <div id="u42" class="ax_table_cell">
-                                        <img id="u42_img" class="img " src="i/images/web_manage_page_root/u42.png"/>
+                                    <div id="u42" className="ax_table_cell">
+                                        <img id="u42_img" className="img " src="i/images/web_manage_page_root/u42.png"/>
 
-                                        <div id="u43" class="text">
-                                            <p><span>删除/禁用/修改</span></p>
+                                        <div id="u43" className="text">
+                                            <p><span>{person2.user_name!=undefined? <p><a onClick={this.deletelist.bind(this,person2.id)}>删除</a>/<a onClick={this.disable.bind(this,person2.id)}>禁用</a>/<a onClick={this.change.bind(this,person2.id)}>修改</a></p>:''}</span></p>
                                         </div>
                                     </div>
                                 </div>
+                                    
+                            
                                 <div id="u45" class="ax_h4">
                                     <img id="u45_img" class="img " src="i/resources/images/transparent.gif"/>
 
@@ -317,7 +321,8 @@ var User_manage = React.createClass({
                                     <img id="u47_img" class="img " src="i/resources/images/transparent.gif"/>
 
                                     <div id="u48" class="text">
-                                        <p><span>首页 上一页 </span><span className="u211">1</span><span> 2 下一页 尾页</span></p>
+                                         <p onClick = {this.querybefore} ><span>上一页</span></p>
+                                        <p onClick = {this.querynext}><span>下一页</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -416,5 +421,5 @@ var User_manage = React.createClass({
 
                 );
                 }
-})
+});
 export default User_manage;

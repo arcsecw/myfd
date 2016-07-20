@@ -14,7 +14,7 @@ var ManageRoot = React.createClass({
         };
     },
     query(page = this.state.nowpage){
-        var to = "http://123.56.133.208:8080/myfd/manager/accountlist.do"
+        var to = "http://localhost:8080/myfd/manager/accountlist.do"
         auth.myact(
           {to:'manager/accountlist.do',
            parms:[{'key':'page','value':page}]
@@ -46,7 +46,7 @@ var ManageRoot = React.createClass({
     }
     ,
     deletelist(id){
-        var to="http://123.56.133.208:8080/myfd/manager/deleteaccount.do"
+        var to="http://localhost:8080/myfd/manager/deleteaccount.do"
         auth.myact(
           {to:'manager/deleteaccount.do',
            parms:[{'key':'id','value':id}]
@@ -59,7 +59,7 @@ var ManageRoot = React.createClass({
     ,
     disable(id){
         console.log(id)
-        var to="http://123.56.133.208:8080/myfd/manager/disableaccount.do"
+        var to="http://localhost:8080/myfd/manager/disableaccount.do"
         auth.myact(
           {to:'manager/disableaccount.do',
            parms:[{'key':'id','value':id}]
@@ -78,17 +78,51 @@ var ManageRoot = React.createClass({
             dataSource: data,
             totalpage:data.totalpage,
         })
-        
+        console.log(data)
     },
-    judege(state1){
-        var he="";
-        if(state1==0||state1==undefined){
-            he="禁用";
+    judege(intState){
+        var state="";
+        if(intState==0){
+            state="禁用";
+        }else if(intState==1){
+            state="启用";      
         }else{
-            he="启用";
+            state="";
         }
-        return he;
+        return state;
     },
+    handleSubmit:function(e){
+    auth.myact({to:'/manager/insertaccount.do',
+               parms:[
+               {key:'username',value:this.refs.username.value}, 
+               {key:'password',value:this.refs.password.value}, 
+               {key:'realname',value:this.refs.realname.value}, 
+               {key:'mobile',value:this.refs.mobile.value}, 
+               {key:'mail',value:this.refs.mail.value}, 
+               {key:'usergroup',value:this.refs.usergroup.value},
+               ]
+                },(res)=>{
+                    Console.log(usergroup)
+                        
+                })
+  },
+  change(id){
+      console.log(id)
+      auth.myact({to:'/manager/changeaccount.do',
+               parms:[
+               {'key':'id','value':id},
+               {key:'username',value:this.refs.un.value}, 
+               {key:'usergroup',value:this.refs.ug.value}, 
+               {key:'mobile',value:this.refs.um.value}, 
+               {key:'mail',value:this.refs.uma.value}, 
+               {key:'state',value:this.refs.ps.value}, 
+               ]
+                },(res)=>{
+                    Console.log(username)
+                });
+                this.query()
+  }
+  ,
     render() {
             var data = this.state.dataSource
             var person = data.re[0]
@@ -200,47 +234,33 @@ var ManageRoot = React.createClass({
 
 
                                     <div id="u20" className="ax_table_cell">
-                                        <img id="u20_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
 
-                                        <div id="u21" className="text">
-                                            <p><span>{person.user_name}</span></p>
-                                        </div>
+                                        <input id="input1" type="text" ref="un" placeholder={person.user_name} />
                                     </div>
 
 
-                                    <div id="u22" className="ax_table_cell">
-                                        <img id="u22_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
 
-                                        <div id="u23" className="text">
-                                            <p><span>{person.user_group}</span></p>
-                                        </div>
+                                    <div id="u22" className="ax_table_cell">
+                                        
+                                        <input id="input2" type="text" ref="ug" placeholder={person.user_group} />
                                     </div>
 
 
                                     <div id="u24" className="ax_table_cell">
-                                        <img id="u24_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
-
-                                        <div id="u25" className="text">
-                                            <p><span>{person.user_mobile}</span></p>
-                                        </div>
+                                        
+                                        <input id="input3" type="text" ref="um" placeholder={person.user_mobile} />
                                     </div>
 
 
                                     <div id="u26" className="ax_table_cell">
-                                        <img id="u26_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
-
-                                        <div id="u27" className="text">
-                                            <p><span>{person.user_mail}</span></p>
-                                        </div>
+                                        
+                                        <input id="input4" type="text" ref="uma" placeholder={person.user_mail} />
                                     </div>
 
 
                                     <div id="u28" className="ax_table_cell">
-                                        <img id="u28_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
-
-                                        <div id="u29" className="text">
-                                            <p><span>{this.judege(person.state)}</span></p>
-                                        </div>
+                                        
+                                         <input id="input5" type="text" ref="ps" placeholder={this.judege(person.state)} />
                                     </div>
 
 
@@ -248,53 +268,40 @@ var ManageRoot = React.createClass({
                                         <img id="u30_img" className="img " src="i/images/web_manage_page_root/u30.png"/>
 
                                         <div id="u31" className="text">
-                                            <p><span>{person.user_name!=undefined? <p><a onClick={this.deletelist.bind(this,person.user_id)}>删除</a>/<a onClick={this.disable.bind(this,person.user_id)}>禁用</a>/<a >修改</a></p>:''}</span></p>
+                                            <p><span>{person.user_name!=undefined? <p><a onClick={this.deletelist.bind(this,person.user_id)}>删除</a>/<a onClick={this.disable.bind(this,person.user_id)}>禁用</a>/<a onClick={this.change.bind(this,person.user_id)}>修改</a></p>:''}</span></p>
                                         </div>
                                     </div>
 
 
+                                    
                                     <div id="u32" className="ax_table_cell">
-                                        <img id="u32_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
 
-                                        <div id="u33" className="text">
-                                            <p><span>{person2.user_name}</span></p>
-                                        </div>
+                                        <input id="input6" type="text" ref="un" placeholder={person2.user_name} />
                                     </div>
+
 
 
                                     <div id="u34" className="ax_table_cell">
-                                        <img id="u34_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
-
-                                        <div id="u35" className="text">
-                                            <p><span>{person2.user_group}</span></p>
-                                        </div>
+                                        
+                                        <input id="input7" type="text" ref="ug" placeholder={person2.user_group} />
                                     </div>
 
 
                                     <div id="u36" className="ax_table_cell">
-                                        <img id="u36_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
-
-                                        <div id="u37" className="text">
-                                            <p><span>{person2.user_mobile}</span></p>
-                                        </div>
+                                        
+                                        <input id="input8" type="text" ref="um" placeholder={person2.user_mobile} />
                                     </div>
 
 
                                     <div id="u38" className="ax_table_cell">
-                                        <img id="u38_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
-
-                                        <div id="u39" className="text">
-                                            <p><span>{person2.user_mail}</span></p>
-                                        </div>
+                                        
+                                        <input id="input9" type="text" ref="uma" placeholder={person2.user_mail} />
                                     </div>
 
 
                                     <div id="u40" className="ax_table_cell">
-                                        <img id="u40_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
-
-                                        <div id="u41" className="text">
-                                            <p><span>{this.judege(person2.state)}</span></p>
-                                        </div>
+                                        
+                                         <input id="input10" type="text" ref="ps" placeholder={this.judege(person2.state)} />
                                     </div>
 
 
@@ -302,7 +309,7 @@ var ManageRoot = React.createClass({
                                         <img id="u42_img" className="img " src="i/images/web_manage_page_root/u42.png"/>
 
                                         <div id="u43" className="text">
-                                            <p><span>{person2.user_name!=undefined? <p><a onClick={this.deletelist.bind(this,person2.user_id)}>删除</a>/<a onClick={this.disable.bind(this,person2.user_id)}>禁用</a>/<a >修改</a></p>:''}</span></p>
+                                            <p><span>{person2.user_name!=undefined? <p><a onClick={this.deletelist.bind(this,person2.user_id)}>删除</a>/<a onClick={this.disable.bind(this,person2.user_id)}>禁用</a>/<a onClick={this.change.bind(this,person2.user_id)}>修改</a></p>:''}</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -371,7 +378,7 @@ var ManageRoot = React.createClass({
 
 
                                 <div id="u57" className="ax_droplist">
-                                    <select id="u57_input">
+                                    <select id="u57_input" ref="usergroup">
                                         <option selected value="手术助理-骨科">手术助理-骨科</option>
                                         <option value="客服">客服</option>
                                     </select>
@@ -388,17 +395,17 @@ var ManageRoot = React.createClass({
 
 
                                 <div id="u60" className="ax_text_field">
-                                    <input id="u60_input" type="text"  />
+                                    <input id="u60_input" ref="username" type="text"  />
                                 </div>
 
 
                                 <div id="u61" className="ax_text_field">
-                                    <input id="u61_input" type="text"  />
+                                    <input id="u61_input" ref="password" type="text"  />
                                 </div>
 
 
                                 <div id="u62" className="ax_text_field">
-                                    <input id="u62_input" type="text"  />
+                                    <input id="u62_input" ref="password" type="text"  />
                                 </div>
 
 
@@ -430,17 +437,17 @@ var ManageRoot = React.createClass({
 
 
                                 <div id="u69" className="ax_text_field">
-                                    <input id="u69_input" type="text"  />
+                                    <input id="u69_input" ref="realname" type="text"  />
                                 </div>
 
 
                                 <div id="u70" className="ax_text_field">
-                                    <input id="u70_input" type="text"  />
+                                    <input id="u70_input" ref="mobile" type="text"  />
                                 </div>
 
 
                                 <div id="u71" className="ax_text_field">
-                                    <input id="u71_input" type="text"  />
+                                    <input id="u71_input" ref="mail" type="text"  />
                                 </div>
 
 
@@ -450,7 +457,7 @@ var ManageRoot = React.createClass({
 
 
                                 <div id="u73" className="ax_html_button">
-                                    <input id="u73_input" type="submit" value="提交"/>
+                                    <p onClick={this.handleSubmit}><input id="u73_input" type="submit" value="提交"/></p>
                                     <p id="u210" class="ax_html_button">
                                     <input />
                                 </p>
