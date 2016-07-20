@@ -8,41 +8,37 @@ var Query_result = React.createClass({
             return {
                 dataSource: [
                         {
-                        Name: "郑国伟", //名字
-                        InstitutionType: "主任",  //主任 or 主任团队 or 医院
-                        Hot: "5.0", //人气指数
-                        SkilledIn: "脑残", //擅长治疗
-                        AvaliableDisctict: "北京", //可预约地点
-                        AvaliableTime: "2", //最快手术时间
-                        Staff: "第一执业点：郑国伟医院",  //第一执业点 or 团队
-                        Honor: "XXXXX", //荣誉
-                        Discount: "预约手续费限时8折"   //优惠
+                        agencydoctorid: 0,
+                        agencyprovince: "北京",
+                        agencyname: "北京市第三医院3",
+                        excel: [
+                        "股骨头坏死"
+                        ],
+                        agencybed: 0,
+                        agencyhot: 0
                         },
                         {
-                        Name: "郑国伟2号",
-                        InstitutionType: "主任团队",
-                        Hot: "10",
-                        SkilledIn: "神经病",
-                        AvaliableDisctict: "北京不限地区",
-                        AvaliableTime: "5",
-                        Staff: "团队拥有顶级麻醉师，护士",
-                        Honor: "XXXXX",
-                        Discount: "赠合作医院复诊挂号费"
-                        },    
-                        {
-                        Name: "XXX",
-                        InstitutionType: "医院",
-                        Hot: "9",
-                        SkilledIn: "XXX",
-                        AvaliableDisctict: "北京玄武区",
-                        AvaliableTime: "15",
-                        Staff: " ",
-                        Honor: "XXXXX",
-                        Discount: "单间8折，免费加陪护床"
-                        },         
+                        agencydoctorid: 0,
+                        agencyprovince: "北京",
+                        agencyname: "北京市第三医院3",
+                        excel: [
+                        "股骨头坏死"
+                        ],
+                        agencybed: 0,
+                        agencyhot: 0
+                        },{
+                        agencydoctorid: 0,
+                        agencyprovince: "北京",
+                        agencyname: "北京市第三医院3",
+                        excel: [
+                        "股骨头坏死"
+                        ],
+                        agencybed: 0,
+                        agencyhot: 0
+                        },
                 ],
-                type:'',//or 专家团队2 or 综合医院1 or 专科医院3
-                place:'不限',//or 行政区
+                type:'0',//or 专家团队2 or 综合医院1 or 专科医院3
+                place:'',//or 行政区
                 check_appointment:false,
                 check_discount:false,
                 search_inOrder:'1',//or人气 or 预约时间,
@@ -58,7 +54,7 @@ var Query_result = React.createClass({
             parms:[
                {'key':'page','value':page},
                {'key':'role','value':this.state.type},
-               //{'key':'province','value':this.state.place},
+               {'key':'province','value':this.state.place},
                {'key':'paixu','value':this.state.search_inOrder},
                {'key':'disease','value':this.refs.desces.value},
                 ]
@@ -66,7 +62,7 @@ var Query_result = React.createClass({
             (res)=>{
                     this.updateDataSource(res)
                     });
-            this.setState({nowpage:page})
+            this.state.nowpage=page
         },
         querynext(){
             var nowpage = this.state.nowpage
@@ -79,6 +75,7 @@ var Query_result = React.createClass({
         querybefore(){
             var nowpage = this.state.nowpage
             var totalpage = this.state.totalpage
+            console.log(nowpage)
             if (nowpage-1>=1){
                 nowpage -=1
                 this.query(nowpage);
@@ -97,16 +94,16 @@ var Query_result = React.createClass({
 
     render() {
         var page =''
-        var line1 = {}
+        var line1 = {excel:[]}
         var data =  this.state.dataSource
         if (data.length>=1){
             line1 = data[0]
         }
-        var line2 = {}
+        var line2 = {excel:[]}
         if (data.length>=2){
             line2 = data[1]
         }
-        var line3 = {}        
+        var line3 ={excel:[]}   
         if (data.length>=3){
             line3 = data[2]
         }
@@ -153,7 +150,7 @@ var Query_result = React.createClass({
                         </div>
                     </div>
 
-                    
+<Link to = 'institution_list'>                    
                     <div id="u8" className="ax_paragraph">
                         <img id="u8_img" className="img " src={this.state.type=='1'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
                         
@@ -161,17 +158,9 @@ var Query_result = React.createClass({
                             <p><span>综合医院</span></p>
                         </div>
                     </div>
+</Link>
 
-                    
-                    <div id="u10" className="ax_paragraph">
-                        <img id="u10_img" className="img " src={this.state.type=='3'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
-                        
-                        <div id="u11" className="text" style = {{color:this.state.type=='3'?'white':'black'}} onClick = {()=>{this.state.type='3';this.query(this.state.nowpage)}}>
-                            <p><span>专科医院</span></p>
-                        </div>
-                    </div>
-
-                    
+<Link to = '/doctor_list'>                    
                     <div id="u12" className="ax_paragraph">
                         <img id="u12_img" className="img " src={this.state.type=='2'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
                         
@@ -179,16 +168,16 @@ var Query_result = React.createClass({
                             <p><span>专家团队</span></p>
                         </div>
                     </div>
-
-                    
+</Link>
+<Link to = '/query_result'>                    
                     <div id="u14" className="ax_paragraph">
-                        <img id="u14_img" className="img " src={this.state.type==''?'i/images/query_result/u14.png':'i/images/institution_list/u10.png'}/>
+                        <img id="u14_img" className="img " src={this.state.type=='0'?'i/images/query_result/u14.png':'i/images/institution_list/u10.png'}/>
                         
-                        <div id="u15" className="text" style = {{color:this.state.type==''?'white':'black'}} onClick = {()=>{this.state.type='';this.query(this.state.nowpage)}}>
+                        <div id="u15" className="text" style = {{color:this.state.type=='0'?'white':'black'}} >
                             <p><span>不限</span></p>
                         </div>
                     </div>
-
+</Link>
                     
                     <div id="u16" className="ax_paragraph">
                         <img id="u16_img" className="img " src="i/resources/images/transparent.gif"/>
@@ -209,9 +198,9 @@ var Query_result = React.createClass({
 
                     
                     <div id="u20" className="ax_paragraph">
-                        <img id="u20_img" className="img " src={this.state.place=='不限'?'i/images/query_result/u14.png':'i/images/institution_list/u10.png'}/>
+                        <img id="u20_img" className="img " src={this.state.place==''?'i/images/query_result/u14.png':'i/images/institution_list/u10.png'}/>
                         
-                        <div id="u21" className="text" style = {{color:this.state.place=='不限'?'white':'black'}} onClick = {()=>{this.state.place='行政区';this.query(this.state.nowpage)}}>
+                        <div id="u21" className="text" style = {{color:this.state.place==''?'white':'black'}} onClick = {()=>{this.state.place='';this.query(this.state.nowpage)}}>
                             <p><span>不限</span></p>
                         </div>
                     </div>
@@ -277,7 +266,7 @@ var Query_result = React.createClass({
                         <img id="u29_img" className="img " src="i/resources/images/transparent.gif"/>
                         
                         <div id="u30" className="text">
-                            <p onClick = {this.querybeforee}><span>上一页</span></p>
+                            <p onClick = {this.querybefore}><span>上一页</span></p>
                         </div>
                     </div>
                     
@@ -295,21 +284,21 @@ var Query_result = React.createClass({
                         
                         <div id="u36" className="text">
                             <p className="u131">
-                                <span className="u120">{line1.Name}</span>
+                                <span className="u120">{line1.agencyname}</span>
                                 <span className="u120"> {line1.InstitutionType}</span>
                                 <span className="u129"> ， </span>
                                 <span className="u124">人气指数 </span>
-                                <span className="u124">{line1.Hot}</span></p>
+                                <span className="u124">{line1.agencyhot}</span></p>
                             <p className="u130">
                                 <span className="u129">擅长治疗: </span>
-                                <span className="u129">{line1.SkilledIn}</span></p>
+                                <span className="u129">{line1.excel.join(',')}</span></p>
                             <p className="u130">
                                 <span className="u124">可预约地点: </span>
-                                <span className="u124">{line1.AvaliableDisctict}</span></p>
+                                <span className="u124">{line1.agencyprovince}</span></p>
                             <p className="u122">
                                 <span className="u124">最快手术时间: </span>
                                 <span className="u124">预计</span>
-                                <span className="u124">{line1.AvaliableTime}</span>
+                                <span className="u124">{'0'}</span>
                                 <span className="u124">日内</span>
                                 <span className="u123">&nbsp; </span></p>
                         </div>
@@ -321,10 +310,8 @@ var Query_result = React.createClass({
                         
                         <div id="u38" className="text">
                             <p>
-                                <span className="u128">{line1.Staff}</span></p>
-                            <p>
-                                <span className="u132">荣誉：</span>
-                                <span className="u132">{line1.Honor}</span></p>
+                                <span className="u128">{}</span></p>
+                           
                             <p>
                                 <span className="u128">&nbsp; </span></p>
                         </div>
@@ -336,21 +323,21 @@ var Query_result = React.createClass({
                         
                         <div id="u40" className="text">
                             <p className="u131">
-                                <span className="u120">{line2.Name}</span>
+                                <span className="u120">{line2.agencyname}</span>
                                 <span className="u120"> {line2.InstitutionType}</span>
                                 <span className="u123"> ， </span>
                                 <span className="u124">人气指数 </span>
-                                <span className="u124">{line2.Hot}</span></p>
+                                <span className="u124">{line2.agencyhot}</span></p>
                             <p className="u130">
                                 <span className="u129">擅长治疗: </span>
-    	                        <span className="u129">{line2.SkilledIn}</span></p>
+    	                        <span className="u129">{line2.excel.join(',')}</span></p>
                             <p className="u130">
                                 <span className="u124">可预约地点: </span>
-    	                        <span className="u124">{line2.AvaliableDisctict}</span></p>
+    	                        <span className="u124">{line2.agencyprovince}</span></p>
                             <p className="u122">
                                 <span className="u124">最快手术时间: </span>
                                 <span className="u124">预计</span>
-                                <span className="u124">{line2.AvaliableTime}</span>
+                                <span className="u124">0</span>
                                 <span className="u124">日内</span>
                                 <span className="u123">&nbsp; </span></p>
                         </div>
@@ -362,8 +349,7 @@ var Query_result = React.createClass({
                         
                         <div id="u42" className="text">
                             <p><span className="u128">{line2.Staff}</span></p>
-                            <p><span className="u132">荣誉：</span>
-                                <span className="u132">{line2.Honor}</span></p>
+                            
                         </div>
                     </div>
 
@@ -407,23 +393,23 @@ var Query_result = React.createClass({
                         
                         <div id="u50" className="text">
                             <p className="u131">
-                                <span className="u120">{line3.Name}</span>
+                                <span className="u120">{line3.agencyname}</span>
                                 <span className="u120">&nbsp; </span>
                                 <span className="u120"> {line3.InstitutionType}</span>
                                 <span className="u123"> ， </span>
                                 <span className="u124">人气指数 </span>
-                                <span className="u124">{line3.Hot}</span></p>
+                                <span className="u124">{line3.agencyhot}</span></p>
                             <p className="u130">
                                 <span className="u129">擅长治疗: </span>
-    	                        <span className="u129">{line3.SkilledIn}</span></p>
+    	                        <span className="u129">{line3.excel.join(',')}</span></p>
                             <p className="u130">
                                 <span className="u124">可预约地点: </span>
-    	                        <span className="u124">{line3.AvaliableDisctict}</span>
+    	                        <span className="u124">{line3.agencyprovince}</span>
                                 <span className="u121">&nbsp; </span></p>
                             <p className="u122">
                                 <span className="u124">最快手术时间: </span>
                                 <span className="u124">预计</span>
-                                <span className="u124">{line3.AvaliableTime}</span>
+                                <span className="u124">0</span>
                                 <span className="u124">日内</span>
                                 <span className="u123">&nbsp; </span></p>  
                         </div>
@@ -435,9 +421,7 @@ var Query_result = React.createClass({
                         <div id="u134" className="text">
                             <p>
                                 <span className="u128">{line3.Staff}</span></p>
-                            <p>
-                                <span className="u132">荣誉：</span>
-                                <span className="u132">{line3.Honor}</span></p>
+                            
                             <p>
                                 <span className="u128">&nbsp; </span></p>
                         </div>

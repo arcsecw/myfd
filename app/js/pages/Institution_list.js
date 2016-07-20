@@ -6,30 +6,20 @@ const Institution_list = React.createClass({
     getInitialState() {
         return {
             dataSource: [
-                    {
-                    agencydoctorid: 123,
-                    agencyprovince: "河东",
-                    agencydistrict: "莆田系",
-                    agencyname: "莆田医院",
-                    agencybed: 1,
-                    agencydiscount: 'discount',
-                    agencyhot: "23.00",
-                    agencyyytime: 1,
-                    agencyclass: "sanjia"
-                    },
-                    {
-                    agencydoctorid: 1234,
-                    agencyprovince: "河东2",
-                    agencydistrict: "莆田系22",
-                    agencyname: "莆田医院3",
-                    agencybed: 2,
-                    agencydiscount: 'discount22',
-                    agencyhot: "223.00",
-                    agencyyytime: 1,
-                    agencyclass: "sanjiaadasd"
-                    },                
+                            {
+                        agencydoctorid: 0,
+                        agencyprovince: "北京",
+                        agencydistrict: "朝阳区",
+                        agencyname: "北京市朝阳医院",
+                        excel: [ ],
+                        agencybed: 2,
+                        agencydiscount: "有优惠",
+                        agencyhot: "20.00",
+                        agencyyytime: 10,
+                        agencyclass: "三乙"
+                        },{},{}            
             ],
-            leixing:'',//or 专家团队 or 医疗机构
+            leixing:'1',//or 专家团队 or 医疗机构
             didian:'',//or 北京上海广州赤峰
             check_yuyue:false,
             check_youyouhui:false,
@@ -46,7 +36,7 @@ const Institution_list = React.createClass({
            parms:[
                {'key':'page','value':page},
                {'key':'role','value':this.state.leixing},
-               //{'key':'province','value':''},
+               {'key':'province','value':this.state.didian},
                {'key':'paixu','value':this.state.search_paixu},
                {'key':'disease','value':this.refs.desces.value},               
            ]
@@ -95,16 +85,16 @@ const Institution_list = React.createClass({
     
     render() {
         var page =''
-        var line1 = {}
+        var line1 ={excel:[]}
         var data =  this.state.dataSource
         if (data.length>=1){
             line1 = data[0]
         }
-        var line2 = {}
+        var line2 ={excel:[]}
         if (data.length>=2){
             line2 = data[1]
         }
-        var line3 = {}        
+        var line3 = {excel:[]}  
        
         if (data.length>=3){
             line3 = data[2]
@@ -153,33 +143,33 @@ const Institution_list = React.createClass({
                         </div>
                     </div>
 
-
+<Link to ="/institution_list">
                     <div id="u8" className="ax_paragraph">
                         <img id="u8_img" className="img " src={this.state.leixing=='1'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
 
-                        <div id="u9" className="text"style = {{color:this.state.leixing=='1'?'white':'black'}} onClick = {()=>{this.state.leixing='1';this.query(this.state.nowpage)}}  >
+                        <div id="u9" className="text"style = {{color:this.state.leixing=='1'?'white':'black'}}  >
                             <p><span>医疗机构</span></p>
                         </div>
                     </div>
-
-
-                    <div id="u10" className="ax_paragraph" style = {{color:this.state.leixing=='2'?'white':'black'}} onClick = {()=>{this.state.leixing='2';this.query(this.state.nowpage)}} >
+</Link>
+<Link to = 'doctor_list'>
+                    <div id="u10" className="ax_paragraph" style = {{color:this.state.leixing=='2'?'white':'black'}}  >
                         <img id="u10_img" className="img " src={this.state.leixing=='2'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
 
                         <div id="u11" className="text">
                             <p><span >专家团队 </span></p>
                         </div>
                     </div>
-
-
+</Link>
+<Link to ='/query_result'>
                     <div id="u12" className="ax_paragraph" >
-                        <img id="u12_img" className="img " src={this.state.leixing==''?'i/images/query_result/u14.png':'i/images/institution_list/u10.png'}/>
+                        <img id="u12_img" className="img " src={this.state.leixing=='0'?'i/images/query_result/u14.png':'i/images/institution_list/u10.png'}/>
 
-                        <div id="u13" className="text" style = {{color:this.state.leixing==''?'white':'black'}}  onClick = {()=>{this.state.leixing='';this.query(this.state.nowpage)}}>
+                        <div id="u13" className="text" style = {{color:this.state.leixing=='0'?'white':'black'}} >
                             <p ><span>不限</span></p>
                         </div>
                     </div>
-
+</Link>
 
                     <div id="u14" className="ax_paragraph">
                         <img id="u14_img" className="img " src="i/resources/images/transparent.gif"/>

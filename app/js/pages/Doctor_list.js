@@ -1,5 +1,7 @@
 import React from 'react';
 import PageContainer from '../components/PageContainer';
+//{line2.honor!=undefined?(<div>
+  //</div>):""}
 import {
 }from 'amazeui-react';
 import {Link } from 'react-router'
@@ -9,24 +11,33 @@ var Doctor_list = React.createClass({
         return {
             dataSource: [
               {
-              agencydoctorid: 0,
-              agencyprovince: "北京",
-              agencyname: "北京市第三医院1",
-              excel: [
-              "股骨头坏死",
-              "踝关节骨性关节炎",
-              "颈椎骨折伴或不伴脱位，颈髓损伤"
-              ],
-              agencybed: 0,
-              agencyhot: 0
+              reserveTime: 0,
+              title: "主任医师教授",
+              honor: "",
+              province: "北京",
+              hot: ".00",
+              excel: [ ],
+              hospital: "积水潭医院"
+              },{
+              reserveTime: 0,
+              title: "主任医师教授",
+              honor: "",
+              province: "北京",
+              hot: ".00",
+              excel: [ ],
+              hospital: "积水潭医院"
+              },{
+              reserveTime: 0,
+              title: "主任医师教授",
+              honor: "",
+              province: "北京",
+              hot: ".00",
+              excel: [ ],
+              hospital: "积水潭医院"
               },
-              {
-              },
-              {
-              }
 
             ],
-            leixing:'0',//or 专家团队 or 医疗机构
+            leixing:'2',//or 专家团队 or 医疗机构
             didian:'',//or 北京上海广州赤峰
             check_yuyue:false,
             check_youyouhui:false,
@@ -53,7 +64,7 @@ var Doctor_list = React.createClass({
           (res)=>{
                 this.updateDataSource(res)
                 });
-         this.setState({nowpage:page})     
+         this.state.nowpage = page  
     },
     querynext(){
         var nowpage = this.state.nowpage
@@ -89,16 +100,16 @@ var Doctor_list = React.createClass({
     },
 
   render() {
-    var line1 = {}
+    var line1 = {excel:[]}
         var data =  this.state.dataSource
         if (data.length>=1){
             line1 = data[0]
         }
-        var line2 = {}
+        var line2 = {excel:[]}
         if (data.length>=2){
             line2 = data[1]
         }
-        var line3 = {}        
+        var line3 = {excel:[]}      
        if (data.length>=3){
             line3 = data[2]
         }
@@ -138,33 +149,33 @@ var Doctor_list = React.createClass({
               <p><span>类型：</span></p>
             </div>
           </div>
-
+<Link to = '/institution_list'>
           <div id="u8" className="ax_paragraph">
             <img id="u8_img" className="img " src={this.state.leixing=='1'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
 
-            <div id="u9" className="text" style = {{color:this.state.leixing=='1'?'white':'black'}} onClick = {()=>{this.state.leixing = '1';this.query(this.state.nowpage)}}>
+            <div id="u9" className="text" style = {{color:this.state.leixing=='1'?'white':'black'}} >
               <p><span>医疗机构</span></p>
             </div>
           </div>
-
-
-          <div id="u10" className="ax_paragraph" style = {{color:this.state.leixing=='2'?'white':'black'}} onClick = {()=>{this.state.leixing= '2';this.query(this.state.nowpage)}} >
+</Link>
+<Link to = '/doctor_list'>
+          <div id="u10" className="ax_paragraph" style = {{color:this.state.leixing=='2'?'white':'black'}}  >
             <img id="u10_img" className="img " src={this.state.leixing=='2'?'i/images/doctor_list/u10.png':'i/images/institution_list/u10.png'}/>
 
             <div id="u11" className="text">
               <p><span>专家团队 </span></p>
             </div>
           </div>
-
-
+</Link>
+<Link to = '/query_result'>
           <div id="u12" className="ax_paragraph">
             <img id="u12_img" className="img " src={this.state.leixing=='0'?'i/images/query_result/u14.png':'i/images/institution_list/u10.png'}/>
 
-            <div id="u13" className="text" style = {{color:this.state.leixing=='0'?'white':'black'}} onClick = {()=>{this.state.leixing='0';this.query(this.state.nowpage)}}>
+            <div id="u13" className="text" style = {{color:this.state.leixing=='0'?'white':'black'}}>
               <p><span>不限</span></p>
             </div>
           </div>
-
+</Link>
 
           <div id="u14" className="ax_paragraph">
             <img id="u14_img" className="img " src="i/resources/images/transparent.gif"/>
@@ -267,12 +278,13 @@ var Doctor_list = React.createClass({
             </div>
           </div>
 
-
-          <div id="u33" className="ax_paragraph">
+{true?(
+  <div>
+    <div id="u33" className="ax_paragraph">
             <img id="u33_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u34" className="text">
-              <p className="u130"><span className="u131"></span><span className="u131"> {line1.agencyname}</span><span className="u132">&nbsp; </span><span className="u132">&nbsp; &nbsp; &nbsp; &nbsp; </span><span className="u132">&nbsp; </span><span className="u134">人气指数 {line1.agencyhot}</span></p><p className="u133"><span className="u132">擅长治疗:{line1.excel.join(',')}</span></p><p className="u133"><span className="u134">可预约地点: {line1.province}</span></p><p className="u135"><span className="u134"></span><span className="u141">&nbsp; </span></p>
+              <p className="u130"><span className="u131"></span><span className="u131"> {line1.title}</span><span className="u132">&nbsp; </span><span className="u132">&nbsp; &nbsp; &nbsp; &nbsp; </span><span className="u132">&nbsp; </span><span className="u134">人气指数 {line1.hot}</span></p><p className="u133"><span className="u132">擅长治疗:{line1.excel.join(',')}</span></p><p className="u133"><span className="u134">可预约地点: {line1.province}</span></p><p className="u135"><span className="u134">最快手术时间: {line1.reserveTime}</span><span className="u141">&nbsp; </span></p>
             </div>
           </div>
 
@@ -281,19 +293,20 @@ var Doctor_list = React.createClass({
             <img id="u35_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u36" className="text">
-              <p><span className="u140"></span><span className="u140"></span></p><p><span className="u142"></span></p><p><span className="u140">&nbsp; </span></p>
+              <p><span className="u140">第一</span><span className="u140">执业点： {line1.hospital}</span></p><p><span className="u142">荣誉：{line1.honor}</span></p><p><span className="u140">&nbsp; </span></p>
             </div>
           </div>
-
-
+          </div>
+):''}
+{true?(<div>
           <div id="u37" className="ax_paragraph">
             <img id="u37_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u38" className="text">
-              <p className="u130"><span className="u137"> </span><span className="u137"> {line2.realname+line2.title}</span><span className="u137"></span><span className="u137">&nbsp; &nbsp; </span><span className="u139">&nbsp; </span><span className="u136">人气指数 </span><span className="u136">{line2.hot}</span></p><p className="u135"><span className="u139">擅长治疗: XXXX， XXXX， </span><span className="u139">关节置换</span></p><p className="u133"><span className="u138">可预约地点: {line2.province}</span></p><p className="u135"><span className="u138">最快手术时间: {line2.reserveTime}</span><span className="u139">&nbsp; </span></p>
+              <p className="u130"><span className="u137"> </span><span className="u137"> {line2.title}</span><span className="u137"></span><span className="u137">&nbsp; &nbsp; </span><span className="u139">&nbsp; </span><span className="u136">人气指数 </span><span className="u136">{line2.hot}</span></p><p className="u135"><span className="u139">擅长治疗:{line2.excel.join(',')}  </span><span className="u139"></span></p><p className="u133"><span className="u138">可预约地点: {line2.province}</span></p><p className="u135"><span className="u138">最快手术时间: {line2.reserveTime}</span><span className="u139">&nbsp; </span></p>
             </div>
           </div>
-
+</div>):""}
 
           <div id="u39" className="ax_paragraph">
             <img id="u39_img" className="img " src="i/resources/images/transparent.gif"/>
@@ -303,7 +316,8 @@ var Doctor_list = React.createClass({
             </div>
           </div>
 
-
+{true?(
+  <div>
           <div id="u41" className="ax_horizontal_line">
             <img id="u41_start" className="img " src="i/resources/images/transparent.gif" alt="u41_start"/>
             <img id="u41_end" className="img " src="i/resources/images/transparent.gif" alt="u41_end"/>
@@ -318,7 +332,8 @@ var Doctor_list = React.createClass({
               <p><span>优惠</span><span>： </span><span>预约手续</span><span></span><span>费</span><span>限时</span><span>8折</span></p>
             </div>
           </div>
-
+</div>
+):""}
 
           <div id="u44" className="ax_horizontal_line">
             <img id="u44_start" className="img " src="i/resources/images/transparent.gif" alt="u44_start"/>
@@ -399,8 +414,10 @@ var Doctor_list = React.createClass({
             <img id="u60_end" className="img " src="i/resources/images/transparent.gif" alt="u60_end"/>
             <img id="u60_line" className="img " src="i/images/user_home/u68_line.png" alt="u60_line"/>
           </div>
+{true?
+( <div> 
           <Link to={{pathname:'/user_reservation', query:line1 }}>
-          
+
           <div id="u61" className="ax_shape">
             <img id="u61_img" className="img " src="i/images/query_result/u68.png"/>
 
@@ -409,7 +426,6 @@ var Doctor_list = React.createClass({
             </div>
           </div>
           </Link>
-
           <div id="u63" className="ax_image">
             <img id="u63_img" className="img " src="i/images/query_result/u70.png"/>
 
@@ -417,6 +433,9 @@ var Doctor_list = React.createClass({
               <p><span></span></p>
             </div>
           </div>
+          </div>):''
+}
+         
 
 <Link to={{pathname:'/user_reservation', query:line2}}>
           <div id="u65" className="ax_shape">
@@ -618,7 +637,7 @@ var Doctor_list = React.createClass({
             <img id="u107_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u108" className="text">
-              <p className="u130"><span className="u131"></span><span className="u131"> {line3.realname+line3.title}</span><span className="u132">&nbsp; </span><span className="u132">&nbsp; &nbsp; &nbsp; &nbsp; </span><span className="u132">&nbsp; </span><span className="u134">人气指数 {line3.hot}</span></p><p className="u133"><span className="u132">擅长治疗: </span><span className="u132">脊椎</span><span className="u132">， XXXX，</span></p><p className="u133"><span className="u134">可预约地点: {line3.province}</span></p><p className="u135"><span className="u134">最快手术时间: {line3.reserveTime}</span><span className="u141">&nbsp; </span></p>
+              <p className="u130"><span className="u131"></span><span className="u131"> {line3.title}</span><span className="u132">&nbsp; </span><span className="u132">&nbsp; &nbsp; &nbsp; &nbsp; </span><span className="u132">&nbsp; </span><span className="u134">人气指数 {line3.hot}</span></p><p className="u133"><span className="u132">擅长治疗:{line3.excel.join(',')} </span><span className="u132"></span><span className="u132"></span></p><p className="u133"><span className="u134">可预约地点: {line3.province}</span></p><p className="u135"><span className="u134">最快手术时间: {line3.reserveTime}</span><span className="u141">&nbsp; </span></p>
             </div>
           </div>
           <div id="u109" className="ax_paragraph">

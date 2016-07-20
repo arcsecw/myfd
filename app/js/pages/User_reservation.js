@@ -1,6 +1,7 @@
 import React from 'react';
 import PageContainer from '../components/PageContainer';
-import {Link } from 'react-router'
+import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
+import auth from '../components/auth'
 
 import {
     Grid,
@@ -13,7 +14,7 @@ import {
     Button,
     Panel,
 } from 'amazeui-react';
-var User_reservation = React.createClass({
+var User_reservation = withRouter( React.createClass({
     getInitialState() {
         return {
             yuyue:{
@@ -22,11 +23,11 @@ var User_reservation = React.createClass({
                 notice3:'！为保证手术质量，该医生仅使用知名进口器械，请提前做好准备',
                 didian:'北京',
                 zhuanjia:'主任医师教授',
-                yuyueshijian:'2016年7月20日',
+                yuyueshijian:'2016-7-20',
                 shoushuneirong:'神经病',                
                 shifouyibao:'否',
                 xingming:'李长磊',
-                chushengriqi:'1988年8月8日',
+                chushengriqi:'1988-8-8',
                 quezhenxinxi:'无',
                 bingqingmiaoshu:'',
                 lianxirenxingming:'王文超',
@@ -40,6 +41,30 @@ var User_reservation = React.createClass({
             }
         };
     },
+    query(){
+            pars = this.state.yuyue
+            auth.myact(
+            {to:'orderGen.do',
+            parms:[
+               {'key':'orderFocus','value':pars.notice1+pars.notice2+pars.notice3},
+               {'key':'orderReserveTime','value':pars.yuyueshijian},
+               {'key':'orderOperation','value':pars.shoushuneirong},
+               {'key':'orderInsurance','value':''},
+               {'key':'contactRealname','value':pars.lianxirenxingming},
+               {'key':'relation','value':pars.yuhuanzheguanxi},
+               {'key':'mobile','value':pars.shouji},
+               {'key':'contactAddress','value':pars.dizhi},
+               {'key':'patientRealname','value':pars.xingming},
+               {'key':'patientAge','value':''},
+               {'key':'patientDiagnose','value':pars.quezhenxinxi},
+               {'key':'service','value':''},
+               {'key':'patientDisease','value':''},
+                ]
+            },
+            (res)=>{
+                    console.log(res)
+                    });
+        },
     componentWillMount() {
         
         var par = this.props.query
@@ -48,6 +73,25 @@ var User_reservation = React.createClass({
             this.state.yuyue.didian = par.reservePlace
             this.state.yuyue.zhuanjia = par.realname+par.title
         }
+    },
+     submitForm() {	  
+        var refss = this.refs
+        this.state.didian = refss.didian.value;
+        this.state.yuyueshijian = refss.yuyueshijian.value;
+        this.state.shoushuneirong = refss.shoushuneirong.value;
+        this.state.xingming =refss.xingming.value;
+        this.state.chushengriqi = refss.chushengriqi.value;
+        this.state.quezhenxinxi = refss.quezhenxinxi.value;
+        this.state.bingqingmiaoshu = refss.bingqingmiaoshu.value;
+        this.state.lianxirenxingming = refss.lianxirenxingming.value;
+        this.state.yuhuanzheguanxi = refss.yuhuanzheguanxi.value;
+        this.state.shouji = refss.shouji.value;//
+        this.state.dizhi = refss.dizhi.value; //
+        this.state.qitafuwu1 = refss.qitafuwu1.value; //
+        this.state.qitafuwu2 = refss.qitafuwu2.value; //
+        this.state.qitafuwu3 = refss.qitafuwu3.value; //
+        this.state.qitafuwu4 = refss.qitafuwu4.value; //
+        this.query();
     },
     render() {
         var pr = this.state.yuyue
@@ -103,8 +147,7 @@ var User_reservation = React.createClass({
                         </div>
                     </div>
 
-<Link to={{pathname:'/checkReservation', query:this.state.yuyue }}>
-                    <div id="u10" className="ax_shape">
+                    <div id="u10" className="ax_shape" onClick = {this.submitForm}>
                         <img id="u10_img" className="img " src="i/images/user_reservation_operation_fill_page/u10.png"/>
 
                         <div id="u11" className="text">
@@ -115,7 +158,6 @@ var User_reservation = React.createClass({
                         </div>
 
                     </div>
-</Link>
 
                     <div id="u12" className="ax_image">
                         <img id="u12_img" className="img " src="i/images/user_check_operation_reservation_page/u21.png"/>
@@ -148,7 +190,7 @@ var User_reservation = React.createClass({
                         <img id="u18_img" className="img " src="i/images/user_reservation_operation_fill_page/u18.png"/>
 
                         <div id="u19" className="text">
-                            <p><span> 姓名：</span><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><input type="text" placeholder={pr.xingming}/></p><p><span> 出生日期：</span><span>&nbsp; </span><span>&nbsp; </span><span><input type="text" placeholder={pr.chushengriqi}/></span></p><p><span> 确诊信息：</span><span>&nbsp; &nbsp; </span><span><input type="text" placeholder={pr.quezhenxinxi}/></span></p><p><span> 病情描述：</span></p><p><span>&nbsp; </span></p><p><span>&nbsp; </span></p><p><span>&nbsp; </span></p><p><span> CT或相关图片资料：</span></p><p><span>&nbsp; </span></p>
+                            <p><span> 姓名：</span><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><input type="text" defaultValue={pr.xingming} ref = 'xingming'/></p><p><span> 出生日期：</span><span>&nbsp; </span><span>&nbsp; </span><span><input type="text" defaultValue={pr.chushengriqi} ref = 'chushengriqi'/></span></p><p><span> 确诊信息：</span><span>&nbsp; &nbsp; </span><span><input type="text" defaultValue={pr.quezhenxinxi} ref = 'quezhenxinxi'/></span></p><p><span> 病情描述：</span></p><p><span>&nbsp; </span></p><p><span>&nbsp; </span></p><p><span>&nbsp; </span></p><p><span> CT或相关图片资料：</span></p><p><span>&nbsp; </span></p>
                         </div>
                     </div>
 
@@ -157,7 +199,7 @@ var User_reservation = React.createClass({
                         <img id="u20_img" className="img " src="i/images/user_reservation_operation_fill_page/u16.png"/>
 
                         <div id="u21" className="text">
-                            <p><span> 姓名：</span><input type="text" placeholder={pr.lianxirenxingming}/></p><p><span> 与患者关系：</span><input type="text" placeholder={pr.yuhuanzheguanxi}/></p><p><span> 手机：</span><input type="text" placeholder={pr.shouji}/></p><p><span> 地址：</span><input type="text" placeholder={pr.dizhi}/></p>
+                            <p><span> 姓名：</span><input type="text" defaultValue={pr.lianxirenxingming} ref = 'lianxirenxingming'/></p><p><span> 与患者关系：</span><input type="text" defaultValue={pr.yuhuanzheguanxi} ref = 'yuhuanzheguanxi'/></p><p><span> 手机：</span><input type="text" defaultValue={pr.shouji} ref = 'shouji'/></p><p><span> 地址：</span><input type="text" defaultValue={pr.dizhi} ref = 'dizhi'/></p>
                         </div>
                     </div>
 
@@ -166,7 +208,7 @@ var User_reservation = React.createClass({
                         <img id="u22_img" className="img " src="i/images/user_reservation_operation_fill_page/u16.png"/>
 
                         <div id="u23" className="text">
-                            <p><span> {pr.qitafuwu1}</span></p><p><span> {pr.qitafuwu2}</span></p><p><span> {pr.qitafuwu3}</span></p><p><span> {pr.qitafuwu4}</span></p>
+                            <p><span> <input type = 'text' defaultValue = {pr.qitafuwu1} ref = 'qitafuwu1'/></span></p><p><span> <input type = 'text' defaultValue = {pr.qitafuwu2} ref = 'qitafuwu2'/></span></p><p><span> <input type = 'text' defaultValue = {pr.qitafuwu3} ref = 'qitafuwu3'/></span></p><p><span> <input type = 'text' defaultValue = {pr.qitafuwu4} ref = 'qitafuwu4'/></span></p>
                         </div>
                     </div>
 
@@ -193,17 +235,12 @@ var User_reservation = React.createClass({
                         <img id="u28_img" className="img " src="i/images/user_reservation_operation_fill_page/u16.png"/>
 
                         <div id="u29" className="text">
-                            <p><span>&nbsp; </span><span>地点：{pr.didian}</span></p><p><span>&nbsp; </span><span>专家：{pr.zhuanjia}</span></p><p><span>&nbsp; </span><span>预约时间:{pr.yuyueshijian}</span></p><p><span>&nbsp; </span><span>手术内容：{pr.shoushuneirong}</span></p><p><span>&nbsp; </span><span>是否医保</span><span>：</span></p>
+                            <p><span>&nbsp; </span><span>地点：<input ref = 'didian' defaultValue = {pr.didian}/></span></p><p><span>&nbsp; </span><span>专家：{pr.zhuanjia}</span></p><p><span>&nbsp; </span><span>预约时间:<input defaultValue= {pr.yuyueshijian} ref = 'yuyueshijian'/></span></p><p><span>&nbsp; </span><span>手术内容：<input defaultValue = {pr.shoushuneirong} ref = 'shoushuneirong'/></span></p><p><span>&nbsp; </span></p>
                         </div>
                     </div>
 
 
-                    <div id="u30" className="ax_droplist">
-                        <select id="u30_input" defaultValue = {pr.shifouyibao}>
-                            <option value="是" >是</option>
-                            <option value="否">否</option>
-                        </select>
-                    </div>
+     
 
 
                     <div id="u31" className="ax_html_button">
@@ -212,7 +249,7 @@ var User_reservation = React.createClass({
 
 
                     <div id="u32" className="ax_text_area">
-                        <textarea id="u32_input"></textarea>
+                        <textarea  ref = 'bingqingmiaoshu' id="u32_input"></textarea>
                     </div>
 
 
@@ -278,5 +315,5 @@ var User_reservation = React.createClass({
             </PageContainer>
         );
     }
-});
+}));
 export default User_reservation;
