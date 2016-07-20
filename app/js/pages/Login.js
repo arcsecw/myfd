@@ -101,10 +101,11 @@ const Login = withRouter(
 
         <div id="u8" class="ax_paragraph">
           <img id="u8_img" class="img " src="i/resources/images/transparent.gif"/>
-
+          <Link to = '/register_user'>
           <div id="u9" class="text">
             <p><span>立即注册</span></p>
           </div>
+          </Link>
         </div>
 
 
@@ -171,7 +172,7 @@ const Login = withRouter(
           </div>
         </div>
 
-
+<Link to = '/index_home'>
         <div id="u24" class="ax_shape">
           <img id="u24_img" class="img " src="i/images/user_check_operation_reservation_page/u23.png"/>
 
@@ -179,13 +180,13 @@ const Login = withRouter(
             <p><span>公司主 Logo</span></p>
           </div>
         </div>
+</Link>
 
-
-        <div id="u26" class="ax_shape">
+        <div id="u26" class="ax_shape"  onClick={this.handleSubmit} >
           <img id="u26_img" class="img " src="i/images/user_login_page/u26.png"/>
 
           <div id="u27" class="text">
-            <p ><span onClick={this.handleSubmit} >登录</span></p>
+            <p ><span >登录</span></p>
           </div>
           
         </div>

@@ -5,7 +5,7 @@ import Qbzz from '../components/FontComponents/Qbzz';
 import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
 import auth from '../components/auth'
 
-var Register_hospital = React.createClass({
+var Register_hospital =withRouter(React.createClass({
   getInitialState() {
       return {
           InterValObj: '',
@@ -67,7 +67,7 @@ var Register_hospital = React.createClass({
       ]
       },(res)=>{
               if(res.regist_error){alert(res.regist_error)}else{
-                  alert ('success')
+                  this.props.router.replace('/login')
               }
       })
   },
@@ -449,11 +449,11 @@ var Register_hospital = React.createClass({
       </div>
 
 
-      <div id="u62" className="ax_shape">
+      <div id="u62" className="ax_shape" onClick={this.submitForm}>
         <img id="u62_img" className="img " src="i/images/register_doctor/u68.png"/>
  
         <div id="u63" className="text">
-          <p><span onClick={this.submitForm} >立即注册</span></p>
+          <p><span  >立即注册</span></p>
         </div>
       </div>
 
@@ -530,5 +530,5 @@ var Register_hospital = React.createClass({
             </PageContainer>
         );
     }
-});
+}));
 export default Register_hospital;
