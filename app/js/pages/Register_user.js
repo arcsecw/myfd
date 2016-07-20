@@ -52,7 +52,7 @@ React.createClass({
             ]
             },(res)=>{
                 if(res.regist_error){alert(res.regist_error)}else{
-                    alert ('success')
+                    this.props.router.replace('/login')
                 }
             })
     },
@@ -202,11 +202,11 @@ React.createClass({
                     </div>
 
 
-                    <div id="u19" className="ax_shape">
+                    <div id="u19" className="ax_shape" onClick={this.submitForm} >
                         <img id="u19_img" className="img " src="i/images/register_doctor/u68.png"/>
 
                         <div id="u20" className="text">
-                            <p><span onClick={this.submitForm} >立即注册</span></p>
+                            <p><span >立即注册</span></p>
                         </div>
                     </div>
 
@@ -274,7 +274,7 @@ React.createClass({
                         </div>
                     </div>
 
-
+<Link to = '/index_home'>
                     <div id="u35" className="ax_shape">
                         <img id="u35_img" className="img " src="i/images/register_person/u23.png"/>
 
@@ -282,7 +282,7 @@ React.createClass({
                             <p><span>公司主 Logo</span></p>
                         </div>
                     </div>
-
+</Link>
 
                     <div id="u37" className="ax_shape">
                         <img id="u37_img" className="img " src="i/images/register_person/u37.png"/>

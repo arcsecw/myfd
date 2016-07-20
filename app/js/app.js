@@ -171,7 +171,12 @@ const routes = (
       </Route>
       <Route path = "login" component = {Login}/>      
       <Route path = "adminlogin" component = {AdminLogin}/>      
-      <Route path = "logout" component = {Logout}/>      
+      <Route path = "register_user" component = {Register_user}/>      
+      <Route path = "register_doctor" component = {Register_doctor}/>      
+      <Route path = "index_home" component = {Index_home}/>      
+      <Route path = "query_result" component = {Query_result}/>      
+      <Route path = "doctor_list" component = {Doctor_list}/>      
+      <Route path = "institution_list" component = {Institution_list}/>      
       <Route path=":page" component={Page} onEnter={requireAuth}  />
       <IndexRoute component={Index_home} />
     </Route>

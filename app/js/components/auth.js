@@ -40,7 +40,7 @@ module.exports = {
   myact(val,cb) {
     var to = val['to']
     var parms = val['parms']
-    var  url = 'http://10.3.128.230:8080/myfd/'+to+'?'
+    var  url = 'http://123.56.133.208:8080/myfd/'+to+'?'
     parms.map(parm=>{
       if(String(parm.value).length>0){ 
         url +=parm.key+'='+parm.value+'&'
