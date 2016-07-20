@@ -11,6 +11,12 @@ import {
 import {Link } from 'react-router'
 
 var Index_home = React.createClass({
+  getInitialState() {
+      return {
+          disctrict:''
+      };
+  },
+
   mouseOver1() {  //关节右菜单
     document.getElementById("u184").style.visibility="visible";
   },
@@ -25,7 +31,33 @@ var Index_home = React.createClass({
     document.getElementById("u190").style.visibility="hidden";
     document.getElementById("u184_state1").style.visibility="hidden";
   },
-
+  mouseOver3() {  //创伤右菜单
+    document.getElementById("u184_state2").style.visibility="visible";
+  },
+  mouseOut3() {
+    document.getElementById("u184_state2").style.visibility="hidden";
+  },
+  mouseOver4() {  //手外右菜单
+    document.getElementById("u184_state3").style.visibility="visible";
+  },
+  mouseOut4() {
+    document.getElementById("u184_state3").style.visibility="hidden";
+  },
+  mouseOver5() {  //小儿骨科右菜单
+    document.getElementById("u184_state4").style.visibility="visible";
+  },
+  mouseOut5() {
+    document.getElementById("u184_state4").style.visibility="hidden";
+  },
+  mouseOver6() {  //骨与软组织肿瘤右菜单
+    document.getElementById("u184_state5").style.visibility="visible";
+  },
+  mouseOut6() {
+    document.getElementById("u184_state5").style.visibility="hidden";
+  },
+  search(str) {
+    console.log(str);
+  },
   render() {
     return (
       <PageContainer>
@@ -39,7 +71,14 @@ var Index_home = React.createClass({
           <div id="u0" className="ax_paragraph">
             <img id="u0_img" className="img " src="i/resources/images/transparent.gif"/>
             <div id="u1" className="text">
-              <p><span>手术地点：北京 </span></p>
+              <p><span>手术地点：</span>
+              <select>
+                <option>北京</option>
+                <option>上海</option>
+                <option>广州</option>
+                <option>赤峰</option>
+              </select>
+              </p>
             </div>
           </div>
 
@@ -130,7 +169,7 @@ var Index_home = React.createClass({
           <div id="u25" className="ax_paragraph">
             <img id="u25_img" className="img " src="i/resources/images/transparent.gif"/>
             <div id="u26" className="text">
-              <p><span>脊椎</span></p>
+              <p><span>脊柱</span></p>
             </div>
           </div>
 
@@ -143,7 +182,7 @@ var Index_home = React.createClass({
           <div id="u28" className="ax_paragraph">
             <img id="u28_img" className="img " src="i/resources/images/transparent.gif"/>
             <div id="u29" className="text">
-              <p><span>四肢</span></p>
+              <p><span>创伤</span></p>
             </div>
           </div>
 
@@ -156,7 +195,33 @@ var Index_home = React.createClass({
           <div id="u31" className="ax_paragraph">
             <img id="u31_img" className="img " src="i/resources/images/transparent.gif"/>
             <div id="u32" className="text">
-              <p><span>脊椎</span></p>
+              <p><span>手外</span></p>
+            </div>
+          </div>
+
+          <div id="u203" className="ax_horizontal_line">
+            <img id="u203_start" className="img " src="i/resources/images/transparent.gif" alt="u203_start"/>
+            <img id="u203_end" className="img " src="i/resources/images/transparent.gif" alt="u203_end"/>
+            <img id="u203_line" className="img " src="i/images/index_home/u21_line.png" alt="u203_line"/>
+          </div>
+
+          <div id="u204" className="ax_paragraph">
+            <img id="u204_img" className="img " src="i/resources/images/transparent.gif"/>
+            <div id="u207" className="text">
+              <p><span>小儿骨科</span></p>
+            </div>
+          </div>
+
+          <div id="u205" className="ax_horizontal_line">
+            <img id="u205_start" className="img " src="i/resources/images/transparent.gif" alt="u205_start"/>
+            <img id="u205_end" className="img " src="i/resources/images/transparent.gif" alt="u205_end"/>
+            <img id="u205_line" className="img " src="i/images/index_home/u21_line.png" alt="u205_line"/>
+          </div>
+
+          <div id="u206" className="ax_paragraph">
+            <img id="u206_img" className="img " src="i/resources/images/transparent.gif"/>
+            <div id="u208" className="text">
+              <p><span>骨与软组织肿瘤</span></p>
             </div>
           </div>
 
@@ -192,7 +257,6 @@ var Index_home = React.createClass({
 
 
           <div id="u40" className="ax_shape">
-            <img id="u40_img" className="img " src="i/images/index_home/u40.png"/>
 
             <div id="u41" className="text">
               <p><span></span></p>
@@ -825,15 +889,21 @@ var Index_home = React.createClass({
           <div id="u181" className="ax_hot_spot" onMouseOver={this.mouseOver2} onMouseOut={this.mouseOut2}>
           </div>
 
-          <div id="u182" className="ax_hot_spot">
+          <div id="u182" className="ax_hot_spot" onMouseOver={this.mouseOver3} onMouseOut={this.mouseOut3}>
           </div>
 
 
-          <div id="u183" className="ax_hot_spot">
+          <div id="u183" className="ax_hot_spot"onMouseOver={this.mouseOver4} onMouseOut={this.mouseOut4}>
           </div>
 
-          <div id="u184" className="ax_dynamic_panel" data-label="关节疾病右菜单">
-            <div id="u184_state0" className="panel_state" data-label="State1" onMouseOver={this.mouseOver1} onMouseOut={this.mouseOut1}>
+          <div id="u210" className="ax_hot_spot"onMouseOver={this.mouseOver5} onMouseOut={this.mouseOut5}>
+          </div>
+
+          <div id="u211" className="ax_hot_spot"onMouseOver={this.mouseOver6} onMouseOut={this.mouseOut6}>
+          </div>
+
+          <div id="u184" className="ax_dynamic_panel">
+            <div id="u184_state0" className="panel_state" data-label="关节疾病右菜单" onMouseOver={this.mouseOver1} onMouseOut={this.mouseOut1}>
               <div id="u184_state0_content" className="panel_state_content">
 
 
@@ -850,15 +920,36 @@ var Index_home = React.createClass({
                   <img id="u187_img" className="img " src="i/resources/images/transparent.gif"/>
 
                   <div id="u188" className="text">
-                    <p><span style={{ color: '#333333' }}>关节炎&nbsp; |&nbsp; &nbsp; </span><a id="u189" className="link"><span style={{ color: '#0000FF' }}>关节置换</span></a><span style={{ color: '#333333' }}>&nbsp; &nbsp; </span></p>
+                    <p style={{ color: '#333333' }}>髋关节&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a id="u189" className="link" style={{ color: '#0000FF'}}>
+                      <span onClick={this.search.bind(this,'股骨头坏死')}>股骨头坏死</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this,'髋关节骨性关节炎')}>髋关节骨性关节炎</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this,'髋关节发育不良')}>髋关节发育不良</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this,'类风湿性髋关节炎')}>类风湿性髋关节炎</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this,'强直性脊柱炎髋关节强直')}>强直性脊柱炎髋关节强直</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this,'髋臼-股骨撞击综合症')}>髋臼-股骨撞击综合症</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this,'髋关节置换术后感染')}>髋关节置换术后感染</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this,'髋关节置换术后假体松动')}>髋关节置换术后假体松动</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this,'膝关节骨性关节炎')}>膝关节骨性关节炎</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this,'膝关节内外翻畸形')}>膝关节内外翻畸形</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this,'类风湿性膝关节炎')}>类风湿性膝关节炎</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this,'膝关节僵直')}>膝关节僵直</span>
+                    </a>
+                    <span style={{ color: '#333333' }}></span></p>
+                    <p style={{ color: '#333333' }}>足踝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a className="link" style={{ color: '#0000FF'}}>
+                      <span onClick={this.search.bind(this, '踝关节骨性关节炎')}>踝关节骨性关节炎</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '踝关节创伤性关节炎')}>踝关节创伤性关节炎</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '马蹄内翻足')}>马蹄内翻足</span>
+                    </a>
+                    <span style={{ color: '#333333' }}></span></p>
                   </div>
                 </div>
               </div>
             </div>
-            <div id="u184_state1" className="panel_state" data-label="State2" onMouseOver={this.mouseOver2} onMouseOut={this.mouseOut2}>
+
+            <div id="u184_state1" className="panel_state" data-label="脊柱右菜单" onMouseOver={this.mouseOver2} onMouseOut={this.mouseOut2}>
               <div id="u184_state1_content" className="panel_state_content">
-
-
                 <div id="u190" className="ax_shape">
                   <img id="u190_img" className="img " src="i/images/index_home/u185.png"/>
 
@@ -872,11 +963,129 @@ var Index_home = React.createClass({
                   <img id="u192_img" className="img " src="i/resources/images/transparent.gif"/>
 
                   <div id="u193" className="text">
-                    <p><span>椎间盘突出</span><span>&nbsp; </span><span>| </span><span>劲椎病</span><span>&nbsp; &nbsp; </span></p>
+                    <p style={{ color: '#333333' }}>脊柱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a className="link" style={{ color: '#0000FF'}}>
+                      <span onClick={this.search.bind(this, '颈椎骨折伴或不伴脱位，颈髓损伤')}>颈椎骨折伴或不伴脱位，颈髓损伤</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '颈椎间盘突出伴或不伴滑脱')}>颈椎间盘突出伴或不伴滑脱</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '胸腰椎骨折伴或不伴脱位，脊髓损伤')}>胸腰椎骨折伴或不伴脱位，脊髓损伤</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '胸腰椎间盘突出伴或不伴滑脱')}>胸腰椎间盘突出伴或不伴滑脱</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '脊柱畸形矫正')}>脊柱畸形矫正</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '脊柱结核')}>脊柱结核</span>
+                    </a>
+                    <span style={{ color: '#333333' }}></span></p>
                   </div>
                 </div>
               </div>
             </div>
+
+            <div id="u184_state2" className="panel_state" data-label="创伤右菜单" onMouseOver={this.mouseOver3} onMouseOut={this.mouseOut3}>
+              <div id="u184_state2_content" className="panel_state_content">
+                <div id="u197" className="ax_shape">
+                  <img id="u197_img" className="img " src="i/images/index_home/u185.png"/>
+
+                  <div id="u198" className="text">
+                    <p><span></span></p>
+                  </div>
+                </div>
+                <div id="u195" className="ax_paragraph">
+                  <img id="u195_img" className="img " src="i/resources/images/transparent.gif"/>
+
+                  <div id="u196" className="text">
+                    <p style={{ color: '#333333' }}>创伤&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a className="link" style={{ color: '#0000FF'}}>
+                      <span onClick={this.search.bind(this, '四肢长骨干骨折')}>四肢长骨干骨折</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '关节周围骨折')}>关节周围骨折</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '老年髋部骨折')}>老年髋部骨折</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '骨盆骨折')}>骨盆骨折</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '骨折不愈合')}>骨折不愈合</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '骨折术后感染')}>骨折术后感染</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '骨折畸形愈合矫正')}>骨折畸形愈合矫正</span>
+                    </a>
+                    <span style={{ color: '#333333' }}></span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="u184_state3" className="panel_state" data-label="手外右菜单" onMouseOver={this.mouseOver4} onMouseOut={this.mouseOut4}>
+              <div id="u184_state3_content" className="panel_state_content">
+                <div id="u199" className="ax_shape">
+                  <img id="u199_img" className="img " src="i/images/index_home/u185.png"/>
+
+                  <div id="u200" className="text">
+                    <p><span></span></p>
+                  </div>
+                </div>
+                <div id="u201" className="ax_paragraph">
+                  <img id="u201_img" className="img " src="i/resources/images/transparent.gif"/>
+
+                  <div id="u202" className="text">
+                    <p style={{ color: '#333333' }}>手外&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a className="link" style={{ color: '#0000FF'}}>
+                      <span onClick={this.search.bind(this, '臂丛神经损伤')}>臂丛神经损伤</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '周围神经损伤')}>周围神经损伤</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '手指再造')}>手指再造</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '手部肿瘤')}>手部肿瘤</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </a>
+                    <span style={{ color: '#333333' }}></span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="u184_state4" className="panel_state" data-label="小儿骨科右菜单" onMouseOver={this.mouseOver5} onMouseOut={this.mouseOut5}>
+              <div id="u184_state4_content" className="panel_state_content">
+                <div id="u212" className="ax_shape">
+                  <img id="u212_img" className="img " src="i/images/index_home/u185.png"/>
+
+                  <div id="u213" className="text">
+                    <p><span></span></p>
+                  </div>
+                </div>
+                <div id="u214" className="ax_paragraph">
+                  <img id="u214_img" className="img " src="i/resources/images/transparent.gif"/>
+
+                  <div id="u215" className="text">
+                    <p style={{ color: '#333333' }}>小儿骨科&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a className="link" style={{ color: '#0000FF'}}>
+                      <span onClick={this.search.bind(this, '小儿先天性髋关节脱位')}>小儿先天性髋关节脱位</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '小儿骨折')}>小儿骨折</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '小儿股骨头坏死')}>小儿股骨头坏死</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '先天性关节畸形')}>先天性关节畸形</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </a>
+                    <span style={{ color: '#333333' }}></span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="u184_state5" className="panel_state" data-label="骨与软组织肿瘤右菜单" onMouseOver={this.mouseOver6} onMouseOut={this.mouseOut6}>
+              <div id="u184_state5_content" className="panel_state_content">
+                <div id="u216" className="ax_shape">
+                  <img id="u216_img" className="img " src="i/images/index_home/u185.png"/>
+
+                  <div id="u217" className="text">
+                    <p><span></span></p>
+                  </div>
+                </div>
+                <div id="u218" className="ax_paragraph">
+                  <img id="u218_img" className="img " src="i/resources/images/transparent.gif"/>
+
+                  <div id="u219" className="text">
+                    <p style={{ color: '#333333' }}>骨与软组织肿瘤&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a className="link" style={{ color: '#0000FF'}}>
+                      <span onClick={this.search.bind(this, '骨肿瘤（恶性）')}>骨肿瘤（恶性）</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '骨肿瘤（良性）')}>骨肿瘤（良性）</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '软组织肿瘤（恶性）')}>软组织肿瘤（恶性）</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '软组织肿瘤（良性）')}>软组织肿瘤（良性）</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this, '骨肿瘤保肢治疗')}>骨肿瘤保肢治疗</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </a>
+                    <span style={{ color: '#333333' }}></span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </PageContainer>

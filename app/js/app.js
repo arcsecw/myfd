@@ -40,10 +40,10 @@ import {
   Institution_list,
   Query_result,
   System_manage,
-  User_home,
   User_manage,
   Price_manage,
   Account_manage,
+  User_index,
 
 } from './pages';
 
@@ -65,10 +65,10 @@ const pages = {
   institution_list: Institution_list,
   query_result: Query_result,
   system_manage: System_manage,
-  user_home: User_home,
   user_manage: User_manage,
   price_manage: Price_manage,
   account_manage: Account_manage,
+  user_index:User_index,
 
 };
 
