@@ -11,6 +11,12 @@ import {
 import {Link } from 'react-router'
 
 var Index_home = React.createClass({
+  getInitialState() {
+      return {
+          disctrict:''
+      };
+  },
+
   mouseOver1() {  //关节右菜单
     document.getElementById("u184").style.visibility="visible";
   },
@@ -65,7 +71,14 @@ var Index_home = React.createClass({
           <div id="u0" className="ax_paragraph">
             <img id="u0_img" className="img " src="i/resources/images/transparent.gif"/>
             <div id="u1" className="text">
-              <p><span>手术地点：北京 </span></p>
+              <p><span>手术地点：</span>
+              <select>
+                <option>北京</option>
+                <option>上海</option>
+                <option>广州</option>
+                <option>赤峰</option>
+              </select>
+              </p>
             </div>
           </div>
 
@@ -244,7 +257,6 @@ var Index_home = React.createClass({
 
 
           <div id="u40" className="ax_shape">
-            <img id="u40_img" className="img " src="i/images/index_home/u40.png"/>
 
             <div id="u41" className="text">
               <p><span></span></p>
