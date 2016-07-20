@@ -55,6 +55,7 @@ var User_manage = React.createClass({
         
     },
     deletelist(id){
+        console.log(id)
         var to="http://localhost:8080/myfd/manager/deleteuser.do"
         auth.myact(
           {to:'manager/deleteuser.do',
@@ -110,13 +111,12 @@ var User_manage = React.createClass({
                parms:[
                 {'key':'id','value':id},
                {key:'name',value:this.refs.un.value}, 
-               {key:'mobile',value:this.refs.ug.value}, 
-               {key:'role',value:this.refs.um.value}, 
-               {key:'time',value:this.refs.uma.value}, 
+               {key:'mobile',value:this.refs.um.value}, 
+               {key:'role',value:this.refs.ur.value}, 
                {key:'state',value:this.refs.ps.value}, 
                ]
                 },(res)=>{
-                    Console.log(username)
+                    Console.log(name)
                 });
                 this.query()
   }
@@ -245,11 +245,15 @@ var User_manage = React.createClass({
                                     </div>
 
 
+                                    
                                     <div id="u26" className="ax_table_cell">
                                         
-                                        <input id="input4" type="text" ref="uma" placeholder={person.user_last_login} />
-                                    </div>
 
+                                        <div id="input4" className="text">
+                                            <p><span>{person.user_last_login}</span></p>
+                                        </div>
+                                    </div>
+                                    
 
                                     <div id="u28" className="ax_table_cell">
                                         
@@ -276,7 +280,7 @@ var User_manage = React.createClass({
 
                                     <div id="u34" className="ax_table_cell">
                                         
-                                        <input id="input7" type="text" ref="ug" placeholder={person2.user_role} />
+                                        <input id="input7" type="text" ref="ur" placeholder={person2.user_role} />
                                     </div>
 
 
@@ -285,12 +289,12 @@ var User_manage = React.createClass({
                                         <input id="input8" type="text" ref="um" placeholder={person2.user_mobile} />
                                     </div>
 
-
                                     <div id="u38" className="ax_table_cell">
                                         
-                                        <input id="input9" type="text" ref="uma" placeholder={person2.user_last_login} />
+                                        <div id="input9" className="text">
+                                            <p><span>{person2.user_last_login}</span></p>
+                                        </div>
                                     </div>
-
 
                                     <div id="u40" className="ax_table_cell">
                                         
