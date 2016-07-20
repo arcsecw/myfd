@@ -746,6 +746,9 @@ var Query_result = React.createClass({
                         <div id="u118" className="text">
                             <p><span>媒体更新</span></p>
                         </div>
+                        <div id="haha">
+                        <input/>
+                        </div>
                     </div>
                 </div>
             </PageContainer>
