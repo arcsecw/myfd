@@ -353,7 +353,7 @@ var Doctor_list = React.createClass({
 
 
           <div id="u47" className="ax_text_field">
-            <input id="u47_input" ref="desces" type="text"  />
+            <input id="u47_input" ref="desces" type="text" ref = 'des' />
           </div>
 
 
@@ -394,7 +394,12 @@ var Doctor_list = React.createClass({
           </div>
 
 
-          <div id="u57" className="ax_shape" onClick = {() => { this.query(1) } }>
+          <div id="u57" className="ax_shape" 
+          onClick = {
+            ()=>{
+                this.props.router.replace({ pathname: '/query_result', query:{query:this.refs.des.value}})
+            }
+          }>
             <img id="u57_img" className="img " src="i/images/query_result/u64.png"/>
 
             <div id="u58" className="text">

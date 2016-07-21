@@ -18,9 +18,9 @@ var User_reservation = withRouter( React.createClass({
     getInitialState() {
         return {
             yuyue:{
-                notice1:'！该医生仅治疗15-70岁',
-                notice2:'！该医生手术量大，请及时支付预定',
-                notice3:'！为保证手术质量，该医生仅使用知名进口器械，请提前做好准备',
+                notice1:'notice1',
+                notice2:'notice2',
+                notice3:'notice3',
                 didian:'北京',
                 zhuanjia:'主任医师教授',
                 yuyueshijian:'2016-7-20',
@@ -42,23 +42,24 @@ var User_reservation = withRouter( React.createClass({
         };
     },
     query(){
-            pars = this.state.yuyue
+            var pars = this.state.yuyue
             auth.myact(
             {to:'orderGen.do',
             parms:[
                {'key':'orderFocus','value':pars.notice1+pars.notice2+pars.notice3},
                {'key':'orderReserveTime','value':pars.yuyueshijian},
                {'key':'orderOperation','value':pars.shoushuneirong},
-               {'key':'orderInsurance','value':''},
+               {'key':'orderInsurance','value':'1'},
                {'key':'contactRealname','value':pars.lianxirenxingming},
                {'key':'relation','value':pars.yuhuanzheguanxi},
                {'key':'mobile','value':pars.shouji},
-               {'key':'contactAddress','value':pars.dizhi},
+               {'key':'contactAddress','value':pars.dizhi}, 
                {'key':'patientRealname','value':pars.xingming},
                {'key':'patientAge','value':''},
                {'key':'patientDiagnose','value':pars.quezhenxinxi},
-               {'key':'service','value':''},
+               {'key':'service','value':'2'},
                {'key':'patientDisease','value':''},
+               {'key':'username','value':auth.getUsername()},
                 ]
             },
             (res)=>{

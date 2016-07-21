@@ -215,13 +215,14 @@ var Index_home = withRouter(React.createClass({
               <p><span>banner</span></p>
             </div>
           </div>
+<Link to = '/index_home'>
           <div id="u15" className="ax_shape">
             <img id="u15_img" className="img " src="i/images/user_check_operation_reservation_page/u23.png"/>
             <div id="u16" className="text">
               <p><span>公司主 Logo</span></p>
             </div>
           </div>
-
+</Link>
           <div id="u17" className="ax_shape">
             <img id="u17_img" className="img " src="i/images/index_home/u17.png"/>
             <div id="u18" className="text">

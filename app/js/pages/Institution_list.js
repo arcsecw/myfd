@@ -275,7 +275,7 @@ const Institution_list = React.createClass({
 
 
                     <div id="u33" className="ax_text_field">
-                        <input id="u33_input"  ref="desces"  type="text"  />
+                        <input id="u33_input"  ref="des"  type="text"  />
                     </div>
 
 
@@ -315,7 +315,12 @@ const Institution_list = React.createClass({
                     </div>
 
 
-                    <div id="u43" className="ax_shape" onClick = {()=>{this.query(1)}}>
+                    <div id="u43" className="ax_shape" 
+                    onClick = {
+            ()=>{
+                this.props.router.replace({ pathname: '/query_result', query:{query:this.refs.des.value}})
+            }
+          }>
                         <img id="u43_img" className="img " src="i/images/query_result/u64.png"/>
 
                         <div id="u44" className="text">
