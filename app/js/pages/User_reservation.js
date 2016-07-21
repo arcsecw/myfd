@@ -65,7 +65,7 @@ var User_reservation = withRouter( React.createClass({
             },
             (res)=>{
                     this.state.totalFee = res.totalFee
-                    this.props.router.replace({ pathname: '/CheckReservation',query:{query:this.yuyue}})
+                    this.props.router.push({ pathname: '/checkReservation',query:{query:this.state.yuyue}})
                     });
         },
     componentWillMount() {

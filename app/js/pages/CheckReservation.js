@@ -32,7 +32,7 @@ var CheckReservation = React.createClass({
             })
         },
     componentWillMount() {
-        var par = this.props.query.query
+        var par = this.props.query
         console.log(par)
         if(par.xingming!=undefined){            
             this.state.dataSource[0].PatientName = par.xingming
