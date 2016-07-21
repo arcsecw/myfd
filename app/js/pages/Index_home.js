@@ -913,7 +913,7 @@ var Index_home = withRouter(React.createClass({
           </div>
 
           <div id="u167" className="ax_image">
-            <img id="u167_img" className="img " src="i/images/index_home/u131.png"/>
+            <img id="u167_img" className="img " src="i/images/index_home/132.jpg"/>
 
             <div id="u168" className="text">
               <p><span></span></p>

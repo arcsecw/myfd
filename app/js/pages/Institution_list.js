@@ -38,7 +38,7 @@ const Institution_list = React.createClass({
                {'key':'role','value':this.state.leixing},
                {'key':'province','value':this.state.didian},
                {'key':'paixu','value':this.state.search_paixu},
-               {'key':'disease','value':this.refs.desces.value},               
+               {'key':'disease','value':this.refs.des!=undefined?this.refs.des.value:''},               
            ]
           },
           (res)=>{

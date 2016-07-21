@@ -1,7 +1,9 @@
 import React from 'react';
 import PageContainer from '../components/PageContainer';
 import { render } from 'react-dom'
-
+import {
+  AboutUs
+} from '../components/FontComponents'
 import {
   Grid,
   Col,
@@ -187,11 +189,10 @@ const Login = withRouter(
 
           <div id="u27" class="text">
             <p ><span >登录</span></p>
-          </div>
-          
+          </div>      
         </div>
-        
-          </form>        
+          </form>     
+          <div id='first'><AboutUs/></div>   
       </div>
       </PageContainer>
     );
