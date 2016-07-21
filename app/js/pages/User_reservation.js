@@ -18,27 +18,28 @@ var User_reservation = withRouter( React.createClass({
     getInitialState() {
         return {
             yuyue:{
-                notice1:'notice1',
-                notice2:'notice2',
-                notice3:'notice3',
-                didian:'北京',
-                zhuanjia:'主任医师教授',
-                yuyueshijian:'2016-7-20',
-                shoushuneirong:'神经病',                
+                notice1:'',
+                notice2:'',
+                notice3:'',
+                didian:'',
+                zhuanjia:'',
+                yuyueshijian:'2016-8-20',
+                shoushuneirong:'',                
                 shifouyibao:'否',
-                xingming:'李长磊',
-                chushengriqi:'1988-8-8',
+                xingming:'',
+                chushengriqi:'1990-8-8',
                 quezhenxinxi:'无',
                 bingqingmiaoshu:'',
-                lianxirenxingming:'王文超',
-                yuhuanzheguanxi:'父子',
-                shouji:'110110110',
-                dizhi:'健翔桥',
-                qitafuwu1:'按摩',
-                qitafuwu2:'捏脚',
-                qitafuwu3:'剪头发',
-                qitafuwu4:'拔罐',
-                totalFee:'0'
+                lianxirenxingming:'',
+                yuhuanzheguanxi:'',
+                shouji:'',
+                dizhi:'',
+                qitafuwu1:'其他服务1',
+                qitafuwu2:'其他服务2',
+                qitafuwu3:'其他服务3',
+                qitafuwu4:'其他服务4',
+                totalFee:'500',
+                id:''
             }
         };
     },
@@ -64,8 +65,9 @@ var User_reservation = withRouter( React.createClass({
                 ]
             },
             (res)=>{
-                    this.state.totalFee = res.totalFee
-                    this.props.router.push({ pathname: '/checkReservation',query:{query:this.state.yuyue}})
+                    this.state.yuyue.totalFee = res.totalFee
+                    this.state.yuyue.id = res.id
+                    this.props.router.push({ pathname: '/checkReservation',query:this.state.yuyue})
                     });
         },
     componentWillMount() {
@@ -79,21 +81,22 @@ var User_reservation = withRouter( React.createClass({
     },
      submitForm() {	  
         var refss = this.refs
-        this.state.didian = refss.didian.value;
-        this.state.yuyueshijian = refss.yuyueshijian.value;
-        this.state.shoushuneirong = refss.shoushuneirong.value;
-        this.state.xingming =refss.xingming.value;
-        this.state.chushengriqi = refss.chushengriqi.value;
-        this.state.quezhenxinxi = refss.quezhenxinxi.value;
-        this.state.bingqingmiaoshu = refss.bingqingmiaoshu.value;
-        this.state.lianxirenxingming = refss.lianxirenxingming.value;
-        this.state.yuhuanzheguanxi = refss.yuhuanzheguanxi.value;
-        this.state.shouji = refss.shouji.value;//
-        this.state.dizhi = refss.dizhi.value; //
-        this.state.qitafuwu1 = refss.qitafuwu1.value; //
-        this.state.qitafuwu2 = refss.qitafuwu2.value; //
-        this.state.qitafuwu3 = refss.qitafuwu3.value; //
-        this.state.qitafuwu4 = refss.qitafuwu4.value; //
+        this.state.yuyue.didian = refss.didian.value;
+        this.state.yuyue.yuyueshijian = refss.yuyueshijian.value;
+        this.state.yuyue.shoushuneirong = refss.shoushuneirong.value;
+        this.state.yuyue.xingming =refss.xingming.value;
+        this.state.yuyue.chushengriqi = refss.chushengriqi.value;
+        this.state.yuyue.quezhenxinxi = refss.quezhenxinxi.value;
+        this.state.yuyue.bingqingmiaoshu = refss.bingqingmiaoshu.value;
+        this.state.yuyue.lianxirenxingming = refss.lianxirenxingming.value;
+        this.state.yuyue.yuhuanzheguanxi = refss.yuhuanzheguanxi.value;
+        this.state.yuyue.shouji = refss.shouji.value;//
+        this.state.yuyue.dizhi = refss.dizhi.value; //
+        this.state.yuyue.qitafuwu1 = refss.qitafuwu1.value; //
+        this.state.yuyue.qitafuwu2 = refss.qitafuwu2.value; //
+        this.state.yuyue.qitafuwu3 = refss.qitafuwu3.value; //
+        this.state.yuyue.qitafuwu4 = refss.qitafuwu4.value; //
+        console.log(this.state.yuyue)
         this.query();
     },
     render() {
@@ -220,7 +223,7 @@ var User_reservation = withRouter( React.createClass({
                         <img id="u24_img" className="img " src="i/images/user_reservation_operation_fill_page/u16.png"/>
 
                         <div id="u25" className="text">
-                            <p><span className="read"> 提交手术预约单意味着您仔细阅读并同意以下预约服务协议 </span><span className="protocal">XXX服务协议链接XXXX</span></p>
+                            <p><span className="read"> 提交手术预约单意味着您仔细阅读并同意以下预约服务协议 </span><span className="protocal">名医飞刀平台服务协议</span></p>
                         </div>
                     </div>
 

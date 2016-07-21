@@ -1,5 +1,7 @@
 import React from 'react';
 import PageContainer from '../components/PageContainer';
+import auth from '../components/auth'
+
 var CheckReservation = React.createClass({
     getInitialState() {
             return {
@@ -16,6 +18,7 @@ var CheckReservation = React.createClass({
                         CorrespondingInformation: "已提交", //相关信息
                         ContactName: "郑国伟",  //联系人姓名
                         ContactNumber: "13812345678", //联系人电话
+                        id:'',
                         Cost: {
                            Reservation: "888", //
                            OperationDiscount: "0", //
@@ -37,10 +40,14 @@ var CheckReservation = React.createClass({
         if(par.xingming!=undefined){            
             this.state.dataSource[0].PatientName = par.xingming
             this.state.dataSource[0].DueDay = par.yuyueshijian
+            this.state.dataSource[0].DoctorName = par.zhuanjia        
             this.state.dataSource[0].Disctict = par.didian
             this.state.dataSource[0].OperationFor = par.shoushuneirong
             this.state.dataSource[0].ContactName = par.lianxirenxingming
             this.state.dataSource[0].ContactNumber = par.shouji
+            this.state.dataSource[0].Cost.Reservation = par.totalFee
+            this.state.dataSource[0].Cost.TotalFee = par.totalFee
+            this.state.dataSource[0].id = par.id
         }
     },
     render() {
@@ -62,7 +69,7 @@ var CheckReservation = React.createClass({
                     <div id="u0" className="ax_shape">
                         <img id="u0_img" class="img "/>
                         <div id="service" className="u101">
-                            服务内容: 预约<span className="content">{info.Date}</span>天内(<span className="content">{info.DueDay}</span>) <span className="content">{info.DoctorName}</span><span className="content">{info.InstitutionType}</span>对<span className="content">{info.PatientName}</span>进行<span className="content">{info.OperationFor}</span>方面手术<br/>
+                            服务内容: 预约(<span className="content">{info.DueDay}</span>) <span className="content">{info.DoctorName}</span><span className="content">{info.InstitutionType}</span>对<span className="content">{info.PatientName}</span>进行<span className="content">{info.OperationFor}</span>方面手术<br/>
 
                             地点: <span className="content">{info.Disctict}</span><br/>
                             确诊信息: <span className="content">{info.Information}</span><br/><br/>
@@ -127,7 +134,22 @@ var CheckReservation = React.createClass({
                     <div id="u11" className="ax_shape">
                         <img id="u11_img" className="img " src="i/images/user_check_operation_reservation_page/u9.png"/>
 
-                        <div id="u12" className="text">
+                        <div id="u12" className="text" onClick = {
+                            ()=>{
+                                auth.myact(
+                                            {to:'pay.do',
+                                            parms:[
+                                                    {'key':'id','value':this.state.dataSource[0].id},
+                                                  ]
+                                            },
+                                            (res)=>{
+                                                console.log(res)
+                                                    if(res.state =='success'){
+                                                        alert('支付成功')
+                                                    }
+                                                    });
+                            }
+                        }>
                             <p><span>前往结算&nbsp; </span></p>
                         </div>
                         <div id="u39" class="ax_html_button">

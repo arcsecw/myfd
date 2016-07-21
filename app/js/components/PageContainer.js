@@ -54,13 +54,13 @@ const PageContainer = React.createClass({
       </Breadcrumb>
     );
   },
-
+// {this.renderBreadcrumb()}
   render() {
     return (
       <div
         className={`adm-page ${this.props.className}`}
       >
-        {this.renderBreadcrumb()}
+       
         {this.props.children}
       </div>
     );

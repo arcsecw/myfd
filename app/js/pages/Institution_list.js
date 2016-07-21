@@ -1,8 +1,9 @@
 import React from 'react';
 import PageContainer from '../components/PageContainer';
 import auth from '../components/auth'
-import {Link } from 'react-router'
-const Institution_list = React.createClass({
+import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
+
+const Institution_list = withRouter( React.createClass({
     getInitialState() {
         return {
             dataSource: [
@@ -38,7 +39,7 @@ const Institution_list = React.createClass({
                {'key':'role','value':this.state.leixing},
                {'key':'province','value':this.state.didian},
                {'key':'paixu','value':this.state.search_paixu},
-               {'key':'disease','value':this.refs.des!=undefined?this.refs.des.value:''},               
+               {'key':'disease','value':''},               
            ]
           },
           (res)=>{
@@ -698,5 +699,5 @@ const Institution_list = React.createClass({
             </PageContainer>
         );
     }
-});
+}));
 export default Institution_list;

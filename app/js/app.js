@@ -44,7 +44,6 @@ import {
   Price_manage,
   Account_manage,
   User_index,
-
 } from './pages';
 
 const pages = {
@@ -69,7 +68,7 @@ const pages = {
   price_manage: Price_manage,
   account_manage: Account_manage,
   user_index:User_index,
-
+  logout:Logout,
 };
 
 var App = React.createClass({
@@ -123,6 +122,7 @@ const Page = React.createClass({
     const {query} = this.props.location;
     const breadcrumb = query && query.breadcrumb;
     const location = this.props.location
+    console.log(pages[page])
     if (pages[page]) {
       return React.createElement(
         pages[page],

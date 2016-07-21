@@ -188,6 +188,7 @@ const Siderbar = React.createClass({
         className={`adm-sidebar ${active}`}
       >
         <List>
+          {this.renderItems()}
         </List>
       </div>
     );

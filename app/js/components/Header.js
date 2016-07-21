@@ -36,46 +36,93 @@ const Header = React.createClass({
             className="am-topbar-right"
             topbar
           >
+          <NavItem className = "am-dropdown" href = '#'>
+          <Link to = '/index_home'>
+          <Icon icon="home" /> {'网站首页'}
+          </Link>
+          </NavItem>
             {auth.loggedIn()?(
             <Dropdown
               title={[<Icon icon="group" key="hey" />, auth.getUsername()]}
               navItem
             >
+
+              
               <Dropdown.Item
                 closeOnClick
                 linkComponent={Link}
                 linkProps={{
-                  to: {pathname: '/profile', query: {breadcrumb: '个人资料'}},
+                  to: {pathname: '/price_manage'},
                   onClick: this.handleClick
                 }}
               >
-                <Icon icon="user" /> {' 个人资料'}
+                <Icon icon="user" /> {' 价格管理'}
               </Dropdown.Item>
-              <Dropdown.Item>
-                <Icon icon="cog" /> {' 系统设置'}
-              </Dropdown.Item>
-            </Dropdown>):''}
-            {auth.loggedIn()?(
-            <NavItem
-              linkComponent={Link}
-              linkProps={{
-                to: {
-                  pathname: '/messages',
-                  query: {breadcrumb: '通知'}
-                },
-                onClick: this.handleClick
-              }}
-            >
-              <Icon icon="envelope-o" />
-              {' 通知 '}
-              <Badge
-                amStyle="warning"
-                round
+
+
+           
+              <Dropdown.Item
+                closeOnClick
+                linkComponent={Link}
+                linkProps={{
+                  to: {pathname: '/account_manage'},
+                  onClick: this.handleClick
+                }}
               >
-                7
-              </Badge>
-            </NavItem>
-            ):''}
+                <Icon icon="user" /> {' 账户管理'}
+              </Dropdown.Item>
+
+
+           
+              <Dropdown.Item
+                closeOnClick
+                linkComponent={Link}
+                linkProps={{
+                  to: {pathname: '/user_manage'},
+                  onClick: this.handleClick
+                }}
+              >
+                <Icon icon="user" /> {' 用户管理'}
+              </Dropdown.Item>
+
+              <Dropdown.Item
+                closeOnClick
+                linkComponent={Link}
+                linkProps={{
+                  to: {pathname: '/user_index'},
+                  onClick: this.handleClick
+                }}
+              >
+                <Icon icon="user" /> {'用户首页'}
+              </Dropdown.Item>
+           
+              <Dropdown.Item
+                closeOnClick
+                linkComponent={Link}
+                linkProps={{
+                  to: {pathname: '/order'},
+                  onClick: this.handleClick
+                }}
+              >
+                <Icon icon="user" /> {' 订单管理'}
+              </Dropdown.Item>
+
+
+           
+              <Dropdown.Item
+                closeOnClick
+                linkComponent={Link}
+                linkProps={{
+                  to: {pathname: '/manageRoot'},
+                  onClick: this.handleClick
+                }}
+              >
+                <Icon icon="user" /> {' 系统管理'}
+              </Dropdown.Item>
+
+
+            </Dropdown>):''}
+            
             <NavItem
               className="am-dropdown"
               href="#"
@@ -91,6 +138,7 @@ const Header = React.createClass({
             }
             
             </NavItem>
+            
           </Nav>
         </CollapsibleNav>
       </Topbar>

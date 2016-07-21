@@ -4,9 +4,10 @@ import PageContainer from '../components/PageContainer';
 //</div>):""}
 import {
 }from 'amazeui-react';
-import {Link } from 'react-router'
 import auth from '../components/auth'
-var Doctor_list = React.createClass({
+import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
+
+var Doctor_list =withRouter( React.createClass({
   getInitialState() {
     return {
       dataSource: [
@@ -59,7 +60,7 @@ var Doctor_list = React.createClass({
           { 'key': 'role', 'value': this.state.leixing },
           { 'key': 'province', 'value': this.state.didian },
           { 'key': 'paixu', 'value': this.state.search_paixu },
-          { 'key': 'disease', 'value': this.refs.des!=undefined?this.refs.des.value:'' },
+          { 'key': 'disease', 'value':''},
         ]
       },
       (res) => {
@@ -740,5 +741,5 @@ var Doctor_list = React.createClass({
       </PageContainer>
     );
   }
-});
+}));
 export default Doctor_list;
