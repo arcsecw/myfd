@@ -480,7 +480,7 @@ var Register_hospital =withRouter(React.createClass({
         </div>
       </div>
 
-   
+<Link to = '/index_home'>   
       <div id="u69" className="ax_shape">
         <img id="u69_img" className="img " src="i/images/user_check_operation_reservation_page/u23.png"/>
        
@@ -488,8 +488,7 @@ var Register_hospital =withRouter(React.createClass({
           <p><span>公司主 Logo</span></p>
         </div>
       </div>
-
-      
+</Link>
       <div id="u71" className="ax_shape">
         <img id="u71_img" className="img " src="i/images/register_doctor/u74.png"/>
        

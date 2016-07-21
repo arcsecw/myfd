@@ -38,6 +38,7 @@ var User_reservation = withRouter( React.createClass({
                 qitafuwu2:'捏脚',
                 qitafuwu3:'剪头发',
                 qitafuwu4:'拔罐',
+                totalFee:'0'
             }
         };
     },
@@ -63,7 +64,8 @@ var User_reservation = withRouter( React.createClass({
                 ]
             },
             (res)=>{
-                    console.log(res)
+                    this.state.totalFee = res.totalFee
+                    this.props.router.replace({ pathname: '/CheckReservation',query:{query:this.yuyue}})
                     });
         },
     componentWillMount() {
