@@ -523,7 +523,7 @@ var Query_result = withRouter (React.createClass({
 
                     
                     <div id="u70" className="ax_image">
-                        <img id="u70_img" className="img " src="i/images/query_result/u70.png"/>
+                        <img id="u70_img" className="img " src="i/images/query_result/query_result/1.png"/>
                         
                         <div id="u71" className="text">
                             <p><span></span></p>
@@ -550,7 +550,7 @@ var Query_result = withRouter (React.createClass({
 
                     
                     <div id="u76" className="ax_image">
-                        <img id="u76_img" className="img " src="i/images/query_result/u76.png"/>
+                        <img id="u76_img" className="img " src="i/images/query_result/query_result/2.png"/>
                         
                         <div id="u77" className="text">
                             <p><span></span></p>
@@ -559,7 +559,7 @@ var Query_result = withRouter (React.createClass({
 
                     
                     <div id="u78" className="ax_image">
-                        <img id="u78_img" className="img " src="i/images/query_result/u78.png"/>
+                        <img id="u78_img" className="img " src="i/images/query_result/query_result/3.png"/>
                         
                         <div id="u79" className="text">
                             <p><span></span></p>

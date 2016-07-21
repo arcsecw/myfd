@@ -433,7 +433,7 @@ var Doctor_list = React.createClass({
                 </div>
               </Link>
               <div id="u63" className="ax_image">
-                <img id="u63_img" className="img " src="i/images/query_result/u70.png"/>
+                <img id="u63_img" className="img " src="i/images/doctor_list/doctor_list/1.png"/>
 
                 <div id="u64" className="text">
                   <p><span></span></p>
@@ -454,7 +454,7 @@ var Doctor_list = React.createClass({
           </Link>
 
           <div id="u67" className="ax_image">
-            <img id="u67_img" className="img " src="i/images/query_result/u76.png"/>
+            <img id="u67_img" className="img " src="i/images/doctor_list/doctor_list/2.png"/>
 
             <div id="u68" className="text">
               <p><span></span></p>
@@ -675,7 +675,7 @@ var Doctor_list = React.createClass({
             </div>
           </Link>
           <div id="u116" className="ax_image">
-            <img id="u116_img" className="img " src="i/images/doctor_list/u116.png"/>
+            <img id="u116_img" className="img " src="i/images/doctor_list/doctor_list/3.png"/>
 
             <div id="u117" className="text">
               <p><span></span></p>
