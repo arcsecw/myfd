@@ -449,7 +449,7 @@ var Index_home = withRouter(React.createClass({
           </div>
 
           <div id="u63" className="ax_image">
-            <img id="u63_img" className="img " src="i/images/index_home/u63.png"/>
+            <img id="u63_img" className="img " src="i/images/index_home/index_doc/1.png"/>
 
             <div id="u64" className="text">
               <p><span></span></p>
@@ -511,7 +511,7 @@ var Index_home = withRouter(React.createClass({
           </div>
 
           <div id="u77" className="ax_image">
-            <img id="u77_img" className="img " src="i/images/index_home/u63.png"/>
+            <img id="u77_img" className="img " src="i/images/index_home/index_doc/2.png"/>
 
             <div id="u78" className="text">
               <p><span></span></p>
@@ -573,7 +573,7 @@ var Index_home = withRouter(React.createClass({
           </div>
 
           <div id="u91" className="ax_image">
-            <img id="u91_img" className="img " src="i/images/index_home/u63.png"/>
+            <img id="u91_img" className="img " src="i/images/index_home/index_doc/3.png"/>
 
             <div id="u92" className="text">
               <p><span></span></p>
@@ -636,7 +636,7 @@ var Index_home = withRouter(React.createClass({
           </div>
 
           <div id="u105" className="ax_image">
-            <img id="u105_img" className="img " src="i/images/index_home/u63.png"/>
+            <img id="u105_img" className="img " src="i/images/index_home/index_doc/4.png"/>
 
             <div id="u106" className="text">
               <p><span></span></p>
@@ -754,7 +754,7 @@ var Index_home = withRouter(React.createClass({
           </div>
 
           <div id="u131" className="ax_image">
-            <img id="u131_img" className="img " src="i/images/index_home/u131.png"/>
+            <img id="u131_img" className="img " src="i/images/index_home/index_agc/1.png"/>
 
             <div id="u132" className="text">
               <p><span></span></p>
@@ -807,7 +807,7 @@ var Index_home = withRouter(React.createClass({
           </div>
 
           <div id="u143" className="ax_image">
-            <img id="u143_img" className="img " src="i/images/index_home/u131.png"/>
+            <img id="u143_img" className="img " src="i/images/index_home/index_agc/2.png"/>
 
             <div id="u144" className="text">
               <p><span></span></p>
@@ -860,7 +860,7 @@ var Index_home = withRouter(React.createClass({
           </div>
 
           <div id="u155" className="ax_image">
-            <img id="u155_img" className="img " src="i/images/index_home/u131.png"/>
+            <img id="u155_img" className="img " src="i/images/index_home/index_agc/3.png"/>
 
             <div id="u156" className="text">
               <p><span></span></p>
@@ -913,7 +913,7 @@ var Index_home = withRouter(React.createClass({
           </div>
 
           <div id="u167" className="ax_image">
-            <img id="u167_img" className="img " src="i/images/index_home/132.jpg"/>
+            <img id="u167_img" className="img " src="i/images/index_home/index_agc/4.png"/>
 
             <div id="u168" className="text">
               <p><span></span></p>
