@@ -12,7 +12,7 @@ import {
   Dropdown,
 } from 'amazeui-react';
 import auth from './auth'
-
+import Logout from '../pages/Logout';
 const Header = React.createClass({
   handleClick() {
     if (matchMedia && matchMedia('(max-width: 640px)').matches) {
@@ -45,46 +45,7 @@ const Header = React.createClass({
             <Dropdown
               title={[<Icon icon="group" key="hey" />, auth.getUsername()]}
               navItem
-            >
-
-              
-              <Dropdown.Item
-                closeOnClick
-                linkComponent={Link}
-                linkProps={{
-                  to: {pathname: '/price_manage'},
-                  onClick: this.handleClick
-                }}
-              >
-                <Icon icon="user" /> {' 价格管理'}
-              </Dropdown.Item>
-
-
-           
-              <Dropdown.Item
-                closeOnClick
-                linkComponent={Link}
-                linkProps={{
-                  to: {pathname: '/account_manage'},
-                  onClick: this.handleClick
-                }}
-              >
-                <Icon icon="user" /> {' 账户管理'}
-              </Dropdown.Item>
-
-
-           
-              <Dropdown.Item
-                closeOnClick
-                linkComponent={Link}
-                linkProps={{
-                  to: {pathname: '/user_manage'},
-                  onClick: this.handleClick
-                }}
-              >
-                <Icon icon="user" /> {' 用户管理'}
-              </Dropdown.Item>
-
+            >                     
               <Dropdown.Item
                 closeOnClick
                 linkComponent={Link}
@@ -94,33 +55,7 @@ const Header = React.createClass({
                 }}
               >
                 <Icon icon="user" /> {'用户首页'}
-              </Dropdown.Item>
-           
-              <Dropdown.Item
-                closeOnClick
-                linkComponent={Link}
-                linkProps={{
-                  to: {pathname: '/order'},
-                  onClick: this.handleClick
-                }}
-              >
-                <Icon icon="user" /> {' 订单管理'}
-              </Dropdown.Item>
-
-
-           
-              <Dropdown.Item
-                closeOnClick
-                linkComponent={Link}
-                linkProps={{
-                  to: {pathname: '/manageRoot'},
-                  onClick: this.handleClick
-                }}
-              >
-                <Icon icon="user" /> {' 系统管理'}
-              </Dropdown.Item>
-
-
+              </Dropdown.Item>                             
             </Dropdown>):''}
             
             <NavItem
@@ -128,7 +63,7 @@ const Header = React.createClass({
               href="#"
             >
             {auth.loggedIn()?(
-              <Link to = '/logout'>
+              <Link to = '/Logout'>
               <Icon icon="sign-out" /> {' 退出登录'}
               </Link>
             ) :(

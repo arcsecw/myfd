@@ -68,7 +68,6 @@ const pages = {
   price_manage: Price_manage,
   account_manage: Account_manage,
   user_index:User_index,
-  logout:Logout,
 };
 
 var App = React.createClass({
@@ -101,7 +100,7 @@ var App = React.createClass({
       <div className="adm-container">
         <Header />
         <Sidebar active={sidebarActive} />
-        <div className="adm-main">
+        <div className="adm-main12">
           {this.props.children}
         </div>
         <Icon
@@ -144,8 +143,9 @@ const Page = React.createClass({
     );
   }
 });
-const Logout = React.createClass({
+const Logout =  React.createClass({
   componentDidMount() {
+    console.log("logout")
     auth.logout()
   },
 
@@ -170,9 +170,11 @@ const routes = (
         <IndexRoute component={NoMessage} />
       </Route>
       <Route path = "login" component = {Login}/>      
+      <Route path = "logout" component = {Logout}/>      
       <Route path = "adminlogin" component = {AdminLogin}/>      
       <Route path = "register_user" component = {Register_user}/>      
       <Route path = "register_doctor" component = {Register_doctor}/>      
+      <Route path = "register_hospital" component = {Register_hospital}/> 
       <Route path = "index_home" component = {Index_home}/>      
       <Route path = "query_result" component = {Query_result}/>      
       <Route path = "doctor_list" component = {Doctor_list}/>      

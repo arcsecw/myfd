@@ -165,12 +165,12 @@ React.createClass({
 
 
                     <div id="u11" className="ax_text_field">
-                        <input id="u11_input" type="text"  />
+                        <input id="u11_input" type="password"  />
                     </div>
 
 
                     <div id="u12" className="ax_text_field">
-                        <input id="u12_input" type="text"  />
+                        <input id="u12_input" type="password"  />
                     </div>
 
 

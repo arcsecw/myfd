@@ -217,12 +217,12 @@ var Register_doctor =withRouter( React.createClass({
 
 
                     <div id="u5" className="ax_text_field">
-                         <input ref="regist_password"  id="u5_input" type="text"  />
+                         <input ref="regist_password"  id="u5_input" type="password"  />
                     </div>
 
 
                     <div id="u6" className="ax_text_field">
-                         <input ref="regist_confirmPwd"  id="u6_input" type="text"  />
+                         <input ref="regist_confirmPwd"  id="u6_input" type="password"  />
                     </div>
 
 

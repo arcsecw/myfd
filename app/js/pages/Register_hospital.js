@@ -177,12 +177,12 @@ var Register_hospital =withRouter(React.createClass({
 
  
       <div id="u10" className="ax_text_field">
-        <input id="u10_input" ref = "regist_password" type="text"  />
+        <input id="u10_input" ref = "regist_password" type="password"  />
       </div>
 
    
       <div id="u11" className="ax_text_field">
-        <input id="u11_input" ref = "regist_confirmPwd" type="text"  />
+        <input id="u11_input" ref = "regist_confirmPwd" type="password"  />
       </div>
 
       <div id="u12" className="ax_paragraph">
