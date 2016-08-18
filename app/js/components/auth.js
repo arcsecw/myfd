@@ -2,7 +2,7 @@ module.exports = {
   login(email, pass, cb) {
     cb = arguments[arguments.length - 1]
     if (localStorage.token) {
-      if (cb) cb(true)
+      if (cb)  cb(true)
       this.onChange(true)
       return
     }
@@ -24,7 +24,9 @@ module.exports = {
   getUsername() {
     return localStorage.username
   },
-
+getRole(){
+  return localStorage.role;
+},
   logout(cb) {
     delete localStorage.token
     delete localStorage.username
@@ -80,7 +82,8 @@ function pretendRequest(email, pass, cb) {
         return res.json();
       })
       .then(data => {
-        console.log(data)
+        localStorage.role=data.role
+        console.log(localStorage)
         if(data['result']=='true'){
           cb({
         authenticated: true,

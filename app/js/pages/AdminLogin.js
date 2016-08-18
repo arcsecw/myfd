@@ -1,5 +1,6 @@
 import React from 'react';
 import PageContainer from '../components/PageContainer';
+import { render } from 'react-dom'
 import {
   Grid,
   Col,
@@ -11,20 +12,38 @@ import {
   Button,
   Panel,
 } from 'amazeui-react';
-var AdminLogin = React.createClass({
+import auth from '../components/auth'
+import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
+var AdminLogin = withRouter(
+  React.createClass({
+     getInitialState() {
+      return {
+        error: false
+      }
+    },
   handleSubmit: function (e) {
     e.preventDefault();
-    var username = this.refs.username.value;
-    var password = this.refs.password.value;
-    var url = "http://123.56.133.208:8080/myfd/login.do?" + "username" + "=" + username + "&" + "password" + "=" + password + "&" + "role=1"
-    console.log(username);
-    console.log(password);
+    var username=document.getElementById('u2_input').value;
+    var password=document.getElementById('u3_input').value;
+  console.log(username,password)
     if (!username || !password) {
       alert("账户或密码不可以为空");
-      return;
+    }else{auth.login(username, password, (loggedIn) => {
+        if (!loggedIn){
+          
+          console.log(username+password)
+          return this.setState({ error: true })
+      }
+        const { location } = this.props
+        var role=auth.getRole()
+        if (location.state && location.state.nextPathname) {
+          this.props.router.replace(location.state.nextPathname)
+        } else {
+          this.props.router.replace('/')
+        }
+      })
     }
-    fetch(url)
-  },
+   },
   render() {
     return (
       <div id="base" class="">
@@ -48,7 +67,7 @@ var AdminLogin = React.createClass({
           <div id="u4" className="ax_h1">
             <img id="u4_img" class="img " src="i/resources/images/transparent.gif"/>
             <div id="u5" class="text">
-              <p><span>管理登录</span></p>
+              <p><span>管理员登录</span></p>
             </div>
           </div>
           <div id="u6" class="ax_paragraph">
@@ -70,6 +89,6 @@ var AdminLogin = React.createClass({
       </div>
     );
   }
-});
+}));
 export default AdminLogin;
 

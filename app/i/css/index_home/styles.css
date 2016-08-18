@@ -1,4 +1,11 @@
-﻿
+﻿body {
+  margin:0px;
+  background-color:rgba(204, 204, 204, 0.0784313725490196);
+  background-image:none;
+  position:static;
+  left:auto;
+  text-align:left;
+}
 #base {
   position:absolute;
   z-index:0;
