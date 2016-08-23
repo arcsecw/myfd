@@ -272,7 +272,7 @@ var User_reservation = withRouter( React.createClass({
                         <img id="u35_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u36" className="text">
-                            <p><span className="read">您好： </span><span className="hi">XXXX</span><span className="read">&nbsp; &nbsp; </span><span className="read">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></p>
+                            <p><span className="read"></span><span className="hi"></span><span className="read">&nbsp; &nbsp; </span><span className="read">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span></p>
                         </div>
                     </div>
 

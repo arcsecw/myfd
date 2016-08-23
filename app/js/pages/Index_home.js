@@ -7,6 +7,8 @@ import {
   Selected,
   Button,
   Container,
+  Grid,
+  Col
 } from 'amazeui-react';
 import auth from '../components/auth'
 import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
@@ -253,7 +255,7 @@ var Index_home = withRouter(React.createClass({
           <div id="u24" className="ax_horizontal_line">
             <img id="u24_start" className="img " src="i/resources/images/transparent.gif" alt="u24_start"/>
             <img id="u24_end" className="img " src="i/resources/images/transparent.gif" alt="u24_end"/>
-            <img id="u24_line" className="img " src="i/images/index_home/u21_line.png" alt="u24_line"/>
+          
           </div>
 
           <div id="u25" className="ax_paragraph">
@@ -470,7 +472,7 @@ var Index_home = withRouter(React.createClass({
             <img id="u67_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u68" className="text">
-              <p><span>{dline1.hospital}&nbsp; &nbsp; {dline1.title}</span></p>
+              <p><span>{dline1.hospital}&nbsp; &nbsp; &nbsp;{dline1.title}</span></p>
             </div>
           </div>
 
@@ -523,13 +525,14 @@ var Index_home = withRouter(React.createClass({
             <img id="u79_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u80" className="text">
-              <p><span>{dline2.realname}</span></p>
+              <p><span>&nbsp;&nbsp;&nbsp;{dline2.realname}</span></p>
             </div>
           </div>
 
 
           <div id="u81" className="ax_paragraph">
             <img id="u81_img" className="img " src="i/resources/images/transparent.gif"/>
+
 
             <div id="u82" className="text">
               <p><span>{dline2.hospital}&nbsp; &nbsp; {dline2.title}</span></p>
@@ -740,7 +743,7 @@ var Index_home = withRouter(React.createClass({
             <img id="u127_img" className="img " src="i/images/index_home/u71.png"/>
 
             <div id="u128" className="text">
-              <p><span>{line1.excel.length>0?line1.excel[0]:''}</span></p>
+              <p><span>医保</span></p>
             </div>
           </div>
 
@@ -749,7 +752,7 @@ var Index_home = withRouter(React.createClass({
             <img id="u129_img" className="img " src="i/images/index_home/u73.png"/>
 
             <div id="u130" className="text">
-              <p><span>{line1.excel.length>1?line1.excel[1]:''}</span></p>
+              <p><span>可预约</span></p>
             </div>
           </div>
 
@@ -793,7 +796,7 @@ var Index_home = withRouter(React.createClass({
             <img id="u139_img" className="img " src="i/images/index_home/u71.png"/>
 
             <div id="u140" className="text">
-              <p><span>{line2.excel.length>0?line2.excel[0]:''}</span></p>
+              <p><span>医保</span></p>
             </div>
           </div>
 
@@ -802,7 +805,7 @@ var Index_home = withRouter(React.createClass({
             <img id="u141_img" className="img " src="i/images/index_home/u73.png"/>
 
             <div id="u142" className="text">
-              <p><span>{line2.excel.length>1?line2.excel[1]:''}</span></p>
+              <p><span>可预约</span></p>
             </div>
           </div>
 
@@ -846,7 +849,7 @@ var Index_home = withRouter(React.createClass({
             <img id="u151_img" className="img " src="i/images/index_home/u71.png"/>
 
             <div id="u152" className="text">
-              <p><span>{line3.excel.length>0?line3.excel[0]:''}</span></p>
+              <p><span>医保</span></p>
             </div>
           </div>
 
@@ -855,7 +858,7 @@ var Index_home = withRouter(React.createClass({
             <img id="u153_img" className="img " src="i/images/index_home/u73.png"/>
 
             <div id="u154" className="text">
-              <p><span>{line3.excel.length>1?line3.excel[1]:''}</span></p>
+              <p><span>可预约</span></p>
             </div>
           </div>
 
@@ -899,7 +902,7 @@ var Index_home = withRouter(React.createClass({
             <img id="u163_img" className="img " src="i/images/index_home/u71.png"/>
 
             <div id="u164" className="text">
-              <p><span>{line4.excel.length>0?line4.excel[0]:''}</span></p>
+              <p><span>医保</span></p>
             </div>
           </div>
 
@@ -908,7 +911,7 @@ var Index_home = withRouter(React.createClass({
             <img id="u165_img" className="img " src="i/images/index_home/u73.png"/>
 
             <div id="u166" className="text">
-              <p><span>{line4.excel.length>1?line4.excel[1]:''}</span></p>
+              <p><span>可预约</span></p>
             </div>
           </div>
 

@@ -69,7 +69,7 @@ const Login = withRouter(
    },
   render() {
     return (
-      <PageContainer>
+      <div>
       <div id="base" class="">
       <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
       <link href="i/data/styles.css" type="text/css" rel="stylesheet"/>
@@ -152,7 +152,7 @@ const Login = withRouter(
           <img id="u18_img" class="img " src="i/resources/images/transparent.gif"/>
 
           <div id="u19" class="text">
-            <p><span>其他方式登录</span></p>
+            <p><span></span></p>
           </div>
         </div>
 
@@ -161,7 +161,7 @@ const Login = withRouter(
           <img id="u20_img" class="img " src="i/resources/images/transparent.gif"/>
 
           <div id="u21" class="text">
-            <p><span>微信</span></p>
+            <p><span></span></p>
           </div>
         </div>
 
@@ -192,9 +192,48 @@ const Login = withRouter(
           </div>      
         </div>
           </form>     
-          <div id='first'><AboutUs/></div>   
+
+          <div id="u170" className="ax_paragraph">
+            <img id="u170_img" className="img " src="i/resources/images/transparent.gif"/>
+
+            <div id="u171" className="text">
+              <p><span>关于我们</span></p>
+            </div>
+          </div>
+
+
+          <div id="u172" className="ax_paragraph">
+            <img id="u172_img" className="img " src="i/resources/images/transparent.gif"/>
+
+            <div id="u173" className="text">
+              <p><span>联系我们</span></p>
+            </div>
+          </div>
+
+
+          <div id="u174" className="ax_paragraph">
+            <img id="u174_img" className="img " src="i/resources/images/transparent.gif"/>
+
+            <div id="u175" className="text">
+              <p><span>服务条款</span></p>
+            </div>
+          </div>
+
+
+          <div id="u176" className="ax_paragraph">
+            <img id="u176_img" className="img " src="i/resources/images/transparent.gif"/>
+
+            <div id="u177" className="text">
+              <p><span>媒体更新</span></p>
+            </div>
+            <div id="u194" class="ax_html_button">
+              <input />
+            </div>
+
+          </div>
+          </div>   
+
       </div>
-      </PageContainer>
     );
   }
 }));
