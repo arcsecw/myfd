@@ -111,6 +111,10 @@ var Index_home = withRouter(React.createClass({
   search(str) {
     console.log(str);
   },
+  shanchang(str){
+    console.log(str.substr(3,9))
+    return str.substr(3,9)=='undefined'?str.substr(0,2):str.substr(0,20);
+  },
   render() {
         var data =  this.state.forhospital
         var line1 = {excel:[]}
@@ -147,6 +151,11 @@ var Index_home = withRouter(React.createClass({
             dline4 = ddata[3]
         }
         console.log(ddata)
+        var goodAt='擅长:';
+        var goodAt1=goodAt+dline1.excel[0]+','+dline1.excel[1];
+        var goodAt2=goodAt+dline2.excel[0]+','+dline2.excel[1];
+
+        console.log(goodAt2.substr(3,9))
     return (
       <PageContainer>
         <script type="text/javascript">
@@ -472,7 +481,7 @@ var Index_home = withRouter(React.createClass({
             <img id="u67_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u68" className="text">
-              <p><span>{dline1.hospital}&nbsp; &nbsp; &nbsp;{dline1.title}</span></p>
+              <p><span>&nbsp;&nbsp;{dline1.hospital}&nbsp; &nbsp; &nbsp;{dline1.title}</span></p>
             </div>
           </div>
 
@@ -488,18 +497,16 @@ var Index_home = withRouter(React.createClass({
 
           <div id="u71" className="ax_shape">
             <img id="u71_img" className="img " src="i/images/index_home/u71.png"/>
-
             <div id="u72" className="text">
-              <p><span>{dline1.excel.length>0?dline1.excel[0]:''}</span></p>
+              <span id="u302">{this.shanchang(goodAt1)}</span>
             </div>
           </div>
 
 
           <div id="u73" className="ax_shape">
-            <img id="u73_img" className="img " src="i/images/index_home/u73.png"/>
 
             <div id="u74" className="text">
-              <p><span>{dline1.excel.length>1?dline1.excel[1]:''}</span></p>
+              <p><span></span></p>
             </div>
           </div>
 
