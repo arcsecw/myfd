@@ -60,6 +60,7 @@ const Order_null = React.createClass({
           <th>系统推荐团队</th>
           <th>偏好专家</th>
           <th>跟进助理</th>      
+          <th>手机号</th>      
         </tr>
         </thead>
         <tbody>
@@ -79,6 +80,8 @@ const Order_null = React.createClass({
                 <td>{item.adviceteam}</td>
                 <td>{item.proferdoctor}</td>
                 <td>{item.ass}</td>
+                <td>{item.mobile}</td>
+
               </tr>
             );
           })

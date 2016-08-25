@@ -62,7 +62,9 @@ formatstsate(id){
           <th>手术名称</th>
           <th>手术团队</th>
           <th>更多信息</th>
-          <th>跟进助理</th>      
+          <th>跟进助理</th>
+          <th>手机号</th>      
+      
         </tr>
         </thead>
         <tbody>
@@ -80,6 +82,8 @@ formatstsate(id){
                 <td>{item.team}</td>
                 <td>{item.more}</td>
                 <td>{item.ass}</td>
+                <td>{item.mobile}</td>
+
               </tr>
             );
           })
