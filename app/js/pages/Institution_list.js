@@ -26,7 +26,7 @@ const Institution_list = withRouter( React.createClass({
             check_youyouhui:false,
             search_paixu:'1',//or人气 预约时间,
             nowpage :1,
-            totalpage:2,
+            totalpage:10,
             keyword:''
             
         };

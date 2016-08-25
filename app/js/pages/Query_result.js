@@ -43,7 +43,7 @@ var Query_result = withRouter (React.createClass({
                 check_discount:false,
                 search_inOrder:'1',//or人气 or 预约时间,
                 nowpage :1,
-                totalpage:2,
+                totalpage:10,
                 des:'',
             };
         },
