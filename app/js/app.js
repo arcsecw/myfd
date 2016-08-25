@@ -9,7 +9,7 @@ import {
 import {
   Icon,
 } from 'amazeui-react';
-
+import 'whatwg-fetch'
 // style
 //import '../less/app.less';
 

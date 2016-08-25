@@ -41,7 +41,8 @@ const Header = React.createClass({
           <Icon icon="home" /> {'网站首页'}
           </Link>
           </NavItem>
-            {auth.loggedIn()?(
+           
+             {auth.loggedIn()?(
             <Dropdown
               title={[<Icon icon="group" key="hey" />, auth.getUsername()]}
               navItem
@@ -56,8 +57,7 @@ const Header = React.createClass({
               >
                 <Icon icon="user" /> {'用户首页'}
               </Dropdown.Item>                             
-            </Dropdown>):''}
-            
+            </Dropdown>):(<NavItem></NavItem>)}
             <NavItem
               className="am-dropdown"
               href="#"
