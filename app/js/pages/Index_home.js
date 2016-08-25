@@ -17,6 +17,7 @@ var Index_home = withRouter(React.createClass({
   getInitialState() {
       return {
           disctrict:'',
+          position:5,
           fourdoc:[
             {
               reserveTime: 0,
@@ -113,7 +114,11 @@ var Index_home = withRouter(React.createClass({
   },
   shanchang(str){
     console.log(str.substr(3,9))
-    return str.substr(3,9)=='undefined'?str.substr(0,2):str.substr(0,20);
+    var end='';
+    if(str.length>=20){
+      end='···';
+    }
+   return  str.substr(3,9)=='undefined'?str.substr(0,3):str.substr(0,20)+end;
   },
   render() {
         var data =  this.state.forhospital
@@ -154,8 +159,10 @@ var Index_home = withRouter(React.createClass({
         var goodAt='擅长:';
         var goodAt1=goodAt+dline1.excel[0]+','+dline1.excel[1];
         var goodAt2=goodAt+dline2.excel[0]+','+dline2.excel[1];
-
-        console.log(goodAt2.substr(3,9))
+        var goodAt3=goodAt+dline3.excel[0]+','+dline3.excel[1];
+        var goodAt4=goodAt+dline4.excel[0]+','+dline4.excel[1];
+console.log(goodAt3.length)
+        console.log(goodAt3)
     return (
       <PageContainer>
         <script type="text/javascript">
@@ -498,7 +505,7 @@ var Index_home = withRouter(React.createClass({
           <div id="u71" className="ax_shape">
             <img id="u71_img" className="img " src="i/images/index_home/u71.png"/>
             <div id="u72" className="text">
-              <span id="u302">{this.shanchang(goodAt1)}</span>
+              <span id="u302"><span style={{left:this.state.position}}>{this.shanchang(goodAt1)}</span></span>
             </div>
           </div>
 
@@ -560,18 +567,11 @@ var Index_home = withRouter(React.createClass({
             <img id="u85_img" className="img " src="i/images/index_home/u71.png"/>
 
             <div id="u86" className="text">
-              <p><span>{dline2.excel.length>0?dline2.excel[0]:''}</span></p>
+              <p><span>{goodAt2}</span></p>
             </div>
           </div>
 
 
-          <div id="u87" className="ax_shape">
-            <img id="u87_img" className="img " src="i/images/index_home/u73.png"/>
-
-            <div id="u88" className="text">
-              <p><span>{dline2.excel.length>1?dline2.excel[1]:''}</span></p>
-            </div>
-          </div>
 
 
           <div id="u89" className="ax_shape">
@@ -623,18 +623,18 @@ var Index_home = withRouter(React.createClass({
             <img id="u99_img" className="img " src="i/images/index_home/u71.png"/>
 
             <div id="u100" className="text">
-              <p><span>{dline3.excel.length>0?dline3.excel[0]:''}</span></p>
+              <p><span>{this.shanchang(goodAt3)}</span></p>
             </div>
           </div>
 
 
-          <div id="u101" className="ax_shape">
-            <img id="u101_img" className="img " src="i/images/index_home/u73.png"/>
+         
+        
 
             <div id="u102" className="text">
-              <p><span>{dline3.excel.length>1?dline3.excel[1]:''}</span></p>
+              <p><span></span></p>
             </div>
-          </div>
+      
 
 
           <div id="u103" className="ax_shape">
@@ -686,18 +686,12 @@ var Index_home = withRouter(React.createClass({
             <img id="u113_img" className="img " src="i/images/index_home/u71.png"/>
 
             <div id="u114" className="text">
-              <p><span>{dline4.excel.length>0?dline4.excel[0]:''}</span></p>
+              <p><span>{this.shanchang(goodAt4)}</span></p>
             </div>
           </div>
 
 
-          <div id="u115" className="ax_shape">
-            <img id="u115_img" className="img " src="i/images/index_home/u73.png"/>
-
-            <div id="u116" className="text">
-              <p><span>{dline4.excel.length>1?dline4.excel[1]:''}</span></p>
-            </div>
-          </div>
+  
 
 
           <div id="u117" className="ax_paragraph">
