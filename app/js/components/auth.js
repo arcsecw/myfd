@@ -1,11 +1,12 @@
 module.exports = {
-  login(email, pass, cb) {
+  user_login(email, pass, cb) {
     cb = arguments[arguments.length - 1]
     if (localStorage.token) {
       if (cb)  cb(true)
       this.onChange(true)
       return
     }
+    console.log('test')
     pretendRequest(email, pass, (res) => {
       if (res.authenticated) {
         localStorage.token = res.token
@@ -83,28 +84,21 @@ function pretendRequest(email, pass, cb) {
       })
       .then(data => {
         localStorage.role=data.role
-        console.log(localStorage)
+        console.log(data)
         if(data['result']=='true'){
           cb({
         authenticated: true,
         token: Math.random().toString(36).substring(7),
       })
         }else {
-        cb({ authenticated: false })          
+        cb({ authenticated: false })
+        alert(data['result'])          
         }
         
       })
       .catch(error => {
         console.log('Request failed: ', error)
       });
-    if (email === 'admin' && pass === 'admin') {
-      cb({
-        authenticated: true,
-        token: Math.random().toString(36).substring(7)
-      })
-    } else {
-      cb({ authenticated: false })
-    }
   }
 
 

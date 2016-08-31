@@ -41,8 +41,8 @@ const Header = React.createClass({
           <Icon icon="home" /> {'网站首页'}
           </Link>
           </NavItem>
-           
-             {auth.loggedIn()?(
+        
+             {auth.getRole()=='1'?(
             <Dropdown
               title={[<Icon icon="group" key="hey" />, auth.getUsername()]}
               navItem
@@ -58,6 +58,68 @@ const Header = React.createClass({
                 <Icon icon="user" /> {'用户首页'}
               </Dropdown.Item>                             
             </Dropdown>):(<NavItem></NavItem>)}
+          
+            {auth.getRole()=='5'?(
+            <Dropdown
+              title={[<Icon icon="group" key="hey" />, auth.getUsername()]}
+              navItem
+            >                     
+              <Dropdown.Item
+                closeOnClick
+                linkComponent={Link}
+                linkProps={{
+                  to: {pathname: '/manageRoot'},
+                  onClick: this.handleClick
+                }}
+              >
+                <Icon icon="user" /> {'系统管理'}
+              </Dropdown.Item>
+
+              <Dropdown.Item
+                closeOnClick
+                linkComponent={Link}
+                linkProps={{
+                  to: {pathname: '/system_manage'},
+                  onClick: this.handleClick
+                }}
+              >
+                <Icon icon="user" /> {'订单管理'}
+              </Dropdown.Item>  
+
+              <Dropdown.Item
+                closeOnClick
+                linkComponent={Link}
+                linkProps={{
+                  to: {pathname: '/user_manage'},
+                  onClick: this.handleClick
+                }}
+              >
+                <Icon icon="user" /> {'用户管理'}
+              </Dropdown.Item>  
+
+              <Dropdown.Item
+                closeOnClick
+                linkComponent={Link}
+                linkProps={{
+                  to: {pathname: '/price_manage'},
+                  onClick: this.handleClick
+                }}
+              >
+                <Icon icon="user" /> {'价格管理'}
+              </Dropdown.Item>  
+
+              <Dropdown.Item
+                closeOnClick
+                linkComponent={Link}
+                linkProps={{
+                  to: {pathname: '/account_manage'},
+                  onClick: this.handleClick
+                }}
+              >
+                <Icon icon="user" /> {'账户管理'}
+              </Dropdown.Item>                               
+            </Dropdown>):(<NavItem></NavItem>)}
+
             <NavItem
               className="am-dropdown"
               href="#"

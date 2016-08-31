@@ -16,16 +16,11 @@ import 'whatwg-fetch'
 // components
 import {
   Header,
-  Message,
-  NoMessage,
   Sidebar,
   PageContainer,
 } from './components';
 import auth from './components/auth'
 import {
-  Home,
-  Messages,
-  Profile,
   Order,
   Index_home,
   Login,
@@ -45,15 +40,11 @@ import {
   Account_manage,
   User_index,
 } from './pages';
-
+//所有页面必须要import才有能被正确处理 ps 想要import from 文件夹 需要在文件夹的index.js 里export一下
 const pages = {
-  home: Home,
-  profile: Profile,
-  messages: Messages,
   order: Order,
   index_home: Index_home,
   login: Login,
-  adminLogin: AdminLogin,
   register_user: Register_user,
   register_doctor: Register_doctor,
   checkReservation: CheckReservation,
@@ -70,6 +61,28 @@ const pages = {
   user_index:User_index,
 };
 
+//下面的router里面有一个遍历这个map的操作，将map里所有的页面加载到router中 也就是说不在这个数组里声明一下的话，必须要在下面的router组里写一遍，否则无法通过url访问到对应的组件
+//1个人2医生助理3医生4医疗机构5系统管理员
+const auth_map = {
+                    order:                ['2'],
+                    index_home:           ['5','4','3','2','1','0'],
+                    login:                ['5','4','3','2','1','0'],
+                    register_user:        ['5','4','3','2','1','0'],
+                    register_doctor:      ['5','4','3','2','1','0'],
+                    checkReservation:     ['1'],
+                    register_hospital:    ['5','4','3','2','1','0'],
+                    manageRoot:           ['5'],
+                    user_reservation:     ['1'],
+                    doctor_list:          ['5','4','3','2','0','1'],
+                    institution_list:     ['5','4','3','2','0','1'],
+                    query_result:         ['5','4','3','2','0','1'],
+                    system_manage:        ['5'],
+                    user_manage:          ['5'],
+                    price_manage:         ['5'],
+                    account_manage:       ['5'],
+                    user_index:           ['1'],
+                 }
+//存储了页面的访问权限
 var App = React.createClass({
   getInitialState() {
     return {
@@ -89,7 +102,6 @@ var App = React.createClass({
   },
   componentWillMount() {
     auth.onChange = this.updateAuth
-    auth.login()
   },
   render() {
     const {
@@ -121,7 +133,6 @@ const Page = React.createClass({
     const {query} = this.props.location;
     const breadcrumb = query && query.breadcrumb;
     const location = this.props.location
-    console.log(pages[page])
     if (pages[page]) {
       return React.createElement(
         pages[page],
@@ -153,11 +164,13 @@ const Logout =  React.createClass({
     return <p>You are now logged out</p>
   }
 })
-
+//个人
 function requireAuth(nextState, replace) {
-  console.log('requireAuth')
-  console.log(auth.getRole())
-  if (!auth.loggedIn()) {
+  var pathname = nextState.location.pathname
+  if(pathname!=undefined){pathname = pathname.replace('/','') } 
+  
+  if (auth_map[pathname]!=undefined && auth_map[pathname].indexOf(auth.getRole())!=-1) {
+  }else{
     replace({
       pathname: '/login',
       state: { nextPathname: nextState.location.pathname }
@@ -167,10 +180,7 @@ function requireAuth(nextState, replace) {
 const routes = (
   <Router history={hashHistory}>
     <Route path="/" component={App} >
-      <Route path="messages" component={Messages}>
-        <Route path=":id" component={Message} />
-        <IndexRoute component={NoMessage} />
-      </Route>
+      
       <Route path = "login" component = {Login}/>      
       <Route path = "logout" component = {Logout}/>      
       <Route path = "adminlogin" component = {AdminLogin}/>      

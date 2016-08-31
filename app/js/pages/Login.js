@@ -50,7 +50,7 @@ const Login = withRouter(
       if(!email||!pass){
       alert("用户名或密码不可为空");
     }else{
-      auth.login(email, pass, (loggedIn) => {
+      auth.user_login(email, pass, (loggedIn) => {
         if (!loggedIn){
           
           console.log(email+pass)
