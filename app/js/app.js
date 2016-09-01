@@ -65,7 +65,7 @@ const pages = {
 //1个人2医生助理3医生4医疗机构5系统管理员
 const auth_map = {
                     order:                ['2'],
-                    index_home:           ['5','4','3','2','1','0'],
+                    index_home:           ['5','4','3','1','0'],
                     login:                ['5','4','3','2','1','0'],
                     register_user:        ['5','4','3','2','1','0'],
                     register_doctor:      ['5','4','3','2','1','0'],
@@ -73,9 +73,9 @@ const auth_map = {
                     register_hospital:    ['5','4','3','2','1','0'],
                     manageRoot:           ['5'],
                     user_reservation:     ['1'],
-                    doctor_list:          ['5','4','3','2','0','1'],
-                    institution_list:     ['5','4','3','2','0','1'],
-                    query_result:         ['5','4','3','2','0','1'],
+                    doctor_list:          ['5','4','3','0','1'],
+                    institution_list:     ['5','4','3','0','1'],
+                    query_result:         ['5','4','3','0','1'],
                     system_manage:        ['5'],
                     user_manage:          ['5'],
                     price_manage:         ['5'],
@@ -168,31 +168,37 @@ const Logout =  React.createClass({
 function requireAuth(nextState, replace) {
   var pathname = nextState.location.pathname
   if(pathname!=undefined){pathname = pathname.replace('/','') } 
-  
-  if (auth_map[pathname]!=undefined && auth_map[pathname].indexOf(auth.getRole())!=-1) {
+
+  if (auth.getRole()=='2'&pathname!='order'){
+    replace({
+      pathname: '/order',
+      state: { nextPathname: nextState.location.pathname }
+    })
   }else{
+  if (auth_map[pathname]!=undefined && auth_map[pathname].indexOf(auth.getRole())!=-1) {
+  }
+  else{
     replace({
       pathname: '/login',
       state: { nextPathname: nextState.location.pathname }
     })
   }
-}
+}}
 const routes = (
   <Router history={hashHistory}>
-    <Route path="/" component={App} >
-      
-      <Route path = "login" component = {Login}/>      
-      <Route path = "logout" component = {Logout}/>      
-      <Route path = "adminlogin" component = {AdminLogin}/>      
-      <Route path = "register_user" component = {Register_user}/>      
-      <Route path = "register_doctor" component = {Register_doctor}/>      
-      <Route path = "register_hospital" component = {Register_hospital}/> 
-      <Route path = "index_home" component = {Index_home}/>      
-      <Route path = "query_result" component = {Query_result}/>      
-      <Route path = "doctor_list" component = {Doctor_list}/>      
-      <Route path = "institution_list" component = {Institution_list}/>      
+    <Route path="/" component={App}  >
+      <Route path = "login" component = {Login} />      
+      <Route path = "logout" component = {Logout} />      
+      <Route path = "adminlogin" component = {AdminLogin} onEnter={requireAuth}  />      
+      <Route path = "register_user" component = {Register_user} onEnter={requireAuth} />      
+      <Route path = "register_doctor" component = {Register_doctor} onEnter={requireAuth} />      
+      <Route path = "register_hospital" component = {Register_hospital} onEnter={requireAuth} /> 
+      <Route path = "index_home" component = {Index_home} onEnter={requireAuth} />      
+      <Route path = "query_result" component = {Query_result}onEnter={requireAuth}  />      
+      <Route path = "doctor_list" component = {Doctor_list} onEnter={requireAuth} />      
+      <Route path = "institution_list" component = {Institution_list} onEnter={requireAuth} />      
       <Route path=":page" component={Page} onEnter={requireAuth}  />
-      <IndexRoute component={Index_home} />
+      <IndexRoute component={Index_home} onEnter={requireAuth} />
     </Route>
   </Router>
 );

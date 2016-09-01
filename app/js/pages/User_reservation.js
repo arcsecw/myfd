@@ -3,6 +3,7 @@ import PageContainer from '../components/PageContainer';
 import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
 import auth from '../components/auth'
 
+// Be sure to include styles at some point, probably during your bootstrapping
 import {
     Grid,
     Col,
@@ -14,13 +15,12 @@ import {
     Button,
     Panel,
 } from 'amazeui-react';
+
 var User_reservation = withRouter( React.createClass({
     getInitialState() {
         return {
             yuyue:{
-                notice1:'',
-                notice2:'',
-                notice3:'',
+                notice:'',
                 didian:'',
                 zhuanjia:'',
                 yuyueshijian:'2016-8-20',
@@ -34,13 +34,11 @@ var User_reservation = withRouter( React.createClass({
                 yuhuanzheguanxi:'',
                 shouji:'',
                 dizhi:'',
-                qitafuwu1:'其他服务1',
-                qitafuwu2:'其他服务2',
-                qitafuwu3:'其他服务3',
-                qitafuwu4:'其他服务4',
-                totalFee:'500',
+                totalFee:'0',
                 id:''
-            }
+            },
+            qitafuwu:[],
+    
         };
     },
     query(){
@@ -48,7 +46,7 @@ var User_reservation = withRouter( React.createClass({
             auth.myact(
             {to:'orderGen.do',
             parms:[
-               {'key':'orderFocus','value':pars.notice1+pars.notice2+pars.notice3},
+               {'key':'orderFocus','value':pars.notice},
                {'key':'orderReserveTime','value':pars.yuyueshijian},
                {'key':'orderOperation','value':pars.shoushuneirong},
                {'key':'orderInsurance','value':'1'},
@@ -59,7 +57,7 @@ var User_reservation = withRouter( React.createClass({
                {'key':'patientRealname','value':pars.xingming},
                {'key':'patientAge','value':''},
                {'key':'patientDiagnose','value':pars.quezhenxinxi},
-               {'key':'service','value':'2'},
+               {'key':'service','value':'135'},
                {'key':'patientDisease','value':''},
                {'key':'username','value':auth.getUsername()},
                 ]
@@ -71,7 +69,11 @@ var User_reservation = withRouter( React.createClass({
                     });
         },
     componentWillMount() {
-        
+        auth.get('book.do',{},(res)=>{
+            this.state.yuyue.notice = res.shift().focus
+            this.setState({qitafuwu:res})
+            console.log(this.state)
+        })
         var par = this.props.query
         console.log(par)
         if (par.realname!=undefined){
@@ -81,6 +83,7 @@ var User_reservation = withRouter( React.createClass({
     },
      submitForm() {	  
         var refss = this.refs
+        console.log(refss.service)
         this.state.yuyue.didian = refss.didian.value;
         this.state.yuyue.yuyueshijian = refss.yuyueshijian.value;
         this.state.yuyue.shoushuneirong = refss.shoushuneirong.value;
@@ -90,22 +93,42 @@ var User_reservation = withRouter( React.createClass({
         this.state.yuyue.bingqingmiaoshu = refss.bingqingmiaoshu.value;
         this.state.yuyue.lianxirenxingming = refss.lianxirenxingming.value;
         this.state.yuyue.yuhuanzheguanxi = refss.yuhuanzheguanxi.value;
-        this.state.yuyue.shouji = refss.shouji.value;//
-        this.state.yuyue.dizhi = refss.dizhi.value; //
-        this.state.yuyue.qitafuwu1 = refss.qitafuwu1.value; //
-        this.state.yuyue.qitafuwu2 = refss.qitafuwu2.value; //
-        this.state.yuyue.qitafuwu3 = refss.qitafuwu3.value; //
-        this.state.yuyue.qitafuwu4 = refss.qitafuwu4.value; //
-        console.log(this.state.yuyue)
+        this.state.yuyue.shouji = refss.shouji.value;
+        this.state.yuyue.dizhi = refss.dizhi.value; 
         this.query();
     },
+    
+     handleChange: function(e) {
+  var options = e.target.options;
+  var value = [];
+  for (var i = 0, l = options.length; i < l; i++) {
+    if (options[i].selected) {
+      value.push(options[i].value);
+    }
+  }
+  console.log(value)
+  this.setState({qitafuwu:value})
+},
     render() {
+        
+        var {selectedShips} = this.state
+        console.log(this.state.qitafuwu)
+        var check_boxs = (
+            <select multiple={true} ref="selectBox" value={this.state.qitafuwu} onChange={this.handleChange}>
+        <option value={1}>First option</option>
+        <option value={2}>Second option</option>
+        <option value={3}>Third option</option>
+      </select>
+        )
         var pr = this.state.yuyue
+        
+
         return (
             <PageContainer>
                 <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
                 <link href="i/data/styles.css" type="text/css" rel="stylesheet"/>
                 <link href="i/css/user_reservation_operation_fill_page/styles.css" type="text/css" rel="stylesheet"/>
+                <link href="i/css/react-select.css" type="text/css" rel="stylesheet"/>
                 <div id="base" className="">
 
 
@@ -187,7 +210,7 @@ var User_reservation = withRouter( React.createClass({
                         <img id="u16_img" className="img " src="i/images/user_reservation_operation_fill_page/u16.png"/>
 
                         <div id="u17" className="text">
-                            <p><span></span><span>{pr.notice1}</span></p><p><span>{pr.notice2}</span></p><p><span>{pr.notice3}</span></p>
+                            <p><span></span><span>{pr.notice1}</span></p>
                         </div>
                     </div>
 
@@ -214,7 +237,7 @@ var User_reservation = withRouter( React.createClass({
                         <img id="u22_img" className="img " src="i/images/user_reservation_operation_fill_page/u16.png"/>
 
                         <div id="u23" className="text">
-                            <p><span> <input type = 'text' defaultValue = {pr.qitafuwu1} ref = 'qitafuwu1'/></span></p><p><span> <input type = 'text' defaultValue = {pr.qitafuwu2} ref = 'qitafuwu2'/></span></p><p><span> <input type = 'text' defaultValue = {pr.qitafuwu3} ref = 'qitafuwu3'/></span></p><p><span> <input type = 'text' defaultValue = {pr.qitafuwu4} ref = 'qitafuwu4'/></span></p>
+                        {check_boxs}                        
                         </div>
                     </div>
 

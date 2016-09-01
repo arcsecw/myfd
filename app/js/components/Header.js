@@ -36,11 +36,12 @@ const Header = React.createClass({
             className="am-topbar-right"
             topbar
           >
+          {auth.getRole()=='1'||auth.getRole()=='3'||auth.getRole()=='4'||auth.getRole()=='5'?(
           <NavItem className = "am-dropdown" href = '#'>
           <Link to = '/index_home'>
           <Icon icon="home" /> {'网站首页'}
           </Link>
-          </NavItem>
+          </NavItem>):''}
         
              {auth.getRole()=='1'?(
             <Dropdown
