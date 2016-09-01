@@ -18,6 +18,7 @@ var Index_home = withRouter(React.createClass({
       return {
           disctrict:'',
           position:5,
+          agency_left:0,
           fourdoc:[
             {
               reserveTime: 0,
@@ -119,6 +120,20 @@ var Index_home = withRouter(React.createClass({
       end='···';
     }
    return  str.substr(3,9)=='undefined'?str.substr(0,3):str.substr(0,20)+end;
+  },
+  agencyname_position(str){
+    var len=10-str.length;
+    var agencyName=" ";
+    console.log(str);
+    while(len>0){
+      str=agencyName+str;
+      len--;
+    }
+    str+="`"
+     console.log(len);
+     console.log(str);
+    return String(str);
+     
   },
   render() {
         var data =  this.state.forhospital
@@ -505,17 +520,11 @@ console.log(goodAt3.length)
           <div id="u71" className="ax_shape">
             <img id="u71_img" className="img " src="i/images/index_home/u71.png"/>
             <div id="u72" className="text">
-              <span id="u302"><span style={{left:this.state.position}}>{this.shanchang(goodAt1)}</span></span>
+              <span id="u302">{this.shanchang(goodAt1)}</span>
             </div>
           </div>
 
 
-          <div id="u73" className="ax_shape">
-
-            <div id="u74" className="text">
-              <p><span></span></p>
-            </div>
-          </div>
 
 
           <div id="u75" className="ax_shape">
@@ -567,7 +576,7 @@ console.log(goodAt3.length)
             <img id="u85_img" className="img " src="i/images/index_home/u71.png"/>
 
             <div id="u86" className="text">
-              <p><span>{goodAt2}</span></p>
+              <p><span>{this.shanchang(goodAt2)}</span></p>
             </div>
           </div>
 
@@ -626,10 +635,6 @@ console.log(goodAt3.length)
               <p><span>{this.shanchang(goodAt3)}</span></p>
             </div>
           </div>
-
-
-         
-        
 
             <div id="u102" className="text">
               <p><span></span></p>
@@ -726,7 +731,7 @@ console.log(goodAt3.length)
             <img id="u123_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u124" className="text">
-              <p><span>{line1.agencyname}</span></p>
+              <p><span >{this.agencyname_position(line1.agencyname)}</span></p>
             </div>
           </div>
 
