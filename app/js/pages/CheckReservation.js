@@ -92,8 +92,8 @@ var CheckReservation = React.createClass({
                             <div id="buy">
                                 已购服务信息：<br/>
 
-                                基础信息预审及专家预约 &nbsp; &nbsp; <span>{info.Cost.Reservation}</span><br/>
-                                医院床位优惠包 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span>{info.Cost.OperationDiscount}</span><hr/>
+                                基础信息预审及专家预约 &nbsp; &nbsp; <span>{info.Cost.OperationDiscount}</span><br/>
+                                医院床位优惠包 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span>{info.Cost.Reservation}</span><hr/>
                                 优惠&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span>{info.Cost.Discount}</span><br/>
                                 应付总计&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span>{info.Cost.TotalFee}</span>
 

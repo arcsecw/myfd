@@ -38,14 +38,14 @@ var User_reservation = withRouter( React.createClass({
                 id:''
             },
             qitafuwu:[],
+            qitafuwu1:[],
     
         };
     },
     query(){
             var pars = this.state.yuyue
-            auth.myact(
-            {to:'orderGen.do',
-            parms:[
+            
+            var parms = [
                {'key':'orderFocus','value':pars.notice},
                {'key':'orderReserveTime','value':pars.yuyueshijian},
                {'key':'orderOperation','value':pars.shoushuneirong},
@@ -57,10 +57,15 @@ var User_reservation = withRouter( React.createClass({
                {'key':'patientRealname','value':pars.xingming},
                {'key':'patientAge','value':''},
                {'key':'patientDiagnose','value':pars.quezhenxinxi},
-               {'key':'service','value':'135'},
                {'key':'patientDisease','value':''},
                {'key':'username','value':auth.getUsername()},
                 ]
+            this.state.qitafuwu.map((l)=>{
+                parms.push({'key':'service','value':l})
+            })
+            auth.myact(
+            {to:'orderGen.do',
+            parms:parms
             },
             (res)=>{
                     this.state.yuyue.totalFee = res.totalFee
@@ -71,7 +76,7 @@ var User_reservation = withRouter( React.createClass({
     componentWillMount() {
         auth.get('book.do',{},(res)=>{
             this.state.yuyue.notice = res.shift().focus
-            this.setState({qitafuwu:res})
+            this.setState({qitafuwu1:res})
             console.log(this.state)
         })
         var par = this.props.query
@@ -106,19 +111,25 @@ var User_reservation = withRouter( React.createClass({
       value.push(options[i].value);
     }
   }
-  console.log(value)
-  this.setState({qitafuwu:value})
+  var b = this.state.qitafuwu
+  var p = []
+    value.map(function(v){
+        if (b.indexOf(v)!=-1){
+            b.splice(b.indexOf(v),1)
+        }else {
+            p.push(v)
+        }
+    })
+    p = p.concat(b)
+    console.log(p)
+    this.setState({qitafuwu:p})
 },
     render() {
         
-        var {selectedShips} = this.state
-        console.log(this.state.qitafuwu)
         var check_boxs = (
-            <select multiple={true} ref="selectBox" value={this.state.qitafuwu} onChange={this.handleChange}>
-        <option value={1}>First option</option>
-        <option value={2}>Second option</option>
-        <option value={3}>Third option</option>
-      </select>
+            this.state.qitafuwu1.map((line)=>{
+                return ( <option value={line.id}>{line.description}</option>)
+            })
         )
         var pr = this.state.yuyue
         
@@ -237,7 +248,9 @@ var User_reservation = withRouter( React.createClass({
                         <img id="u22_img" className="img " src="i/images/user_reservation_operation_fill_page/u16.png"/>
 
                         <div id="u23" className="text">
-                        {check_boxs}                        
+                        <select multiple={true} ref="selectBox" value={this.state.qitafuwu} onChange={this.handleChange}>
+                        {check_boxs}
+                        </select>                        
                         </div>
                     </div>
 
