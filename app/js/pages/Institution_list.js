@@ -532,7 +532,7 @@ const Institution_list = withRouter( React.createClass({
                         <img id="u88_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u89" className="text">
-                            <p><span>优惠</span><span>：单间8折，免费加陪护床</span></p>
+                            {line1.agencydiscount!=undefined?(<p><span>优惠: </span><span>{line1.agencydiscount}</span></p>):''}
                         </div>
                     </div>
 
@@ -575,7 +575,7 @@ const Institution_list = withRouter( React.createClass({
                         <img id="u97_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u98" className="text">
-                            <p><span>优惠</span><span>：单间8折，免费加陪护床</span></p>
+                            {line1.agencydiscount!=undefined?(<p><span>优惠: </span><span>{line1.agencydiscount}</span></p>):''}
                         </div>
                     </div>
 
@@ -609,7 +609,7 @@ const Institution_list = withRouter( React.createClass({
                         <img id="u104_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u105" className="text">
-                            <p><span>优惠</span><span>：单间8折，免费加陪护床</span></p>
+                            {line1.agencydiscount!=undefined?(<p><span>优惠: </span><span>{line1.agencydiscount}</span></p>):''}
                         </div>
                     </div>
 

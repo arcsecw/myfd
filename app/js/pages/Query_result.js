@@ -368,8 +368,7 @@ var Query_result = withRouter (React.createClass({
                         <img id="u44_img" className="img " src="i/resources/images/transparent.gif"/>
                         
                         <div id="u45" className="text">
-                            <p><span>优惠: </span>
-                            <span>{line1.Discount}</span></p>
+                            {line1.agencydiscount!=undefined?(<p><span>优惠: </span><span>{line1.agencydiscount}</span></p>):''}
                         </div>
                     </div>
 
@@ -385,9 +384,7 @@ var Query_result = withRouter (React.createClass({
                         <img id="u47_img" className="img " src="i/resources/images/transparent.gif"/>
                         
                         <div id="u48" className="text">
-                            <p><span>优惠: </span>
-                            <span>{line2.Discount}</span>
-                            <span>&nbsp; </span></p>
+                            {line2.agencydiscount!=undefined?(<p><span>优惠: </span><span>{line2.agencydiscount}</span></p>):''}                            
                         </div>
                     </div>
 
@@ -441,9 +438,7 @@ var Query_result = withRouter (React.createClass({
                         <img id="u52_img" className="img " src="i/resources/images/transparent.gif"/>
                         
                         <div id="u53" className="text">
-                            <p><span>优惠: </span>
-                            <span>{line3.Discount}</span>
-                            <span>&nbsp; </span></p>                        
+                            {line3.agencydiscount!=undefined?(<p><span>优惠: </span><span>{line3.agencydiscount}</span></p>):''}                                                   
                         </div>
                     </div>
 

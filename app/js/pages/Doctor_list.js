@@ -331,7 +331,7 @@ var Doctor_list =withRouter( React.createClass({
                 <img id="u42_img" className="img " src="i/resources/images/transparent.gif"/>
 
                 <div id="u43" className="text">
-                  <p><span>优惠</span><span>： </span><span>预约手续</span><span></span><span>费</span><span>限时</span><span>8折</span></p>
+                  {line1.discount!=undefined?(<p><span>优惠</span><span>： </span><span>{line1.discount}</span></p>):''}
                 </div>
               </div>
             </div>
@@ -348,7 +348,9 @@ var Doctor_list =withRouter( React.createClass({
             <img id="u45_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u46" className="text">
-              <p><span>优惠</span><span>：</span><span>赠合作医院复诊挂号费</span><span></span><span>&nbsp; </span></p>
+                  {line2.discount!=undefined?(<p><span>优惠</span><span>： </span><span>{line2.discount}</span></p>):''}
+              
+             
             </div>
           </div>
 
@@ -663,7 +665,7 @@ var Doctor_list =withRouter( React.createClass({
             <img id="u112_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u113" className="text">
-              <p><span>优惠</span><span>： </span><span>赠送康复礼包</span></p>
+                  {line3.discount!=undefined?(<p><span>优惠</span><span>： </span><span>{line3.discount}</span></p>):''}
             </div>
           </div>
           <Link to={{ pathname: '/user_reservation', query: line3 }}>
