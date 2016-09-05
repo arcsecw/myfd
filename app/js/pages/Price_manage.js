@@ -514,7 +514,7 @@ var Price_manage = React.createClass({
                                 <img id="u193_img" className="img " src='i/images/web_manage_page_root/u191.png'/>
 
                                 <div id="u194" className="text" style = {{ color: this.state.now == '管理账号' ? 'white' : 'black' }} >
-                                    <p><Link to = '/account_manage'><span onClick = {() => { this.setState({ 'now': '管理账号' }) } }>管理账号</span></Link></p>
+                                    <p><Link to = '/manageRoot'><span onClick = {() => { this.setState({ 'now': '管理账号' }) } }>管理账号</span></Link></p>
                                 </div>
                             </div>
 
