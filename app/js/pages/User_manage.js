@@ -24,7 +24,6 @@ var User_manage = React.createClass({
         };
     },
     query(page = this.state.nowpage){
-        var to = "http://localhost:8080/myfd/manager/userlist.do"
         auth.myact(
           {to:'manager/userlist.do',
            parms:[{'key':'page','value':page}]
@@ -56,7 +55,6 @@ var User_manage = React.createClass({
     },
     deletelist(id){
         console.log(id)
-        var to="http://localhost:8080/myfd/manager/deleteuser.do"
         auth.myact(
           {to:'manager/deleteuser.do',
            parms:[{'key':'id','value':id}]
@@ -69,7 +67,6 @@ var User_manage = React.createClass({
     ,
     disable(id){
         console.log(id)
-        var to="http://localhost:8080/myfd/manager/disableuser.do"
         auth.myact(
           {to:'manager/disableuser.do',
            parms:[{'key':'id','value':id}]
@@ -227,37 +224,50 @@ var User_manage = React.createClass({
                                     </div>
 
                                     <div id="u20" className="ax_table_cell">
+                                        <img id="u20_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
 
-                                        <input id="input1" type="text" ref="un" placeholder={person.user_name} />
+                                        <div id="u21" className="text">
+                                            <p><span>{person.user_name}</span></p>
+                                        </div>
                                     </div>
 
 
 
                                     <div id="u22" className="ax_table_cell">
-                                        
-                                        <input id="input2" type="text" ref="ur" placeholder={person.user_role} />
+                                        <img id="u22_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
+
+                                        <div id="u23" className="text">
+                                            <p><span>{person.user_role}</span></p>
+                                        </div>
                                     </div>
 
 
                                     <div id="u24" className="ax_table_cell">
-                                        
-                                        <input id="input3" type="text" ref="um" placeholder={person.user_mobile} />
+                                        <img id="u24_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
+
+                                        <div id="u25" className="text">
+                                            <p><span>{person.user_mobile}</span></p>
+                                        </div>
                                     </div>
 
 
                                     
                                     <div id="u26" className="ax_table_cell">
-                                        
+                                        <img id="u26_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
 
-                                        <div id="input4" className="text">
+                                        <div id="u27" className="text">
                                             <p><span>{person.user_last_login}</span></p>
                                         </div>
                                     </div>
                                     
 
                                     <div id="u28" className="ax_table_cell">
-                                        
-                                         <input id="input5" type="text" ref="ps" placeholder={this.judege(person.state)} />
+                                        <img id="u28_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
+
+                                        <div id="u29" className="text">
+                                            <p><span>{this.judege(person.state)}</span></p>
+                                        </div>
+                                         
                                     </div>
 
 
@@ -272,33 +282,45 @@ var User_manage = React.createClass({
 
                                     
                                     <div id="u32" className="ax_table_cell">
-
-                                        <input id="input6" type="text" ref="un" placeholder={person2.user_name} />
+                                    <img id="u32_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
+                                        <div id="u33" className="text">
+                                            <p><span>{person2.user_name}</span></p>
+                                        </div>
                                     </div>
 
 
 
                                     <div id="u34" className="ax_table_cell">
-                                        
-                                        <input id="input7" type="text" ref="ur" placeholder={person2.user_role} />
+                                       <img id="u34_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
+
+                                        <div id="u35" className="text">
+                                            <p><span>{person2.user_role}</span></p>
+                                        </div> 
                                     </div>
 
 
                                     <div id="u36" className="ax_table_cell">
-                                        
-                                        <input id="input8" type="text" ref="um" placeholder={person2.user_mobile} />
+                                        <img id="u36_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
+
+                                        <div id="u37" className="text">
+                                            <p><span>{person2.user_mobile}</span></p>
+                                        </div> 
                                     </div>
 
                                     <div id="u38" className="ax_table_cell">
-                                        
-                                        <div id="input9" className="text">
+                                        <img id="u38_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
+
+                                        <div id="u39" className="text">
                                             <p><span>{person2.user_last_login}</span></p>
-                                        </div>
+                                        </div> 
                                     </div>
 
                                     <div id="u40" className="ax_table_cell">
-                                        
-                                         <input id="input10" type="text" ref="ps" placeholder={this.judege(person2.state)} />
+                                        <img id="u40_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
+
+                                        <div id="u41" className="text">
+                                            <p><span>{this.judege(person2.state)}</span></p>
+                                        </div>
                                     </div>
 
 
@@ -352,7 +374,7 @@ var User_manage = React.createClass({
                                 <img id="u193_img" class="img " src='i/images/web_manage_page_root/u191.png'/>
 
                                 <div id="u194" class="text" >
-                                    <p><Link to = '/account_manage'><span onClick = {()=>{this.setState({'now':'管理账号'})}}>管理账号</span></Link></p>
+                                    <p><Link to = '/manageRoot'><span onClick = {()=>{this.setState({'now':'管理账号'})}}>管理账号</span></Link></p>
                                 </div>
                             </div>
 
