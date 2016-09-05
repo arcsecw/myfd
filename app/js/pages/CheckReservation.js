@@ -195,7 +195,7 @@ var CheckReservation = React.createClass({
                             <p><span>手术地点：北京 </span></p>
                         </div>
                         <div id="hi" >
-                            <p>您好：<span className="hi">XXXX </span></p>
+                            <p><span className="hi"></span></p>
                         </div>
                     </div>
                     <div id="u21" className="ax_image">

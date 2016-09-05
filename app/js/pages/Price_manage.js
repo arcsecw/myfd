@@ -214,7 +214,7 @@ var Price_manage = React.createClass({
                         <img id="u3_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u4" className="text">
-                            <p><span classNameName="u209">您好，Admin&nbsp; &nbsp; </span><span classNameName="u210">退出</span><span classNameName="u209">&nbsp; &nbsp; </span></p>
+                            <p><span classNameName="u209"> </span><span classNameName="u209">&nbsp; &nbsp; </span></p>
                         </div>
                     </div>
 

@@ -626,7 +626,7 @@ var System_manage = React.createClass({
                         <img id="u134_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u135" className="text">
-                            <p><span className="u149">您好，张三&nbsp; &nbsp; </span><span className="u148">退出</span><span className="u149">&nbsp; &nbsp; </span></p>
+                            <p><span className="u149"></span><span className="u149">&nbsp; &nbsp; </span></p>
                         </div>
                     </div>
 

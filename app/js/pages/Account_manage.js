@@ -119,7 +119,7 @@ var Account_manage = React.createClass({
                         <img id="u3_img" class="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u4" class="text">
-                            <p><span className="u209">您好，Admin&nbsp; &nbsp; </span><span className="u210">退出</span><span className="u209">&nbsp; &nbsp; </span></p>
+                            <p><span className="u209"> </span><span className="u209">&nbsp; &nbsp; </span></p>
                         </div>
                     </div>
 

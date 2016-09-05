@@ -129,7 +129,7 @@ var Index_home = withRouter(React.createClass({
       str=agencyName+str;
       len--;
     }
-    str+="`"
+    str="."+str
      console.log(len);
      console.log(str);
     return String(str);
