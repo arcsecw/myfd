@@ -5,6 +5,7 @@ import {
     Col,
 }from 'amazeui-react';
 import auth from '../components/auth'
+import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
 var ManageRoot = React.createClass({
     getInitialState() {
         return {
@@ -14,7 +15,6 @@ var ManageRoot = React.createClass({
         };
     },
     query(page = this.state.nowpage){
-        var to = "http://localhost:8080/myfd/manager/accountlist.do"
         auth.myact(
           {to:'manager/accountlist.do',
            parms:[{'key':'page','value':page}]
@@ -46,7 +46,6 @@ var ManageRoot = React.createClass({
     }
     ,
     deletelist(id){
-        var to="http://localhost:8080/myfd/manager/deleteaccount.do"
         auth.myact(
           {to:'manager/deleteaccount.do',
            parms:[{'key':'id','value':id}]
@@ -59,7 +58,6 @@ var ManageRoot = React.createClass({
     ,
     disable(id){
         console.log(id)
-        var to="http://localhost:8080/myfd/manager/disableaccount.do"
         auth.myact(
           {to:'manager/disableaccount.do',
            parms:[{'key':'id','value':id}]
@@ -234,33 +232,47 @@ var ManageRoot = React.createClass({
 
 
                                     <div id="u20" className="ax_table_cell">
+                                        <img id="u20_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
 
-                                        <input id="input1" type="text" ref="un" placeholder={person.user_name} />
+                                        <div id="u21" className="text">
+                                            <p><span>{person.user_name}</span></p>
+                                        </div>
                                     </div>
 
 
-
                                     <div id="u22" className="ax_table_cell">
-                                        
-                                        <input id="input2" type="text" ref="ug" placeholder={person.user_group} />
+                                        <img id="u22_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
+
+                                        <div id="u23" className="text">
+                                            <p><span>{person.user_group}</span></p>
+                                        </div>
                                     </div>
 
 
                                     <div id="u24" className="ax_table_cell">
-                                        
-                                        <input id="input3" type="text" ref="um" placeholder={person.user_mobile} />
+                                        <img id="u24_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
+
+                                        <div id="u25" className="text">
+                                            <p><span>{person.user_mobile}</span></p>
+                                        </div>
                                     </div>
 
 
                                     <div id="u26" className="ax_table_cell">
-                                        
-                                        <input id="input4" type="text" ref="uma" placeholder={person.user_mail} />
+                                        <img id="u26_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
+
+                                        <div id="u27" className="text">
+                                            <p><span>{person.user_mail}</span></p>
+                                        </div>
                                     </div>
 
 
                                     <div id="u28" className="ax_table_cell">
-                                        
-                                         <input id="input5" type="text" ref="ps" placeholder={this.judege(person.state)} />
+                                        <img id="u28_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
+
+                                        <div id="u29" className="text">
+                                            <p><span>{this.judege(person.state)}</span></p>
+                                        </div>
                                     </div>
 
 
@@ -275,33 +287,48 @@ var ManageRoot = React.createClass({
 
                                     
                                     <div id="u32" className="ax_table_cell">
+                                        <img id="u32_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
 
-                                        <input id="input6" type="text" ref="un" placeholder={person2.user_name} />
+                                        <div id="u33" className="text">
+                                            <p><span>{person2.user_name}</span></p>
+                                        </div>
                                     </div>
 
 
 
                                     <div id="u34" className="ax_table_cell">
-                                        
-                                        <input id="input7" type="text" ref="ug" placeholder={person2.user_group} />
+                                        <img id="u34_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
+
+                                        <div id="u35" className="text">
+                                            <p><span>{person2.user_group}</span></p>
+                                        </div>
                                     </div>
 
 
                                     <div id="u36" className="ax_table_cell">
-                                        
-                                        <input id="input8" type="text" ref="um" placeholder={person2.user_mobile} />
+                                        <img id="u36_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
+
+                                        <div id="u37" className="text">
+                                            <p><span>{person2.user_mobile}</span></p>
+                                        </div>
                                     </div>
 
 
                                     <div id="u38" className="ax_table_cell">
-                                        
-                                        <input id="input9" type="text" ref="uma" placeholder={person2.user_mail} />
+                                        <img id="u36_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
+
+                                        <div id="u37" className="text">
+                                            <p><span>{person2.user_mail}</span></p>
+                                        </div>
                                     </div>
 
 
                                     <div id="u40" className="ax_table_cell">
-                                        
-                                         <input id="input10" type="text" ref="ps" placeholder={this.judege(person2.state)} />
+                                        <img id="u40_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
+
+                                        <div id="u41" className="text">
+                                            <p><span>{this.judege(person2.state)}</span></p>
+                                        </div>
                                     </div>
 
 
@@ -452,7 +479,7 @@ var ManageRoot = React.createClass({
 
 
                                 <div id="u72" className="ax_html_button">
-                                    <input id="u72_input" type="submit" value="重置"/>
+                                    <input id="u72_input" type="submit" value="修改"/>
                                 </div>
 
 
@@ -907,8 +934,8 @@ var ManageRoot = React.createClass({
 
 
                                 <div id="u169" className="ax_html_button">
-                                    <input id="u169_input" type="submit" value="重置"/>
-                                </div>
+                                    <input id="u169_input" type="submit" value="修改"/>
+                                </div>>
 
 
                                 <div id="u170" className="ax_html_button">
@@ -1039,7 +1066,7 @@ var ManageRoot = React.createClass({
                                 <img id="u195_img" className="img " src="i/images/web_manage_page_root/u191.png"/>
 
                                 <div id="u196" className="text">
-                                    <p><span>用户管理</span></p>
+                                    <p><Link to = '/user_manage'><span onClick = {() => { this.setState({ 'now': '用户管理' }) } }>用户管理</span></Link></p>
                                 </div>
                             </div>
 
@@ -1048,7 +1075,7 @@ var ManageRoot = React.createClass({
                                 <img id="u197_img" className="img " src="i/images/web_manage_page_root/u191.png"/>
 
                                 <div id="u198" className="text">
-                                    <p><span>价格管理</span></p>
+                                    <p><Link to = '/price_manage'><span onClick = {()=>{this.setState({'now':'价格管理'})}}>价格管理</span></Link></p>
                                 </div>
                             </div>
 
