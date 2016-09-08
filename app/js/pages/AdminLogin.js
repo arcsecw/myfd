@@ -25,21 +25,20 @@ var AdminLogin = withRouter(
     e.preventDefault();
     var username=document.getElementById('u2_input').value;
     var password=document.getElementById('u3_input').value;
-  console.log(username,password)
     if (!username || !password) {
       alert("账户或密码不可以为空");
-    }else{auth.login(username, password, (loggedIn) => {
+    }else{
+      auth.logout()
+      auth.custom_login(username, password,'5', (loggedIn) => {
         if (!loggedIn){
-          
-          console.log(username+password)
           return this.setState({ error: true })
-      }
+        }
         const { location } = this.props
         var role=auth.getRole()
         if (location.state && location.state.nextPathname) {
           this.props.router.replace(location.state.nextPathname)
         } else {
-          this.props.router.replace('/')
+          this.props.router.replace('/user_manage')
         }
       })
     }

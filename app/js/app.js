@@ -70,6 +70,7 @@ const pages = {
 const auth_map = {
                     order:                ['2'],
                     index_home:           ['5','4','3','1','0'],
+                    '':           ['5','4','3','1','0'],
                     login:                ['5','4','3','2','1','0'],
                     register_user:        ['5','4','3','2','1','0'],
                     register_doctor:      ['5','4','3','2','1','0'],
@@ -85,7 +86,17 @@ const auth_map = {
                     price_manage:         ['5'],
                     account_manage:       ['5'],
                     user_index:           ['1'],
+                    adminlogin:           ['5','4','3','2','1','0'],
                  }
+const role_replace = {
+                    '5':'user_manage',
+                    '4':'index_home',
+                    '3':'index_home',
+                    '2':'order',
+                    '1':'index_home',
+                    '0':'login',
+                 }
+
 //存储了页面的访问权限
 var App = React.createClass({
   getInitialState() {
@@ -168,26 +179,25 @@ const Logout =  React.createClass({
     return <p>You are now logged out</p>
   }
 })
-//个人
+//根据每个页面的访问控制表以及未授权用户访问强制跳转表控制页面权限
 function requireAuth(nextState, replace) {
   var pathname = nextState.location.pathname
   if(pathname!=undefined){pathname = pathname.replace('/','') } 
-
-  if (auth.getRole()=='2'&pathname!='order'){
-    replace({
-      pathname: '/order',
-      state: { nextPathname: nextState.location.pathname }
-    })
-  }else{
-  if (auth_map[pathname]!=undefined && auth_map[pathname].indexOf(auth.getRole())!=-1) {
+  var role = auth.getRole()
+  
+  if (auth_map[pathname]!=undefined && auth_map[pathname].indexOf(role)!=-1) {
   }
   else{
+    console.log(pathname)
+    console.log(role)
+    alert("您无权访问此页面")
     replace({
-      pathname: '/login',
+      pathname: role_replace[role],
       state: { nextPathname: nextState.location.pathname }
     })
   }
-}}
+}
+var index_component = Index_home
 const routes = (
   <Router history={hashHistory}>
     <Route path="/" component={App}  >
