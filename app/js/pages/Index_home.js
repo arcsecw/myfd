@@ -126,7 +126,7 @@ var Index_home = withRouter(React.createClass({
     }
    return  str.substr(3,9)=='undefined'?str.substr(0,3):str.substr(0,20)+end;
   },
-  notice(){
+  notice(){ 
     auth.myact(
           { 
             to:'notice.do',
