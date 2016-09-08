@@ -38,7 +38,18 @@ var User_reservation = withRouter( React.createClass({
                 id:''
             },
             qitafuwu:[],
-            qitafuwu1:[],
+            qitafuwu1:[
+                {
+                    description:'大保健1',
+                    price:'20',
+                    id:'30'
+                },
+                {
+                    description:'大保健2',
+                    price:'20',
+                    id:'31'
+                }
+            ],
     
         };
     },
@@ -60,9 +71,11 @@ var User_reservation = withRouter( React.createClass({
                {'key':'patientDisease','value':''},
                {'key':'username','value':auth.getUsername()},
                 ]
-            this.state.qitafuwu.map((l)=>{
+            var qitafuwu = this.get_check_box_value()
+            qitafuwu.map((l)=>{
                 parms.push({'key':'service','value':l})
             })
+            console.log(parms)
             auth.myact(
             {to:'orderGen.do',
             parms:parms
@@ -77,16 +90,14 @@ var User_reservation = withRouter( React.createClass({
         auth.get('book.do',{},(res)=>{
             this.state.yuyue.notice = res.shift().focus
             this.setState({qitafuwu1:res})
-            console.log(this.state)
         })
         var par = this.props.query
-        console.log(par)
         if (par.realname!=undefined){
             this.state.yuyue.didian = par.reservePlace
             this.state.yuyue.zhuanjia = par.realname+par.title
         }
     },
-     submitForm() {	  
+     submitForm() {  
         var refss = this.refs
         console.log(refss.service)
         this.state.yuyue.didian = refss.didian.value;
@@ -102,33 +113,21 @@ var User_reservation = withRouter( React.createClass({
         this.state.yuyue.dizhi = refss.dizhi.value; 
         this.query();
     },
-    
-     handleChange: function(e) {
-  var options = e.target.options;
-  var value = [];
-  for (var i = 0, l = options.length; i < l; i++) {
-    if (options[i].selected) {
-      value.push(options[i].value);
-    }
-  }
-  var b = this.state.qitafuwu
-  var p = []
-    value.map(function(v){
-        if (b.indexOf(v)!=-1){
-            b.splice(b.indexOf(v),1)
-        }else {
-            p.push(v)
+    get_check_box_value(){
+        var re = []
+        var inputs = this.refs.mycheckbox.getElementsByTagName('input')
+        for (let e_input of inputs){
+            if (e_input.checked){
+                re.push(e_input.value)
+            }
         }
-    })
-    p = p.concat(b)
-    console.log(p)
-    this.setState({qitafuwu:p})
-},
+        return re
+    },
     render() {
         
         var check_boxs = (
             this.state.qitafuwu1.map((line)=>{
-                return ( <option value={line.id}>{line.description}</option>)
+                return (<div><input type = 'checkbox' value={line.id}/>{`描述：${line.description}---价格：${line.price}`}</div>)
             })
         )
         var pr = this.state.yuyue
@@ -248,9 +247,9 @@ var User_reservation = withRouter( React.createClass({
                         <img id="u22_img" className="img " src="i/images/user_reservation_operation_fill_page/u16.png"/>
 
                         <div id="u23" className="text">
-                        <select multiple={true} ref="selectBox" value={this.state.qitafuwu} onChange={this.handleChange}>
+                        <div ref = 'mycheckbox'>
                         {check_boxs}
-                        </select>                        
+                        </div>                                             
                         </div>
                     </div>
 

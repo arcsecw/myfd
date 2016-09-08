@@ -6,7 +6,6 @@ module.exports = {
       this.onChange(true)
       return
     }
-    console.log('test')
     pretendRequest(email, pass, (res) => {
       if (res.authenticated) {
         localStorage.role = res.role
@@ -26,8 +25,28 @@ module.exports = {
   getUsername() {
     return localStorage.username
   },
+  custom_login(email,pass,role,cb){
+    cb = arguments[arguments.length - 1]
+    if (localStorage.token) {
+      if (cb)  cb(true)
+      this.onChange(true)
+      return
+    }
+    pretendRequest1(email,pass,(res) => {
+      console.log(res)
+      if (res.authenticated) {
+        localStorage.role = res.role
+        localStorage.token = res.token
+        if (cb) cb(true)
+        this.onChange(true)
+      } else {
+        if (cb) cb(false)
+        this.onChange(false)
+      }
+    })
+  },
 getRole(){
-  return localStorage.role;
+  return localStorage.role==undefined?'0':localStorage.role;
 },
   logout(cb) {
     delete localStorage.token
@@ -93,12 +112,14 @@ getRole(){
 
     },
     post(apipath,form,cb) {
+        //var f = document.getElementById('myform');
+        //var form = new FormData(f)
+        //for (let k of Object.keys(data)){
+        //    form.append(k,data[k])
+        //}
+        //form.append("userfile", fileInputElement.files[0]);  
         var  url = 'http://123.56.133.208:8080/myfd/'      
         url = url+apipath       
-        //post('',document.getElementById('myform'),function(res){
-        //    console.log(res)
-        //})
-        form = new FormData(form);
         fetch(url,{
             method:'POST',
             body:form,
@@ -129,6 +150,31 @@ function checkStatus(response) {
 function pretendRequest(email, pass, cb) {
   localStorage.username = email
   fetch('http://123.56.133.208:8080/myfd/login.do?username'+'='+email+'&'+'password'+'='+pass+'&'+'role'+'=1')
+      .then(checkStatus)
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        console.log(data)
+        if(data['result']=='true'){
+          cb({
+        role:data.role,
+        authenticated: true,
+        token: Math.random().toString(36).substring(7),
+      })
+        }else {
+        cb({ authenticated: false })
+        alert(data['result'])          
+        }
+        
+      })
+      .catch(error => {
+        console.log('Request failed: ', error)
+      });
+  }
+  function pretendRequest1(email, pass, cb) {
+  localStorage.username = email
+  fetch('http://123.56.133.208:8080/myfd/adminLogin.do?username'+'='+email+'&'+'password'+'='+pass+'&'+'role'+'=5')
       .then(checkStatus)
       .then(res => {
         return res.json();

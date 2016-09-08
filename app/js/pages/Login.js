@@ -35,6 +35,14 @@ var FindPassword = React.createClass({
     );
   }
 });
+const role_index = {
+                  '5':'user_manage',
+                  '4':'index_home',
+                  '3':'index_home',
+                    '2':'order',
+                    '1':'index_home',
+                    '0':'index_home',
+}
 const Login = withRouter(
   React.createClass({
   getInitialState() {
@@ -50,6 +58,7 @@ const Login = withRouter(
       if(!email||!pass){
       alert("用户名或密码不可为空");
     }else{
+      auth.logout()
       auth.user_login(email, pass, (loggedIn) => {
         if (!loggedIn){
           
@@ -62,7 +71,7 @@ const Login = withRouter(
         if (location.state && location.state.nextPathname) {
           this.props.router.replace(location.state.nextPathname)
         } else {
-          this.props.router.replace('/index_home')
+          this.props.router.replace(role_index[auth.getRole()])
         }
       })
     }
