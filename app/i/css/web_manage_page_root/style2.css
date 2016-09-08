@@ -131,10 +131,10 @@ font-size:13px;
 }
 #u7 {
   position:absolute;
-  left:20px;
+  left:0px;
   top:36px;
-  width:800px;
-  height:500px;
+  width:850px;
+  height:800px;
 }
 #u8 {
   position:absolute;
@@ -588,7 +588,7 @@ font-size:17px;
 }
 #u48 {
 font-size:13px;
-  left:0px;
+  left:-50px;
   top:0px;
   width:700px;
   word-wrap:break-word;
@@ -2441,4 +2441,11 @@ font-size:13px;
   top:10px;
   width:96px;
   word-wrap:break-word;
+}
+#butt{
+position:absolute;
+  left:0px;
+  top:900px;
+  width:100px;
+  height:36px;
 }

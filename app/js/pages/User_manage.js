@@ -84,18 +84,11 @@ var User_manage = React.createClass({
                             <div id="u6_state0_content" class="panel_state_content">
 
                                 <div id="u7" class="ax_table">
-
-                                
-
-                        
-                            
-                                     <About/>  
-                              
-                      
-
-                            
+                                     <About/>                      
                                 </div>
-                        
+                        <div id='butt'>
+                        <p>&nbsp;""</p>
+                        </div>
                                 <div id="u45" class="ax_h4">
                                     <img id="u45_img" class="img " src="i/resources/images/transparent.gif"/>
 
