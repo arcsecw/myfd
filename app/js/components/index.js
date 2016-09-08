@@ -5,3 +5,4 @@ export PageContainer from './PageContainer';
 export Sidebar from './Sidebar';
 export Order from'./Order';
 export User_index from './User_index';
+export UserManage from './ManageRoot/UserManage';

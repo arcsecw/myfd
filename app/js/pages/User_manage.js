@@ -1,8 +1,12 @@
 import React from 'react'
 import PageContainer from '../components/PageContainer';
 import {
-} from 'amazeui-react';
+    Table,
+    Tabs,
+    Item,
+} from 'amazeui-react'
 import auth from '../components/auth';
+import About from './About';
 import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
 import {
     Grid,
@@ -16,89 +20,6 @@ import {
     Panel,
 } from 'amazeui-react';
 var User_manage = React.createClass({
-    getInitialState() {
-         return {
-            dataSource: {re:[{"user_name":"ffff","user_role":"iii","user_mobile":"111","user_last_login":"qqq","state":"0"}],totalpage:1},
-            nowpage:'1',
-            totalpage:'1',
-        };
-    },
-    query(page = this.state.nowpage){
-        auth.myact(
-          {to:'manager/userlist.do',
-           parms:[{'key':'page','value':page}]
-          },
-          (res)=>{
-                this.updateDataSource(res)
-                });
-        this.setState({nowpage:page})
-    },
-    querynext(){
-        var nowpage = this.state.nowpage
-        var totalpage = this.state.totalpage
-        if (nowpage+1<=totalpage){
-            nowpage+=1
-            this.query(nowpage)
-               
-        }
-        
-    }
-    ,querybefore(){
-        
-        var nowpage = this.state.nowpage
-        var totalpage = this.state.totalpage
-        if (nowpage-1>=1){
-            nowpage -=1
-            this.query(nowpage);
-    } 
-        
-    },
-    deletelist(id){
-        console.log(id)
-        auth.myact(
-          {to:'manager/deleteuser.do',
-           parms:[{'key':'id','value':id}]
-          },
-          (res)=>{
-                console.log(res)
-                });
-            this.query()
-    }
-    ,
-    disable(id){
-        console.log(id)
-        auth.myact(
-          {to:'manager/disableuser.do',
-           parms:[{'key':'id','value':id}]
-          },
-          (res)=>{
-                console.log(res)
-                });
-            this.query()
-    }
-    ,
-    componentDidMount() {
-        this.query(1)
-    },
-    updateDataSource(data) {
-        this.setState({
-            dataSource: data,
-            totalpage:data.totalpage,
-        })
-        console.log(data)
-        
-    },
-   judege(intState){
-        var state="";
-        if(intState==0){
-            state="禁用";
-        }else if(intState==1){
-            state="启用";      
-        }else{
-            state="";
-        }
-        return state;
-    },
     kaifazhong (str){
         console.log(str)    
     },
@@ -118,16 +39,9 @@ var User_manage = React.createClass({
                 this.query()
   }
   ,
+  
     render() {
-        var data = this.state.dataSource
-         console.log(data)
-            var person = data.re[0]
-            var person2 = ''
-            
-            if (data.re.length >=2)
-            {
-                var person2 = data.re[1]
-            }
+       console.log(About)
         return (
             <PageContainer>
                 <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
@@ -171,169 +85,17 @@ var User_manage = React.createClass({
 
                                 <div id="u7" class="ax_table">
 
+                                
 
-                                    <div id="u8" class="ax_table_cell">
-                                        <img id="u8_img" class="img " src="i/images/web_manage_page_root/u8.png"/>
-
-                                        <div id="u9" class="text">
-                                            <p><span>用户名</span></p>
-                                        </div>
-                                    </div>
-
-
-                                    <div id="u10" class="ax_table_cell">
-                                        <img id="u10_img" class="img " src="i/images/web_manage_page_root/u8.png"/>
-
-                                        <div id="u11" class="text">
-                                            <p><span>账户类型</span></p>
-                                        </div>
-                                    </div>
-
-
-                                    <div id="u12" class="ax_table_cell">
-                                        <img id="u12_img" class="img " src="i/images/web_manage_page_root/u8.png"/>
-
-                                        <div id="u13" class="text">
-                                            <p><span>电话</span></p>
-                                        </div>
-                                    </div>
-
-
-                                    <div id="u14" class="ax_table_cell">
-                                        <img id="u14_img" class="img " src="i/images/web_manage_page_root/u8.png"/>
-
-                                        <div id="u15" class="text">
-                                            <p><span>上次登录时间</span></p>
-                                        </div>
-                                    </div>
-
-
-                                    <div id="u16" class="ax_table_cell">
-                                        <img id="u16_img" class="img " src="i/images/web_manage_page_root/u8.png"/>
-
-                                        <div id="u17" class="text">
-                                            <p><span>状态</span></p>
-                                        </div>
-                                    </div>
-                                    <div id="u18" class="ax_table_cell">
-                                        <img id="u18_img" class="img " src="i/images/web_manage_page_root/u18.png"/>
-
-                                        <div id="u19" class="text">
-                                            <p><span>操作</span></p>
-                                        </div>
-                                    </div>
-
-                                    <div id="u20" className="ax_table_cell">
-                                        <img id="u20_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
-
-                                        <div id="u21" className="text">
-                                            <p><span>{person.user_name}</span></p>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div id="u22" className="ax_table_cell">
-                                        <img id="u22_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
-
-                                        <div id="u23" className="text">
-                                            <p><span>{person.user_role}</span></p>
-                                        </div>
-                                    </div>
-
-
-                                    <div id="u24" className="ax_table_cell">
-                                        <img id="u24_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
-
-                                        <div id="u25" className="text">
-                                            <p><span>{person.user_mobile}</span></p>
-                                        </div>
-                                    </div>
-
-
-                                    
-                                    <div id="u26" className="ax_table_cell">
-                                        <img id="u26_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
-
-                                        <div id="u27" className="text">
-                                            <p><span>{person.user_last_login}</span></p>
-                                        </div>
-                                    </div>
-                                    
-
-                                    <div id="u28" className="ax_table_cell">
-                                        <img id="u28_img" className="img " src="i/images/web_manage_page_root/u20.png"/>
-
-                                        <div id="u29" className="text">
-                                            <p><span>{this.judege(person.state)}</span></p>
-                                        </div>
-                                         
-                                    </div>
-
-
-                                    <div id="u30" className="ax_table_cell">
-                                        <img id="u30_img" className="img " src="i/images/web_manage_page_root/u30.png"/>
-
-                                        <div id="u31" className="text">
-                                            <p><span>{person.user_name!=undefined? <p><a onClick={this.deletelist.bind(this,person.id)}>删除</a>/<a onClick={this.disable.bind(this,person.id)}>禁用</a>/<a onClick={this.change.bind(this,person.id)}>修改</a></p>:''}</span></p>
-                                        </div>
-                                    </div>
-
-
-                                    
-                                    <div id="u32" className="ax_table_cell">
-                                    <img id="u32_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
-                                        <div id="u33" className="text">
-                                            <p><span>{person2.user_name}</span></p>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div id="u34" className="ax_table_cell">
-                                       <img id="u34_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
-
-                                        <div id="u35" className="text">
-                                            <p><span>{person2.user_role}</span></p>
-                                        </div> 
-                                    </div>
-
-
-                                    <div id="u36" className="ax_table_cell">
-                                        <img id="u36_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
-
-                                        <div id="u37" className="text">
-                                            <p><span>{person2.user_mobile}</span></p>
-                                        </div> 
-                                    </div>
-
-                                    <div id="u38" className="ax_table_cell">
-                                        <img id="u38_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
-
-                                        <div id="u39" className="text">
-                                            <p><span>{person2.user_last_login}</span></p>
-                                        </div> 
-                                    </div>
-
-                                    <div id="u40" className="ax_table_cell">
-                                        <img id="u40_img" className="img " src="i/images/web_manage_page_root/u32.png"/>
-
-                                        <div id="u41" className="text">
-                                            <p><span>{this.judege(person2.state)}</span></p>
-                                        </div>
-                                    </div>
-
-
-                                    <div id="u42" className="ax_table_cell">
-                                        <img id="u42_img" className="img " src="i/images/web_manage_page_root/u42.png"/>
-
-                                        <div id="u43" className="text">
-                                            <p><span>{person2.user_name!=undefined? <p><a onClick={this.deletelist.bind(this,person2.id)}>删除</a>/<a onClick={this.disable.bind(this,person2.id)}>禁用</a>/<a onClick={this.change.bind(this,person2.id)}>修改</a></p>:''}</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                    
+                        
                             
+                                     <About/>  
+                              
+                      
+
+                            
+                                </div>
+                        
                                 <div id="u45" class="ax_h4">
                                     <img id="u45_img" class="img " src="i/resources/images/transparent.gif"/>
 
@@ -346,10 +108,8 @@ var User_manage = React.createClass({
                                 <div id="u47" class="ax_paragraph">
                                     <img id="u47_img" class="img " src="i/resources/images/transparent.gif"/>
 
-                                    <div id="u48" class="text">
-                                         <p onClick = {this.querybefore} ><span>上一页</span></p>
-                                        <p onClick = {this.querynext}><span>下一页</span></p>
-                                    </div>
+                                  
+                                  
                                 </div>
                             </div>
                         </div>
@@ -391,7 +151,7 @@ var User_manage = React.createClass({
                             <div id="u197" class="ax_table_cell">
                                 <img id="u197_img" class="img " src='i/images/web_manage_page_root/u191.png'/>
 
-                                <div id="u198" class="text" style = {{color:this.state.now=='价格管理'?'white':'black'}}  >
+                                <div id="u198" class="text">
                                     <p><Link to = '/price_manage'><span onClick = {()=>{this.setState({'now':'价格管理'})}}>价格管理</span></Link></p>
                                 </div>
                                 </div>

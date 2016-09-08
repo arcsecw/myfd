@@ -5,8 +5,8 @@ import {
     Dropdown,
     Icon,
 } from 'amazeui-react'
-import PageContainer from './components/PageContainer';
-import auth from '../auth'
+import PageContainer from '../PageContainer';
+import auth from '../auth';
 const UserManage = React.createClass({
     getInitialState() {
          return {
@@ -112,14 +112,7 @@ const UserManage = React.createClass({
   ,
     renderTable() {
   var data = this.state.dataSource
-         console.log(data)
-            var person = data.re[0]
-            var person2 = ''
-            
-            if (data.re.length >=2)
-            {
-                var person2 = data.re[1]
-            }
+         console.log(data.re.length)
         return (
             <Table bordered striped hover radius responsive>
                 <thead>
@@ -134,13 +127,13 @@ const UserManage = React.createClass({
                 </thead>
                 <tbody>
                     {
-                        dataSource.map((item, index) => {
+                        data.re.map((item, index) => {
                             return (
                                 <tr key={index}>
                                     <td>{item.user_name}</td>
                                     <td>{item.user_role}</td>
                                     <td>{item.user_mobile}</td>
-                                    <td>{this.formatstsate(item.state) }</td>
+                                    <td>{this.judege(item.state) }</td>
                                     <td>{item.user_last_login}</td>
                                     <td><p><span>删除</span>&nbsp; /<span>禁用</span>&nbsp; /<span>修改</span></p></td>
                                 </tr>

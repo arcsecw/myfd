@@ -39,7 +39,9 @@ import {
   Price_manage,
   Account_manage,
   User_index,
+  About,
 } from './pages';
+import UserManage from './components/ManageRoot';
 //所有页面必须要import才有能被正确处理 ps 想要import from 文件夹 需要在文件夹的index.js 里export一下
 const pages = {
   order: Order,
@@ -59,6 +61,8 @@ const pages = {
   price_manage: Price_manage,
   account_manage: Account_manage,
   user_index:User_index,
+  about:About,
+  userManage:UserManage
 };
 
 //下面的router里面有一个遍历这个map的操作，将map里所有的页面加载到router中 也就是说不在这个数组里声明一下的话，必须要在下面的router组里写一遍，否则无法通过url访问到对应的组件
@@ -187,6 +191,8 @@ function requireAuth(nextState, replace) {
 const routes = (
   <Router history={hashHistory}>
     <Route path="/" component={App}  >
+      <Route path = "userManage" component = {UserManage} />
+      <Route path = "about" component = {About} />   
       <Route path = "login" component = {Login} />      
       <Route path = "logout" component = {Logout} />      
       <Route path = "adminlogin" component = {AdminLogin} onEnter={requireAuth}  />      

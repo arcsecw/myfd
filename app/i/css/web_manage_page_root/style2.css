@@ -131,10 +131,10 @@ font-size:13px;
 }
 #u7 {
   position:absolute;
-  left:30px;
+  left:20px;
   top:36px;
-  width:605px;
-  height:101px;
+  width:800px;
+  height:500px;
 }
 #u8 {
   position:absolute;
@@ -588,11 +588,11 @@ font-size:17px;
 }
 #u48 {
 font-size:13px;
-  position:absolute;
   left:0px;
   top:0px;
-  width:172px;
+  width:700px;
   word-wrap:break-word;
+  text-align:right;
 }
 #u59 {
 font-size:13px;
