@@ -489,7 +489,7 @@ var Price_manage = React.createClass({
                                     <span onClick={this.handleSubmit}><input id="u73_input" type="submit" value="提交"/></span>
                                 </div>
                                 <div id="u70" className="ax_html_button">
-                                    <input />
+                                    
                                 </div>
                             </div>
                         </div>

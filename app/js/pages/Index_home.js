@@ -731,7 +731,7 @@ console.log(goodAt3.length)
             <img id="u123_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u124" className="text">
-              <p><span >{this.agencyname_position(line1.agencyname)}</span></p>
+              <p><span >{line1.agencyname}</span></p>
             </div>
           </div>
 
