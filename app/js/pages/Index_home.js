@@ -43,6 +43,10 @@ var Index_home = withRouter(React.createClass({
                         agencyyytime: 10,
                         agencyclass: "三乙"
                         },
+          ],fornotice:[
+             {
+                        notice: "xxx",
+                        },
           ],
       };
   },
@@ -71,6 +75,7 @@ var Index_home = withRouter(React.createClass({
     componentWillMount() {
       this.queryhos()
       this.querydoc()
+      this.notice()
     },
   mouseOver1() {  //关节右菜单
     document.getElementById("u184").style.visibility="visible";
@@ -121,6 +126,18 @@ var Index_home = withRouter(React.createClass({
     }
    return  str.substr(3,9)=='undefined'?str.substr(0,3):str.substr(0,20)+end;
   },
+  notice(){
+    auth.myact(
+          { 
+            to:'notice.do',
+            parms:[
+                    ]
+          },
+            (res)=>{
+              console.log(res);
+                this.setState({fornotice:res})
+            });
+  },
   agencyname_position(str){
     var len=10-str.length;
     var agencyName=" ";
@@ -136,6 +153,12 @@ var Index_home = withRouter(React.createClass({
      
   },
   render() {
+        var dat=this.state.fornotice
+        
+        console.log(dat);
+
+
+
         var data =  this.state.forhospital
         var line1 = {excel:[]}
         if (data.length>=1){
@@ -423,7 +446,7 @@ console.log(goodAt3.length)
             <img id="u49_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u50" className="text">
-              <p><span style={{ color: '#333333' }}>138****1234</span><span style={{ color: '#333333' }}> 预约了</span><span style={{ color: '#333333' }}>骨科</span><span style={{ color: '#333333' }}>手</span><span style={{ color: '#333333' }}>术</span></p><p><span style={{ color: '#333333' }}></span><span style={{ color: '#999999' }}>[10分钟前]</span></p>
+              {dat.notice}
             </div>
           </div>
 
@@ -1023,8 +1046,8 @@ console.log(goodAt3.length)
                   <div id="u188" className="text">
                     <p style={{ color: '#333333' }}>髋关节&nbsp;&nbsp;|&nbsp;&nbsp;
                     <a id="u189" className="link" style={{ color: '#0000FF'}}>
-                      <span onClick={this.search.bind(this,'股骨头坏死')}>股骨头坏死</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                      <span onClick={this.search.bind(this,'髋关节骨性关节炎')}>髋关节骨性关节炎</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this,'股骨头坏死')}>{}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <span onClick={this.search.bind(this,'髋关节骨性关节炎')}>{}</span>&nbsp;&nbsp;&nbsp;&nbsp;
                       <span onClick={this.search.bind(this,'髋关节发育不良')}>髋关节发育不良</span>&nbsp;&nbsp;&nbsp;&nbsp;
                       <span onClick={this.search.bind(this,'类风湿性髋关节炎')}>类风湿性髋关节炎</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       <span onClick={this.search.bind(this,'强直性脊柱炎髋关节强直')}>强直性脊柱炎髋关节强直</span>&nbsp;&nbsp;&nbsp;&nbsp;

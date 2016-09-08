@@ -119,6 +119,33 @@ var ManageRoot = React.createClass({
                     Console.log(username)
                 });
                 this.query()
+},
+  change1(){
+       var data = this.state.dataSource
+       var username=data.re[0].user_name;
+       var mobile=data.re[0].user_mobile;
+       var mail=data.re[0].user_mail;
+       var usergroup=data.re[0].user_group;
+       console.log(name);
+       document.getElementById("u60_input").value=username;
+    //    document.getElementById("u60_input").value=mobile;
+    //    document.getElementById("u60_input").value=mail;
+    //    document.getElementById("u60_input").value=usergroup;
+        
+    //   console.log(id)
+    //   auth.myact({to:'/manager/findaccountbyid.do',
+    //            parms:[
+    //            {'key':'id','value':id},
+    //            ]
+    //             },(res)=>{
+    //                 Console.log(res)
+    //             });
+    //             this.query()
+    //   var aa = document.getElementById("textfiled").value;
+    //   console.l
+  },
+  change2(){
+
   }
   ,
     render() {
@@ -280,7 +307,7 @@ var ManageRoot = React.createClass({
                                         <img id="u30_img" className="img " src="i/images/web_manage_page_root/u30.png"/>
 
                                         <div id="u31" className="text">
-                                            <p><span>{person.user_name!=undefined? <p><a onClick={this.deletelist.bind(this,person.user_id)}>删除</a>/<a onClick={this.disable.bind(this,person.user_id)}>禁用</a>/<a onClick={this.change.bind(this,person.user_id)}>修改</a></p>:''}</span></p>
+                                            <p><span>{person.user_name!=undefined? <p><a onClick={this.deletelist.bind(this,person.user_id)}>删除</a>/<a onClick={this.disable.bind(this,person.user_id)}>禁用</a>/<a onClick={this.change1}>修改</a></p>:''}</span></p>
                                         </div>
                                     </div>
 
@@ -479,7 +506,10 @@ var ManageRoot = React.createClass({
 
 
                                 <div id="u72" className="ax_html_button">
-                                    <input id="u72_input" type="submit" value="修改"/>
+                                    <p onClick={this.change}><input id="u72_input" type="submit" value="修改"/></p>
+                                    <p id="u209" class="ax_html_button">
+                                    <input />
+                                    </p>
                                 </div>
 
 
