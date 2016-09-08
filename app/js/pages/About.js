@@ -135,7 +135,7 @@ const UserManage = React.createClass({
                                     <td>{item.user_mobile}</td>
                                     <td>{this.judege(item.state) }</td>
                                     <td>{item.user_last_login}</td>
-                                    <td><p><span>删除</span>&nbsp; /<span>禁用</span>&nbsp; /<span>修改</span></p></td>
+                                    <td><p><span onClick={this.deletelist.bind(this,item.id)}>删除</span>&nbsp; /<span onClick={this.disable.bind(this,item.id)}>禁用</span>&nbsp; /<span onClick={this.change.bind(this,item.id)}>修改</span></p></td>
                                 </tr>
                             );
                         })

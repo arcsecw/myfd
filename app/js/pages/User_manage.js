@@ -20,6 +20,89 @@ import {
     Panel,
 } from 'amazeui-react';
 var User_manage = React.createClass({
+    getInitialState() {
+         return {
+            dataSource: {re:[{"user_name":"ffff","user_role":"iii","user_mobile":"111","user_last_login":"qqq","state":"0"}],totalpage:1},
+            nowpage:'1',
+            totalpage:'1',
+        };
+    },
+    query(page = this.state.nowpage){
+        auth.myact(
+          {to:'manager/userlist.do',
+           parms:[{'key':'page','value':page}]
+          },
+          (res)=>{
+                this.updateDataSource(res)
+                });
+        this.setState({nowpage:page})
+    },
+    querynext(){
+        var nowpage = this.state.nowpage
+        var totalpage = this.state.totalpage
+        if (nowpage+1<=totalpage){
+            nowpage+=1
+            this.query(nowpage)
+               
+        }
+        
+    }
+    ,querybefore(){
+        
+        var nowpage = this.state.nowpage
+        var totalpage = this.state.totalpage
+        if (nowpage-1>=1){
+            nowpage -=1
+            this.query(nowpage);
+    } 
+        
+    },
+    deletelist(id){
+        console.log(id)
+        auth.myact(
+          {to:'manager/deleteuser.do',
+           parms:[{'key':'id','value':id}]
+          },
+          (res)=>{
+                console.log(res)
+                });
+            this.query()
+    }
+    ,
+    disable(id){
+        console.log(id)
+        auth.myact(
+          {to:'manager/disableuser.do',
+           parms:[{'key':'id','value':id}]
+          },
+          (res)=>{
+                console.log(res)
+                });
+            this.query()
+    }
+    ,
+    componentDidMount() {
+        this.query(1)
+    },
+    updateDataSource(data) {
+        this.setState({
+            dataSource: data,
+            totalpage:data.totalpage,
+        })
+        console.log(data)
+        
+    },
+   judege(intState){
+        var state="";
+        if(intState==0){
+            state="禁用";
+        }else if(intState==1){
+            state="启用";      
+        }else{
+            state="";
+        }
+        return state;
+    },
     kaifazhong (str){
         console.log(str)    
     },
