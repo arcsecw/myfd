@@ -261,7 +261,7 @@ console.log(goodAt3.length)
           <div id="u11" className="ax_shape">
             <img id="u11_img" className="img " src="i/images/query_result/u55.png"/>
             <div id="u12" className="text">
-              <p><span>直接预约</span></p>
+              <p><span>快速预约</span></p>
             </div>
           </div>
 

@@ -23,7 +23,7 @@ const Header = React.createClass({
   render() {
     return (
       <Topbar
-        brand="名医飞刀,一线名医在线预约平台"
+        brand="谷雨医生,一线名医在线预约平台"
         toggleNavKey="nav"
         inverse
         fluid

@@ -108,7 +108,7 @@ var User_index = React.createClass({
                         <img id="u62_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u63" className="text">
-                            <p><span className="u78">XXX </span><span className="u79">退出</span><span className="u80">&nbsp; |</span><span className="u81">&nbsp; 手机APP</span><span className="u80">&nbsp; |</span><span className="u81">&nbsp; 客户服务&nbsp; </span><span className="u80">|</span><span className="u81">&nbsp; 网站导航</span></p>
+                            <p><span className="u78"></span><span className="u79"></span><span className="u80">&nbsp; |</span><span className="u81">&nbsp; 手机APP</span><span className="u80">&nbsp; |</span><span className="u81">&nbsp; 客户服务&nbsp; </span><span className="u80">|</span><span className="u81">&nbsp; 网站导航</span></p>
                         </div>
                     </div>
 
