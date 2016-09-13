@@ -61,7 +61,7 @@ var AdminLogin = withRouter(
 
 
           <div id="u3" className="ax_text_field">
-            <Input id="u3_input" type="text"   ref="password"/>
+            <Input id="u3_input" type="password"   ref="password"/>
           </div>
           <div id="u4" className="ax_h1">
             <img id="u4_img" class="img " src="i/resources/images/transparent.gif"/>

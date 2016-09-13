@@ -454,12 +454,12 @@ var ManageRoot = React.createClass({
 
 
                                 <div id="u61" className="ax_text_field">
-                                    <input id="u61_input" ref="password" type="text"  />
+                                    <input id="u61_input" ref="password" type="password"  />
                                 </div>
 
 
                                 <div id="u62" className="ax_text_field">
-                                    <input id="u62_input" ref="password" type="text"  />
+                                    <input id="u62_input" ref="password" type="password"  />
                                 </div>
 
 
