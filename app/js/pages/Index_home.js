@@ -275,7 +275,7 @@ console.log(goodAt3.length)
           <div id="u15" className="ax_shape">
             <img id="u15_img" className="img " src="i/images/user_check_operation_reservation_page/u23.png"/>
             <div id="u16" className="text">
-              <p><span>公司主 Logo</span></p>
+              <p><span></span></p>
             </div>
           </div>
 </Link>
