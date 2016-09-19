@@ -188,7 +188,7 @@ const Login = withRouter(
           <img id="u24_img" class="img " src="i/images/user_check_operation_reservation_page/u23.png"/>
 
           <div id="u25" class="text">
-            <p><span>公司主 Logo</span></p>
+            <p><span></span></p>
           </div>
         </div>
 </Link>

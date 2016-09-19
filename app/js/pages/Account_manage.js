@@ -110,7 +110,7 @@ var Account_manage = React.createClass({
                         <img id="u1_img" class="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u2" class="text">
-                            <strong><span>飞刀平台系统管理</span></strong>
+                            <strong><span>谷雨医生平台系统管理</span></strong>
                         </div>
                     </div>
 

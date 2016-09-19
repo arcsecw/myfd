@@ -268,7 +268,7 @@ console.log(goodAt3.length)
           <div id="u13" className="ax_shape">
             <img id="u13_img" className="img " src="i/images/index_home/u13.png"/>
             <div id="u14" className="text">
-              <p><span>banner</span></p>
+              <p><span></span></p>
             </div>
           </div>
 <Link to = '/index_home'>
@@ -397,7 +397,7 @@ console.log(goodAt3.length)
             <img id="u38_img" className="img " src="i/images/index_home/u38.png"/>
 
             <div id="u39" className="text">
-              <p><span>banner</span></p>
+              <p><span></span></p>
             </div>
           </div>
 

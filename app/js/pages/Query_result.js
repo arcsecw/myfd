@@ -452,7 +452,7 @@ var Query_result = withRouter (React.createClass({
                         <img id="u55_img" className="img " src="i/images/query_result/u55.png"/>
                         
                         <div id="u56" className="text">
-                            <p><span>直接预约</span></p>
+                            <p><span>快速预约</span></p>
                         </div>
                     </div>
 
@@ -461,7 +461,7 @@ var Query_result = withRouter (React.createClass({
                         <img id="u57_img" className="img " src="i/images/user_check_operation_reservation_page/u23.png"/>
                         
                         <div id="u58" className="text">
-                            <p><span>公司主 Logo</span></p>
+                            <p><span></span></p>
                         </div>
                     </div>
                     </Link>

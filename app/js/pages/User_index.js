@@ -117,7 +117,7 @@ var User_index = React.createClass({
                         <img id="u64_img" className="img " src="i/images/user_check_operation_reservation_page/u23.png"/>
 
                         <div id="u65" className="text">
-                            <p><span>公司主 Logo</span></p>
+                            <p><span></span></p>
                         </div>
                     </div>
 
@@ -126,7 +126,7 @@ var User_index = React.createClass({
                         <img id="u66_img" className="img " src="i/images/user_home/u66.png"/>
 
                         <div id="u67" className="text">
-                            <p><span>banner</span></p>
+                            <p><span></span></p>
                         </div>
                     </div>
 

@@ -520,7 +520,7 @@ var Register_doctor =withRouter( React.createClass({
                         <label htmlFor="u66_input">
 
                             <div id="u67" className="text">
-                                <p><span>我已阅读并同意 <a href="">&lt;飞刀平台注册协议&gt;</a> </span></p>
+                                <p><span>我已阅读并同意 <a href="">&lt;谷雨医生平台注册协议&gt;</a> </span></p>
                             </div>
                         </label>
                          <input ref=""  id="u66_input" type="checkbox" value="checkbox"/>
@@ -549,7 +549,7 @@ var Register_doctor =withRouter( React.createClass({
                         <img id="u72_img" className="img " src="i/images/user_check_operation_reservation_page/u23.png"/>
 
                         <div id="u73" className="text">
-                            <p><span>公司主 Logo</span></p>
+                            <p><span></span></p>
                         </div>
                     </div>
 

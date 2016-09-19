@@ -209,7 +209,7 @@ var CheckReservation = React.createClass({
                         <img id="u23_img" className="img " src="i/images/user_check_operation_reservation_page/u23.png"/>
 
                         <div id="u24" className="text">
-                            <p><span>公司主 Logo</span></p>
+                            <p><span></span></p>
                         </div>
                     </div>
                     <div id="u25" className="ax_shape">

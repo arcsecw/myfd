@@ -175,7 +175,7 @@ var ManageRoot = React.createClass({
                         <img id="u1_img" className="img " src="i/images/web_manage_page_root/transparent.gif"/>
 
                         <div id="u2" className="text">
-                            <p><span>飞刀平台系统管理</span></p>
+                            <p><span>谷雨医生平台系统管理</span></p>
                         </div>
                     </div>
 

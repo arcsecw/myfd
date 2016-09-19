@@ -617,7 +617,7 @@ var System_manage = React.createClass({
                         <img id="u132_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u133" className="text">
-                            <p><span>飞刀平台订单管理</span></p>
+                            <p><span>谷雨医生平台订单管理</span></p>
                         </div>
                     </div>
 

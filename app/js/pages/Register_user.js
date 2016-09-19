@@ -178,7 +178,7 @@ React.createClass({
                         <label htmlFor="u13_input">
 
                             <div id="u14" className="text">
-                                <p><span>我已阅读并同意<a href="#">&lt; 飞刀平台注册协议&gt;</a> </span></p>
+                                <p><span>我已阅读并同意<a href="#">&lt; 谷雨医生平台注册协议&gt;</a> </span></p>
                             </div>
                         </label>
                         <input id="u13_input" type="checkbox" value="checkbox"/>
@@ -279,7 +279,7 @@ React.createClass({
                         <img id="u35_img" className="img " src="i/images/register_person/u23.png"/>
 
                         <div id="u36" className="text">
-                            <p><span>公司主 Logo</span></p>
+                            <p><span></span></p>
                         </div>
                     </div>
 </Link>

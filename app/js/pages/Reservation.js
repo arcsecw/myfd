@@ -172,7 +172,7 @@ var Reservation = React.createClass({
                         <img id="u33_img" className="img " src="i/images/user_reservation_operation_fill_page/u23.png"/>
 
                         <div id="u34" className="text">
-                            <p><span>公司主 Logo</span></p>
+                            <p><span></span></p>
                         </div>
                     </div>
 

@@ -258,7 +258,7 @@ var User_reservation = withRouter( React.createClass({
                         <img id="u24_img" className="img " src="i/images/user_reservation_operation_fill_page/u16.png"/>
 
                         <div id="u25" className="text">
-                            <p><span className="read"> 提交手术预约单意味着您仔细阅读并同意以下预约服务协议 </span><span className="protocal">名医飞刀平台服务协议</span></p>
+                            <p><span className="read"> 提交手术预约单意味着您仔细阅读并同意以下预约服务协议 </span><span className="protocal">谷雨医生平台服务协议</span></p>
                         </div>
                     </div>
 
@@ -298,7 +298,7 @@ var User_reservation = withRouter( React.createClass({
                         <img id="u33_img" className="img " src="i/images/user_check_operation_reservation_page/u23.png"/>
 
                         <div id="u34" className="text">
-                            <p><span>公司主 Logo</span></p>
+                            <p><span></span></p>
                         </div>
                     </div>
 

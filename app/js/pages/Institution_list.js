@@ -284,7 +284,7 @@ const Institution_list = withRouter( React.createClass({
                         <img id="u34_img" className="img " src="i/images/query_result/u55.png"/>
 
                         <div id="u35" className="text">
-                            <p><span>直接预约</span></p>
+                            <p><span>快速预约</span></p>
                         </div>
                     </div>
 
@@ -293,7 +293,7 @@ const Institution_list = withRouter( React.createClass({
                         <img id="u36_img" className="img " src="i/images/user_check_operation_reservation_page/u23.png"/>
 
                         <div id="u37" className="text">
-                            <p><span>公司主 Logo</span></p>
+                            <p><span></span></p>
                         </div>
                     </div>
 </Link>
@@ -489,7 +489,7 @@ const Institution_list = withRouter( React.createClass({
                         <img id="u77_img" className="img " src="i/images/index_home/u13.png"/>
 
                         <div id="u78" className="text">
-                            <p><span>banner</span></p>
+                            <p><span></span></p>
                         </div>
                     </div>
 
