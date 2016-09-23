@@ -4,7 +4,6 @@ import Header1 from '../components/FontComponents/Header';
 import Qbzz from '../components/FontComponents/Qbzz';
 import { browserHistory, Router, Route, Link, withRouter } from 'react-router'
 import auth from '../components/auth'
-
 var Register_doctor =withRouter( React.createClass({ 
     getInitialState() {
         return {
@@ -26,8 +25,101 @@ var Register_doctor =withRouter( React.createClass({
             honor: '',
             checkedTeam: '',
             num: 1,
+            select_group:{
+                "关节":{
+                    "髋关节":{"股骨头坏死":'',"髋关节骨性关节炎":""},
+                    "足踝":{"踝关节骨性关节炎":"","踝关节创伤性关节炎":""},
+                },
+                "脊柱":{
+                    "脊柱":["颈椎骨折伴或不伴脱位，颈髓损伤","颈椎间盘突出伴或不伴滑脱"],
+                }
+            },
+            select_state:[
+                
+            ]
         };
     },
+    //基于配置文件的不定组三级联动下拉选框
+    my_foreach(obj){
+        console.log(obj)
+        var childrens = []
+        for(let k of Object.keys(obj)){
+            childrens.push (<option value ={k}>{k}</option>)          
+        }
+        return childrens
+    },
+    option1(){
+        var a = this.state.select_group
+        return this.my_foreach(a)
+    },
+    option2(fid){
+        var s = this.state.select_state[fid][0]
+        var select_group = this.state.select_group
+        try {
+            return this.my_foreach(select_group[s])
+        }
+        catch(err){
+            return []
+        }
+    },
+    option3(fid){
+        var s = this.state.select_state[fid][0]
+        var s1 = this.state.select_state[fid][1]
+        try {
+            return this.my_foreach(this.state.select_group[s][s1])
+        }
+        catch(err){
+            return
+        }
+    },
+    select_item(fid){
+        var group = []
+        var base_ref = 'sel-'+fid+'-'
+        group.push(<select ref = {base_ref+'1'} onChange = {this.handleSelect.bind(this,[fid,1])}>
+            <option value = '' >请选择</option>
+            {this.option1()}
+        </select>)
+         group.push(<select  ref = {base_ref+'2'} onChange = {this.handleSelect.bind(this,[fid,2])}>
+            <option value = ''>请选择</option>         
+            {this.option2(fid)}
+        </select>)
+         group.push(<select  ref = {base_ref+'3'} onChange = {this.handleSelect.bind(this,[fid,3])}>
+            <option value = ''>请选择</option>         
+            {this.option3(fid)}
+        </select>)
+        
+        return group
+    },
+    handleSelect(par){
+        var fid = par[0]
+        var index = par[1]
+        var base_ref = 'sel-'+fid+'-'+index
+        var value = this.refs[base_ref].value
+        var select_state = this.state.select_state
+        select_state[fid][index-1]=value
+        this.setState({select_state:select_state})
+    },
+    select_group(){
+        var length = this.state.select_state.length
+        var group = []
+        for (let i=0;i<length;i++){
+            group.push(<div>{this.select_item(i)}</div>)
+        }
+        return group
+    },
+    addSelect() {
+        var new_select = ['','','']
+        var before_select = this.state.select_state||[]
+        console.log(this.state.select_state)
+        before_select.push(new_select)
+        this.setState({select_state:before_select})
+    },
+    delSelect(){
+        var before_select = this.state.select_state||[]
+        before_select.pop()
+        this.setState({select_state:before_select})
+    },
+     //基于配置文件的不定组三级联动下拉选框 end
     submitForm() {	  
 	    this.state.username = document.getElementById("u4_input").value;
         this.state.password = document.getElementById("u5_input").value;
@@ -40,12 +132,8 @@ var Register_doctor =withRouter( React.createClass({
         this.state.title = document.getElementById("u34_input").value;
         
         var goods = '';
-        for(var i=1; i<this.state.num; i++){
-            var good = document.getElementById("u39_input_"+i).value;
-            if (good != undefined || good != ' ') {
-                console.log(good);
-                goods += good + ' ';
-            }
+        for (let i = 0;i<this.state.select_state.length;i++){
+            goods =goods+','+this.state.select_state[i][2]
         }
         this.state.excel = goods;
         this.state.experience = document.getElementById("u40_input").value;
@@ -57,9 +145,18 @@ var Register_doctor =withRouter( React.createClass({
                 this.state.checkedTeam += team[i].value + ",";
             }
         }
-        this.handleSubmit();
+        var form = new FormData(<form  encType="multipart/form-data" method="post"></form>)
+        form.append("userfile", this.refs.my_file.files[0]);
+        form.append('test','test')
+        console.log(this.refs.my_file.files[0])
+        
+        //this.handleSubmit();
     },
     handleSubmit() {
+        var form = new FormData(<form  encType="multipart/form-data" method="post"></form>)
+        form.append("userfile", this.refs.my_file.files[0]);
+        form.append('test','test')
+        auth.post('')
         auth.myact({to:'regist.do',
             parms:[
                {'key':'regist_username','value':this.state.username}, 
@@ -135,59 +232,8 @@ var Register_doctor =withRouter( React.createClass({
 			$("#u10_input").val("请在" + this.state.curCount + "秒内输入验证码");
 		}
 	},
-    addSelect() {
-        var selection = document.createElement("SELECT");
-        selection.setAttribute("id", "u39_input_"+this.state.num);
-        document.getElementById("u39").appendChild(selection);
-        var option0 = document.createElement("option");
-        option0.setAttribute("value", "");
-        var option0_text = document.createTextNode("请选择");
-        var option1 = document.createElement("option");
-        option1.setAttribute("value", "足踝");
-        var option1_text = document.createTextNode("足踝");
-        var option2 = document.createElement("option");
-        option2.setAttribute("value", "脊柱");
-        var option2_text = document.createTextNode("脊柱");
-        var option3 = document.createElement("option");
-        option3.setAttribute("value", "髋关节");
-        var option3_text = document.createTextNode("髋关节");
-        var option4 = document.createElement("option");
-        option4.setAttribute("value", "股骨头坏死");
-        var option4_text = document.createTextNode("股骨头坏死");
-        var option5 = document.createElement("option");
-        option5.setAttribute("value", "髋关节骨性关节炎");
-        var option5_text = document.createTextNode("髋关节骨性关节炎");
-        var option6 = document.createElement("option");
-        option6.setAttribute("value", "踝关节骨性关节炎");
-        var option6_text = document.createTextNode("踝关节骨性关节炎");
-        var option7 = document.createElement("option");
-        option7.setAttribute("value", "颈椎骨折伴或不伴脱位，颈髓损伤");
-        var option7_text = document.createTextNode("颈椎骨折伴或不伴脱位，颈髓损伤");
-        var option8 = document.createElement("option");
-        option8.setAttribute("value", "颈椎间盘突出伴或不伴滑脱");
-        var option8_text = document.createTextNode("颈椎间盘突出伴或不伴滑脱");
-        option0.appendChild(option0_text)
-        option1.appendChild(option1_text);
-        option2.appendChild(option2_text);
-        option3.appendChild(option3_text);
-        option4.appendChild(option4_text);
-        option5.appendChild(option5_text);
-        option6.appendChild(option6_text);
-        option7.appendChild(option7_text);
-        option8.appendChild(option8_text);
-        selection.appendChild(option0);
-        selection.appendChild(option1);
-        selection.appendChild(option2);
-        selection.appendChild(option3);
-        selection.appendChild(option4);
-        selection.appendChild(option5);
-        selection.appendChild(option6);
-        selection.appendChild(option7);
-        selection.appendChild(option8);
-        this.state.num++;
-    },
-
     render() {
+        var sel = this.select_group()
         return (
             <PageContainer>
                 <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
@@ -368,9 +414,12 @@ var Register_doctor =withRouter( React.createClass({
                         </select>
                     </div>
 
-                    <div id="u39" className="ax_droplist"> </div>
+                    <div id="u39" className="ax_droplist"> 
+                    {sel}
+                    </div>
                     <div id="u39_add" className="ax_paragraph">
-                        <input id="u39_button" type="button" value="添加" onClick={this.addSelect}/>
+                        <input type="button" value="添加" onClick={this.addSelect}/>
+                        <input type="button" value="移除" onClick={this.delSelect}/>
                     </div>
 
                     <div id="u35" className="ax_paragraph">
@@ -445,13 +494,11 @@ var Register_doctor =withRouter( React.createClass({
 
 
                         <div id="u52" className="ax_text_field">
-                            <input ref=""  id="u52_input" type="text"  />
+                        <input ref = 'my_file' type ='file'/>
                         </div>
 
 
-                        <div id="u53" className="ax_html_button">
-                            <input name="imgFile" id="u53_input" type="file" value="浏览"/>
-                        </div>
+                        
                     </form>
 
                     <div id="u54" className="ax_h3">

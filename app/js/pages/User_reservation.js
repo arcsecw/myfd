@@ -35,6 +35,7 @@ var User_reservation = withRouter( React.createClass({
                 shouji:'',
                 dizhi:'',
                 totalFee:'0',
+                basicPrice:'0',
                 id:''
             },
             qitafuwu:[],
@@ -42,12 +43,12 @@ var User_reservation = withRouter( React.createClass({
                 {
                     description:'大保健1',
                     price:'20',
-                    id:'30'
+                    id:'1'
                 },
                 {
                     description:'大保健2',
                     price:'20',
-                    id:'31'
+                    id:'2'
                 }
             ],
     
@@ -81,6 +82,7 @@ var User_reservation = withRouter( React.createClass({
             parms:parms
             },
             (res)=>{
+                    this.state.yuyue.basicPrice = res.basicPrice
                     this.state.yuyue.totalFee = res.totalFee
                     this.state.yuyue.id = res.id
                     this.props.router.push({ pathname: '/checkReservation',query:this.state.yuyue})
@@ -90,6 +92,9 @@ var User_reservation = withRouter( React.createClass({
         auth.get('book.do',{},(res)=>{
             this.state.yuyue.notice = res.shift().focus
             this.setState({qitafuwu1:res})
+        })
+        auth.get('list.do',{'page':'1','role':'2','paixu':'1'},(res)=>{
+            console.log(res)
         })
         var par = this.props.query
         if (par.realname!=undefined){
@@ -220,7 +225,7 @@ var User_reservation = withRouter( React.createClass({
                         <img id="u16_img" className="img " src="i/images/user_reservation_operation_fill_page/u16.png"/>
 
                         <div id="u17" className="text">
-                            <p><span></span><span>{pr.notice1}</span></p>
+                            <p><span></span><span>{pr.notice}</span></p>
                         </div>
                     </div>
 

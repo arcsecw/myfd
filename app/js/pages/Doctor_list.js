@@ -94,7 +94,6 @@ var Doctor_list =withRouter( React.createClass({
     this.setState({
       dataSource: data,
     })
-    console.log(data)
 
   },
   kaifazhong(str) {

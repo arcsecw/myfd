@@ -20,10 +20,10 @@ var CheckReservation = React.createClass({
                         ContactNumber: "13812345678", //联系人电话
                         id:'',
                         Cost: {
-                           Reservation: "888", //
                            OperationDiscount: "0", //
                            Discount: "0", //
-                           TotalFee: "888" //
+                           TotalFee: "888", //
+                           basicPrice:''
                         } //费用明细
                         },     
                 ]  
@@ -45,8 +45,8 @@ var CheckReservation = React.createClass({
             this.state.dataSource[0].OperationFor = par.shoushuneirong
             this.state.dataSource[0].ContactName = par.lianxirenxingming
             this.state.dataSource[0].ContactNumber = par.shouji
-            this.state.dataSource[0].Cost.Reservation = par.totalFee
             this.state.dataSource[0].Cost.TotalFee = par.totalFee
+            this.state.dataSource[0].Cost.basicPrice = par.basicPrice
             this.state.dataSource[0].id = par.id
         }
     },
@@ -92,9 +92,9 @@ var CheckReservation = React.createClass({
                             <div id="buy">
                                 已购服务信息：<br/>
 
-                                基础信息预审及专家预约 &nbsp; &nbsp; <span>{info.Cost.OperationDiscount}</span><br/>
-                                医院床位优惠包 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span>{info.Cost.Reservation}</span><hr/>
-                                优惠&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span>{info.Cost.Discount}</span><br/>
+                                基础信息预审及专家预约 &nbsp; &nbsp; <span>{info.Cost.basicPrice}</span><br/>
+                                医院床位优惠包 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span>{info.Cost.TotalFee - info.Cost.basicPrice}</span><hr/>
+                                优惠&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span>0</span><br/>
                                 应付总计&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span>{info.Cost.TotalFee}</span>
 
                             </div>
