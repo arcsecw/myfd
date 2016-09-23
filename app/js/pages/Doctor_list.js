@@ -435,7 +435,7 @@ var Doctor_list =withRouter( React.createClass({
                 </div>
               </Link>
               <div id="u63" className="ax_image">
-                <img id="u63_img" className="img " src="i/images/doctor_list/doctor_list/1.png"/>
+                <img id="u63_img" className="img " src={line1.id}/>
 
                 <div id="u64" className="text">
                   <p><span></span></p>
@@ -456,7 +456,7 @@ var Doctor_list =withRouter( React.createClass({
           </Link>
 
           <div id="u67" className="ax_image">
-            <img id="u67_img" className="img " src="i/images/doctor_list/doctor_list/2.png"/>
+            <img id="u67_img" className="img " src={line2.id}/>
 
             <div id="u68" className="text">
               <p><span></span></p>
@@ -677,7 +677,7 @@ var Doctor_list =withRouter( React.createClass({
             </div>
           </Link>
           <div id="u116" className="ax_image">
-            <img id="u116_img" className="img " src="i/images/doctor_list/doctor_list/3.png"/>
+            <img id="u116_img" className="img " src={line3.id}/>
 
             <div id="u117" className="text">
               <p><span></span></p>

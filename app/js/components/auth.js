@@ -72,6 +72,7 @@ getRole(){
       }
    
   })
+  url = url + '&user_name='+this.getUsername()  
   console.log(url)
   fetch(url)
       .then(checkStatus)
@@ -96,6 +97,7 @@ getRole(){
         for (let k of Object.keys(data)){
             url = url + k + '=' + data[k]+'&'
         }
+        url = url + '&user_name='+this.getUsername()
         fetch(url,{
             mode:'cors'
         })
@@ -117,7 +119,8 @@ getRole(){
         //for (let k of Object.keys(data)){
         //    form.append(k,data[k])
         //}
-        //form.append("userfile", fileInputElement.files[0]);  
+        //form.append("userfile", fileInputElement.files[0]);
+        form.append('user_name',this.getUsername())  
         var  url = 'http://123.56.133.208:8080/myfd/'      
         url = url+apipath       
         fetch(url,{

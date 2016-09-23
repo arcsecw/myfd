@@ -547,7 +547,7 @@ const Institution_list = withRouter( React.createClass({
 
 
                     <div id="u92" className="ax_image">
-                        <img id="u92_img" className="img " src="i/images/institution_list/institution_list/3.png"/>
+                        <img id="u92_img" className="img " src={line3.id}/>
 
                         <div id="u93" className="text">
                             <p><span></span></p>
@@ -624,7 +624,7 @@ const Institution_list = withRouter( React.createClass({
 
 
                     <div id="u108" className="ax_image">
-                        <img id="u108_img" className="img " src="i/images/institution_list/institution_list/2.png"/>
+                        <img id="u108_img" className="img " src={line2.id}/>
 
                         <div id="u109" className="text">
                             <p><span></span></p>
@@ -633,7 +633,7 @@ const Institution_list = withRouter( React.createClass({
 
 
                     <div id="u110" className="ax_image">
-                        <img id="u110_img" className="img " src="i/images/institution_list/institution_list/1.png"/>
+                        <img id="u110_img" className="img " src={line1.id}/>
 
                         <div id="u111" className="text">
                             <p><span></span></p>

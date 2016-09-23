@@ -505,7 +505,7 @@ console.log(goodAt3.length)
           </div>
 
           <div id="u63" className="ax_image">
-            <img id="u63_img" className="img " src="i/images/index_home/index_doc/1.png"/>
+            <img id="u63_img" className="img " src={dline1.id}/>
 
             <div id="u64" className="text">
               <p><span></span></p>
@@ -559,7 +559,7 @@ console.log(goodAt3.length)
           </div>
 
           <div id="u77" className="ax_image">
-            <img id="u77_img" className="img " src="i/images/index_home/index_doc/2.png"/>
+            <img id="u77_img" className="img " src={dline2.id}/>
 
             <div id="u78" className="text">
               <p><span></span></p>
@@ -615,7 +615,7 @@ console.log(goodAt3.length)
           </div>
 
           <div id="u91" className="ax_image">
-            <img id="u91_img" className="img " src="i/images/index_home/index_doc/3.png"/>
+            <img id="u91_img" className="img " src={dline3.id}/>
 
             <div id="u92" className="text">
               <p><span></span></p>
@@ -674,7 +674,7 @@ console.log(goodAt3.length)
           </div>
 
           <div id="u105" className="ax_image">
-            <img id="u105_img" className="img " src="i/images/index_home/index_doc/4.png"/>
+            <img id="u105_img" className="img " src={dline4.id}/>
 
             <div id="u106" className="text">
               <p><span></span></p>
@@ -786,7 +786,7 @@ console.log(goodAt3.length)
           </div>
 
           <div id="u131" className="ax_image">
-            <img id="u131_img" className="img " src="i/images/index_home/index_agc/1.png"/>
+            <img id="u131_img" className="img " src={line1.agencyid}/>
 
             <div id="u132" className="text">
               <p><span></span></p>
@@ -839,7 +839,7 @@ console.log(goodAt3.length)
           </div>
 
           <div id="u143" className="ax_image">
-            <img id="u143_img" className="img " src="i/images/index_home/index_agc/2.png"/>
+            <img id="u143_img" className="img " src={line2.agencyid}/>
 
             <div id="u144" className="text">
               <p><span></span></p>
@@ -892,7 +892,7 @@ console.log(goodAt3.length)
           </div>
 
           <div id="u155" className="ax_image">
-            <img id="u155_img" className="img " src="i/images/index_home/index_agc/3.png"/>
+            <img id="u155_img" className="img " src={line3.agencyid}/>
 
             <div id="u156" className="text">
               <p><span></span></p>
@@ -945,7 +945,7 @@ console.log(goodAt3.length)
           </div>
 
           <div id="u167" className="ax_image">
-            <img id="u167_img" className="img " src="i/images/index_home/index_agc/4.png"/>
+            <img id="u167_img" className="img " src={line4.agencyid}/>
 
             <div id="u168" className="text">
               <p><span></span></p>

@@ -146,17 +146,14 @@ var Register_doctor =withRouter( React.createClass({
             }
         }
         var form = new FormData(<form  encType="multipart/form-data" method="post"></form>)
-        form.append("userfile", this.refs.my_file.files[0]);
-        form.append('test','test')
-        console.log(this.refs.my_file.files[0])
-        
-        //this.handleSubmit();
+        form.append("imgFile", this.refs.my_file.files[0]);
+        form.append("test3", 'test1');
+        auth.post('upload.do',form,(res)=>{
+            console.log(res)
+        })
+        this.handleSubmit();
     },
     handleSubmit() {
-        var form = new FormData(<form  encType="multipart/form-data" method="post"></form>)
-        form.append("userfile", this.refs.my_file.files[0]);
-        form.append('test','test')
-        auth.post('')
         auth.myact({to:'regist.do',
             parms:[
                {'key':'regist_username','value':this.state.username}, 
