@@ -121,10 +121,10 @@ var Index_home = withRouter(React.createClass({
   shanchang(str){
     console.log(str.substr(3,9))
     var end='';
-    if(str.length>=20){
+    if(str.length>=21){
       end='···';
     }
-   return  str.substr(3,9)=='undefined'?str.substr(0,3):str.substr(0,20)+end;
+   return  str.substr(3,9)=='undefined'?str.substr(0,3):str.substr(0,21)+end;
   },
   notice(){ 
     auth.myact(
@@ -195,10 +195,11 @@ var Index_home = withRouter(React.createClass({
         }
         console.log(ddata)
         var goodAt='擅长:';
-        var goodAt1=goodAt+dline1.excel[0]+','+dline1.excel[1];
-        var goodAt2=goodAt+dline2.excel[0]+','+dline2.excel[1];
-        var goodAt3=goodAt+dline3.excel[0]+','+dline3.excel[1];
-        var goodAt4=goodAt+dline4.excel[0]+','+dline4.excel[1];
+        var goodAt1=goodAt+dline1.excel[0]+','+dline1.excel[1]+','+dline1.excel[2]+dline1.excel[3];
+        var goodAt2=goodAt+dline2.excel[0]+','+dline2.excel[1]+','+dline2.excel[2]+dline2.excel[3];
+        var goodAt3=goodAt+dline3.excel[0]+','+dline3.excel[1]+','+dline3.excel[2]+dline3.excel[3];
+        var goodAt4=goodAt+dline4.excel[0]+','+dline4.excel[1]+','+dline4.excel[2]+dline4.excel[3];
+        console.log(dline1.length)
 console.log(goodAt3.length)
         console.log(goodAt3)
     return (
