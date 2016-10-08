@@ -441,35 +441,9 @@ console.log(goodAt3.length)
             <img id="u48_end" className="img " src="i/resources/images/transparent.gif" alt="u48_end"/>
             <img id="u48_line" className="img " src="i/images/index_home/u48_line.png" alt="u48_line"/>
           </div>
-
-
-          <div id="u49" className="ax_paragraph">
-            <img id="u49_img" className="img " src="i/resources/images/transparent.gif"/>
-
-            <div id="u50" className="text">
-              {dat.notice}
-            </div>
+          <div id="u1000">
+          {dat.notice}
           </div>
-
-
-          <div id="u51" className="ax_paragraph">
-            <img id="u51_img" className="img " src="i/resources/images/transparent.gif"/>
-
-            <div id="u52" className="text">
-              <p><span style={{ color: '#333333' }}>138****1234</span><span style={{ color: '#333333' }}> 预约了</span><span style={{ color: '#333333' }}>骨科</span><span style={{ color: '#333333' }}>手</span><span style={{ color: '#333333' }}>术</span></p><p><span style={{ color: '#333333' }}></span><span style={{ color: '#999999' }}>[10分钟前]</span></p>
-            </div>
-          </div>
-
-
-          <div id="u53" className="ax_paragraph">
-            <img id="u53_img" className="img " src="i/resources/images/transparent.gif"/>
-
-            <div id="u54" className="text">
-              <p><span style={{ color: '#333333' }}>138****1234</span><span style={{ color: '#333333' }}> 预约了</span><span style={{ color: '#333333' }}>骨科</span><span style={{ color: '#333333' }}>手</span><span style={{ color: '#333333' }}>术</span></p><p><span style={{ color: '#333333' }}></span><span style={{ color: '#999999' }}>[10分钟前]</span></p>
-            </div>
-          </div>
-
-
           <div id="u55" className="ax_shape">
             <img id="u55_img" className="img " src="i/images/index_home/u55.png"/>
 
@@ -637,7 +611,7 @@ console.log(goodAt3.length)
             <img id="u95_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u96" className="text">
-              <p><span>{dline3.hospital}&nbsp; &nbsp; {dline3.title}</span></p>
+              <p><span>{dline3.hospital}&nbsp; &nbsp; &nbsp;{dline3.title}</span></p>
             </div>
           </div>
 
