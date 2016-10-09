@@ -145,12 +145,7 @@ var Register_doctor =withRouter( React.createClass({
                 this.state.checkedTeam += team[i].value + ",";
             }
         }
-        var form = new FormData(<form  encType="multipart/form-data" method="post"></form>)
-        form.append("imgFile", this.refs.my_file.files[0]);
-        form.append("test3", 'test1');
-        auth.post('upload.do',form,(res)=>{
-            console.log(res)
-        })
+        
         this.handleSubmit();
     },
     handleSubmit() {
@@ -175,9 +170,15 @@ var Register_doctor =withRouter( React.createClass({
         (res)=>{
             console.log(res)
             if(res.regist_error){alert(res.regist_error)}else{
-                var form2 = document.getElementById("form2")
-                form2.submit();
-                this.props.router.replace('/login')
+                var form = new FormData(<form  encType="multipart/form-data" method="post"></form>)
+                form.append("imgFile", this.refs.my_file.files[0]);
+                console.log(this.refs.my_file.files[0])
+                form.append("username", auth.getUsername());
+                form.append("role", res.role);
+                auth.post('upload.do',form,(res)=>{
+                    
+                })
+                this.props.router.replace('/login')             
             }
         })
     },

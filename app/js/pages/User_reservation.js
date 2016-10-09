@@ -82,10 +82,19 @@ var User_reservation = withRouter( React.createClass({
             parms:parms
             },
             (res)=>{
-                    this.state.yuyue.basicPrice = res.basicPrice
-                    this.state.yuyue.totalFee = res.totalFee
-                    this.state.yuyue.id = res.id
-                    this.props.router.push({ pathname: '/checkReservation',query:this.state.yuyue})
+                    var form = new FormData(<form  encType="multipart/form-data" method="post"></form>)
+                    form.append("imgFile", this.refs.my_file.files[0]);
+                    console.log(this.refs.my_file.files[0])
+                    form.append("username", auth.getUsername());
+                    form.append("role", auth.getRole());
+                    auth.post('upload.do',form,(res)=>{
+                        console.log(res)
+                        this.state.yuyue.basicPrice = res.basicPrice
+                        this.state.yuyue.totalFee = res.totalFee
+                        this.state.yuyue.id = res.id
+                        this.props.router.push({ pathname: '/checkReservation',query:this.state.yuyue})
+                    })
+                    
                     });
         },
     componentWillMount() {
@@ -290,7 +299,7 @@ var User_reservation = withRouter( React.createClass({
 
 
                     <div id="u31" className="ax_html_button">
-                        <input id="u31_input" type="submit" value="上传"/>
+                        <input ref = 'my_file' type ='file' id="u31_input" value="上传"/>
                     </div>
 
 
