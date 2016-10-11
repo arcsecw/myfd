@@ -27,11 +27,11 @@ var Register_doctor =withRouter( React.createClass({
             num: 1,
             select_group:{
                 "关节":{
-                    "髋关节":{"股骨头坏死":'',"髋关节骨性关节炎":""},
-                    "足踝":{"踝关节骨性关节炎":"","踝关节创伤性关节炎":""},
+                    "髋关节":{"股骨头坏死":'1',"髋关节骨性关节炎":"2"},
+                    "足踝":{"踝关节骨性关节炎":"13","踝关节创伤性关节炎":"14"},
                 },
                 "脊柱":{
-                    "脊柱":{"颈椎骨折伴或不伴脱位，颈髓损伤":'',"颈椎间盘突出伴或不伴滑脱":''},
+                    "脊柱":{"颈椎骨折伴或不伴脱位，颈髓损伤":'16',"颈椎间盘突出伴或不伴滑脱":'17'},
                 }
             },
             select_state:[
@@ -131,11 +131,7 @@ var Register_doctor =withRouter( React.createClass({
         this.state.department = document.getElementById("u33_input").value;
         this.state.title = document.getElementById("u34_input").value;
         
-        var goods = '';
-        for (let i = 0;i<this.state.select_state.length;i++){
-            goods =goods+','+this.state.select_state[i][2]
-        }
-        this.state.excel = goods;
+        
         this.state.experience = document.getElementById("u40_input").value;
         this.state.honor = document.getElementById("u41_input").value;
         var team = document.getElementsByName("team");
@@ -145,13 +141,10 @@ var Register_doctor =withRouter( React.createClass({
                 this.state.checkedTeam += team[i].value + ",";
             }
         }
-        
         this.handleSubmit();
     },
     handleSubmit() {
-        auth.myact({to:'regist.do',
-            parms:[
-               {'key':'regist_username','value':this.state.username}, 
+        var parm = [{'key':'regist_username','value':this.state.username}, 
                {'key':'regist_password','value':this.state.password}, 
                {'key':'regist_confirmPwd','value':this.state.cfmPwd},
                {'key':'regist_mobile','value':this.state.phoneNum}, 
@@ -159,16 +152,25 @@ var Register_doctor =withRouter( React.createClass({
                {'key':'hospital','value':this.state.hospital}, 
                {'key':'department','value':this.state.department},
                {'key':'title','value':this.state.title},
-               {'key':'name','value':this.state.excel},
                {'key':'experience','value':this.state.experience},
                {'key':'honor','value':this.state.honor}, 
                {'key':'team','value':this.state.checkedTeam},                
                {'key':'role','value':'3'}, 
-               {'key':'regist_validate', 'value':this.state.code},
-            ]
+               {'key':'regist_validate', 'value':this.state.code}
+               ]
+        
+        for (let i = 0;i<this.state.select_state.length;i++){
+            var s = this.state.select_state[i]
+            var m = this.state.select_group
+            if(s[0]!=''&&s[1]!=[0]&&s[2]!=''){
+            var value = m[s[0]][s[1]][s[2]]
+            parm.push({'key':'name','value':value})
+            }           
+        }
+        auth.myact({to:'regist.do',
+            parms:parm
         },
         (res)=>{
-            console.log(res)
             if(res.regist_error){alert(res.regist_error)}else{
                 var form = new FormData(<form  encType="multipart/form-data" method="post"></form>)
                 form.append("imgFile", this.refs.my_file.files[0]);

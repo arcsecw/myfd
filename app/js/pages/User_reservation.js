@@ -88,13 +88,12 @@ var User_reservation = withRouter( React.createClass({
                     form.append("username", auth.getUsername());
                     form.append("role", auth.getRole());
                     auth.post('upload.do',form,(res)=>{
-                        console.log(res)
-                        this.state.yuyue.basicPrice = res.basicPrice
-                        this.state.yuyue.totalFee = res.totalFee
-                        this.state.yuyue.id = res.id
-                        this.props.router.push({ pathname: '/checkReservation',query:this.state.yuyue})
+                        
                     })
-                    
+                    this.state.yuyue.basicPrice = res.basicPrice
+                    this.state.yuyue.totalFee = res.totalFee
+                    this.state.yuyue.id = res.id
+                    this.props.router.push({ pathname: '/checkReservation',query:this.state.yuyue})
                     });
         },
     componentWillMount() {
