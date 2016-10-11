@@ -191,12 +191,19 @@ console.log(goodAt3.length)
         console.log(goodAt3)
         var notice1=''
         var notice2=''
+        var notice3=''
+        var notice4=''
         var notices=dat.notice
         var noticeList=String(notices).split("\n")
         if(noticeList.length>1){
           notice1=noticeList[0]
           notice2=noticeList[1]
           console.log(notice1,notice2)
+          if(noticeList.length>2){
+            notice3=noticeList[2]
+            console.log(notice3)
+            
+          }
         }
 
         console.log(noticeList.length)
@@ -442,6 +449,10 @@ console.log(goodAt3.length)
           <div id="u1000">
       <p>{notice1}</p>
       <p>{notice2}</p>
+      <p>{notice3}</p>
+      
+ 
+    
  
           </div>
           <div id="u55" className="ax_shape">
