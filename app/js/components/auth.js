@@ -73,7 +73,6 @@ getRole(){
    
   })
   url = url + '&user_name='+this.getUsername()  
-  console.log(url)
   fetch(url)
       .then(checkStatus)
       .then(res => {

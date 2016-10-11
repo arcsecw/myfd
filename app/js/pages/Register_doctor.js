@@ -41,7 +41,6 @@ var Register_doctor =withRouter( React.createClass({
     },
     //基于配置文件的不定组三级联动下拉选框
     my_foreach(obj){
-        console.log(obj)
         var childrens = []
         for(let k of Object.keys(obj)){
             childrens.push (<option value ={k}>{k}</option>)          
@@ -110,7 +109,6 @@ var Register_doctor =withRouter( React.createClass({
     addSelect() {
         var new_select = ['','','']
         var before_select = this.state.select_state||[]
-        console.log(this.state.select_state)
         before_select.push(new_select)
         this.setState({select_state:before_select})
     },
@@ -162,7 +160,7 @@ var Register_doctor =withRouter( React.createClass({
         for (let i = 0;i<this.state.select_state.length;i++){
             var s = this.state.select_state[i]
             var m = this.state.select_group
-            if(s[0]!=''&&s[1]!=[0]&&s[2]!=''){
+            if(s[0]!=''&&s[1]!=''&&s[2]!=''){
             var value = m[s[0]][s[1]][s[2]]
             parm.push({'key':'name','value':value})
             }           
@@ -174,7 +172,6 @@ var Register_doctor =withRouter( React.createClass({
             if(res.regist_error){alert(res.regist_error)}else{
                 var form = new FormData(<form  encType="multipart/form-data" method="post"></form>)
                 form.append("imgFile", this.refs.my_file.files[0]);
-                console.log(this.refs.my_file.files[0])
                 form.append("username", auth.getUsername());
                 form.append("role", res.role);
                 auth.post('upload.do',form,(res)=>{
