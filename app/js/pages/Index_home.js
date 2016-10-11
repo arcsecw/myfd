@@ -138,20 +138,7 @@ var Index_home = withRouter(React.createClass({
                 this.setState({fornotice:res})
             });
   },
-  agencyname_position(str){
-    var len=10-str.length;
-    var agencyName=" ";
-    console.log(str);
-    while(len>0){
-      str=agencyName+str;
-      len--;
-    }
-    str="."+str
-     console.log(len);
-     console.log(str);
-    return String(str);
-     
-  },
+
   render() {
         var dat=this.state.fornotice
         
@@ -202,6 +189,24 @@ var Index_home = withRouter(React.createClass({
         console.log(dline1.length)
 console.log(goodAt3.length)
         console.log(goodAt3)
+        var notice1=''
+        var notice2=''
+        var notice3=''
+        var notice4=''
+        var notices=dat.notice
+        var noticeList=String(notices).split("\n")
+        if(noticeList.length>1){
+          notice1=noticeList[0]
+          notice2=noticeList[1]
+          console.log(notice1,notice2)
+          if(noticeList.length>2){
+            notice3=noticeList[2]
+            console.log(notice3)
+            
+          }
+        }
+
+        console.log(noticeList.length)
     return (
       <PageContainer>
         <script type="text/javascript">
@@ -442,7 +447,13 @@ console.log(goodAt3.length)
             <img id="u48_line" className="img " src="i/images/index_home/u48_line.png" alt="u48_line"/>
           </div>
           <div id="u1000">
-          {dat.notice}
+      <p>{notice1}</p>
+      <p>{notice2}</p>
+      <p>{notice3}</p>
+      
+ 
+    
+ 
           </div>
           <div id="u55" className="ax_shape">
             <img id="u55_img" className="img " src="i/images/index_home/u55.png"/>
