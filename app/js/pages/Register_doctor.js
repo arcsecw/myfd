@@ -167,6 +167,7 @@ var Register_doctor =withRouter( React.createClass({
                {'key':'honor','value':this.state.honor}, 
                {'key':'team','value':this.state.checkedTeam},                
                {'key':'role','value':'3'}, 
+               {'key':'user_name','value':this.state.username}, 
                {'key':'regist_validate', 'value':this.state.code}
                ]
         
@@ -187,6 +188,7 @@ var Register_doctor =withRouter( React.createClass({
                 form.append("imgFile", this.refs.my_file.files[0]);
                 form.append("username", auth.getUsername());
                 form.append("role", res.role);
+                form.append("user_name", this.state.username);
                 auth.post('upload.do',form,(res)=>{
                     
                 })

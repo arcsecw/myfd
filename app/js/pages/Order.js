@@ -10,10 +10,12 @@ import {
   Order_ing,
   Order_null,
 } from '../components/Order'
+import PageContainer from '../components/PageContainer';
 const Order = React.createClass({
   
   render() {
     return (
+      <PageContainer>
       <Tabs animation='slide'>
       <Tabs.Item eventKey="1" title="未完成">
         <Order_null/>     
@@ -25,7 +27,7 @@ const Order = React.createClass({
         <Order_done/>
       </Tabs.Item>
     </Tabs>
-         
+    </PageContainer>
     );
   }
 });

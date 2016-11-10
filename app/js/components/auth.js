@@ -1,3 +1,5 @@
+var fetch_url = 'http://123.56.133.208:8080/myfd'
+//var fetch_url = 'http://10.3.142.54:8080/myfd/'
 module.exports = {
   user_login(email, pass, cb) {
     cb = arguments[arguments.length - 1]
@@ -65,14 +67,16 @@ getRole(){
   myact(val,cb) {
     var to = val['to']
     var parms = val['parms']
-    var  url = 'http://123.56.133.208:8080/myfd/'+to+'?'
+    var  url = fetch_url+to+'?'
     parms.map(parm=>{
       if(String(parm.value).length>0){ 
         url +=parm.key+'='+parm.value+'&'
       }
    
   })
-  url = url + '&user_name='+this.getUsername()  
+  if(to !='regist.do'){
+     url = url + '&user_name='+this.getUsername()  
+  }
   fetch(url)
       .then(checkStatus)
       .then(res => {
@@ -91,7 +95,7 @@ getRole(){
 //            console.log(res)
 //        }) 
       get(apipath,data,cb) {
-        var  url = 'http://123.56.133.208:8080/myfd/'
+        var  url = fetch_url
         url = url+apipath+'?'
         for (let k of Object.keys(data)){
             url = url + k + '=' + data[k]+'&'
@@ -119,8 +123,10 @@ getRole(){
         //    form.append(k,data[k])
         //}
         //form.append("userfile", fileInputElement.files[0]);
-        form.append('user_name',this.getUsername())  
-        var  url = 'http://123.56.133.208:8080/myfd/'      
+        if (form.get("user_name"==null)){
+          form.append('user_name',this.getUsername())              
+        }
+        var  url = fetch_url      
         url = url+apipath       
         fetch(url,{
             method:'POST',
@@ -151,7 +157,7 @@ function checkStatus(response) {
     }
 function pretendRequest(email, pass, cb) {
   localStorage.username = email
-  fetch('http://123.56.133.208:8080/myfd/login.do?username'+'='+email+'&'+'password'+'='+pass+'&'+'role'+'=1')
+  fetch(fetch_url+'login.do?username'+'='+email+'&'+'password'+'='+pass+'&'+'role'+'=1')
       .then(checkStatus)
       .then(res => {
         return res.json();
@@ -176,7 +182,7 @@ function pretendRequest(email, pass, cb) {
   }
   function pretendRequest1(email, pass, cb) {
   localStorage.username = email
-  fetch('http://123.56.133.208:8080/myfd/adminLogin.do?username'+'='+email+'&'+'password'+'='+pass+'&'+'role'+'=5')
+  fetch(fetch_url+'adminLogin.do?username'+'='+email+'&'+'password'+'='+pass+'&'+'role'+'=5')
       .then(checkStatus)
       .then(res => {
         return res.json();
