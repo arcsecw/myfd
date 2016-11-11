@@ -28,7 +28,13 @@ const Order_done = React.createClass({
     }
   },
   componentWillMount() {
+    this.re_render()
     
+  },
+  componentWillReceiveProps(){
+    this.re_render()
+  },
+  re_render(){
     auth.myact(
           {to:'orderAdmin.do',
               parms:[{'key':'state','value':'2'}]
@@ -37,7 +43,6 @@ const Order_done = React.createClass({
                 this.updateDataSource(res)
                 });
   },
-
   updateDataSource(data) {
     this.setState({
       dataSource: data,
@@ -45,7 +50,6 @@ const Order_done = React.createClass({
   },
   renderTable() {
     const { dataSource } = this.state;
-    console.log(dataSource)
     return (
       <Table bordered striped hover radius responsive>
         <thead>

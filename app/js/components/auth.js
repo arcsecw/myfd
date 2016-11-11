@@ -1,4 +1,4 @@
-var fetch_url = 'http://123.56.133.208:8080/myfd'
+var fetch_url = 'http://123.56.133.208:8080/myfd/'
 //var fetch_url = 'http://10.3.142.54:8080/myfd/'
 module.exports = {
   user_login(email, pass, cb) {

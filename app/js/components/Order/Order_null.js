@@ -26,8 +26,7 @@ const Order_null = React.createClass({
       return '已完成'
     }
   },
-  componentWillMount() {
-    
+  re_get_info(){
     auth.myact(
           {to:'orderAdmin.do',
            parms:[{'key':'state','value':'0'}]
@@ -36,15 +35,26 @@ const Order_null = React.createClass({
                 this.updateDataSource(res)
                 });
   },
-
+  componentWillReceiveProps(){
+    this.re_get_info()
+  },
+  componentWillMount() {
+    
+    this.re_get_info()
+  },
+  fllow_up(orderNumber){
+    auth.get('followUp.do',{'orderNumber':orderNumber},(re)=>{
+      this.re_get_info()
+    })
+  },
   updateDataSource(data) {
     this.setState({
       dataSource: data,
     })
   },
   renderTable() {
+    
     const { dataSource } = this.state;
-    console.log(dataSource)
     return (
       <Table bordered striped responsive>
         <thead>
@@ -79,7 +89,7 @@ const Order_null = React.createClass({
                 <td>{item.systemals}</td>
                 <td>{item.adviceteam}</td>
                 <td>{item.proferdoctor}</td>
-                <td>{item.ass}</td>
+                <td><span onClick = {()=>{this.fllow_up(item.orderNumber)}}>我要跟进</span></td>
                 <td>{item.mobile}</td>
 
               </tr>

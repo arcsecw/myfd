@@ -31,6 +31,9 @@ formatstsate(id){
   },
   componentWillMount() {
     
+    this.regetinfo()
+  },
+  regetinfo(){
     auth.myact(
           {to:'orderAdmin.do',
               parms:[{'key':'state','value':'1'}]
@@ -39,16 +42,29 @@ formatstsate(id){
                 this.updateDataSource(res)
                 });
   },
+cancel_follow_up(orderNumber){
+  auth.get('cancelFollowUp.do',{'orderNumber':orderNumber},(re)=>{
+    this.regetinfo()
+  })
 
+},
+finish_follow_up(orderNumber){
+  auth.get('finishFollowUp.do',{'orderNumber':orderNumber},(re)=>{
+    this.regetinfo()
+  })
+
+},
+componentWillReceiveProps(){
+    this.regetinfo()
+  },
   updateDataSource(data) {
     this.setState({
       dataSource: data,
     })
   },
   renderTable() {
-  
+    
     const { dataSource } = this.state;
-    console.log(dataSource)
     return (
       <Table striped className="am-margin-bottom" responsive>
         <thead>
@@ -81,7 +97,9 @@ formatstsate(id){
                 <td>{item.patientDiagnose}</td>
                 <td>{item.team}</td>
                 <td>{item.more}</td>
-                <td>{item.ass}</td>
+                <td><span onClick = {()=>{this.cancel_follow_up(item.orderNumber)}}>取消</span><span onClick = {()=>{
+                  this.finish_follow_up(item.orderNumber)
+                }}>完成</span></td>
                 <td>{item.mobile}</td>
 
               </tr>
