@@ -97,7 +97,7 @@ componentWillReceiveProps(){
                 <td>{item.patientDiagnose}</td>
                 <td>{item.team}</td>
                 <td>{item.more}</td>
-                <td><span onClick = {()=>{this.cancel_follow_up(item.orderNumber)}}>取消</span><span onClick = {()=>{
+                <td><span onClick = {()=>{this.cancel_follow_up(item.orderNumber)}}>取消</span>-OR-<span onClick = {()=>{
                   this.finish_follow_up(item.orderNumber)
                 }}>完成</span></td>
                 <td>{item.mobile}</td>
