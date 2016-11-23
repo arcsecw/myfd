@@ -67,6 +67,7 @@ var Register_hospital =withRouter(React.createClass({
       ]
       },(res)=>{
               if(res.regist_error){alert(res.regist_error)}else{
+                  alert('注册申请已提交')
                   this.props.router.replace('/login')
               }
       })

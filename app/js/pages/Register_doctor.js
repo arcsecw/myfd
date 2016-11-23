@@ -192,6 +192,7 @@ var Register_doctor =withRouter( React.createClass({
                 auth.post('upload.do',form,(res)=>{
                     
                 })
+                alert('注册申请已提交')
                 this.props.router.replace('/login')             
             }
         })
@@ -405,8 +406,10 @@ var Register_doctor =withRouter( React.createClass({
                     <div id="u32" className="ax_droplist">
                         <select id="u32_input" ref = "hospital">
                             <option selected value="积水潭医院">积水潭医院</option>
-                            <option value="协和">协和</option>
-                            <option value="北医三院">北医三院</option>
+                            <option  value="北京协和医院">北京协和医院</option>
+                            <option  value="301医院">301医院</option>
+                            <option  value="北医三院">北医三院</option>
+                            <option  value="人民医院">人民医院</option>
                         </select>
                     </div>
 
@@ -420,9 +423,8 @@ var Register_doctor =withRouter( React.createClass({
 
                     <div id="u34" className="ax_droplist">
                         <select id="u34_input" ref = "title">
-                            <option selected value="主任医师教授">主任医师教授</option>
-                            <option value="主任医师">主任医师</option>
-                            <option value="副主任">副主任</option>
+                            <option selected value="主任医师">主任医师</option>
+                            <option value="副主任医师">副主任医师</option>
                         </select>
                     </div>
 

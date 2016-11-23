@@ -190,7 +190,11 @@ function requireAuth(nextState, replace) {
   else{
     console.log(pathname)
     console.log(role)
-    alert("您无权访问此页面")
+    var message = '您无权访问此页面'
+    if (pathname=='user_reservation'){
+      message = '请先登录'
+    }
+    alert(message)
     replace({
       pathname: role_replace[role],
       state: { nextPathname: nextState.location.pathname }
