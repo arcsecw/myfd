@@ -217,9 +217,7 @@ React.createClass({
                     </div>
 
 
-                    <div id="u22" className="ax_text_field">
-                        <input id="u22_input"  type="text"  />
-                    </div>
+                    
 
 
                     <div id="u23" className="ax_text_field">
@@ -232,13 +230,7 @@ React.createClass({
                     </div>
 
 
-                    <div id="u25" className="ax_paragraph">
-                        <img id="u25_img" className="img " src="i/resources/images/transparent.gif"/>
-
-                        <div id="u26" className="text">
-                            <p><span>看不清？换一张</span></p>
-                        </div>
-                    </div>
+                   
 
 
                     <div id="u27" className="ax_paragraph">
@@ -249,13 +241,7 @@ React.createClass({
                         </div>
                     </div>
 
-                    <div id="u29" className="ax_paragraph">
-                        <img id="u29_img" className="img " src="i/resources/images/transparent.gif"/>
-
-                        <div id="u30" className="text">
-                            <p><span>验证码</span></p>
-                        </div>
-                    </div>
+                    
 
 
                     <div id="u31" className="ax_paragraph">
@@ -285,12 +271,7 @@ React.createClass({
                     </div>
 </Link>
 
-                    <div id="u37" className="ax_shape">
-                        <img id="u37_img" className="img " src="i/images/register_person/u37.png"/>
-                        <div id="u38" className="text">
-                            <p><span>验证码</span></p>
-                        </div>
-                    </div>
+                    
                    
                 </div>
 

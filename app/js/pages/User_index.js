@@ -142,7 +142,7 @@ var User_index = React.createClass({
                         <img id="u69_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u70" className="text">
-                            <p><span>关于我们</span></p>
+                            <p><span><Link to = {auth.get_config()['about_us_url']}>关于我们</Link></span></p>
                         </div>
                     </div>
 
@@ -151,7 +151,7 @@ var User_index = React.createClass({
                         <img id="u71_img" className="img " src="i/resources/images/transparent.gif"/>
 
                         <div id="u72" className="text">
-                            <p><span>联系我们</span></p>
+                            <p><span><Link to = {auth.get_config()['connect_us_url']}>联系我们</Link></span></p>
                         </div>
                     </div>
 

@@ -62,6 +62,7 @@ const PageContainer = React.createClass({
       >
        
         {this.props.children}
+        
       </div>
     );
   }

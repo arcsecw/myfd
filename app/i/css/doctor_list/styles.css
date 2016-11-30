@@ -1536,6 +1536,15 @@
   font-size:14px;
   color:#666666;
 }
+#u888 {
+  position:absolute;
+  left:450px;
+  top:998px;
+  width:57px;
+  height:1px;
+  font-size:14px;
+  color:#666666;
+}
 #u125_img {
   position:absolute;
   left:0px;
@@ -1652,7 +1661,7 @@ position:absolute;
 #u146{
 position:absolute;
   left:400px;
-  top:60px;
+  top:100px;
   font-size:14px;
   color:#666666;
 

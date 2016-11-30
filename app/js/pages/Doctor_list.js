@@ -704,7 +704,7 @@ var Doctor_list =withRouter( React.createClass({
             <img id="u121_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u122" className="text">
-              <p><span>关于我们</span></p>
+              <p><span><Link to = {auth.get_config()['about_us_url']}>关于我们</Link></span></p>
             </div>
           </div>
 
@@ -713,7 +713,7 @@ var Doctor_list =withRouter( React.createClass({
             <img id="u123_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u124" className="text">
-              <p><span>联系我们</span></p>
+              <p><span><Link to = {auth.get_config()['connect_us_url']}>联系我们</Link></span></p>
             </div>
           </div>
 
@@ -723,6 +723,14 @@ var Doctor_list =withRouter( React.createClass({
 
             <div id="u126" className="text">
               <p><span>服务条款</span></p>
+            </div>
+          </div>
+
+          <div id="u888" className="ax_paragraph">
+            <img id="u125_img" className="img " src="i/resources/images/transparent.gif"/>
+
+            <div id="u126" className="text">
+              <p><span><a href = 'http://www.miitbeian.gov.cn'>京ICP备案16059247号</a></span></p>
             </div>
           </div>
 

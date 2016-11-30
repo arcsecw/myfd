@@ -716,7 +716,7 @@ var Query_result = withRouter (React.createClass({
                         <img id="u111_img" className="img " src="i/resources/images/transparent.gif"/>
                         
                         <div id="u112" className="text">
-                            <p><span>关于我们</span></p>
+                            <p><span><Link to = {auth.get_config()['about_us_url']}>关于我们</Link></span></p>
                         </div>
                     </div>
 
@@ -725,7 +725,7 @@ var Query_result = withRouter (React.createClass({
                         <img id="u113_img" className="img " src="i/resources/images/transparent.gif"/>
                         
                         <div id="u114" className="text">
-                            <p><span>联系我们</span></p>
+                            <p><span><Link to = {auth.get_config()['connect_us_url']}>联系我们</Link></span></p>
                         </div>
                     </div>
 
@@ -737,7 +737,21 @@ var Query_result = withRouter (React.createClass({
                             <p><span>服务条款</span></p>
                         </div>
                     </div>
+                    <div id="u888" className="ax_paragraph" style = {{
+                            'position':'absolute',
+                            'left':'450px',
+                            'top':'956px',
+                            'width':'200px',
+                            'height':'1px',
+                            'font-size':'14px',
+                            'color':'#666666'
+                    }}>
+                    <img id="u125_img" className="img " src="i/resources/images/transparent.gif"/>
 
+                    <div id="u126" className="text">
+                    <p><span><a href = 'http://www.miitbeian.gov.cn'>京ICP备案16059247号</a></span></p>
+                    </div>
+                    </div>
                     
                     <div id="u117" className="ax_paragraph">
                         <img id="u117_img" className="img " src="i/resources/images/transparent.gif"/>

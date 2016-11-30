@@ -380,9 +380,7 @@ var Register_hospital =withRouter(React.createClass({
       </div>
 
       
-      <div id="u47" className="ax_text_field">
-        <input id="u47_input" type="text"  />
-      </div>
+   
 
       <div id="u48" className="ax_text_field">
         <input id="u48_input" type="text"  />
@@ -394,22 +392,9 @@ var Register_hospital =withRouter(React.createClass({
       </div>
 
     
-      <div id="u50" className="ax_image">
-        <img id="u50_img" className="img " src="i/images/register_doctor/u11.png"/>
-  
-        <div id="u51" className="text">
-          <p><span></span></p>
-        </div>
-      </div>
+     
 
    
-      <div id="u52" className="ax_paragraph">
-        <img id="u52_img" className="img " src="i/resources/images/transparent.gif"/>
-
-        <div id="u53" className="text">
-          <p><span>看不清？换一张</span></p>
-        </div>
-      </div>
 
  
       <div id="u54" className="ax_paragraph">
@@ -421,13 +406,7 @@ var Register_hospital =withRouter(React.createClass({
       </div>
 
 
-      <div id="u56" className="ax_paragraph">
-        <img id="u56_img" className="img " src="i/resources/images/transparent.gif"/>
-    
-        <div id="u57" className="text">
-          <p><span>验证码</span></p>
-        </div>
-      </div>
+     
 
  
       <div id="u58" className="ax_paragraph">

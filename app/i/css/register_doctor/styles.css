@@ -709,6 +709,13 @@
   width:40px;
   height:16px;
 }
+#u500 {
+  position:absolute;
+  left:109px;
+  top:867px;
+  width:40px;
+  height:16px;
+}
 #u50_img {
   position:absolute;
   left:0px;
@@ -727,6 +734,13 @@
   position:absolute;
   left:159px;
   top:883px;
+  width:200px;
+  height:25px;
+}
+#u520 {
+  position:absolute;
+  left:159px;
+  top:863px;
   width:200px;
   height:25px;
 }

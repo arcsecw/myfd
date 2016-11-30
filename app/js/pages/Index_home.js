@@ -949,7 +949,7 @@ console.log(goodAt3.length)
             <img id="u170_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u171" className="text">
-              <p><span>关于我们</span></p>
+              <p><span><Link to = {auth.get_config()['about_us_url']}>关于我们</Link></span></p>
             </div>
           </div>
 
@@ -958,7 +958,7 @@ console.log(goodAt3.length)
             <img id="u172_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u173" className="text">
-              <p><span>联系我们</span></p>
+              <p><span><Link to = {auth.get_config()['connect_us_url']}>联系我们</Link></span></p>
             </div>
           </div>
 
@@ -970,7 +970,35 @@ console.log(goodAt3.length)
               <p><span>服务条款</span></p>
             </div>
           </div>
+          <div id="u889" className="ax_paragraph" style = {{
+            'position':'absolute',
+            'left':'40px',
+            'top':'1049px',
+            'width':'950px',
+            'height':'135px',
+            'color':'#ffffff'
+                    }}>
+            <img id="u125_img" className="img " src="i/resources/images/transparent.gif"/>
 
+            <div id="u126" className="text">
+              <p><span><a href = 'http://www.miitbeian.gov.cn'>京ICP备案16059247号</a></span></p>
+            </div>
+          </div>
+          <div id="u888" className="ax_paragraph" style = {{
+            'position':'absolute',
+  'left':'450px',
+  'top':'1245px',
+  'width':'57px',
+  'height':'1px',
+  'font-size':'14px',
+  'color':'#666666'
+          }}>
+            <img id="u125_img" className="img " src="i/resources/images/transparent.gif"/>
+
+            <div id="u126" className="text">
+              <p><span><a href = 'http://www.miitbeian.gov.cn'>京ICP备案16059247号</a></span></p>
+            </div>
+          </div>
 
           <div id="u176" className="ax_paragraph">
             <img id="u176_img" className="img " src="i/resources/images/transparent.gif"/>

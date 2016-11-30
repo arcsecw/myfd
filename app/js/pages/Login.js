@@ -206,7 +206,7 @@ const Login = withRouter(
             <img id="u170_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u171" className="text">
-              <p><span>关于我们</span></p>
+              <p><span><Link to = {auth.get_config()['about_us_url']}>关于我们</Link></span></p>
             </div>
           </div>
 
@@ -215,7 +215,7 @@ const Login = withRouter(
             <img id="u172_img" className="img " src="i/resources/images/transparent.gif"/>
 
             <div id="u173" className="text">
-              <p><span>联系我们</span></p>
+              <p><span><Link to = {auth.get_config()['connect_us_url']}>联系我们</Link></span></p>
             </div>
           </div>
 
@@ -228,6 +228,21 @@ const Login = withRouter(
             </div>
           </div>
 
+          <div id="u888" className="ax_paragraph" style = {{
+                            'position':'absolute',
+                            'left':'450px',
+                            'top':'530px',
+                            'width':'200px',
+                            'height':'1px',
+                            'font-size':'14px',
+                            'color':'#666666'
+                    }}>
+                    <img id="u125_img" className="img " src="i/resources/images/transparent.gif"/>
+
+                    <div id="u126" className="text">
+                    <p><span><a href = 'http://www.miitbeian.gov.cn'>京ICP备案16059247号</a></span></p>
+                    </div>
+                    </div>
 
           <div id="u176" className="ax_paragraph">
             <img id="u176_img" className="img " src="i/resources/images/transparent.gif"/>

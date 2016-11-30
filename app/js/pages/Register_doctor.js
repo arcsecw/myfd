@@ -186,7 +186,16 @@ var Register_doctor =withRouter( React.createClass({
             if(res.regist_error){alert(res.regist_error)}else{
                 var form = new FormData(<form  encType="multipart/form-data" method="post"></form>)
                 form.append("imgFile", this.refs.my_file.files[0]);
-                form.append("username", auth.getUsername());
+                form.append("username", this.state.username);
+                form.append("certificate",'true');
+                form.append("role", res.role);
+                form.append("user_name", this.state.username);
+                auth.post('upload.do',form,(res)=>{
+                    
+                })
+                var form = new FormData(<form  encType="multipart/form-data" method="post"></form>)
+                form.append("imgFile", this.refs.my_file_1.files[0]);
+                form.append("username", this.state.username);
                 form.append("role", res.role);
                 form.append("user_name", this.state.username);
                 auth.post('upload.do',form,(res)=>{
@@ -290,9 +299,7 @@ var Register_doctor =withRouter( React.createClass({
                     </div>
 
 
-                    <div id="u8" className="ax_text_field">
-                         <input ref=""  id="u8_input" type="text"  />
-                    </div>
+                    
 
 
                     <div id="u9" className="ax_text_field">
@@ -305,22 +312,9 @@ var Register_doctor =withRouter( React.createClass({
                     </div>
 
 
-                    <div id="u11" className="ax_image">
-                        <img id="u11_img" className="img " src="i/images/register_doctor/u11.png"/>
-
-                        <div id="u12" className="text">
-                            <p><span></span></p>
-                        </div>
-                    </div>
 
 
-                    <div id="u13" className="ax_paragraph">
-                        <img id="u13_img" className="img " src="i/resources/images/transparent.gif"/>
-
-                        <div id="u14" className="text">
-                            <p><span>看不清？换一张</span></p>
-                        </div>
-                    </div>
+                    
 
 
                     <div id="u15" className="ax_paragraph">
@@ -350,13 +344,7 @@ var Register_doctor =withRouter( React.createClass({
                     </div>
 
 
-                    <div id="u21" className="ax_paragraph">
-                        <img id="u21_img" className="img " src="i/resources/images/transparent.gif"/>
-
-                        <div id="u22" className="text">
-                            <p><span>验证码</span></p>
-                        </div>
-                    </div>
+                    
 
 
                     <div id="u23" className="ax_paragraph">
@@ -487,22 +475,34 @@ var Register_doctor =withRouter( React.createClass({
                             <p><span>荣誉</span></p>
                         </div>
                     </div>
+                    <form action="upload.do" method="post" enctype="multipart/form-data" id="form3">
+                        
 
-                    <form action="upload.do" method="post" enctype="multipart/form-data" id="form2">
-                        <div id="u48" className="ax_paragraph">
-                            <img id="u48_img" className="img " src="i/resources/images/transparent.gif"/>
+                        <div id="u500" className="ax_paragraph">
+                            <img id="u50_img" className="img " src="i/resources/images/transparent.gif"/>
 
-                            <div id="u49" className="text">
-                                <p><span>上传本人执业证书，职称等图片</span></p>
+                            <div id="u51" className="text">
+                                <p><span>头像</span></p>
                             </div>
                         </div>
+
+
+                        <div id="u520" className="ax_text_field">
+                        <input ref = 'my_file_1' type ='file'/>
+                        </div>
+
+
+                        
+                    </form>
+                    <form action="upload.do" method="post" enctype="multipart/form-data" id="form2">
+                        
 
 
                         <div id="u50" className="ax_paragraph">
                             <img id="u50_img" className="img " src="i/resources/images/transparent.gif"/>
 
                             <div id="u51" className="text">
-                                <p><span>文件名</span></p>
+                                <p><span>资历包</span></p>
                             </div>
                         </div>
 
