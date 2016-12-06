@@ -40,6 +40,7 @@ import {
   Account_manage,
   User_index,
   About,
+  About_us,
 } from './pages';
 import UserManage from './components/ManageRoot';
 //所有页面必须要import才有能被正确处理 ps 想要import from 文件夹 需要在文件夹的index.js 里export一下
@@ -62,7 +63,8 @@ const pages = {
   account_manage: Account_manage,
   user_index:User_index,
   about:About,
-  userManage:UserManage
+  userManage:UserManage,
+  about_us:About_us
 };
 
 //下面的router里面有一个遍历这个map的操作，将map里所有的页面加载到router中 也就是说不在这个数组里声明一下的话，必须要在下面的router组里写一遍，否则无法通过url访问到对应的组件
@@ -87,6 +89,7 @@ const auth_map = {
                     account_manage:       ['5'],
                     user_index:           ['1'],
                     adminlogin:           ['5','4','3','2','1','0'],
+                    about_us:             ['5','4','3','2','1','0'],
                  }
 const role_replace = {
                     '5':'user_manage',

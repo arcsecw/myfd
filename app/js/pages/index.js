@@ -22,3 +22,4 @@ export Price_manage from './Price_manage';
 export User_index from './User_index';
 export Logout from './Logout';
 export About from './About';
+export About_us from './About_us';

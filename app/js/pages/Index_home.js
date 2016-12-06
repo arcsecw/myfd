@@ -978,11 +978,7 @@ console.log(goodAt3.length)
             'height':'135px',
             'color':'#ffffff'
                     }}>
-            <img id="u125_img" className="img " src="i/resources/images/transparent.gif"/>
-
-            <div id="u126" className="text">
-              <p><span><a href = 'http://www.miitbeian.gov.cn'>京ICP备案16059247号</a></span></p>
-            </div>
+            <img src = 'i/images/index_home/bot.png'/>
           </div>
           <div id="u888" className="ax_paragraph" style = {{
             'position':'absolute',
