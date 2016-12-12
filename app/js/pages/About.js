@@ -61,7 +61,10 @@ const UserManage = React.createClass({
         console.log(id)
         auth.myact(
           {to:'manager/disableuser.do',
-           parms:[{'key':'id','value':id}]
+           parms:[
+               {'key':'id','value':id[0]},
+               {'key':'state','value':id[1]},
+           ]
           },
           (res)=>{
                 console.log(res)
@@ -86,6 +89,17 @@ const UserManage = React.createClass({
             state="禁用";
         }else if(intState==1){
             state="启用";      
+        }else{
+            state="";
+        }
+        return state;
+    },
+     judege1(intState){
+        var state="";
+        if(intState==0){
+            state="启用";
+        }else if(intState==1){
+            state="禁用";      
         }else{
             state="";
         }
@@ -120,8 +134,8 @@ const UserManage = React.createClass({
                         <th>用户名</th>
                         <th>账户类型 </th>
                         <th>电话</th>
-                        <th>上次登录时间</th>
                         <th>状态</th>
+                        <th>上次登录时间</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -135,7 +149,7 @@ const UserManage = React.createClass({
                                     <td>{item.user_mobile}</td>
                                     <td>{this.judege(item.state) }</td>
                                     <td>{item.user_last_login}</td>
-                                    <td><p><span onClick={this.deletelist.bind(this,item.id)}>删除</span>&nbsp; /<span onClick={this.disable.bind(this,item.id)}>禁用</span>&nbsp; /<span onClick={this.change.bind(this,item.id)}>修改</span></p></td>
+                                    <td><p><span onClick={this.deletelist.bind(this,item.id)}>删除</span>&nbsp; /<span onClick={this.disable.bind(this,[item.id,item.state])}>{this.judege1(item.state)}</span>&nbsp; /<span onClick={this.change.bind(this,item.id)}>修改</span></p></td>
                                 </tr>
                             );
                         })

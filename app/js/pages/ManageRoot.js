@@ -10,8 +10,8 @@ var ManageRoot = React.createClass({
     getInitialState() {
         return {
             dataSource: {re:[{"user_name":"ffff","user_group":"iiiii","user_mobile":"111","user_mail":"qqq","state":"0"}],totalpage:1},
-            nowpage:'1',
-            totalpage:'1'
+            nowpage:1,
+            totalpage:1
         };
     },
     query(page = this.state.nowpage){
@@ -60,7 +60,10 @@ var ManageRoot = React.createClass({
         console.log(id)
         auth.myact(
           {to:'manager/disableaccount.do',
-           parms:[{'key':'id','value':id}]
+           parms:[
+               {'key':'id','value':id[0]},
+               {'key':'state','value':id[1]},
+           ]
           },
           (res)=>{
                 console.log(res)
@@ -84,6 +87,17 @@ var ManageRoot = React.createClass({
             state="禁用";
         }else if(intState==1){
             state="启用";      
+        }else{
+            state="";
+        }
+        return state;
+    },
+    judege1(intState){
+        var state="";
+        if(intState==0){
+            state="启用";
+        }else if(intState==1){
+            state="禁用";      
         }else{
             state="";
         }
@@ -307,7 +321,7 @@ var ManageRoot = React.createClass({
                                         <img id="u30_img" className="img " src="i/images/web_manage_page_root/u30.png"/>
 
                                         <div id="u31" className="text">
-                                            <p><span>{person.user_name!=undefined? <p><a onClick={this.deletelist.bind(this,person.user_id)}>删除</a>/<a onClick={this.disable.bind(this,person.user_id)}>禁用</a>/<a onClick={this.change1}>修改</a></p>:''}</span></p>
+                                            <p><span>{person.user_name!=undefined? <p><a onClick={this.deletelist.bind(this,person.user_id)}>删除</a>/<a onClick={this.disable.bind(this,[person.user_id,person.state])}>{this.judege1(person.state)}</a>/<a onClick={this.change1}>修改</a></p>:''}</span></p>
                                         </div>
                                     </div>
 
@@ -363,7 +377,7 @@ var ManageRoot = React.createClass({
                                         <img id="u42_img" className="img " src="i/images/web_manage_page_root/u42.png"/>
 
                                         <div id="u43" className="text">
-                                            <p><span>{person2.user_name!=undefined? <p><a onClick={this.deletelist.bind(this,person2.user_id)}>删除</a>/<a onClick={this.disable.bind(this,person2.user_id)}>禁用</a>/<a onClick={this.change.bind(this,person2.user_id)}>修改</a></p>:''}</span></p>
+                                            <p><span>{person2.user_name!=undefined? <p><a onClick={this.deletelist.bind(this,person2.user_id)}>删除</a>/<a onClick={this.disable.bind(this,[person2.user_id,person2.state])}>{this.judege1(person2.state)}</a>/<a onClick={this.change.bind(this,person2.user_id)}>修改</a></p>:''}</span></p>
                                         </div>
                                     </div>
                                 </div>

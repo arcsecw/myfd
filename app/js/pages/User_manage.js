@@ -124,7 +124,6 @@ var User_manage = React.createClass({
   ,
   
     render() {
-       console.log(About)
         return (
             <PageContainer>
                 <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
