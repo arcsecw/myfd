@@ -108,7 +108,7 @@ var CheckReservation = React.createClass({
                         <img id="u4_img" className="img " src="i/images/user_check_operation_reservation_page/u4.png"/>
 
                         <div id="u5" className="pay">
-                            <p ><span>&nbsp; </span><span>支付信息：</span></p><p ><span>&nbsp; </span></p><p><span>&nbsp; </span></p><p><span >&nbsp; </span></p><p ><span>&nbsp; </span></p><p><span >&nbsp; </span></p>
+                            <p ><span>&nbsp; </span><span></span></p><p ><span>&nbsp; </span></p><p><span>&nbsp; </span></p><p><span >&nbsp; </span></p><p ><span>&nbsp; </span></p><p><span >&nbsp; </span></p>
                         </div>
                     </div>
 
@@ -145,12 +145,12 @@ var CheckReservation = React.createClass({
                                             (res)=>{
                                                 console.log(res)
                                                     if(res.state =='success'){
-                                                        alert('支付成功')
+                                                        alert('预约成功')
                                                     }
                                                     });
                             }
                         }>
-                            <p><span>前往结算&nbsp; </span></p>
+                            <p><span>提交&nbsp; </span></p>
                         </div>
                         <div id="u39" class="ax_html_button">
                             <input />

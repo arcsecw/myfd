@@ -168,7 +168,8 @@ var Register_doctor =withRouter( React.createClass({
                {'key':'team','value':this.state.checkedTeam},                
                {'key':'role','value':'3'}, 
                {'key':'user_name','value':this.state.username}, 
-               {'key':'regist_validate', 'value':this.state.code}
+               {'key':'regist_validate', 'value':this.state.code},
+               {'key':'realName', 'value':this.refs.realName.value},
                ]
         
         for (let i = 0;i<this.state.select_state.length;i++){
@@ -299,7 +300,9 @@ var Register_doctor =withRouter( React.createClass({
                     </div>
 
 
-                    
+                    <div id="u8" className="ax_text_field">
+                        <input ref="realName"  id="u8_input" type="text"  />
+                    </div>
 
 
                     <div id="u9" className="ax_text_field">
@@ -344,7 +347,13 @@ var Register_doctor =withRouter( React.createClass({
                     </div>
 
 
-                    
+                    <div id="u21" className="ax_paragraph">
+                         <img id="u21_img" className="img " src="i/resources/images/transparent.gif"/>
+ 
+                         <div id="u22" className="text">
+                             <p><span>真实姓名</span></p>
+                         </div>
+                     </div>
 
 
                     <div id="u23" className="ax_paragraph">
