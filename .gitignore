@@ -37,3 +37,5 @@ dist
 .editorconfig
 .vscode/
 *.bak
+*.conf
+.qshell/
