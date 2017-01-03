@@ -390,13 +390,7 @@ var Doctor_list =withRouter( React.createClass({
           </div>
 
 
-          <div id="u54" className="ax_paragraph">
-            <img id="u54_img" className="img " src="i/resources/images/transparent.gif"/>
-
-            <div id="u55" className="text">
-              <p><a id="u56" className="link" data-label="CusUserName"><span className="u144">登录</span></a><span className="u143">&nbsp; |</span><span className="u140">&nbsp; 手机APP</span><span className="u143">&nbsp; |</span><span className="u140">&nbsp; 客户服务&nbsp; </span><span className="u143">|</span><span className="u140">&nbsp; 网站导航</span></p>
-            </div>
-          </div>
+          
 
 
           <div id="u57" className="ax_shape" 

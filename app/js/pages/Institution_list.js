@@ -307,13 +307,7 @@ const Institution_list = withRouter( React.createClass({
                     </div>
 
 
-                    <div id="u40" className="ax_paragraph">
-                        <img id="u40_img" className="img " src="i/resources/images/transparent.gif"/>
-
-                        <div id="u41" className="text">
-                            <p><a id="u42" className="link" data-label="CusUserName"><Link to = '/login'><span className="u131">登录</span></Link></a><span className="133">&nbsp; |</span><span className="u132">&nbsp; 手机APP</span><span className="u133">&nbsp; |</span><span className="u132">&nbsp; 客户服务&nbsp; </span><span className="133">|</span><span className="u132">&nbsp; 网站导航</span></p>
-                        </div>
-                    </div>
+                  
 
 
                     <div id="u43" className="ax_shape" 

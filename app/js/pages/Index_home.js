@@ -230,12 +230,7 @@ console.log(goodAt3.length)
             </div>
           </div>
 
-          <div id="u2" className="ax_paragraph">
-            <img id="u2_img" className="img " src="i/resources/images/transparent.gif"/>
-            <div id="u3" className="text">
-              <p><a id="u4" className="link" data-label="CusUserName"><Link to = '/login'><span style={{ color: '#0000FF' }}>登录</span></Link></a><span style={{ color: '#CCCCCC' }}>&nbsp; |</span><span style={{ color: '#333333' }}>&nbsp; 手机APP</span><span style={{ color: '#CCCCCC' }}>&nbsp; |</span><span style={{ color: '#333333' }}>&nbsp; 客户服务&nbsp; </span><span style={{ color: '#CCCCCC' }}>|</span><span style={{ color: '#333333' }}>&nbsp; 网站导航</span></p>
-            </div>
-          </div>
+          
 
           <div id="u5" className="ax_text_field">
             <input id="u5_input" type="text" ref = 'des' />

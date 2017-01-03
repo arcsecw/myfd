@@ -28,10 +28,7 @@ var HeaderTop = React.createClass({
      </Col>
      <Col sm = {5}>      
       <Nav pills>
-    <NavItem active href="#">登录</NavItem>
-    <NavItem href="#">手机app</NavItem>
-    <NavItem href="#">客户服务</NavItem>
-    <NavItem href="#">网站导航</NavItem>
+   
     
   </Nav>
   </Col>

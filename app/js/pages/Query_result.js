@@ -475,13 +475,7 @@ var Query_result = withRouter (React.createClass({
                     </div>
 
                     
-                    <div id="u61" className="ax_paragraph">
-                        <img id="u61_img" className="img " src="i/resources/images/transparent.gif"/>
-                        
-                        <div id="u62" className="text">
-                            <p><a id="u63" className="link" data-label="CusUserName"><span className="u126">登录</span></a><span className="u127">&nbsp; |</span><span className="u128">&nbsp; 手机APP</span><span className="u127">&nbsp; |</span><span className="u128">&nbsp; 客户服务&nbsp; </span><span className="u127">|</span><span className="u128">&nbsp; 网站导航</span></p>
-                        </div>
-                    </div>
+                  
                  
                     <div id="u64" className="ax_shape" onClick = {()=>{
                             this.state.des = this.refs.desces.value!=undefined?this.refs.desces.value:''
