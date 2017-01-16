@@ -148,7 +148,7 @@ gulp.task('html', function() {
 
 // 洗刷刷
 gulp.task('clean', function() {
-  return del(['dist/*', '!dist/.git'], {dot: true});
+  return del(['dist/*', '!dist/.git','!dist/.gitignore'], {dot: true});
 });
 
 // 构建任务
