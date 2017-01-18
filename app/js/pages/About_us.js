@@ -129,6 +129,7 @@ const About_us = withRouter(
                     <img id="u125_img" className="img " src="i/resources/images/transparent.gif"/>
 
                     <div id="u126" className="text">
+                                                <p><span><a href = 'http://www.miitbeian.gov.cn'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 京ICP备案16059247号</a></span></p>
                                   <p><span><img src = 'http://www.beian.gov.cn/img/ghs.png'/><a href = 'http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802022799'>京公网安备 11010802022799号</a></span></p>
 
                     </div>
