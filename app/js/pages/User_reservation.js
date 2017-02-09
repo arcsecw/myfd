@@ -20,7 +20,6 @@ var User_reservation = withRouter( React.createClass({
     getInitialState() {
         return {
             yuyue:{
-                notice:'',
                 didian:'',
                 zhuanjia:'',
                 yuyueshijian:'2016-8-20',
@@ -39,6 +38,7 @@ var User_reservation = withRouter( React.createClass({
                 id:''
             },
             qitafuwu:[],
+            notice:'fff',            
             qitafuwu1:[
                 {
                     description:'大保健1',
@@ -58,7 +58,6 @@ var User_reservation = withRouter( React.createClass({
             var pars = this.state.yuyue
             
             var parms = [
-               {'key':'orderFocus','value':pars.notice},
                {'key':'orderReserveTime','value':pars.yuyueshijian},
                {'key':'orderOperation','value':pars.shoushuneirong},
                {'key':'orderInsurance','value':'1'},
@@ -76,15 +75,13 @@ var User_reservation = withRouter( React.createClass({
             qitafuwu.map((l)=>{
                 parms.push({'key':'service','value':l})
             })
-            console.log(parms)
             auth.myact(
             {to:'orderGen.do',
             parms:parms
             },
             (res)=>{
-                    var form = new FormData(<form  encType="multipart/form-data" method="post"></form>)
+                    var form = new FormData()
                     form.append("imgFile", this.refs.my_file.files[0]);
-                    console.log(this.refs.my_file.files[0])
                     form.append("username", auth.getUsername());
                     form.append("role", auth.getRole());
                     auth.post('upload.do',form,(res)=>{
@@ -96,10 +93,13 @@ var User_reservation = withRouter( React.createClass({
                     this.props.router.push({ pathname: '/checkReservation',query:this.state.yuyue})
                     });
         },
-    componentWillMount() {
-        auth.get('book.do',{},(res)=>{
-            this.state.yuyue.notice = res.shift().focus
-            this.setState({qitafuwu1:res})
+    componentDidMount() {
+        auth.get('book.do',{'test':'test'},(res)=>{
+            var state = this.state.yuyue
+            var n = res.shift().focus
+            this.state.notice = n
+            this.state.qitafuwu1 = res
+            this.forceUpdate()
         })
         auth.get('list.do',{'page':'1','role':'2','paixu':'1'},(res)=>{
             console.log(res)
@@ -112,7 +112,6 @@ var User_reservation = withRouter( React.createClass({
     },
      submitForm() {  
         var refss = this.refs
-        console.log(refss.service)
         this.state.yuyue.didian = refss.didian.value;
         this.state.yuyue.yuyueshijian = refss.yuyueshijian.value;
         this.state.yuyue.shoushuneirong = refss.shoushuneirong.value;
@@ -143,9 +142,9 @@ var User_reservation = withRouter( React.createClass({
                 return (<div><input type = 'checkbox' value={line.id}/>{`描述：${line.description}---价格：${line.price}`}</div>)
             })
         )
+        var notice = this.state.notice 
         var pr = this.state.yuyue
         
-
         return (
             <PageContainer>
                 <link href="i/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
@@ -233,7 +232,7 @@ var User_reservation = withRouter( React.createClass({
                         <img id="u16_img" className="img " src="i/images/user_reservation_operation_fill_page/u16.png"/>
 
                         <div id="u17" className="text">
-                            <p><span></span><span>{pr.notice}</span></p>
+                            <p>：{notice}</p>
                         </div>
                     </div>
 

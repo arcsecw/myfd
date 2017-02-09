@@ -185,7 +185,7 @@ var Register_doctor =withRouter( React.createClass({
         },
         (res)=>{
             if(res.regist_error){alert(res.regist_error)}else{
-                var form = new FormData(<form  encType="multipart/form-data" method="post"></form>)
+                var form = new FormData()
                 form.append("imgFile", this.refs.my_file.files[0]);
                 form.append("username", this.state.username);
                 form.append("certificate",'true');
@@ -194,7 +194,7 @@ var Register_doctor =withRouter( React.createClass({
                 auth.post('upload.do',form,(res)=>{
                     
                 })
-                var form = new FormData(<form  encType="multipart/form-data" method="post"></form>)
+                var form = new FormData()
                 form.append("imgFile", this.refs.my_file_1.files[0]);
                 form.append("username", this.state.username);
                 form.append("role", res.role);
